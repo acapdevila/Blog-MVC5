@@ -7,6 +7,7 @@ using Blog.Modelo;
 
 namespace Blog.Web.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
         private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
