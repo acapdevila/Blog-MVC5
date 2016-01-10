@@ -98,8 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\2_ScripMigracionPost.sql" />
-    <Content Include="Scripts\1_ScripMigracionTag.sql" />
+    <Content Include="Migrations\Scripts\2_ScripMigracionPost.sql" />
+    <Content Include="Migrations\Scripts\1_ScripMigracionTag.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
