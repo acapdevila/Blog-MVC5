@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Blog.Modelo.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subtitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlSlug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContenidoHtml)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsBorrador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPublicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subtitulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlSlug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContenidoHtml)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsBorrador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPublicacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Autor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
