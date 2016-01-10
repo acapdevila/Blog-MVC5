@@ -24,6 +24,8 @@ namespace Blog.Datos
         {
             modelBuilder.Configurations.Add(new MapeoTag());
 
+            modelBuilder.Configurations.Add(new MapeoPost());
+
             base.OnModelCreating(modelBuilder);
         }
     }
