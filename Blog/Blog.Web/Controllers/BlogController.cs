@@ -6,12 +6,11 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
-    public class HomeController : Controller
+    public class BlogController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
-
-     }
+    }
 }
