@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {
-    public class ContactoController : Controller
+    public class InicioController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Your contact page.";
             return View();
         }
-    }
+
+     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Solo un programador .net" : ViewBag.Title)</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,13 +17,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Solo un programador .net", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
-                    <li>@Html.ActionLink("Acerca de", "Index", "AcercaDe")</li>
-                    <li>@Html.ActionLink("Contacto", "Index", "Contacto")</li>
+                    <li>@Html.ActionLink("Hola, mi nombre es...", "Index", "Hola")</li>
+                    <li>@Html.ActionLink("Escríbeme", "Index", "Escribeme")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
