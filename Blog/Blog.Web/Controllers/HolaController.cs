@@ -6,6 +6,11 @@ namespace Blog.Web.Controllers
     {
         public ActionResult Index()
         {
+            return View("MiNombreEsAlbert");
+        }
+
+        public ActionResult MiNombreEsAlbert()
+        {
             return View();
         }
     }

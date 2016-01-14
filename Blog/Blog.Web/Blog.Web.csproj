@@ -231,7 +231,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Hola\Index.cshtml" />
+    <Content Include="Views\Hola\MiNombreEsAlbert.cshtml" />
     <Content Include="Views\Escribeme\Index.cshtml" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
