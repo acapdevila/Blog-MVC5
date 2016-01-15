@@ -168,6 +168,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Configuracion\WebConfigParametro.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
     <Compile Include="Controllers\EscribemeController.cs" />
@@ -182,7 +183,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\EmailServicio.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Escribeme\FormularioContactoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -231,7 +234,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Hola\MiNombreEsAlbert.cshtml" />
+    <Content Include="Views\Hola\Index.cshtml" />
     <Content Include="Views\Escribeme\Index.cshtml" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -266,6 +269,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Escribeme\MensajeEnviado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

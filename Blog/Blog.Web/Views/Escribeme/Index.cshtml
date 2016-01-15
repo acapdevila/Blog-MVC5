@@ -1,17 +1,75 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@using Blog.Web.ViewModels.Escribeme
+@model FormularioContactoViewModel
+@{
+    ViewBag.Title = "Escríbeme";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
+<h3></h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+  
+   <div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Index", "Escribeme", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Nombre, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10"> 
+                        @Html.TextBoxFor(m => m.Nombre, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Nombre, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Telefono, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Asunto, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Asunto, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Asunto, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Mensaje, new {@class = "col-md-2 control-label"})
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Mensaje, new {@class = "form-control", rows = "7"})
+                        @Html.ValidationMessageFor(m => m.Mensaje, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CaptchaDiaSemana, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.CaptchaDiaSemana, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CaptchaDiaSemana, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Enviar" class="btn btn-default" />
+                    </div>
+                </div>
+               
+              }
+        </section>
+    </div>
+ 
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
