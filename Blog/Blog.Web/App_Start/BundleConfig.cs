@@ -26,6 +26,10 @@ namespace Blog.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                        "~/Scripts/ckeditor/ckeditor.js",
+                        "~/Scripts/ckeditor/config.js"));
         }
     }
 }
