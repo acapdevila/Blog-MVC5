@@ -30,7 +30,10 @@ namespace Blog.Web.Controllers
             {
                _emailServicio.EnviarFormularioContacto(viewmodel);
                 
-                return RedirectToAction("MensajeEnviado");
+                if(viewmodel.EsCaptchaValido)
+                    return RedirectToAction("MensajeEnviado");
+               
+                return RedirectToAction("MensajeNoEnviado");
             }
 
             return View(viewmodel);
@@ -38,6 +41,10 @@ namespace Blog.Web.Controllers
         }
 
         public ActionResult MensajeEnviado()
+        {
+            return View();
+        }
+        public ActionResult MensajeNoEnviado()
         {
             return View();
         }

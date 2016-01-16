@@ -26,7 +26,7 @@ namespace Blog.Web.ViewModels.Escribeme
         [Required(ErrorMessage = @"Escribe un mensaje")]
         public string Mensaje { get; set; }
 
-        [Display(Name = @"Huevo, perro, abeja o viernes, ¿cuál es el día de la semana? ")]
+        [Display(Name = @"Huevo, perro, abeja o viernes, ¿cuál es el día de la semana?")]
         [Required(ErrorMessage = @"Este campo es obligatorio")]
         public string CaptchaDiaSemana { get; set; }
 
