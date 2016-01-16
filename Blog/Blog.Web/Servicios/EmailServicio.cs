@@ -21,7 +21,7 @@ namespace Blog.Web.Servicios
             var message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = string.IsNullOrEmpty(formulario.Asunto) ? "Contacto Blog acapdevila" : formulario.Asunto,
-                Body = $"{formulario.Mensaje}\r\n\r\n\r\nNombre: {formulario.Nombre}\r\nE-mail: {formulario.Email}\r\nTeléfono:{formulario.Telefono}\r\n",
+                Body = $"{formulario.Mensaje}\r\n\r\n\r\nNombre: {formulario.Nombre}\r\nE-mail: {formulario.Email}\r\nTeléfono:{formulario.Telefono}\r\n* Mensaje enviado desde el formulario de contacto del Blog",
                 IsBodyHtml = false
             };
             message.ReplyToList.Add(formulario.Email);
