@@ -21,15 +21,7 @@
                 @Html.ActionLink("Programación.net", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Hola", "Index", "Hola")</li>
-                    <li>@Html.ActionLink("Escríbeme", "Index", "Escribeme")</li>
-                    
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-                    }
-                </ul>
+                @Html.Partial("_MenuPrincipal")
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

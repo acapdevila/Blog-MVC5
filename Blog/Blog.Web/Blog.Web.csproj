@@ -608,6 +608,7 @@
     <Content Include="Views\Posts\EditorTemplates\EditorPost.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatetimePicker.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
+    <Content Include="Views\Shared\_MenuPrincipal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,21 @@
+﻿
+@{
+    var currentController = (string)ViewContext.RouteData.Values["Controller"];
+    const string activeClass = "active";
+}
+
+<ul class="nav navbar-nav">
+    <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
+        @Html.ActionLink("Hola", "Index", "Hola")
+    </li>
+    <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
+        @Html.ActionLink("Escríbeme", "Index", "Escribeme")
+    </li>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
+            @Html.ActionLink("Posts", "Index", "Posts")
+        </li>
+    }
+</ul>
