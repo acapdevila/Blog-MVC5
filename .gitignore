@@ -234,3 +234,4 @@ _Pvt_Extensions
 .fake/
 *.Release.config
 *.Debug.config
+Blog/Blog.Deploy/**
