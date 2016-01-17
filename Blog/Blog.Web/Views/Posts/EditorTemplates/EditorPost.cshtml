@@ -1,22 +1,13 @@
-﻿@model Blog.Modelo.Post
+﻿@model Blog.Web.ViewModels.Post.EditorPost
 
 @Html.HiddenFor(model => model.Id)
 <div class="form-group">
-    @Html.LabelFor(model => model.Subtitulo, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Titulo, htmlAttributes: new {@class = "control-label col-md-2"})
     <div class="col-md-10">
-        @Html.EditorFor(model => model.Subtitulo, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Subtitulo, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.Titulo, new {htmlAttributes = new {@class = "form-control"}})
+        @Html.ValidationMessageFor(model => model.Titulo, "", new {@class = "text-danger"})
     </div>
 </div>
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
-    </div>
-</div>
-
 <div class="form-group">
     @Html.LabelFor(model => model.UrlSlug, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -28,10 +19,20 @@
 <div class="form-group">
     @Html.LabelFor(model => model.FechaPost, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.FechaPost, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.FechaPost, "DatePicker", new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.FechaPost, "", new { @class = "text-danger" })
     </div>
 </div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Subtitulo, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextAreaFor(model => model.Subtitulo, 7,6, htmlAttributes: new { @class = "form-control" } )
+        @Html.ValidationMessageFor(model => model.Subtitulo, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
 
 <div class="form-group">
     @Html.LabelFor(model => model.ContenidoHtml, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,7 +55,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.FechaPublicacion, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.FechaPublicacion, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.FechaPublicacion, "DatetimePicker", new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.FechaPublicacion, "", new { @class = "text-danger" })
     </div>
 </div>

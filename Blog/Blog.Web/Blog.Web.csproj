@@ -57,6 +57,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\valueinjecter.3.1.1.2\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -186,12 +190,15 @@
     <Compile Include="Servicios\EmailServicio.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Escribeme\FormularioContactoViewModel.cs" />
+    <Compile Include="ViewModels\Post\EditorPost.cs" />
+    <Compile Include="ViewModels\Post\EditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -536,6 +543,7 @@
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -598,6 +606,8 @@
     <Content Include="Views\Escribeme\MensajeNoEnviado.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\HtmlEditor.cshtml" />
     <Content Include="Views\Posts\EditorTemplates\EditorPost.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DatetimePicker.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -615,6 +625,9 @@
       <Project>{263af96b-9995-4111-b27e-fd6042e3cfe3}</Project>
       <Name>Blog.Modelo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

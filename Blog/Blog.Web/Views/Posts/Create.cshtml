@@ -1,8 +1,11 @@
-﻿@model Blog.Modelo.Post
+﻿@model Blog.Web.ViewModels.Post.EditViewModel
 
 @{
     ViewBag.Title = "Create";
-}
+ }
+
+@Scripts.Render("~/bundles/controlesedicion")
+@Styles.Render("~/bundles/controlesedicioncss")
 
 <h2>Create</h2>
 
@@ -16,7 +19,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @Html.EditorFor(m=>m, "EditorPost")
+
+
+        @Html.EditorFor(m=>m.EditorPost, "EditorPost")
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -30,7 +35,10 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+
+  
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/ckeditor")
+
 }

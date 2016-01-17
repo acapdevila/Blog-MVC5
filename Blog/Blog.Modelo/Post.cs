@@ -1,11 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace Blog.Modelo
 {
     public class Post
     {
-        public Post()
+        public static Post CrearNuevoPorDefecto()
+        {
+            return new Post 
+            {
+                Autor = "Albert Capdevila",
+                EsBorrador = true,
+                FechaPost = DateTime.Now,
+                FechaPublicacion = DateTime.Now.AddDays(5)
+            };
+        }
+
+    public Post()
         {
             Tags = new List<Tag>();
         }

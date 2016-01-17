@@ -4,6 +4,8 @@ using System.Net;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo;
+using Blog.Web.ViewModels.Post;
+using Omu.ValueInjecter;
 
 namespace Blog.Web.Controllers
 {
@@ -36,7 +38,16 @@ namespace Blog.Web.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            return View();
+            var post = Post.CrearNuevoPorDefecto();
+
+            var viewModel = new EditViewModel
+            {
+                EditorPost = new EditorPost()
+            };
+
+            viewModel.EditorPost.InjectFrom(post);
+
+            return View(viewModel);
         }
 
         // POST: Posts/Create
@@ -44,16 +55,18 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Subtitulo,Titulo,UrlSlug,FechaPost,ContenidoHtml,EsBorrador,FechaPublicacion,Autor")] Post post)
+        public async Task<ActionResult> Create(EditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var post = new Post();
+                post.InjectFrom(viewModel.EditorPost);
                 _db.Posts.Add(post);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(post);
+            return View(viewModel);
         }
 
         // GET: Posts/Edit/5
@@ -63,12 +76,20 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await _db.Posts.FindAsync(id);
+            var post = await _db.Posts.FindAsync(id);
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+
+            var viewModel = new EditViewModel
+            {
+                EditorPost = new EditorPost()
+            };
+
+            viewModel.EditorPost.InjectFrom(post);
+            
+            return View(viewModel);
         }
 
         // POST: Posts/Edit/5
@@ -76,15 +97,17 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Subtitulo,Titulo,UrlSlug,FechaPost,ContenidoHtml,EsBorrador,FechaPublicacion,Autor")] Post post)
+        public async Task<ActionResult> Edit(EditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var post = new Post();
+                post.InjectFrom(viewModel.EditorPost);
                 _db.Entry(post).State = EntityState.Modified;
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(post);
+            return View(viewModel);
         }
 
         // GET: Posts/Delete/5

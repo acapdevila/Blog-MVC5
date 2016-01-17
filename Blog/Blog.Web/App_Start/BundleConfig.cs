@@ -27,9 +27,13 @@ namespace Blog.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+            bundles.Add(new ScriptBundle("~/bundles/controlesedicion").Include(
                         "~/Scripts/ckeditor/ckeditor.js",
-                        "~/Scripts/ckeditor/config.js"));
+                        "~/Scripts/ckeditor/config.js",
+                        "~/Scripts/jquery.datetimepicker.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/controlesedicioncss").Include(
+                    "~/Content/jquery.datetimepicker.css"));
         }
     }
 }
