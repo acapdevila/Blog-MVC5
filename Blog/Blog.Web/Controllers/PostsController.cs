@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo;
 using Blog.Web.ViewModels.Post;
-using Omu.ValueInjecter;
+using Blog.Web.ViewModels.Post.Conversores;
 
 namespace Blog.Web.Controllers
 {
@@ -14,28 +14,25 @@ namespace Blog.Web.Controllers
     {
         private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
 
-        // GET: Posts
         public async Task<ActionResult> Index()
         {
             return View(await _db.Posts.ToListAsync());
         }
-
-        // GET: Posts/Details/5
+        
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await _db.Posts.FindAsync(id);
+            var post = await RecuperarPost(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
             }
             return View(post);
         }
-
-        // GET: Posts/Create
+        
         public ActionResult Create()
         {
             var post = Post.CrearNuevoPorDefecto();
@@ -45,12 +42,11 @@ namespace Blog.Web.Controllers
                 EditorPost = new EditorPost()
             };
 
-            viewModel.EditorPost.InjectFrom(post);
+            viewModel.EditorPost.CopiaValores(post);
 
             return View(viewModel);
         }
-
-        // POST: Posts/Create
+        
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,24 +55,22 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var post = new Post();
-                post.InjectFrom(viewModel.EditorPost);
-                _db.Posts.Add(post);
-                await _db.SaveChangesAsync();
+                await CrearPost(viewModel.EditorPost);
+              
                 return RedirectToAction("Index");
             }
 
             return View(viewModel);
         }
+        
 
-        // GET: Posts/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = await _db.Posts.FindAsync(id);
+            Post post = await RecuperarPost(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -87,12 +81,11 @@ namespace Blog.Web.Controllers
                 EditorPost = new EditorPost()
             };
 
-            viewModel.EditorPost.InjectFrom(post);
+            viewModel.EditorPost.CopiaValores(post);
             
             return View(viewModel);
         }
-
-        // POST: Posts/Edit/5
+        
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -101,39 +94,63 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var post = new Post();
-                post.InjectFrom(viewModel.EditorPost);
-                _db.Entry(post).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
+                await ActualizarPost(viewModel.EditorPost);
+              
                 return RedirectToAction("Index");
             }
             return View(viewModel);
         }
 
-        // GET: Posts/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await _db.Posts.FindAsync(id);
+            var post = await RecuperarPost(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
             }
             return View(post);
         }
-
-        // POST: Posts/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Post post = await _db.Posts.FindAsync(id);
+            await EliminarPost(id);
+            return RedirectToAction("Index");
+        }
+
+        
+        private async Task<Post> RecuperarPost(int id)
+        {
+            return await _db.Posts.Include(m => m.Tags)
+                        .FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        private async Task CrearPost(EditorPost editorPost)
+        {
+            var post = new Post();
+            post.CopiaValores(editorPost);
+            _db.Posts.Add(post);
+            await _db.SaveChangesAsync();
+        }
+
+        private async Task ActualizarPost(EditorPost editorPost)
+        {
+            var post = await RecuperarPost(editorPost.Id);
+            post.CopiaValores(editorPost);
+
+            await _db.SaveChangesAsync();
+        }
+
+        private async Task EliminarPost(int id)
+        {
+            var post = await RecuperarPost(id);
             _db.Posts.Remove(post);
             await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

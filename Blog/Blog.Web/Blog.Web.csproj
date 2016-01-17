@@ -190,6 +190,7 @@
     <Compile Include="Servicios\EmailServicio.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Escribeme\FormularioContactoViewModel.cs" />
+    <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
     <Compile Include="ViewModels\Post\EditorPost.cs" />
     <Compile Include="ViewModels\Post\EditViewModel.cs" />
   </ItemGroup>

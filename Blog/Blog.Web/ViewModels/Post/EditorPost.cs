@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Blog.Web.ViewModels.Post
@@ -44,8 +46,9 @@ namespace Blog.Web.ViewModels.Post
 
         [Required]
         public string Autor { get; set; }
+        
+        public string Tags { get; set; }
 
-
-
+        public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(',').ToList();
     }
 }

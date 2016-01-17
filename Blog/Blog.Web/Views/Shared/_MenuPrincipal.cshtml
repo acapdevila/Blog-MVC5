@@ -14,8 +14,12 @@
 
     @if (User.Identity.IsAuthenticated)
     {
+        <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
+            @Html.ActionLink("Tags", "Index", "Tags")
+        </li>
         <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
             @Html.ActionLink("Posts", "Index", "Posts")
         </li>
+        
     }
 </ul>
