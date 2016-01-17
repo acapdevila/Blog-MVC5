@@ -211,7 +211,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Properties\PublishProfiles\acapdevila - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\acapdevila - Azure.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -538,6 +538,7 @@
     <Content Include="Scripts\ckeditor\plugins\scayt\CHANGELOG.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <None Include="Properties\PublishProfiles\acapdevila-pre - AzureSlot.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -562,6 +563,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -670,6 +672,6 @@
   <Target Name="BeforeBuild">
   </Target>-->
   <Target Name="AfterBuild">
-	 <TransformXml Condition=" '$(Environment)' != '' " Source="Web.config" Transform="Web.$(Environment).config" Destination="Web.config" />
-  </Target> 
+    <TransformXml Condition=" '$(Environment)' != '' " Source="Web.config" Transform="Web.$(Environment).config" Destination="Web.config" />
+  </Target>
 </Project>
