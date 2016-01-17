@@ -180,6 +180,7 @@
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\SidebarController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +194,7 @@
     <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
     <Compile Include="ViewModels\Post\EditorPost.cs" />
     <Compile Include="ViewModels\Post\EditViewModel.cs" />
+    <Compile Include="ViewModels\Sidebar\NubeEtiquetasViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -612,6 +614,10 @@
     <Content Include="Views\Shared\EditorTemplates\DatetimePicker.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
     <Content Include="Views\Shared\_MenuPrincipal.cshtml" />
+    <Content Include="Views\Shared\_SidebarPrincipal.cshtml" />
+    <Content Include="Views\Blog\Etiqueta.cshtml" />
+    <Content Include="Views\Sidebar\DisplayTemplates\LinkEtiqueta.cshtml" />
+    <None Include="Views\Sidebar\NubeEtiquetas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
