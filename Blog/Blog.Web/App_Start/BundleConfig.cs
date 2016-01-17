@@ -28,8 +28,8 @@ namespace Blog.Web
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/controlesedicion").Include(
-                        "~/Scripts/ckeditor/ckeditor.js",
-                        "~/Scripts/ckeditor/config.js",
+                        //"~/Scripts/ckeditor/ckeditor.js",
+                        //"~/Scripts/ckeditor/config.js",
                         "~/Scripts/jquery.datetimepicker.js"));
 
             bundles.Add(new StyleBundle("~/bundles/controlesedicioncss").Include(
