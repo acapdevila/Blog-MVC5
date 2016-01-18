@@ -33,16 +33,17 @@ CKEDITOR.editorConfig = function( config ) {
         //,{ name: 'extra', items: ['Timestamp'] }
     ];
 
-    config.toolbar_Basic =
+    config.toolbar_Basico =
     [
         ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-', 'About']
     ];
 
-    config.toolbar_SmallToolbar =
+    config.toolbar_Mediano =
    [
-   ['Bold', 'Italic', 'Underline', '-',
+   ['Source', '-', 'Bold', 'Italic', 'Underline', '-',
     'Link', 'Unlink', '-',
-    'Font', 'FontSize', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
-    'Undo', 'Redo', '-', 'Source']
+    'Font', 'FontSize', '-', 'Image', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
+   
+    'Undo', 'Redo']
    ];
 };

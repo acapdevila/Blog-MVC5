@@ -617,7 +617,8 @@
     <Content Include="Views\Shared\_SidebarPrincipal.cshtml" />
     <Content Include="Views\Blog\Etiqueta.cshtml" />
     <Content Include="Views\Sidebar\DisplayTemplates\LinkEtiqueta.cshtml" />
-    <None Include="Views\Sidebar\NubeEtiquetas.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\HtmlEditorMediano.cshtml" />
+    <Content Include="Views\Sidebar\NubeEtiquetas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

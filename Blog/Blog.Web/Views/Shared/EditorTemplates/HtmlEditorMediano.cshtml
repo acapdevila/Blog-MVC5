@@ -1,0 +1,37 @@
+﻿@model string
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $.validator.setDefaults({ ignore: [] });
+
+            CKEDITOR.replace('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
+            {
+                toolbar: 'Mediano',
+                height: '80',
+                //filebrowserImageUploadUrl: 'Url.Action("UploadImage", "Uploads")',
+                filebrowserImageBrowseLinkUrl: '',
+                filebrowserWindowWidth: '600',
+                filebrowserWindowHeight: '700'
+            });
+
+            $('input[type="submit"]').click(function() {
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                    // alert(document.getElementById(instance).value);
+                }
+            });
+
+
+        });
+
+    </script>
+
+
+@Html.TextArea(string.Empty, /* Name suffix */ ViewData.TemplateInfo.FormattedModelValue /* Initial value */)
+
+
+
+
+
