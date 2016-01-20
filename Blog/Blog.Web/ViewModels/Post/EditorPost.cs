@@ -13,7 +13,8 @@ namespace Blog.Web.ViewModels.Post
           
         }
         public int Id { get; set; }
-        
+
+        [AllowHtml]
         [Display(Name = "Subtítulo")]
         [StringLength(400, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         [Required(ErrorMessage = "Escribe un subtítulo")]
