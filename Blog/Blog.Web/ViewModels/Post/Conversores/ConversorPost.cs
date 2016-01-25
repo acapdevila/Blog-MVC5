@@ -19,5 +19,6 @@ namespace Blog.Web.ViewModels.Post.Conversores
             post.InjectFrom(editorPost);
             post.EstablecerTags(editorPost.ListaTags);
         }
+
     }
 }

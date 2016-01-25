@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
@@ -16,9 +17,27 @@ namespace Blog.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
-            return View(await _db.Posts.ToListAsync());
+            var viewModel = await ObtenerListaPostViewModel();
+            return View(viewModel);
         }
-        
+
+        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
+        {
+            return new ListaGestionPostsViewModel
+            {
+                ListaPosts = await _db.Posts.Select(m => new LineaGestionPost
+                {
+                    Id = m.Id,
+                    UrlSlug = m.UrlSlug,
+                    Titulo = m.Titulo,
+                    FechaPost = m.FechaPost,
+                    EsBorrador = m.EsBorrador,
+                    FechaPublicacion = m.FechaPublicacion,
+                    Autor = m.Autor
+                }).ToListAsync()
+            };
+        }
+
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)

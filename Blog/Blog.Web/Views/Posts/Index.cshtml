@@ -1,59 +1,44 @@
-﻿@model IEnumerable<Blog.Modelo.Post>
+﻿@model Blog.Web.ViewModels.Post.ListaGestionPostsViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista posts";
 }
 
-<h2>Index</h2>
+<h2>Lista posts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "Create")
 </p>
 <table class="table">
     <tr>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Subtitulo)
+            Título
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Titulo)
+            Fecha post
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UrlSlug)
+           Es borrador
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaPost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContenidoHtml)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsBorrador)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaPublicacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autor)
+           Fecha publicación
         </th>
         <th></th>
+
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ListaPosts) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Subtitulo)
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
+            @Html.ActionLink(item.Titulo, "Details", new { id = item.Id })
+            
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UrlSlug)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaPost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContenidoHtml)
+            @item.FechaPost.ToShortDateString()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EsBorrador)
@@ -62,13 +47,9 @@
             @Html.DisplayFor(modelItem => item.FechaPublicacion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Autor)
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+
     </tr>
 }
 

@@ -218,10 +218,12 @@
     <Compile Include="Servicios\SubirArchivoImagenServicio.cs" />
     <Compile Include="Servicios\UrlImagenHelper.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Blog\ListaPostsBlogViewModel.cs" />
     <Compile Include="ViewModels\Escribeme\FormularioContactoViewModel.cs" />
     <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
     <Compile Include="ViewModels\Post\EditorPost.cs" />
     <Compile Include="ViewModels\Post\EditViewModel.cs" />
+    <Compile Include="ViewModels\Post\ListaGestionPostsViewModel.cs" />
     <Compile Include="ViewModels\Sidebar\NubeEtiquetasViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -576,6 +578,7 @@
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.datetimepicker.js" />
+    <Content Include="Scripts\jquery.validate.validarfechachrome.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
