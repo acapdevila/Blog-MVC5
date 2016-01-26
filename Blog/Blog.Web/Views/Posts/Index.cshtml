@@ -1,7 +1,13 @@
-﻿@model Blog.Web.ViewModels.Post.ListaGestionPostsViewModel
+﻿@using Blog.Web.Configuracion
+@using Blog.Web.Helpers
+@model Blog.Web.ViewModels.Post.ListaGestionPostsViewModel
 
 @{
     ViewBag.Title = "Lista posts";
+}
+
+@section Scripts {
+    <script id="dsq-count-scr" src="@($"http://{WebConfigParametro.DisqusShortname}.disqus.com/count.js")" async></script>
 }
 
 <h2>Lista posts</h2>
@@ -22,7 +28,10 @@
            Es borrador
         </th>
         <th>
-           Fecha publicación
+            Fecha publicación
+        </th>
+        <th>
+            Comentarios
         </th>
         <th></th>
 
@@ -45,6 +54,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaPublicacion)
+        </td>
+        <td>
+            <a href="@($"{Url.RutaUrlBlogPost(item.FechaPublicacion, item.UrlSlug)}#disqus_thread")"></a>
         </td>
         <td>
             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })

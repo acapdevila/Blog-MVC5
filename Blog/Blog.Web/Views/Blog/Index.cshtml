@@ -1,4 +1,5 @@
-﻿@model Blog.Web.ViewModels.Blog.ListaPostsBlogViewModel
+﻿@using Blog.Web.Helpers
+@model Blog.Web.ViewModels.Blog.ListaPostsBlogViewModel
 
 @{
     ViewData["Title"] = "Blog";
@@ -13,7 +14,7 @@
         {
 
             <h2>
-                <a href="@Url.RouteUrl("BlogPost", new { dia = item.FechaPost.Day, mes= item.FechaPost.Month, anyo =  item.FechaPost.Year, urlSlug = item.UrlSlug })">@item.Titulo</a>
+                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
             </h2>
             <p class="lead">
                 by @item.Autor

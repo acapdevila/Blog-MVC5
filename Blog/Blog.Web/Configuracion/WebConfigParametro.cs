@@ -10,7 +10,8 @@ namespace Blog.Web.Configuracion
         public static string StorageConnectionString => ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString;
         public static string NombreContenedorBlobAzure => ConfigurationManager.AppSettings["NombreContenedorBlobAzure"];
         public static string UrlRaizImagenes => ConfigurationManager.AppSettings["UrlRaizBlobAzure"];
-       
+
+        public static string DisqusShortname => ConfigurationManager.AppSettings["DisqusShortname"];
     }
 
 }

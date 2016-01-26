@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Programación.net" : ViewBag.Title)</title>
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "albertcapdevila.net" : ViewBag.Title)</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Programación.net", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("albertcapdevila.net", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_MenuPrincipal")
@@ -30,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - albertcapdevila.net</p>
         </footer>
     </div>
 

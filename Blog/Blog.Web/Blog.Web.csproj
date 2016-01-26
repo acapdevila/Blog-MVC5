@@ -210,6 +210,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -651,6 +652,7 @@
     <Content Include="Views\Shared\EditorTemplates\HtmlEditorMediano.cshtml" />
     <Content Include="Views\Sidebar\NubeEtiquetas.cshtml" />
     <Content Include="Views\Blog\Detalles.cshtml" />
+    <Content Include="Views\Shared\_Disqus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
