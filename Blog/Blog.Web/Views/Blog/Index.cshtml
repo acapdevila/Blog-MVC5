@@ -1,9 +1,6 @@
 ﻿@using Blog.Web.Helpers
 @model Blog.Web.ViewModels.Blog.ListaPostsBlogViewModel
 
-@{
-    ViewData["Title"] = "Blog";
-}
 <br/>
 <div class="row">
     <!-- Blog Entries Column -->
@@ -16,13 +13,14 @@
             <h2>
                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
             </h2>
-            <p class="lead">
+            @*<p class="lead">
                 by @item.Autor
-            </p>
+            </p>*@
             <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
             </p>
             <hr>
             @Html.Raw(item.Subtitulo)
+            <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">leer más<span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
         }
 

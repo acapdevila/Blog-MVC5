@@ -75,6 +75,10 @@
     <Compile Include="Migrations\201601271754002_PostAjustarLongitudesCampos.Designer.cs">
       <DependentUpon>201601271754002_PostAjustarLongitudesCampos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601272055346_PostAjustarLongitudesCampos2.cs" />
+    <Compile Include="Migrations\201601272055346_PostAjustarLongitudesCampos2.Designer.cs">
+      <DependentUpon>201601272055346_PostAjustarLongitudesCampos2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="ContextoBaseDatos.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601271754002_PostAjustarLongitudesCampos.resx">
       <DependentUpon>201601271754002_PostAjustarLongitudesCampos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601272055346_PostAjustarLongitudesCampos2.resx">
+      <DependentUpon>201601272055346_PostAjustarLongitudesCampos2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

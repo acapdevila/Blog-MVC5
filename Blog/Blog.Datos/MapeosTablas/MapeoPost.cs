@@ -16,7 +16,6 @@ namespace Blog.Datos.MapeosTablas
              .HasColumnType("varchar");
 
             Property(m => m.Subtitulo)
-                .HasMaxLength(400)
                 .HasColumnType("varchar");
 
             Property(m => m.Autor)

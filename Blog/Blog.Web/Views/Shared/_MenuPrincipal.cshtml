@@ -11,6 +11,9 @@
     <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
         @Html.ActionLink("Escríbeme", "Index", "Escribeme")
     </li>
+    <li>
+        <a href="https://github.com/acapdevila/Blog-MVC5" target="_blank">Código fuente</a>
+    </li>
 
     @if (User.Identity.IsAuthenticated)
     {
