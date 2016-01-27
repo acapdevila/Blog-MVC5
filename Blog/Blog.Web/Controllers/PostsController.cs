@@ -34,7 +34,9 @@ namespace Blog.Web.Controllers
                     EsBorrador = m.EsBorrador,
                     FechaPublicacion = m.FechaPublicacion,
                     Autor = m.Autor
-                }).ToListAsync()
+                })
+                .OrderByDescending(m=>m.Id)
+                .ToListAsync()
             };
         }
 

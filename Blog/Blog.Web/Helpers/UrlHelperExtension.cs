@@ -14,7 +14,7 @@ namespace Blog.Web.Helpers
                     mes = fechaPost.Month,
                     anyo = fechaPost.Year,
                     urlSlug
-                });
+                },"http");
         }
     }
 }

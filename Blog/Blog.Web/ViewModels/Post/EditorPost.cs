@@ -22,7 +22,7 @@ namespace Blog.Web.ViewModels.Post
 
         [Display(Name = "Título")]
         [Required(ErrorMessage = "Escribe un título")]
-        [StringLength(100, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        [StringLength(128, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         public string Titulo { get; set; }
 
         [Display(Name = "Url del post")]

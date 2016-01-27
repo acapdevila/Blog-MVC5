@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.FechaPublicacion)
         </td>
         <td>
-            <a href="@($"{Url.RutaUrlBlogPost(item.FechaPublicacion, item.UrlSlug)}#disqus_thread")"></a>
+            <a href="@($"{Url.RutaUrlBlogPost(item.FechaPublicacion, item.UrlSlug)}#disqus_thread")" data-disqus-identifier="@item.Id"></a>
         </td>
         <td>
             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })

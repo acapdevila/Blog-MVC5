@@ -12,11 +12,11 @@ namespace Blog.Datos.MapeosTablas
 
             Property(m => m.Titulo)
                 .IsRequired()
-             .HasMaxLength(64)
+             .HasMaxLength(128)
              .HasColumnType("varchar");
 
             Property(m => m.Subtitulo)
-                .HasMaxLength(128)
+                .HasMaxLength(400)
                 .HasColumnType("varchar");
 
             Property(m => m.Autor)

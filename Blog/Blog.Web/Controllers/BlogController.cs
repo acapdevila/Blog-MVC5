@@ -34,7 +34,9 @@ namespace Blog.Web.Controllers
                     Subtitulo = m.Subtitulo,
                     FechaPost = m.FechaPost,
                     Autor = m.Autor
-                }).ToListAsync()
+                })
+                .OrderByDescending(m=>m.FechaPost)
+                .ToListAsync()
             };
         }
 

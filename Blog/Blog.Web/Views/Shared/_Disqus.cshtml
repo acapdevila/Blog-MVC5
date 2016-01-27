@@ -17,7 +17,7 @@ this.page.identifier = '@Model.Id'; // Replace PAGE_IDENTIFIER with your page's 
 var d = document, s = d.createElement('script');
 
     var disqusShortnameParametro = '@WebConfigParametro.DisqusShortname'; //parametriza la el identificador de Disqus
-    s.src = 'https://' + disqusShortnameParametro + '.disqus.com/embed.js';
+    s.src = '//' + disqusShortnameParametro + '.disqus.com/embed.js';
 
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
