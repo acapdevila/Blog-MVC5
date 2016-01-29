@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "albertcapdevila.net" : ViewBag.Title)</title>
     @Styles.Render("~/Content/css")
@@ -10,43 +10,60 @@
 
 
     <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-          ga('create', 'UA-72966881-1', 'auto');
-          ga('send', 'pageview');
+        ga('create', 'UA-72966881-1', 'auto');
+        ga('send', 'pageview');
     </script>
-
+   
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("albertcapdevila.net", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                @Html.Partial("_MenuPrincipal")
-                @Html.Partial("_LoginPartial")
+
+    <div class="container">
+        <p>
+            <a href="/">  <img class="img-responsive" src="~/Content/imagenes/logo.png" alt="Albert Capdevila" /></a>
+        </p>
+    </div>
+       
+        <div class="navbar navbar-inverse" data-spy="affix" data-offset-top="100" style="z-index: 999">
+
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    @Html.Partial("_MenuPrincipal")
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - albertcapdevila.net</p>
-        </footer>
-    </div>
 
- 
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p style="float: right">&copy; @DateTime.Now.Year - albertcapdevila.net</p>
+                <img class="img-responsive" style="max-width: 300px" src="~/Content/imagenes/asp.png" alt="asp.net" />
+            </footer>
+        </div>
+
+
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

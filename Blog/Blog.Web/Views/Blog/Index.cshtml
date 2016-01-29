@@ -18,7 +18,6 @@
             </p>*@
             <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
             </p>
-            <hr>
             @Html.Raw(item.Subtitulo)
             <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">leer más<span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
