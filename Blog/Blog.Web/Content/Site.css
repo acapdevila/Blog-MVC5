@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 0;
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -39,12 +39,3 @@ h2 a:focus {
   outline-offset: -2px;
 }
 
- /* Note: Try to remove the following lines to see the effect of CSS positioning */
-  .affix {
-      top: 0;
-      width: 100%;
-  }
-
-  .affix + .container {
-      padding-top: 70px;
-  }

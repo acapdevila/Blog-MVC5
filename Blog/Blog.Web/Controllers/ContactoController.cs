@@ -1,19 +1,19 @@
 ﻿using System.Web.Mvc;
 using Blog.Web.Servicios;
-using Blog.Web.ViewModels.Escribeme;
+using Blog.Web.ViewModels.Contacto;
 
 namespace Blog.Web.Controllers
 {
-    public class EscribemeController : Controller
+    public class ContactoController : Controller
     {
         private readonly IEmailServicio _emailServicio;
 
-        public EscribemeController(): this(new EmailServicio())
+        public ContactoController(): this(new EmailServicio())
         {
             
         }
 
-        public EscribemeController(IEmailServicio emailServicio)
+        public ContactoController(IEmailServicio emailServicio)
         {
             _emailServicio = emailServicio;
         }

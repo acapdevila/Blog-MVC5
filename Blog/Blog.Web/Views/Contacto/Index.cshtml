@@ -1,5 +1,4 @@
-﻿@using Blog.Web.ViewModels.Escribeme
-@model FormularioContactoViewModel
+﻿@model Blog.Web.ViewModels.Contacto.FormularioContactoViewModel
 @{
     ViewBag.Title = "Escríbeme";
 }
@@ -10,7 +9,7 @@
    <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Index", "Escribeme", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Index", "Contacto", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <hr />

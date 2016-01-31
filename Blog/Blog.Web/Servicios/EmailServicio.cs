@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 using Blog.Web.Configuracion;
-using Blog.Web.ViewModels.Escribeme;
+using Blog.Web.ViewModels.Contacto;
 
 namespace Blog.Web.Servicios
 {

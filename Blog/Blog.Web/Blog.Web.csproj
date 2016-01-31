@@ -199,7 +199,7 @@
     <Compile Include="Configuracion\WebConfigParametro.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
-    <Compile Include="Controllers\EscribemeController.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,7 +220,7 @@
     <Compile Include="Servicios\UrlImagenHelper.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Blog\ListaPostsBlogViewModel.cs" />
-    <Compile Include="ViewModels\Escribeme\FormularioContactoViewModel.cs" />
+    <Compile Include="ViewModels\Contacto\FormularioContactoViewModel.cs" />
     <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
     <Compile Include="ViewModels\Post\EditorPost.cs" />
     <Compile Include="ViewModels\Post\EditViewModel.cs" />
@@ -607,7 +607,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Hola\Index.cshtml" />
-    <Content Include="Views\Escribeme\Index.cshtml" />
+    <Content Include="Views\Contacto\Index.cshtml" />
     <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -641,8 +641,8 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Escribeme\MensajeEnviado.cshtml" />
-    <Content Include="Views\Escribeme\MensajeNoEnviado.cshtml" />
+    <Content Include="Views\Contacto\MensajeEnviado.cshtml" />
+    <Content Include="Views\Contacto\MensajeNoEnviado.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\HtmlEditor.cshtml" />
     <Content Include="Views\Posts\EditorTemplates\EditorPost.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatetimePicker.cshtml" />
