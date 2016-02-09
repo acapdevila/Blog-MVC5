@@ -19,7 +19,7 @@ namespace Blog.Web.ViewModels.Post
     {
         public LineaGestionPost()
         {
-            ListaTags = new List<Tag>();
+            ListaTags = new List<Modelo.Tag>();
         }
 
         public int Id { get; set; }
@@ -29,7 +29,7 @@ namespace Blog.Web.ViewModels.Post
         public bool EsBorrador { get; set; }
         public DateTime FechaPublicacion { get; set; }
         public string Autor { get; set; }
-        public ICollection<Tag> ListaTags { get; set; }
+        public ICollection<Modelo.Tag> ListaTags { get; set; }
 
         public string Tags {
             get { return string.Join(" ", ListaTags.Select(m=>m.Nombre)); }

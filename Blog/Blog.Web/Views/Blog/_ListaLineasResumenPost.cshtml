@@ -1,0 +1,30 @@
+﻿@using Blog.Web.Helpers
+@model List<Blog.Modelo.Posts.LineaResumenPost>
+
+
+        @foreach (var item in Model)
+        {
+
+            <h2>
+                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
+            </h2>
+            @*<p class="lead">
+                by @item.Autor
+            </p>*@
+            <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
+            </p>
+            @Html.Raw(item.Subtitulo)
+            <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">leer más<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr style="border-color: black">
+        }
+
+        <!-- Pager
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">&larr; Older</a>
+            </li>
+            <li class="next">
+                <a href="#">Newer &rarr;</a>
+            </li>
+        </ul> -->
+  

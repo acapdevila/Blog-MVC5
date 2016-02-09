@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using Blog.Modelo.Tags;
+using Blog.Modelo;
 
 namespace Blog.Web.ViewModels.Post
 {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo;
-using Blog.Modelo.Tags;
 
 namespace Blog.Web.ViewModels.Sidebar
 {

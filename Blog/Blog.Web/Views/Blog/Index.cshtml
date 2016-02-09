@@ -6,32 +6,7 @@
     <!-- Blog Entries Column -->
     <div class="col-md-8">
         <!-- First Blog Post -->
-
-        @foreach (var item in Model.ListaPosts)
-        {
-
-            <h2>
-                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-            </h2>
-            @*<p class="lead">
-                by @item.Autor
-            </p>*@
-            <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
-            </p>
-            @Html.Raw(item.Subtitulo)
-            <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">leer más<span class="glyphicon glyphicon-chevron-right"></span></a>
-            <hr>
-        }
-
-        <!-- Pager
-        <ul class="pager">
-            <li class="previous">
-                <a href="#">&larr; Older</a>
-            </li>
-            <li class="next">
-                <a href="#">Newer &rarr;</a>
-            </li>
-        </ul> -->
+        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts)
     </div>
     @Html.Partial("_SidebarPrincipal")
    

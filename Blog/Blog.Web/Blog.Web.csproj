@@ -226,6 +226,7 @@
     <Compile Include="ViewModels\Post\EditViewModel.cs" />
     <Compile Include="ViewModels\Post\ListaGestionPostsViewModel.cs" />
     <Compile Include="ViewModels\Sidebar\NubeEtiquetasViewModel.cs" />
+    <Compile Include="ViewModels\Etiqueta\EtiquetaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -656,6 +657,7 @@
     <Content Include="Views\Blog\Detalles.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayPost.cshtml" />
+    <Content Include="Views\Blog\_ListaLineasResumenPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

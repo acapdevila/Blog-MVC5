@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo;
+using Blog.Modelo.Posts;
+using Blog.Modelo.Tags;
 using Blog.Web.ViewModels.Blog;
+using Blog.Web.ViewModels.Etiqueta;
 
 namespace Blog.Web.Controllers
 {
@@ -25,16 +28,8 @@ namespace Blog.Web.Controllers
             return new ListaPostsBlogViewModel
             {
                 ListaPosts = await _db.Posts
-                .Where(m=>!m.EsBorrador && m.FechaPublicacion <= DateTime.Now)
-                .Select(m => new LineaResumenPost
-                {
-                    Id = m.Id,
-                    UrlSlug = m.UrlSlug,
-                    Titulo = m.Titulo,
-                    Subtitulo = m.Subtitulo,
-                    FechaPost = m.FechaPost,
-                    Autor = m.Autor
-                })
+                .Publicados()
+                .SeleccionaLineaResumePost()
                 .OrderByDescending(m=>m.FechaPost)
                 .ToListAsync()
             };
@@ -74,9 +69,26 @@ namespace Blog.Web.Controllers
 
         }
 
-        public ActionResult Etiqueta(string id)
+        public async Task<ActionResult> Etiqueta(string id)
         {
-            return View();
+            var tag = await _db.Tags.Include(m => m.Posts)
+                         .ConPostsPublicados()
+                        .FirstOrDefaultAsync(m => m.UrlSlug == id);
+
+            if (tag == null) return HttpNotFound();
+
+            var viewModel = new EtiquetaViewModel
+            {
+              NombreEtiqueta = tag.Nombre,
+              ListaPosts = tag.Posts.AsQueryable()
+                        .SeleccionaLineaResumePost()
+                        .OrderByDescending(m => m.FechaPost)
+                        .ToList()
+            };
+                
+                
+                
+            return View(viewModel);
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
@@ -85,4 +97,6 @@ namespace Blog.Web.Controllers
                             .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug && m.FechaPost == fechaPost);
         }
     }
+
+  
 }

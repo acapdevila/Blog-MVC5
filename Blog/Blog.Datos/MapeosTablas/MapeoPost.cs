@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Blog.Modelo;
+using Blog.Modelo.Posts;
 
 namespace Blog.Datos.MapeosTablas
 {

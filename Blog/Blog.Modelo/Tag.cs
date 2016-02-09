@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Blog.Modelo.Posts;
 
-namespace Blog.Modelo.Tags
+namespace Blog.Modelo
 {
     public class Tag
     {

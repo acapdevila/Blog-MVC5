@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
 using Blog.Modelo;
+using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Web.ViewModels.Post;
 using Blog.Web.ViewModels.Post.Conversores;
