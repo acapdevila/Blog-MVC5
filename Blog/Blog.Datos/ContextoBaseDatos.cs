@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using Blog.Datos.MapeosTablas;
 using Blog.Modelo;
+using Blog.Modelo.Tags;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blog.Datos

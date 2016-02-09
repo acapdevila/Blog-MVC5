@@ -22,6 +22,9 @@
             Título
         </th>
         <th>
+            Tags
+        </th>
+        <th>
             Fecha post
         </th>
         <th>
@@ -43,12 +46,16 @@
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
         </td>
         <td>
-            @Html.ActionLink(item.Titulo, "Details", new { id = item.Id })
-            
+            @Html.ActionLink(item.Titulo, "Details", new {id = item.Id})
+
+        </td>
+        <td>
+            @item.Tags
         </td>
         <td>
             @item.FechaPost.ToShortDateString()
         </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.EsBorrador)
         </td>

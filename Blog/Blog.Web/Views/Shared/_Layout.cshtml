@@ -46,17 +46,25 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     @Html.Partial("_MenuPrincipal")
-                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </div>
 
         <div class="container body-content">
             @RenderBody()
-            <hr />
+            <hr/>
             <footer>
-                <p style="float: right">&copy; @DateTime.Now.Year - albertcapdevila.net</p>
-                <img class="img-responsive" style="max-width: 300px" src="~/Content/imagenes/asp.png" alt="asp.net" />
+                <div class="container">
+                    <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" style="max-width: 150px; float: left" src="~/Content/imagenes/asp.png" alt="asp.net"/>
+                    </div>
+                    
+                    <div class="navbar-collapse collapse">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+
+
+                </div>
             </footer>
         </div>
 

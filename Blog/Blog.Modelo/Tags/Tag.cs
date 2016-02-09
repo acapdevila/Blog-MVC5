@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 
-namespace Blog.Modelo
+namespace Blog.Modelo.Tags
 {
     public class Tag
     {
+        public static readonly char Separador = ';'; 
+
         public Tag()
         {
             Posts = new List<Post>();

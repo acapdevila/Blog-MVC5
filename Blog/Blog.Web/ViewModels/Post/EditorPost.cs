@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using Blog.Modelo.Tags;
 
 namespace Blog.Web.ViewModels.Post
 {
@@ -37,7 +38,8 @@ namespace Blog.Web.ViewModels.Post
         [Display(Name = "Contenido")]
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
-        
+
+        [Display(Name = "Borrador")]
         public bool EsBorrador { get; set; }
 
         [Display(Name = "Fecha de publicación")]
@@ -49,6 +51,6 @@ namespace Blog.Web.ViewModels.Post
         
         public string Tags { get; set; }
 
-        public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(',').ToList();
+        public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(Tag.Separador).ToList();
     }
 }

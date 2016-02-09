@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using Blog.Modelo;
+using Blog.Modelo.Tags;
 using Omu.ValueInjecter;
 
 namespace Blog.Web.ViewModels.Post.Conversores
@@ -14,10 +15,10 @@ namespace Blog.Web.ViewModels.Post.Conversores
             editorPost.Tags = post.TagsSeparadosPorComma;
         }
 
-        public static void CopiaValores(this Modelo.Post post, EditorPost editorPost)
+        public static void CopiaValores(this Modelo.Post post, EditorPost editorPost, AsignadorTags asignadorTags)
         {
             post.InjectFrom(editorPost);
-            post.EstablecerTags(editorPost.ListaTags);
+            asignadorTags.AsignarTags(post, editorPost.ListaTags);
         }
 
     }

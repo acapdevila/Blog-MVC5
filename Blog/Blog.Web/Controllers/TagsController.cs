@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo;
+using Blog.Modelo.Tags;
 
 
 namespace Blog.Web.Controllers

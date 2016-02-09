@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
 using Blog.Datos;
+using Blog.Datos.Repositorios;
 using Blog.Modelo;
+using Blog.Modelo.Tags;
 using Blog.Web.ViewModels.Post;
 using Blog.Web.ViewModels.Post.Conversores;
 
@@ -13,7 +15,25 @@ namespace Blog.Web.Controllers
     [Authorize]
     public class PostsController : Controller
     {
-        private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
+        private readonly ContextoBaseDatos _db;
+        private readonly AsignadorTags _asignadorTags;
+
+        public PostsController() : this(new ContextoBaseDatos())
+        {
+            
+        }
+
+        public PostsController(ContextoBaseDatos db): this(db, new AsignadorTags(new TagRepositorio(db)))
+        {
+
+        }
+
+
+        public PostsController(ContextoBaseDatos db, AsignadorTags asignadorTags)
+        {
+            _asignadorTags = asignadorTags;
+            _db = db;
+        }
 
         public async Task<ActionResult> Index()
         {
@@ -33,7 +53,8 @@ namespace Blog.Web.Controllers
                     FechaPost = m.FechaPost,
                     EsBorrador = m.EsBorrador,
                     FechaPublicacion = m.FechaPublicacion,
-                    Autor = m.Autor
+                    Autor = m.Autor, 
+                    ListaTags = m.Tags
                 })
                 .OrderByDescending(m=>m.Id)
                 .ToListAsync()
@@ -64,7 +85,7 @@ namespace Blog.Web.Controllers
             };
 
             viewModel.EditorPost.CopiaValores(post);
-
+            
             return View(viewModel);
         }
         
@@ -154,7 +175,7 @@ namespace Blog.Web.Controllers
         private async Task CrearPost(EditorPost editorPost)
         {
             var post = new Post();
-            post.CopiaValores(editorPost);
+            post.CopiaValores(editorPost, _asignadorTags);
             _db.Posts.Add(post);
             await _db.SaveChangesAsync();
         }
@@ -162,8 +183,7 @@ namespace Blog.Web.Controllers
         private async Task ActualizarPost(EditorPost editorPost)
         {
             var post = await RecuperarPost(editorPost.Id);
-            post.CopiaValores(editorPost);
-
+            post.CopiaValores(editorPost, _asignadorTags);
             await _db.SaveChangesAsync();
         }
 
