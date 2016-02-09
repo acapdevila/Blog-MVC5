@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Modelo.Posts
 {
-   public static class PostsExtensiones
+   public static class ExtensionesPost
     {
        public static IQueryable<Post> Publicados(this IQueryable<Post> posts)
        {

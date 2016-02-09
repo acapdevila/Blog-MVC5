@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using Blog.Modelo;
+using Blog.Modelo.Tags;
 
 namespace Blog.Web.ViewModels.Post
 {
@@ -51,6 +52,6 @@ namespace Blog.Web.ViewModels.Post
         
         public string Tags { get; set; }
 
-        public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(Tag.Separador).ToList();
+        public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
     }
 }

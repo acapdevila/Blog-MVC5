@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Tags;
 
-namespace Blog.Modelo
+namespace Blog.Modelo.Posts
 {
     public class Post : IEntidadConTags
     {
         public static Post CrearNuevoPorDefecto()
         {
-            return new Post 
+            return new Post
             {
                 Autor = "Albert Capdevila",
                 EsBorrador = true,
@@ -35,7 +35,6 @@ namespace Blog.Modelo
 
         public virtual ICollection<Tag> Tags { get; set; }
 
-        public string TagsSeparadosPorComma => Tags.Any() ? string.Join(Tag.Separador + " ", Tags.Select(m=>m.Nombre)) : string.Empty;
-
-   }
+        public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;
+     }
 }

@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using Blog.Modelo.Posts;
 
-namespace Blog.Modelo
+namespace Blog.Modelo.Tags
 {
     public class Tag
     {
-        public static readonly char Separador = ';'; 
-
         public Tag()
         {
             Posts = new List<Post>();

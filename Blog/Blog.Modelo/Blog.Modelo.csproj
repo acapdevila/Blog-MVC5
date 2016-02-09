@@ -41,15 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Posts\LineaResumenPost.cs" />
-    <Compile Include="Posts\PostsExtensiones.cs" />
+    <Compile Include="Posts\ExtensionesPost.cs" />
     <Compile Include="Tags\AsignadorTags.cs" />
-    <Compile Include="Tags\GeneradorSlug.cs" />
+    <Compile Include="Tags\GeneradorUrlSlug.cs" />
     <Compile Include="Tags\IEntidadConTags.cs" />
     <Compile Include="Tags\ITagRepositorio.cs" />
-    <Compile Include="Post.cs" />
+    <Compile Include="Posts\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tag.cs" />
-    <Compile Include="Tags\TagsExtensiones.cs" />
+    <Compile Include="Tags\Tag.cs" />
+    <Compile Include="Tags\ExtensionesTag.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

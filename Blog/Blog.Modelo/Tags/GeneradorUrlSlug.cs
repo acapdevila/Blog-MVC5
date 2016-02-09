@@ -2,7 +2,7 @@
 
 namespace Blog.Modelo.Tags
 {
-    public static class GeneradorSlug
+    public static class GeneradorUrlSlug
     {
         //http://stackoverflow.com/questions/2920744/url-slugify-algorithm-in-c
         public static string GenerateSlug(string phrase)

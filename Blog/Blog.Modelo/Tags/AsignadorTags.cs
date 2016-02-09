@@ -17,17 +17,15 @@ namespace Blog.Modelo.Tags
         {
             _entidad = entidad;
 
-            var tagsPorEliminarDeEntidad = DetecatarTagsEntidadPorEliminar(listaTags);
+            var tagsPorEliminarDeEntidad = DetecatarTagsPorEliminarDeEntidad(listaTags);
 
-            var tagsPorAñadirAEntidad = DetectarNuevosTagsPorAñadir(listaTags);
+            var tagsPorAñadirAEntidad = DetectarNuevosTagsPorAñadirAEntidad(listaTags);
 
            EliminarTags(tagsPorEliminarDeEntidad);
 
            AñadirTags(tagsPorAñadirAEntidad);
         }
-
-    
-
+        
         private void AñadirTags(IEnumerable<string> tagsPorAñadir)
         {
             foreach (var tagPorAñadir in tagsPorAñadir)
@@ -47,7 +45,7 @@ namespace Blog.Modelo.Tags
                 tag = new Tag
                 {
                     Nombre = tagPorAñadir,
-                    UrlSlug = GeneradorSlug.GenerateSlug(tagPorAñadir)
+                    UrlSlug = GeneradorUrlSlug.GenerateSlug(tagPorAñadir)
                 };
             }
 
@@ -65,14 +63,12 @@ namespace Blog.Modelo.Tags
             }
         }
 
-
-
-        private IEnumerable<string> DetectarNuevosTagsPorAñadir(List<string> listaTags)
+        private IEnumerable<string> DetectarNuevosTagsPorAñadirAEntidad(List<string> listaTags)
         {
             return listaTags.Except(_entidad.Tags.Select(t => t.Nombre));
         }
 
-        private List<Tag> DetecatarTagsEntidadPorEliminar(List<string> listaTags)
+        private List<Tag> DetecatarTagsPorEliminarDeEntidad(List<string> listaTags)
         {
             return _entidad.Tags.Where(m => !listaTags.Contains(m.Nombre)).ToList();
         }
