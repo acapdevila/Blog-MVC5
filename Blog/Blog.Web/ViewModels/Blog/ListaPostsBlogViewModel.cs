@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Blog.Modelo.Posts;
+using PagedList;
 
 namespace Blog.Web.ViewModels.Blog
 {
@@ -8,9 +9,9 @@ namespace Blog.Web.ViewModels.Blog
     {
         public ListaPostsBlogViewModel()
         {
-            ListaPosts = new List<LineaResumenPost>();
+            
         }
-        public List<LineaResumenPost> ListaPosts { get; set; }
+        public IPagedList<LineaResumenPost> ListaPosts { get; set; }
     }
 
  

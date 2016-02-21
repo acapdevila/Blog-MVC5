@@ -10,28 +10,31 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Web.ViewModels.Blog;
 using Blog.Web.ViewModels.Etiqueta;
+using PagedList;
 
 namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {
         private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
+        private const int NumeroItemsPorPagina = 10;
 
-        public async Task<ActionResult> Index()
+
+        public ActionResult Index(int? pagina)
         {
-            var viewModel = await ObtenerListaPostsBlogViewModel();
+            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
             return View(viewModel);
         }
 
-        private async Task<ListaPostsBlogViewModel> ObtenerListaPostsBlogViewModel()
+        private ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int nummeroItemsPorPagina)
         {
             return new ListaPostsBlogViewModel
             {
-                ListaPosts = await _db.Posts
+                ListaPosts = _db.Posts
                 .Publicados()
-                .SeleccionaLineaResumePost()
+                .SeleccionaLineaResumenPost()
                 .OrderByDescending(m=>m.FechaPost)
-                .ToListAsync()
+                .ToPagedList(pagina, nummeroItemsPorPagina)
             };
         }
 
@@ -69,7 +72,7 @@ namespace Blog.Web.Controllers
 
         }
 
-        public async Task<ActionResult> Etiqueta(string id)
+        public async Task<ActionResult> Etiqueta(string id, int numeroPagina)
         {
             var tag = await _db.Tags.Include(m => m.Posts)
                          .ConPostsPublicados()
@@ -81,9 +84,9 @@ namespace Blog.Web.Controllers
             {
               NombreEtiqueta = tag.Nombre,
               ListaPosts = tag.Posts.AsQueryable()
-                        .SeleccionaLineaResumePost()
+                        .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)
-                        .ToList()
+                        .ToPagedList(numeroPagina, NumeroItemsPorPagina)
             };
                 
                 

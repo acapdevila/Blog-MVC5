@@ -16,7 +16,7 @@ namespace Blog.Modelo.Posts
         }
         
 
-       public static IQueryable<LineaResumenPost> SeleccionaLineaResumePost(this IQueryable<Post> posts)
+       public static IQueryable<LineaResumenPost> SeleccionaLineaResumenPost(this IQueryable<Post> posts)
        {
            return posts.Select(m => new LineaResumenPost
            {

@@ -1,5 +1,8 @@
 ﻿@using Blog.Web.Helpers
-@model List<Blog.Modelo.Posts.LineaResumenPost>
+@using PagedList.Mvc;
+@using PagedList;
+
+@model IPagedList<Blog.Modelo.Posts.LineaResumenPost>
 
 
         @foreach (var item in Model)
@@ -18,13 +21,20 @@
             <hr style="border-color: black">
         }
 
-        <!-- Pager
-        <ul class="pager">
-            <li class="previous">
-                <a href="#">&larr; Older</a>
-            </li>
-            <li class="next">
-                <a href="#">Newer &rarr;</a>
-            </li>
-        </ul> -->
+<!-- Pager-->
+
+<ul class="pager">
+    @if (Model.HasNextPage)
+    {
+        <li class="previous">
+            <a href="@Url.Action("Index", new {pagina = Model.PageNumber + 1})">&larr; Entradas más antiguas</a>
+        </li>
+    }
+    @if (Model.HasPreviousPage)
+    {
+        <li class="next">
+            <a href="@Url.Action("Index", new {pagina = Model.PageNumber - 1})">Entradas más recientes &rarr;</a>
+        </li>
+    }
+</ul>
   
