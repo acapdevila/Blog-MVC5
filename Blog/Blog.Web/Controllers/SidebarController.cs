@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Modelo;
+using Blog.Modelo.Tags;
 using Blog.Web.ViewModels.Sidebar;
 
 
@@ -13,12 +9,12 @@ namespace Blog.Web.Controllers
 {
     public class SidebarController : Controller
     {
-        private readonly ContextoBaseDatos db = new ContextoBaseDatos();
+        private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
 
         [ChildActionOnly]
         public ActionResult NubeEtiquetas()
         {
-            var etiquetas = db.Tags.ToList();
+            var etiquetas = _db.Tags.ConPostsPublicados().ToList();
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
 
             return View(nubeEtiquetasViewModel);
@@ -28,7 +24,7 @@ namespace Blog.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
