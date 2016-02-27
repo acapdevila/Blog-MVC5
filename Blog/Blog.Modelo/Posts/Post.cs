@@ -13,6 +13,7 @@ namespace Blog.Modelo.Posts
             {
                 Autor = "Albert Capdevila",
                 EsBorrador = true,
+                EsRssAtom = false,
                 FechaPost = DateTime.Now,
                 FechaPublicacion = DateTime.Now.AddDays(5)
             };
@@ -30,6 +31,7 @@ namespace Blog.Modelo.Posts
         public DateTime FechaPost { get; set; }
         public string ContenidoHtml { get; set; }
         public bool EsBorrador { get; set; }
+        public bool EsRssAtom { get; set; }
         public DateTime FechaPublicacion { get; set; }
         public string Autor { get; set; }
 

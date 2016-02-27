@@ -72,7 +72,7 @@ namespace Blog.Web.Controllers
 
         }
 
-        public async Task<ActionResult> Etiqueta(string id, int numeroPagina)
+        public async Task<ActionResult> Etiqueta(string id, int numeroPagina = 1)
         {
             var tag = await _db.Tags.Include(m => m.Posts)
                          .ConPostsPublicados()

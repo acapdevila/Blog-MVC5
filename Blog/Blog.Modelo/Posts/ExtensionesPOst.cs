@@ -9,7 +9,12 @@ namespace Blog.Modelo.Posts
        {
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }
-        
+
+        public static IQueryable<Post> PublicadosRssAtom(this IQueryable<Post> posts)
+        {
+            return posts.Publicados().Where(m => m.EsRssAtom);
+        }
+
         public static IQueryable<Post> ConUrlTag(this IQueryable<Post> posts, string urlSlugTag)
         {
             return posts.Where(m => m.Tags.Any(t => t.UrlSlug.ToLower() == urlSlugTag));
@@ -28,5 +33,9 @@ namespace Blog.Modelo.Posts
                Autor = m.Autor
            });
        }
+
+      
+
+        
     }
 }

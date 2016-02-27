@@ -12,6 +12,8 @@ namespace Blog.Web.Configuracion
         public static string UrlRaizImagenes => ConfigurationManager.AppSettings["UrlRaizBlobAzure"];
 
         public static string DisqusShortname => ConfigurationManager.AppSettings["DisqusShortname"];
+
+        public static string NombreAplicacion => ConfigurationManager.AppSettings["NombreAplicacion"];
     }
 
 }

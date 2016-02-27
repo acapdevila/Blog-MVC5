@@ -43,6 +43,9 @@ namespace Blog.Web.ViewModels.Post
         [Display(Name = "Borrador")]
         public bool EsBorrador { get; set; }
 
+        [Display(Name = "Rss Atom")]
+        public bool EsRssAtom { get; set; }
+
         [Display(Name = "Fecha de publicación")]
         [Required(ErrorMessage = "Escribe una fecha")]
         public DateTime FechaPublicacion { get; set; }

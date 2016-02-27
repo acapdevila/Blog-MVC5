@@ -53,6 +53,7 @@ namespace Blog.Web.Controllers
                     Titulo = m.Titulo,
                     FechaPost = m.FechaPost,
                     EsBorrador = m.EsBorrador,
+                    EsRssAtom = m.EsRssAtom,
                     FechaPublicacion = m.FechaPublicacion,
                     Autor = m.Autor, 
                     ListaTags = m.Tags

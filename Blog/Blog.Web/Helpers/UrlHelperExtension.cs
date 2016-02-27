@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Blog.Web.Controllers;
 
 namespace Blog.Web.Helpers
 {
@@ -14,7 +15,19 @@ namespace Blog.Web.Helpers
                     mes = fechaPost.Month,
                     anyo = fechaPost.Year,
                     urlSlug
-                },"http");
+                }, url.RequestContext.HttpContext.Request.Url.Scheme);
+        }
+
+        public static string RutaUrlRssFeed(this UrlHelper url)
+        {
+            return url.Action("Feed", "Rss",routeValues: null, 
+                protocol: url.RequestContext.HttpContext.Request.Url.Scheme);
+        }
+
+        public static string RutaUrlBase(this UrlHelper url)
+        {
+            return url.RouteUrl("Default",
+                null, url.RequestContext.HttpContext.Request.Url.Scheme);
         }
     }
 }
