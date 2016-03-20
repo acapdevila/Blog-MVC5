@@ -174,7 +174,7 @@ namespace Blog.Web.RssAtom
                 return new SyndicationPerson
                 {
                     // name (Required) - conveys a human-readable name for the person.
-                    //Name = "Albert Capdevila",
+                    Name = "Albert Capdevila",
                     // uri (Optional) - contains a home page for the person.
                     Uri =  "http://albertcapdevila.net",
                     // email (Optional) - contains an email address for the person.

@@ -18,7 +18,6 @@
             $('input[type="submit"]').click(function() {
                 for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
-                    // alert(document.getElementById(instance).value);
                 }
             });
 
