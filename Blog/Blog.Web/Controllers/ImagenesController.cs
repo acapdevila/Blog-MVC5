@@ -38,11 +38,27 @@ namespace Blog.Web.Controllers
                 url = (filename).GenerarUrlImagen();
 
                 // es
-                message = "La imagen se ha guardado correctamente.";
+                // message = "La imagen se ha guardado correctamente.";
                 
                 // since it is an ajax request it requires this string
+                //string output = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
+                //                ", \"" + url + "\", \"" + message + "\");</script></body></html>";
+
                 string output = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
-                                ", \"" + url + "\", \"" + message + "\");</script></body></html>";
+                             ", \"" + url + "\", function() { " +
+
+                "var element, dialog = this.getDialog();" +
+                "if (dialog.getName() == 'image')" +
+                "{" +
+
+                    "element = dialog.getContentElement('advanced', 'txtGenClass');" +
+                    "if (element)" +
+                        "element.setValue('img-responsive');" +
+                        
+
+                "}" +
+                "});</script></body></html>";
+
                 return Content(output);
             }
             //es
