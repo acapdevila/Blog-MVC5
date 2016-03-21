@@ -95,13 +95,16 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(EditViewModel viewModel)
+        public async Task<ActionResult> Create(string boton, EditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
                 await CrearPost(viewModel.EditorPost);
               
+                if(boton.ToLower().Contains(@"salir"))
                 return RedirectToAction("Index");
+                
+                return RedirectToAction("Edit", new { viewModel.EditorPost.Id });
             }
 
             return View(viewModel);
@@ -145,6 +148,16 @@ namespace Blog.Web.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Guardar(EditViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await ActualizarPost(viewModel.EditorPost);
+            }
+            return Content(string.Empty);
+        }
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -180,6 +193,7 @@ namespace Blog.Web.Controllers
             post.CopiaValores(editorPost, _asignadorTags);
             _db.Posts.Add(post);
             await _db.SaveChangesAsync();
+            editorPost.Id = post.Id;
         }
 
         private async Task ActualizarPost(EditorPost editorPost)

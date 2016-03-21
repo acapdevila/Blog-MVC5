@@ -6,14 +6,22 @@
 
             $.validator.setDefaults({ ignore: [] });
 
-            CKEDITOR.replace('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
+            @*CKEDITOR.replace('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
             {
                 toolbar: 'PorDefecto',
                 filebrowserImageUploadUrl: '@Url.Action("SubirImagen", "Imagenes")',
                 filebrowserImageBrowseLinkUrl: '',
                 filebrowserWindowWidth: '600',
                 filebrowserWindowHeight: '700'
+            });*@
+
+            CKEDITOR.inline('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
+            {
+                toolbar: 'PorDefecto',
+                filebrowserImageUploadUrl: '@Url.Action("SubirImagen", "Imagenes")',
+                filebrowserImageBrowseLinkUrl: ''
             });
+
 
             $('input[type="submit"]').click(function() {
                 for (instance in CKEDITOR.instances) {
