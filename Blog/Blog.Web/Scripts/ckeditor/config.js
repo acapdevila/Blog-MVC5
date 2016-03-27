@@ -19,7 +19,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'About'] },
         { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
        // { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
-        { name: 'insert', items: ['Image', 'Flash', 'Table', /*'HorizontalRule',*/ 'HorizontalLine', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+        { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'HorizontalLine', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
         { name: 'styles', items: ['Format', 'FontSize'] },
           '/',
         { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
@@ -41,7 +41,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.toolbar_Mediano =
    [
    ['Source', '-', 'Bold', 'Italic', 'Underline', '-',
-    'Link', 'Unlink', '-',
+    'Link', 'Unlink', '-', 'HorizontalRule', 'HorizontalLine', '-',
     'Font', 'FontSize', '-', 'Image', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
    
     'Undo', 'Redo']
