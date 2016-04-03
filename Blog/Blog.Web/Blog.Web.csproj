@@ -248,6 +248,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\syntaxhighlighter.css" />
     <Content Include="Content\imagenes\asp.png" />
     <Content Include="Content\imagenes\logo.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
@@ -674,6 +675,7 @@
     <Content Include="Views\Shared\_Disqus.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayPost.cshtml" />
     <Content Include="Views\Blog\_ListaLineasResumenPost.cshtml" />
+    <Content Include="Views\Shared\_SyntaxHightLighter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
