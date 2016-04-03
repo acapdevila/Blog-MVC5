@@ -27,7 +27,9 @@ namespace Blog.Web.Controllers
         {
             if (Request.Url == null) return null;
 
-            string filename = _imagenServicio.ObtenerImagenDePeticionYSubirImagen(1000);
+            var imagen = _imagenServicio.ObtenerImagenDePeticion(HttpContext.Request);
+
+            string filename = _imagenServicio.SubirImagen(imagen, 1000);
 
             string url; // url to return
             string message; // message to display (optional)

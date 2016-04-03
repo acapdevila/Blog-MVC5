@@ -8,16 +8,37 @@ namespace Blog.Web.Servicios
 {
     public class SubirArchivoImagenServicio
     {
-        public string ObtenerImagenDePeticionYSubirImagen(int dimensionMaxima)
+        public string SubirImagen(WebImage imagen, int dimensionMaxima)
         {
-            var imagen = ObtenerImagenDePeticion();
-
             if (imagen != null && EsUnArchivoImagen(imagen.FileName))
             {
                 var nombreArchivoSubido = SubirImagen(imagen, dimensionMaxima, UrlImagenHelper.DirectorioImagenes);
                 return nombreArchivoSubido;
             }
             return string.Empty;
+        }
+
+        public WebImage ObtenerImagenDePeticion(HttpRequestBase request)
+        {
+            if (request.Files.Count == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                var postedFile = request.Files[0];
+                var image = new WebImage(postedFile.InputStream)
+                {
+                    FileName = postedFile.FileName
+                };
+                return image;
+            }
+            catch
+            {
+                // The user uploaded a file that wasn't an image or an image format that we don't understand
+                return null;
+            }
         }
 
         private string SubirImagen(WebImage imagen, int dimensionMaxima, string rutaDirectorio)
@@ -58,30 +79,7 @@ namespace Blog.Web.Servicios
              imagen = null;
         }
 
-        private WebImage ObtenerImagenDePeticion()
-        {
-            var request = HttpContext.Current.Request;
-
-            if (request.Files.Count == 0)
-            {
-                return null;
-            }
-
-            try
-            {
-                var postedFile = request.Files[0];
-                var image = new WebImage(postedFile.InputStream)
-                {
-                    FileName = postedFile.FileName
-                };
-                return image;
-            }
-            catch
-            {
-                // The user uploaded a file that wasn't an image or an image format that we don't understand
-                return null;
-            }
-        }
+      
 
         private bool EsUnArchivoImagen(string file)
         {
