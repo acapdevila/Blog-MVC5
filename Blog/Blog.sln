@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ViewModels", "Blog.Vie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Servicios", "Blog.Servicios\Blog.Servicios.csproj", "{0B1C8631-2159-43E5-893D-9297B9149300}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Smoothies", "Blog.Smoothies\Blog.Smoothies.csproj", "{79529EA5-BF92-48FB-8433-3D2741284A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{23974DCE-C2BE-4A11-9065-B5C233633C91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +43,18 @@ Global
 		{0B1C8631-2159-43E5-893D-9297B9149300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B1C8631-2159-43E5-893D-9297B9149300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B1C8631-2159-43E5-893D-9297B9149300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79529EA5-BF92-48FB-8433-3D2741284A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79529EA5-BF92-48FB-8433-3D2741284A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79529EA5-BF92-48FB-8433-3D2741284A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79529EA5-BF92-48FB-8433-3D2741284A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{263AF96B-9995-4111-B27E-FD6042E3CFE3} = {23974DCE-C2BE-4A11-9065-B5C233633C91}
+		{B3095AC0-4CC7-4169-94B9-C85E2DC6E68D} = {23974DCE-C2BE-4A11-9065-B5C233633C91}
+		{1739CA45-9637-4B80-A054-C7A9B13C9657} = {23974DCE-C2BE-4A11-9065-B5C233633C91}
+		{0B1C8631-2159-43E5-893D-9297B9149300} = {23974DCE-C2BE-4A11-9065-B5C233633C91}
 	EndGlobalSection
 EndGlobal
