@@ -43,7 +43,7 @@ CKEDITOR.editorConfig = function( config ) {
    ['Source', '-', 'Bold', 'Italic', 'Underline', '-',
     'Link', 'Unlink', '-', 'HorizontalRule', 'HorizontalLine', '-',
     'Font', 'FontSize', '-', 'Image', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
-
+   
     'Undo', 'Redo']
    ];
 };

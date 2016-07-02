@@ -1,6 +1,7 @@
 ﻿@model Blog.ViewModels.Post.EditorPost
 
 @Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.BlogId)
 <div class="form-group">
     @Html.LabelFor(model => model.Titulo, htmlAttributes: new {@class = "control-label col-md-2"})
     <div class="col-md-10">

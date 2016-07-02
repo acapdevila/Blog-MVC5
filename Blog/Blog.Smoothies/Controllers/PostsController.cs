@@ -59,7 +59,7 @@ namespace Blog.Smoothies.Controllers
         {
             var viewModel = new EditPostViewModel
             {
-                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Albert Capdevila")
+                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Laura García")
             };
             
             return View(viewModel);

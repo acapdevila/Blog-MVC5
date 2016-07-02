@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "albertcapdevila.net" : ViewBag.Title)</title>
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Smoothies de Cuchara" : ViewBag.Title)</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
 
 
-    <script>
+    @*<script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function() {
@@ -24,7 +24,7 @@
 
         ga('create', 'UA-72966881-1', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script>*@
    
 </head>
 
@@ -41,7 +41,7 @@
                     @*<a href="/">
                         <img class="img-responsive navbar-brand" src="~/Content/imagenes/logo.png" alt="Albert Capdevila"/>
                     </a>*@
-                    <a href="/" class="navbar-brand">albertcapdevila<span style="color: white">.net</span></a>
+                    <a href="/" class="navbar-brand">Smoothies de <span style="color: white">Cuchara</span></a>
                     @*<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;albertcapdevila.net</a>*@
                 </div>
                 <div class="navbar-collapse collapse">
