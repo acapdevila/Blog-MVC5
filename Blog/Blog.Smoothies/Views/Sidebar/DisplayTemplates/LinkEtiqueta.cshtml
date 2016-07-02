@@ -1,0 +1,5 @@
+﻿@model Blog.Modelo.Tags.Tag
+
+<li>
+    <a href="@Url.Action("Etiqueta", "Blog", new { id = Model.UrlSlug  })">@Model.Nombre</a>
+</li>

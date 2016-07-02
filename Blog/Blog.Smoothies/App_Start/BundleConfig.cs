@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Blog.Smoothies
 {
@@ -26,6 +25,14 @@ namespace Blog.Smoothies
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/controlesedicion").Include(
+                        //"~/Scripts/ckeditor/ckeditor.js",
+                        //"~/Scripts/ckeditor/config.js",
+                        "~/Scripts/jquery.datetimepicker.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/controlesedicioncss").Include(
+                    "~/Content/jquery.datetimepicker.css"));
         }
     }
 }

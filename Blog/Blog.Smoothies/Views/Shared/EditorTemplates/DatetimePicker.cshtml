@@ -1,0 +1,23 @@
+﻿@model DateTime?
+          
+    @{
+        string name = ViewData.TemplateInfo.HtmlFieldPrefix;
+        string id = name.Replace(".", "_");
+     }
+
+
+
+    @Html.TextBox("", Model?.ToString("dd/MM/yyyy HH:mm") ?? string.Empty, new { @class = "form-control" })
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$.datetimepicker.setLocale('es');
+
+        $("#@id").datetimepicker({
+            format: "d/m/Y H:i",
+            lang: "es"
+        });
+          
+    });
+</script>  

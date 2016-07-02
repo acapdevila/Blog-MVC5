@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Blog.Servicios;
+using Blog.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Blog.Smoothies.Models;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -195,9 +195,7 @@ namespace Blog.Smoothies.Controllers
         }
 
         //
-        // POST: /Manage/RemovePhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: /Manage/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);

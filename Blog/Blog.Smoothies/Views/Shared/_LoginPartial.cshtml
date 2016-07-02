@@ -1,4 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    var currentController = (string)ViewContext.RouteData.Values["Controller"];
+    const string activeClass = "active";
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,8 +12,11 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        <li class="@(currentController == "Manage" ? activeClass : string.Empty)">
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+        </li>
+        <li class="@(currentController == "Account" ? activeClass : string.Empty)">
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
@@ -16,7 +25,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li class="@(currentController == "Account" ? activeClass : string.Empty)">
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})
+        </li>
     </ul>
 }

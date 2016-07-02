@@ -1,4 +1,4 @@
-﻿@model Blog.Smoothies.Models.IndexViewModel
+﻿@model Blog.ViewModels.Account.IndexViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -39,21 +39,18 @@
         @*  
             <dt>Phone Number:</dt>
             <dd>
-                @(Model.PhoneNumber ?? "None")
+                @(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
                 {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
+                    @Html.ActionLink("Change", "AddPhoneNumber")
+                    @: &nbsp;|&nbsp;
+                    @Html.ActionLink("Remove", "RemovePhoneNumber")
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    @Html.ActionLink("Add", "AddPhoneNumber")
                 }
+                ]
             </dd>
         *@
         <dt>Two-Factor Authentication:</dt>

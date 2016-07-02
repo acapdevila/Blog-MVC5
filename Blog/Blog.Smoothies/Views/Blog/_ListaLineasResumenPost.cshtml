@@ -1,0 +1,39 @@
+﻿@using Blog.Smoothies.Helpers
+@using PagedList;
+
+@model IPagedList<Blog.Modelo.Posts.LineaResumenPost>
+
+
+        @foreach (var item in Model)
+        {
+
+            <h2>
+                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
+            </h2>
+            @*<p class="lead">
+                by @item.Autor
+            </p>*@
+            <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
+            </p>
+            @Html.Raw(item.Subtitulo)
+            <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">leer más<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr style="border-color: black">
+        }
+
+<!-- Pager-->
+
+<ul class="pager">
+    @if (Model.HasNextPage)
+    {
+        <li class="previous">
+            <a href="@Url.Action("Index", new {pagina = Model.PageNumber + 1})">&larr; Entradas más antiguas</a>
+        </li>
+    }
+    @if (Model.HasPreviousPage)
+    {
+        <li class="next">
+            <a href="@Url.Action("Index", new {pagina = Model.PageNumber - 1})">Entradas más recientes &rarr;</a>
+        </li>
+    }
+</ul>
+  
