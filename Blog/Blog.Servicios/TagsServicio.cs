@@ -29,6 +29,11 @@ namespace Blog.Servicios
             return await Tags().ToListAsync();
         }
 
+        public List<Tag> TagsConPostsPublicados()
+        {
+            return Tags().ConPostsPublicados().ToList();
+        }
+
         public async Task<Tag> RecuperarTag(int id)
         {
             return await Tags().FirstAsync(m => m.Id == id);
@@ -57,5 +62,7 @@ namespace Blog.Servicios
         {
             _db.Dispose();
         }
+
+       
     }
 }

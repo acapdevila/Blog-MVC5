@@ -2,18 +2,19 @@
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
+using Blog.Servicios;
 using Blog.ViewModels.Sidebar;
 
 namespace Blog.Smoothies.Controllers
 {
     public class SidebarController : Controller
     {
-        private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
+        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
 
         [ChildActionOnly]
         public ActionResult NubeEtiquetas()
         {
-            var etiquetas = _db.Tags.ConPostsPublicados().ToList();
+            var etiquetas = _tagsServicio.TagsConPostsPublicados();
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
 
             return View(nubeEtiquetasViewModel);
@@ -23,7 +24,7 @@ namespace Blog.Smoothies.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                _tagsServicio.Dispose();
             }
             base.Dispose(disposing);
         }
