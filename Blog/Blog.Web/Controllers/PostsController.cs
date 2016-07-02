@@ -5,35 +5,33 @@ using System.Net;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
-using Blog.Modelo;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
-using Blog.Web.ViewModels.Post;
-using Blog.Web.ViewModels.Post.Conversores;
+using Blog.Servicios;
+using Blog.ViewModels.Post;
+using Blog.ViewModels.Post.Conversores;
 
 namespace Blog.Web.Controllers
 {
     [Authorize]
     public class PostsController : Controller
     {
-        private readonly ContextoBaseDatos _db;
-        private readonly AsignadorTags _asignadorTags;
+        private readonly PostsServicio _postsServicio;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
             
         }
 
-        public PostsController(ContextoBaseDatos db): this(db, new AsignadorTags(new TagRepositorio(db)))
+        public PostsController(ContextoBaseDatos contexto): this(new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), BlogController.TituloBlog))
         {
 
         }
 
 
-        public PostsController(ContextoBaseDatos db, AsignadorTags asignadorTags)
+        public PostsController(PostsServicio postsServicio)
         {
-            _asignadorTags = asignadorTags;
-            _db = db;
+            _postsServicio = postsServicio;
         }
 
         public async Task<ActionResult> Index()
@@ -42,26 +40,8 @@ namespace Blog.Web.Controllers
             return View(viewModel);
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
-        {
-            return new ListaGestionPostsViewModel
-            {
-                ListaPosts = await _db.Posts.Select(m => new LineaGestionPost
-                {
-                    Id = m.Id,
-                    UrlSlug = m.UrlSlug,
-                    Titulo = m.Titulo,
-                    FechaPost = m.FechaPost,
-                    EsBorrador = m.EsBorrador,
-                    EsRssAtom = m.EsRssAtom,
-                    FechaPublicacion = m.FechaPublicacion,
-                    Autor = m.Autor, 
-                    ListaTags = m.Tags
-                })
-                .OrderByDescending(m=>m.Id)
-                .ToListAsync()
-            };
-        }
+    
+
 
         public async Task<ActionResult> Details(int? id)
         {
@@ -79,14 +59,10 @@ namespace Blog.Web.Controllers
         
         public ActionResult Create()
         {
-            var post = Post.CrearNuevoPorDefecto();
-
-            var viewModel = new EditViewModel
+            var viewModel = new EditPostViewModel
             {
-                EditorPost = new EditorPost()
+                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Albert Capdevila")
             };
-
-            viewModel.EditorPost.CopiaValores(post);
             
             return View(viewModel);
         }
@@ -95,7 +71,7 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string boton, EditViewModel viewModel)
+        public async Task<ActionResult> Create(string boton, EditPostViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +99,7 @@ namespace Blog.Web.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new EditViewModel
+            var viewModel = new EditPostViewModel
             {
                 EditorPost = new EditorPost()
             };
@@ -137,7 +113,7 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditViewModel viewModel)
+        public async Task<ActionResult> Edit(EditPostViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -149,7 +125,7 @@ namespace Blog.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Guardar(EditViewModel viewModel)
+        public async Task<ActionResult> Guardar(EditPostViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -180,41 +156,37 @@ namespace Blog.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
+        {
+            return await _postsServicio.ObtenerListaPostViewModel();
+        }
+
+
         private async Task<Post> RecuperarPost(int id)
         {
-            return await _db.Posts.Include(m => m.Tags)
-                        .FirstOrDefaultAsync(m => m.Id == id);
+            return await _postsServicio.RecuperarPost(id);
         }
 
         private async Task CrearPost(EditorPost editorPost)
         {
-            var post = new Post();
-            post.CopiaValores(editorPost, _asignadorTags);
-            _db.Posts.Add(post);
-            await _db.SaveChangesAsync();
-            editorPost.Id = post.Id;
+            await _postsServicio.CrearPost(editorPost);
         }
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            var post = await RecuperarPost(editorPost.Id);
-            post.CopiaValores(editorPost, _asignadorTags);
-            await _db.SaveChangesAsync();
+            await _postsServicio.ActualizarPost(editorPost);
         }
 
         private async Task EliminarPost(int id)
         {
-            var post = await RecuperarPost(id);
-            _db.Posts.Remove(post);
-            await _db.SaveChangesAsync();
+            await _postsServicio.EliminarPost(id);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _db.Dispose();
+                _postsServicio.Dispose();
             }
             base.Dispose(disposing);
         }

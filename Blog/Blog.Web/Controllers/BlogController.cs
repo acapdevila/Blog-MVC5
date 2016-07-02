@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Modelo;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
-using Blog.Web.ViewModels.Blog;
-using Blog.Web.ViewModels.Etiqueta;
+using Blog.Servicios;
+using Blog.ViewModels.Blog;
+using Blog.ViewModels.Etiqueta;
 using PagedList;
 
 namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly ContextoBaseDatos _db = new ContextoBaseDatos();
+        public static string TituloBlog = "albertcapdevila.net";
+
+        private readonly BlogServicio _db = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
         private const int NumeroItemsPorPagina = 10;
 
 
@@ -25,18 +26,7 @@ namespace Blog.Web.Controllers
             var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
             return View(viewModel);
         }
-
-        private ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int nummeroItemsPorPagina)
-        {
-            return new ListaPostsBlogViewModel
-            {
-                ListaPosts = _db.Posts
-                .Publicados()
-                .SeleccionaLineaResumenPost()
-                .OrderByDescending(m=>m.FechaPost)
-                .ToPagedList(pagina, nummeroItemsPorPagina)
-            };
-        }
+        
 
         public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
         {
@@ -74,9 +64,7 @@ namespace Blog.Web.Controllers
 
         public async Task<ActionResult> Etiqueta(string id, int numeroPagina = 1)
         {
-            var tag = await _db.Tags.Include(m => m.Posts)
-                         .ConPostsPublicados()
-                        .FirstOrDefaultAsync(m => m.UrlSlug == id);
+            var tag = await RecuperarTag(id);
 
             if (tag == null) return HttpNotFound();
 
@@ -94,10 +82,19 @@ namespace Blog.Web.Controllers
             return View(viewModel);
         }
 
+        private async Task<Tag> RecuperarTag(string urlSlug)
+        {
+            return await _db.RecuperarTagConPostsRelacionados(urlSlug);
+        }
+
+        private ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        {
+            return _db.ObtenerListaPostsBlogViewModel(pagina, numeroItemsPorPagina);
+        }
+
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
         {
-            return await _db.Posts.Include(m => m.Tags)
-                            .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug && m.FechaPost == fechaPost);
+            return await _db.RecuperarPost(fechaPost, urlSlug);
         }
     }
 

@@ -1,12 +1,11 @@
 ﻿using System;
 using Blog.Datos;
+using Blog.Servicios;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using Blog.Web.Models;
 
 namespace Blog.Web
 {

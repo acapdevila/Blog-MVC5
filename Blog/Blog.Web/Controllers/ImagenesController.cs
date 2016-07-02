@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using Blog.Web.Servicios;
+using Blog.Servicios;
 
 namespace Blog.Web.Controllers
 {

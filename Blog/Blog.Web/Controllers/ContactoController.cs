@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Blog.Web.Servicios;
-using Blog.Web.ViewModels.Contacto;
+using Blog.Servicios;
+using Blog.ViewModels.Contacto;
 
 namespace Blog.Web.Controllers
 {

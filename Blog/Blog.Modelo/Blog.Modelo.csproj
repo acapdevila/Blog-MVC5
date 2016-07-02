@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Posts\LineaResumenPost.cs" />
     <Compile Include="Posts\ExtensionesPost.cs" />
+    <Compile Include="Posts\BlogEntidad.cs" />
     <Compile Include="Tags\AsignadorTags.cs" />
     <Compile Include="Tags\GeneradorUrlSlug.cs" />
     <Compile Include="Tags\IEntidadConTags.cs" />

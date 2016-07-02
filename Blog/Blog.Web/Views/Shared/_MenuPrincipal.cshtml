@@ -23,6 +23,9 @@
         <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
             @Html.ActionLink("Posts", "Index", "Posts")
         </li>
-        
+        <li class="@(currentController == "Blogs" ? activeClass : string.Empty)">
+            @Html.ActionLink("Blogs", "Index", "Blogs")
+        </li>
+
     }
 </ul>

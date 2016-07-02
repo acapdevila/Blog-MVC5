@@ -9,7 +9,8 @@ namespace Blog.Datos.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Blog.Datos.ContextoBaseDatos context)
@@ -26,6 +27,13 @@ namespace Blog.Datos.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //foreach (var post in context.Posts)
+            //{
+            //    post.BlogId = 1;
+            //}
+
+            //context.SaveChanges();
         }
     }
 }

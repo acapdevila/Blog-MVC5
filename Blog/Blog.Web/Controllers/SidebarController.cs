@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
-using Blog.Web.ViewModels.Sidebar;
+using Blog.ViewModels.Sidebar;
 
 
 namespace Blog.Web.Controllers

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Modelo;
 using Blog.Modelo.Tags;
+using Blog.Servicios;
 
 
 namespace Blog.Web.Controllers
@@ -17,12 +11,13 @@ namespace Blog.Web.Controllers
     [Authorize]
     public class TagsController : Controller
     {
-        private readonly ContextoBaseDatos db = new ContextoBaseDatos();
+        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
 
         // GET: Tags
         public async Task<ActionResult> Index()
         {
-            return View(await db.Tags.ToListAsync());
+            var viewModel = await _tagsServicio.ObtenerListaTagsViewModel();
+            return View(viewModel);
         }
 
         // GET: Tags/Details/5
@@ -32,7 +27,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tag tag = await db.Tags.FirstAsync(m=>m.Id == id);
+            var tag = await _tagsServicio.RecuperarTag(id.Value);
             if (tag == null)
             {
                 return HttpNotFound();
@@ -55,8 +50,7 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Tags.Add(tag);
-                await db.SaveChangesAsync();
+                await _tagsServicio.CrearTag(tag);
                 return RedirectToAction("Index");
             }
 
@@ -70,7 +64,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tag tag = await db.Tags.FindAsync(id);
+            var tag = await _tagsServicio.RecuperarTag(id.Value);
             if (tag == null)
             {
                 return HttpNotFound();
@@ -87,8 +81,7 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tag).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                await _tagsServicio.ActualizarTag(tag);
                 return RedirectToAction("Index");
             }
             return View(tag);
@@ -101,7 +94,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tag tag = await db.Tags.FindAsync(id);
+            var tag =  await _tagsServicio.RecuperarTag(id.Value);
             if (tag == null)
             {
                 return HttpNotFound();
@@ -114,9 +107,7 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Tag tag = await db.Tags.FindAsync(id);
-            db.Tags.Remove(tag);
-            await db.SaveChangesAsync();
+            await _tagsServicio.EliminarTag(id);
             return RedirectToAction("Index");
         }
 
@@ -124,7 +115,7 @@ namespace Blog.Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _tagsServicio.Dispose();
             }
             base.Dispose(disposing);
         }

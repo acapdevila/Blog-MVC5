@@ -18,6 +18,8 @@ namespace Blog.Datos
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<BlogEntidad> Blogs { get; set; }
+
         public static ContextoBaseDatos Create()
         {
             return new ContextoBaseDatos();
@@ -25,9 +27,13 @@ namespace Blog.Datos
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextoBaseDatos, Migrations.Configuration>());
+
             modelBuilder.Configurations.Add(new MapeoTag());
 
             modelBuilder.Configurations.Add(new MapeoPost());
+
+            modelBuilder.Configurations.Add(new MapeoBlogEntidad());
 
             base.OnModelCreating(modelBuilder);
         }

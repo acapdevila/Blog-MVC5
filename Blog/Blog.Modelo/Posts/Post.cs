@@ -7,11 +7,12 @@ namespace Blog.Modelo.Posts
 {
     public class Post : IEntidadConTags
     {
-        public static Post CrearNuevoPorDefecto()
+        public static Post CrearNuevoPorDefecto(string autor, int blogId)
         {
             return new Post
             {
-                Autor = "Albert Capdevila",
+                BlogId = blogId,
+                Autor = autor,
                 EsBorrador = true,
                 EsRssAtom = false,
                 FechaPost = DateTime.Now,
@@ -25,6 +26,7 @@ namespace Blog.Modelo.Posts
         }
 
         public int Id { get; set; }
+        public int BlogId { get; set; }
         public string Subtitulo { get; set; }
         public string Titulo { get; set; }
         public string UrlSlug { get; set; }
@@ -35,6 +37,8 @@ namespace Blog.Modelo.Posts
         public DateTime FechaPublicacion { get; set; }
         public string Autor { get; set; }
 
+
+        public BlogEntidad Blog { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
         public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;

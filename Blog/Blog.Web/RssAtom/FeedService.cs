@@ -1,20 +1,20 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.ServiceModel.Syndication;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Posts;
-using Blog.Web.Configuracion;
+using Blog.Servicios.Configuracion;
+using Blog.Servicios.RssAtom;
 using Blog.Web.Helpers;
 
 namespace Blog.Web.RssAtom
 {
-        using System;
-        using System.Collections.Generic;
-        using System.Net.Http;
-        using System.ServiceModel.Syndication;
-        using System.Threading;
-        using System.Threading.Tasks;
-        using System.Web.Mvc;
-
-        /// <summary>
+    /// <summary>
         /// Builds <see cref="SyndicationFeed"/>'s containing meta data about the feed and the feed entries.
         /// Note: We are targeting Atom 1.0 over RSS 2.0 because Atom 1.0 is a newer and more well defined format. Atom 1.0
         /// is a standard and RSS is not. See http://rehansaeed.com/building-rssatom-feeds-for-asp-net-mvc/.
