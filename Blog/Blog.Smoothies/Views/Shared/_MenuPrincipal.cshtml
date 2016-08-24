@@ -8,7 +8,9 @@
     <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
         @Html.ActionLink("Inicio", "Index", "Blog")
     </li>
-        
+    <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
+        @Html.ActionLink("¡Hola!", "Index", "Hola")
+    </li>
          
     <li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
         @Html.ActionLink("Contacto", "Index", "Contacto")
