@@ -3,9 +3,9 @@ using PagedList;
 
 namespace Blog.ViewModels.Blog
 {
-    public class ListaPostsBlogViewModel
+    public class ListaPostsBlogResumidosViewModel
     {
-        public ListaPostsBlogViewModel()
+        public ListaPostsBlogResumidosViewModel()
         {
             
         }

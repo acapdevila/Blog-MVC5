@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Posts\LineaPostCompleto.cs" />
     <Compile Include="Posts\LineaResumenPost.cs" />
     <Compile Include="Posts\ExtensionesPost.cs" />
     <Compile Include="Posts\BlogEntidad.cs" />

@@ -34,16 +34,24 @@ namespace Blog.Servicios
                 .Where(m => m.Posts.Any(p=>p.Blog.Titulo == _tituloBlog));
         }
 
-        public ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int nummeroItemsPorPagina)
+        public IPagedList<LineaResumenPost> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
         {
-            return new ListaPostsBlogViewModel
-            {
-                ListaPosts = Posts()
+            return Posts()
                 .Publicados()
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .ToPagedList(pagina, nummeroItemsPorPagina)
-            };
+                .ToPagedList(pagina, nummeroItemsPorPagina);
+            
+        }
+
+        public IPagedList<LineaPostCompleto> ObtenerListaPostsCompletosPublicados(int pagina, int nummeroItemsPorPagina)
+        {
+            return Posts()
+                .Publicados()
+                .SeleccionaLineaPostCompleto()
+                .OrderByDescending(m => m.FechaPost)
+                .ToPagedList(pagina, nummeroItemsPorPagina);
+
         }
 
         public async Task<Tag> RecuperarTagConPostsRelacionados(string urlSlug)

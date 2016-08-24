@@ -34,8 +34,22 @@ namespace Blog.Modelo.Posts
            });
        }
 
-      
+        public static IQueryable<LineaPostCompleto> SeleccionaLineaPostCompleto(this IQueryable<Post> posts)
+        {
+            return posts.Select(m => new LineaPostCompleto
+            {
+                Id = m.Id,
+                UrlSlug = m.UrlSlug,
+                Titulo = m.Titulo,
+                Subtitulo = m.Subtitulo,
+                FechaPost = m.FechaPost,
+                Autor = m.Autor,
+                ContenidoHtml = m.ContenidoHtml
+            });
+        }
 
-        
+
+
+
     }
 }

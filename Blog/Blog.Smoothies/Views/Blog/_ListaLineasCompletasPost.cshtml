@@ -1,7 +1,7 @@
 ﻿@using Blog.Smoothies.Helpers
 @using PagedList;
 
-@model IPagedList<Blog.Modelo.Posts.LineaResumenPost>
+@model IPagedList<Blog.Modelo.Posts.LineaPostCompleto>
 
 
         @foreach (var item in Model)
@@ -16,7 +16,7 @@
             <p><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
             </p>
             @Html.Raw(item.Subtitulo)
-            @Html.Raw(item.)
+            @Html.Raw(item.ContenidoHtml)
 
         }
 

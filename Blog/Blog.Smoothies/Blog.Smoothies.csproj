@@ -178,7 +178,6 @@
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
     <Compile Include="Controllers\ImagenesController.cs" />
-    <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RssController.cs" />
@@ -214,6 +213,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\SmoothiesDeCuchara - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara.pubxml" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -585,7 +585,6 @@
     <Content Include="Views\Contacto\MensajeEnviado.cshtml" />
     <Content Include="Views\Contacto\MensajeNoEnviado.cshtml" />
     <Content Include="Views\Hola\Index.cshtml" />
-    <Content Include="Views\Inicio\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -628,6 +627,7 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Views\Blog\_ListaLineasCompletasPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

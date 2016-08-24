@@ -87,9 +87,12 @@ namespace Blog.Web.Controllers
             return await _db.RecuperarTagConPostsRelacionados(urlSlug);
         }
 
-        private ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private ListaPostsBlogResumidosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return _db.ObtenerListaPostsBlogViewModel(pagina, numeroItemsPorPagina);
+            return new ListaPostsBlogResumidosViewModel
+            {
+                ListaPosts = _db.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
+            };        
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)

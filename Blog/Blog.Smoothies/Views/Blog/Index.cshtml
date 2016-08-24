@@ -1,14 +1,14 @@
-﻿@model Blog.ViewModels.Blog.ListaPostsBlogViewModel
+﻿@model Blog.ViewModels.Blog.ListaPostsBlogCompletosViewModel
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <br/>
 <div class="row">
     <!-- Blog Entries Column -->
-    <div class="col-md-8">
+    <div class="col-md-9">
         <!-- First Blog Post -->
-        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts)
+        @Html.Partial("_ListaLineasCompletasPost", Model.ListaPosts)
     </div>
-    @Html.Partial("_SidebarPrincipal")
+    @*@Html.Partial("_SidebarPrincipal")*@
    
 </div>

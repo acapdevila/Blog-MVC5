@@ -5,27 +5,24 @@
 }
 
 <ul class="nav navbar-nav">
-    <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
-        @Html.ActionLink("Hola", "Index", "Hola")
+    <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
+        @Html.ActionLink("Inicio", "Index", "Blog")
     </li>
-    <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
+        
+         
+    <li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
         @Html.ActionLink("Contacto", "Index", "Contacto")
     </li>
-    <li>
-        <a href="https://github.com/acapdevila/Blog-MVC5" target="_blank">Código fuente</a>
-    </li>
-
+   
     @if (User.Identity.IsAuthenticated)
     {
         <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
-            @Html.ActionLink("Tags", "Index", "Tags")
+            @Html.ActionLink("Etiquetas", "Index", "Tags")
         </li>
         <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
             @Html.ActionLink("Posts", "Index", "Posts")
         </li>
-        <li class="@(currentController == "Blogs" ? activeClass : string.Empty)">
-            @Html.ActionLink("Blogs", "Index", "Blogs")
-        </li>
+    
 
     }
 </ul>

@@ -87,9 +87,12 @@ namespace Blog.Smoothies.Controllers
             return await _db.RecuperarTagConPostsRelacionados(urlSlug);
         }
 
-        private ListaPostsBlogViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private ListaPostsBlogCompletosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return _db.ObtenerListaPostsBlogViewModel(pagina, numeroItemsPorPagina);
+            return new ListaPostsBlogCompletosViewModel
+            {
+                ListaPosts = _db.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
+            };
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
