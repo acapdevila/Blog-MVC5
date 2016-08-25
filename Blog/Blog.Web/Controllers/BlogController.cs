@@ -23,7 +23,7 @@ namespace Blog.Web.Controllers
 
         public ActionResult Index(int? pagina)
         {
-            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
+            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1, NumeroItemsPorPagina);
             return View(viewModel);
         }
         
