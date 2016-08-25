@@ -1,28 +1,19 @@
 ﻿@using System.ComponentModel
  <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
-    @* <!-- Blog Search Well-->
-        <div class="well">
-           <h4>Blog Search</h4>
-             <div class="input-group">
-                 <input type="text" class="form-control">
-                 <span class="input-group-btn">
-                     <button class="btn btn-default" type="button">
-                         <span class="glyphicon glyphicon-search"></span>
-                     </button>
-                 </span>
-             </div>
-             <!-- /.input-group -->
-         </div> *@
+    <!-- Side Widget Well -->
+    <div class="well">
+        <h4 class="color1">¡Hola!</h4>
 
+        <p>Mi nombre es Laura y vivo en El Masnou, un pueblo de playa cerca de Barcelona.</p>
+        <img class="img-circle" src="~/Content/imagenes/laura.jpg" alt="Smoothies de Cuchara" style="max-width:85%; padding: 5px;" />
+        <p>De niña quería ser exploradora pero finalmente terminé por dedicarme a la informática. 
+        Un giro como cualquier otro. <a class="smaller" href="Hola/Index">Seguir leyendo <span class="glyphicon glyphicon-arrow-right"></span></a></p>
 
+    </div>
         <!-- Blog Categories Well -->
     @Html.Action("NubeEtiquetas", "Sidebar")
 
-    <!-- Side Widget Well -->
-        @*<div class="well">
-            <h4>Side Widget Well</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-        </div>*@
+ 
 
     </div>

@@ -13,7 +13,7 @@
             @*<p class="lead">
                 by @item.Autor
             </p>*@
-            <p class="small grey"><span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
+            <p class="small grey"><span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
             </p>
             @Html.Raw(item.Subtitulo)
             @Html.Raw(item.ContenidoHtml)

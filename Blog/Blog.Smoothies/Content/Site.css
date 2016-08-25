@@ -43,19 +43,21 @@ h2 a:focus {
 
 a {
     color: #91e1bc;}
-
     a:hover {
         color: #bef3db;
-        text-decoration: none
-    }
+        text-decoration: none}
 
-.typo { font-family: "HP Simplified"; text-transform: uppercase;
+.logo {padding:5px 25px;
 }
+.typo {font-family: 'hp_simplifiedregular'; text-transform: uppercase;
+}
+.smaller {
+    font-size:90%}
 
 h1,h2,h3,
 h4,h5,h6,
 .h1,.h2,.h3,
-.h4,.h5,.h6 {font-family: "HP Simplified"; text-transform: uppercase;}
+.h4,.h5,.h6 {font-family: 'hp_simplifiedregular'; text-transform: uppercase;}
 
 .vertical-lines {
   border-left: 1px solid #f5f5f5;
@@ -68,6 +70,16 @@ h4,h5,h6,
 }
 .social_header a {
     text-decoration: none;
+}
+
+.linketiqueta {
+    background: #222; 
+    color: #fff;
+    padding: 5px 8px;
+    font-size:90%;
+    margin-bottom: 4px;
+}
+.linketiqueta a {color: #fff;
 }
 
 /*Footer*/
@@ -84,3 +96,18 @@ footer {
 .color2 {color: #91e1bc;}
 .color3 {color: #bef3db;}
 .color4 {color: #e9fdf4;}
+
+/*Fonts*/
+
+@font-face {
+    font-family: 'hp_simplifiedregular';
+    src: url('/fonts/hp_simplified_regular-webfont.eot');
+    src: url('/fonts/hp_simplified_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/hp_simplified_regular-webfont.woff2') format('woff2'),
+         url('/fonts/hp_simplified_regular-webfont.woff') format('woff'),
+         url('/fonts/hp_simplified_regular-webfont.ttf') format('truetype'),
+         url('/fonts/hp_simplified_regular-webfont.svg#hp_simplifiedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
