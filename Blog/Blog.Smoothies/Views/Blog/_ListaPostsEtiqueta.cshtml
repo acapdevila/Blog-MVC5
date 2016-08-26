@@ -4,21 +4,22 @@
 @model IPagedList<Blog.Modelo.Posts.LineaResumenPost>
 
 
+
         @foreach (var item in Model)
         {
-
-            <h3 class="typo">
-                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-                </h3>
+            <div class="col-md-6">
+                <h4 class="typo">
+                    <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
+                </h4>
                 @*<p class="lead">
                         by @item.Autor
                     </p>*@
-            <p class="small grey">
-                <span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
-            </p>
+                <p class="small grey">
+                    <span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
+                </p>
                 @Html.Raw(item.Subtitulo)
-                <a class="btn btn-default btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Seguir leyendo <span class="glyphicon glyphicon-arrow-right"></span></a>
-                <hr>
+                <a class="btn btn-default btn-sm text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Seguir leyendo <span class="glyphicon glyphicon-arrow-right"></span></a>
+            </div>
         }
 
         <!-- Pager-->

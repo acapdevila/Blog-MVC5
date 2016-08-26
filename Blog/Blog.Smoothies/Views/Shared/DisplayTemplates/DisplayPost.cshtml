@@ -2,20 +2,28 @@
 
         <!-- Blog Post -->
         <!-- Title -->
-        <h1>@Html.DisplayFor(model => model.Titulo)</h1>
+        <h2 class="color1">@Html.DisplayFor(model => model.Titulo)</h2>
         <!-- Author -->
         @*<p class="lead">
             by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
         </p>*@
         <hr>
         <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span> Publicado el @Model.FechaPost.ToString("D")</p>
+        <p class="small grey"><span class="glyphicon glyphicon-time"></span> @Model.FechaPost.ToString("D")</p>
         @Html.Raw(Model.Subtitulo)
         <!-- Preview Image 
         <img class="img-responsive" src="http://placehold.it/900x300" alt="">
         <hr>-->
         <!-- Post Content -->
         @Html.Raw(Model.ContenidoHtml)
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+        @Html.ActionLink("Volver al listado", "Index", "Posts")
+    </p>
+}
         <hr>
         <!-- Blog Comments -->
         <div class="well">

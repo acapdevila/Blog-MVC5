@@ -16,9 +16,3 @@
 
 </div>
 <!-- /.row -->
-@if (User.Identity.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Editar", "Edit", "Posts", new {id = Model.Id}, null)
-    </p>
-}

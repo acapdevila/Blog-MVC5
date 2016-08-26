@@ -10,8 +10,8 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
+        <br />
+    <ul class="list-inline text-uppercase smallest" style="padding-right:10px">
         <li class="@(currentController == "Manage" ? activeClass : string.Empty)">
             @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
         </li>
@@ -24,9 +24,10 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <br />
+    <ul class="list-inline text-uppercase smallest" style="padding-right:10px">
         <li class="@(currentController == "Account" ? activeClass : string.Empty)">
-            @Html.ActionLink("Acceso", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})
+            @Html.ActionLink("Acceso", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
         </li>
     </ul>
 }

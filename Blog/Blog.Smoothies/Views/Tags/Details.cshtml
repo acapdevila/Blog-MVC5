@@ -1,13 +1,13 @@
 ﻿@model Blog.Modelo.Tags.Tag
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Tag</h4>
+    <h4 class="color1">Etiqueta</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index")
 </p>

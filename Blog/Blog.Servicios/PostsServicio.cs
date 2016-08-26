@@ -43,7 +43,7 @@ namespace Blog.Servicios
                     Autor = m.Autor,
                     ListaTags = m.Tags
                 })
-                .OrderByDescending(m => m.Id)
+                .OrderByDescending(m => m.FechaPost)
                 .ToListAsync()
             };
         }

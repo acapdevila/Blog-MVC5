@@ -9,13 +9,13 @@
     <!-- Blog Entries Column -->
     <div class="col-md-8">
 
-        <h1 class="page-header">
+        <h2 class="page-header">
             Etiqueta: @Model.NombreEtiqueta
             @*<small>Secondary Text</small>*@
-        </h1>
+        </h2>
 
         <!-- First Blog Post -->
-        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts)
+        @Html.Partial("_ListaPostsEtiqueta", Model.ListaPosts)
     </div>
     @Html.Partial("_SidebarPrincipal")
 

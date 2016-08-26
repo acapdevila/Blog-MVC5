@@ -43,7 +43,7 @@ h2 a:focus {
 
 a {
     color: #91e1bc;}
-    a:hover {
+    a:hover, a:active {
         color: #bef3db;
         text-decoration: none}
 
@@ -53,16 +53,13 @@ a {
 }
 .smaller {
     font-size:90%}
+.smallest {
+    font-size:75%}
 
 h1,h2,h3,
 h4,h5,h6,
 .h1,.h2,.h3,
 .h4,.h5,.h6 {font-family: 'hp_simplifiedregular'; text-transform: uppercase;}
-
-.vertical-lines {
-  border-left: 1px solid #f5f5f5;
-  border-right: 1px solid #f5f5f5;
-}
 
 .social_header {
     float: right; 
@@ -72,6 +69,8 @@ h4,h5,h6,
     text-decoration: none;
 }
 
+/*Sidebar etiquetas*/
+
 .linketiqueta {
     background: #222; 
     color: #fff;
@@ -79,6 +78,12 @@ h4,h5,h6,
     font-size:90%;
     margin-bottom: 4px;
 }
+
+.linketiqueta a:hover {
+    color: #91e1bc;    
+}
+
+
 .linketiqueta a {color: #fff;
 }
 

@@ -580,7 +580,7 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Blog\_ListaLineasResumenPost.cshtml" />
+    <Content Include="Views\Blog\_ListaPostsPrimeraDestacada.cshtml" />
     <Content Include="Views\Blog\Detalles.cshtml" />
     <Content Include="Views\Blog\Etiqueta.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
@@ -636,7 +636,7 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
-    <Content Include="Views\Blog\_ListaLineasCompletasPost.cshtml" />
+    <Content Include="Views\Blog\_ListaPostsEtiqueta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
