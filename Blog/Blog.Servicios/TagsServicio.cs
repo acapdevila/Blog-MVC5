@@ -31,7 +31,7 @@ namespace Blog.Servicios
 
         public List<Tag> TagsConPostsPublicados()
         {
-            return Tags().ConPostsPublicados().ToList();
+            return Tags().ConPostsPublicados().OrderBy(m=>m.Nombre).ToList();
         }
 
         public async Task<Tag> RecuperarTag(int id)

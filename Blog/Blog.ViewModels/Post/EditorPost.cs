@@ -9,6 +9,8 @@ namespace Blog.ViewModels.Post
 {
     public class EditorPost
     {
+        private string _urlSlug;
+
         public EditorPost()
         {
           
@@ -29,7 +31,11 @@ namespace Blog.ViewModels.Post
         [Display(Name = "Url del post")]
         [Required(ErrorMessage = "Escribe una url")]
         [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
-        public string UrlSlug { get; set; }
+        public string UrlSlug
+        {
+            get { return _urlSlug; }
+            set { _urlSlug = string.IsNullOrEmpty(value) ? value : value.Replace(" ", "-") ; }
+        }
 
         [Display(Name = @"Fecha")]
         [Required(ErrorMessage = @"Escribe una fecha")]
