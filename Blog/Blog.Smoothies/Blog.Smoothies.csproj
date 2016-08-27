@@ -201,11 +201,13 @@
     <Content Include="Content\imagenes\instagram_white.png" />
     <Content Include="Content\imagenes\laura.jpg" />
     <Content Include="Content\imagenes\logo.png" />
+    <Content Include="Content\imagenes\logo2.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\syntaxhighlighter.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\chasing_embers_demo_version-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\hp_simplified_regular-webfont.svg" />
     <Content Include="Global.asax" />
@@ -222,6 +224,10 @@
     <Content Include="fonts\hp_simplified_regular-webfont.ttf" />
     <Content Include="fonts\hp_simplified_regular-webfont.otf" />
     <Content Include="fonts\hp_simplified_regular-webfont.eot" />
+    <Content Include="fonts\chasing_embers_demo_version-webfont.eot" />
+    <Content Include="fonts\chasing_embers_demo_version-webfont.ttf" />
+    <Content Include="fonts\chasing_embers_demo_version-webfont.woff" />
+    <Content Include="fonts\chasing_embers_demo_version-webfont.woff2" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara.pubxml" />
     <Content Include="Icon.png" />

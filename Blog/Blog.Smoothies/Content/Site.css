@@ -49,8 +49,9 @@ a {
 
 .logo {padding:5px 25px;
 }
-.typo {font-family: 'hp_simplifiedregular'; text-transform: uppercase;
-}
+.typo {font-family: 'hp_simplifiedregular'; text-transform: uppercase;}
+.styledtypo {font-family: 'chasing_embers_demo_versionRg';}
+
 .smaller {
     font-size:90%}
 .smallest {
@@ -87,6 +88,11 @@ h4,h5,h6,
 .linketiqueta a {color: #fff;
 }
 
+/*Para que los posts pequeños de la home se vayan alineando correctamente*/
+
+.clear-row:nth-child(2n) {clear: left;}
+
+
 /*Footer*/
 
 footer {
@@ -113,6 +119,15 @@ footer {
          url('/fonts/hp_simplified_regular-webfont.ttf') format('truetype'),
          url('/fonts/hp_simplified_regular-webfont.svg#hp_simplifiedregular') format('svg');
     font-weight: normal;
-    font-style: normal;
+    font-style: normal;}
 
-}
+@font-face {
+    font-family: 'chasing_embers_demo_versionRg';
+    src: url('/fonts/chasing_embers_demo_version-webfont.eot');
+    src: url('/fonts/chasing_embers_demo_version-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/chasing_embers_demo_version-webfont.woff2') format('woff2'),
+         url('/fonts/chasing_embers_demo_version-webfont.woff') format('woff'),
+         url('/fonts/chasing_embers_demo_version-webfont.ttf') format('truetype'),
+         url('/fonts/chasing_embers_demo_version-webfont.svg#chasing_embers_demo_versionRg') format('svg');
+    font-weight: normal;
+    font-style: normal;}

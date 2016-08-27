@@ -5,17 +5,17 @@
 }
 
 <div class="well">
-    <h2>Etiquetas</h2>
-    <div class="row">
-        
-            <ul class="list-unstyled list-inline">
-             @foreach (var etiqueta in Model.EtiquetasTodas)
-                    {
-                        @Html.DisplayFor(m => etiqueta, "LinkEtiqueta")
-                    }
+    <h4 class="color1">Etiquetas</h4>
+        <div class="row">
+
+            <ul class="list-unstyled list-inline" style="padding:0 10px">
+                @foreach (var etiqueta in Model.EtiquetasTodas)
+                {
+                    @Html.DisplayFor(m => etiqueta, "LinkEtiqueta")
+                }
             </ul>
-        
-        
-    </div>
-    <!-- /.row -->
+
+
+        </div>
+        <!-- /.row -->
 </div>

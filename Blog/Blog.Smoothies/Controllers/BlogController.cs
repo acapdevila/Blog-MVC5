@@ -18,7 +18,7 @@ namespace Blog.Smoothies.Controllers
         public static string TituloBlog = "Smoothies de Cuchara";
 
         private readonly BlogServicio _db = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
-        private const int NumeroItemsPorPagina = 10;
+        private const int NumeroItemsPorPagina = 11;
 
 
         public ActionResult Index(int? pagina)
