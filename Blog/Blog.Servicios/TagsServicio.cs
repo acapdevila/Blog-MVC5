@@ -26,7 +26,7 @@ namespace Blog.Servicios
 
         public async Task<List<Tag>> ObtenerListaTagsViewModel()
         {
-            return await Tags().ToListAsync();
+            return await Tags().OrderBy(m=>m.Nombre).ToListAsync();
         }
 
         public List<Tag> TagsConPostsPublicados()
