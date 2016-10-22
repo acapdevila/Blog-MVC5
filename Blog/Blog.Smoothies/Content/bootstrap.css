@@ -3989,7 +3989,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: block;
   padding: 10px 15px;
   text-transform: uppercase;
-  font-size: smaller;
+  font-family: 'hp_simplifiedregular';
+  font-size: larger;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
