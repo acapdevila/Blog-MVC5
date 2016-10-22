@@ -63,8 +63,9 @@ namespace Blog.Servicios
 
         public async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
         {
+            var fechaPostLimiteSuperior = fechaPost.AddDays(1).AddSeconds(-1);
             return await Posts()
-                            .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug && m.FechaPost == fechaPost);
+                            .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug && fechaPost <= m.FechaPost && m.FechaPost <= fechaPostLimiteSuperior);
         }
 
 
