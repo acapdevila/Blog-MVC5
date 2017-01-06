@@ -34,7 +34,7 @@ namespace Blog.Web.Controllers
             _postsServicio = postsServicio;
         }
 
-        public async Task<ActionResult> Index(int pagina)
+        public async Task<ActionResult> Index(int pagina = 1)
         {
             var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 100);
             return View(viewModel);
