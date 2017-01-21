@@ -163,7 +163,7 @@
     <Compile Include="RssAtom\IFeedService.cs" />
     <Compile Include="RssAtom\SyndicationFeedExtensions.cs" />
     <Compile Include="SubirArchivoImagenServicio.cs" />
-    <Compile Include="UrlImagenHelper.cs" />
+    <Compile Include="ImagenHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

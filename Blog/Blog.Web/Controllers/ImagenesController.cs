@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Blog.Servicios;
+using Microsoft.Ajax.Utilities;
 
 namespace Blog.Web.Controllers
 {
@@ -25,55 +27,62 @@ namespace Blog.Web.Controllers
         [HttpPost]
         public ActionResult SubirImagen(HttpPostedFileBase upload, string ckEditorFuncNum, string ckEditor, string langCode)
         {
-            if (Request.Url == null) return null;
+            if (upload == null)
+                return Content("Selecciona una imagen");
 
-            var imagen = _imagenServicio.ObtenerImagenDePeticion(HttpContext.Request);
+            if (!upload.FileName.TerminaConUnaExtensionDeImagenValida())
+                return Content("Selecciona una archivo jpg, gif o png");
 
-            string filename = _imagenServicio.SubirImagen(imagen, 1000);
+            WebImage imagen = upload.ToWebImage();
 
-            string url; // url to return
-            string message; // message to display (optional)
+            string filename = _imagenServicio.SubirImagen(imagen, dimensionMaxima: 1000);
 
+            string respuestaCkEditor = CrearRespuestaParaCkEditor(filename, ckEditorFuncNum);
+
+            return Content(respuestaCkEditor);
+        }
+
+        private string CrearRespuestaParaCkEditor(string filename, string ckEditorFuncNum)
+        {
             if (!String.IsNullOrEmpty(filename))
             {
-                //url = Request.Url.GetLeftPart(UriPartial.Authority) + _imagenServicio.DirectorioImagenes + "/" + filename;
-                url = (filename).GenerarUrlImagen();
-
-                // es
-                // message = "La imagen se ha guardado correctamente.";
-                
-                // since it is an ajax request it requires this string
-                //string output = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
-                //                ", \"" + url + "\", \"" + message + "\");</script></body></html>";
-
-                string output = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
-                             ", \"" + url + "\", function() { " +
-
-                "var element, dialog = this.getDialog();" +
-                "if (dialog.getName() == 'image')" +
-                "{" +
-
-                    "element = dialog.getContentElement('advanced', 'txtGenClass');" +
-                    "if (element)" +
-                        "element.setValue('img-responsive');" +
-                        
-
-                "}" +
-                "});</script></body></html>";
-
-                return Content(output);
+                 return CrearMensageErrorParaCkEditor(ckEditorFuncNum, "Error: No se ha guardado la imagen.");
             }
-            //es
-            message = "Error: No se ha guardado la imagen.";
-            
 
-            url = Request.Url.GetLeftPart(UriPartial.Authority);
+            var url = (filename).GenerarUrlImagen();
 
-            var fail = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum + ", \"" +
-                       url + "\", \"" + message + "\");</script></body></html>";
+            return CrearRespuestaCorrectaParaCkEditor(ckEditorFuncNum, url);
+        }
 
-            return Content(fail);
+        private string CrearMensageErrorParaCkEditor(string ckEditorFuncNum, string message)
+        {
+            var url = Request.Url.GetLeftPart(UriPartial.Authority);
+            return @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum + ", \"" +
+                   url + "\", \"" + message + "\");</script></body></html>";
+        }
 
+        private string CrearRespuestaCorrectaParaCkEditor(string ckEditorFuncNum, string url)
+        {
+            // es
+            // message = "La imagen se ha guardado correctamente.";
+
+            // since it is an ajax request it requires this string
+            //string output = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
+            //                ", \"" + url + "\", \"" + message + "\");</script></body></html>";
+
+            return @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + ckEditorFuncNum +
+                         ", \"" + url + "\", function() { " +
+
+            "var element, dialog = this.getDialog();" +
+            "if (dialog.getName() == 'image')" +
+            "{" +
+
+                "element = dialog.getContentElement('advanced', 'txtGenClass');" +
+                "if (element)" +
+                    "element.setValue('img-responsive');" +
+
+            "}" +
+            "});</script></body></html>";
         }
     }
 
