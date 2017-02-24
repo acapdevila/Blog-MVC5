@@ -59,9 +59,5 @@ namespace Blog.Servicios
             var blockBlob = storageContainer.GetBlockBlobReference(blobName);
             blockBlob.DeleteAsync(); 
         }
-
-
-     
-
     }
 }
