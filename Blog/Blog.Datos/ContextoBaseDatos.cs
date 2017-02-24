@@ -3,6 +3,7 @@ using Blog.Datos.MapeosTablas;
 using Blog.Modelo;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
+using Blog.Modelo.Usuarios;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blog.Datos
