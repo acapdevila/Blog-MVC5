@@ -2,6 +2,8 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo;
+using Blog.Modelo.Usuarios;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -94,7 +96,8 @@ namespace Blog.Servicios
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(Usuario user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return ((ApplicationUserManager) UserManager).CreateIdentityAsync(user,
+                DefaultAuthenticationTypes.ApplicationCookie);// user.GenerateUserIdentityAsync();
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)

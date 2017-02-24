@@ -1,5 +1,7 @@
 ﻿using System;
 using Blog.Datos;
+using Blog.Modelo;
+using Blog.Modelo.Usuarios;
 using Blog.Servicios;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -32,7 +34,8 @@ namespace Blog.Web
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, Usuario>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                           // regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                           regenerateIdentity: (manager, user) => manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

@@ -32,9 +32,9 @@ namespace Blog.Smoothies.Controllers
             _postsServicio = postsServicio;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pagina = 1)
         {
-            var viewModel = await ObtenerListaPostViewModel();
+            var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 50);
             return View(viewModel);
         }
 
@@ -154,9 +154,9 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
+        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int numeroPagina, int postsPorPagina)
         {
-            return await _postsServicio.ObtenerListaPostViewModel();
+            return await _postsServicio.ObtenerListaPostViewModel(numeroPagina, postsPorPagina);
         }
 
 

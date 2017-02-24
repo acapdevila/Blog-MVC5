@@ -6,6 +6,8 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
+using PagedList.EntityFramework;
+
 
 namespace Blog.Servicios
 {
@@ -27,7 +29,7 @@ namespace Blog.Servicios
             return _db.Posts.Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
-        public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
+        public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int numeroPagina, int postsPorPagina)
         {
             return new ListaGestionPostsViewModel
             {
@@ -44,7 +46,7 @@ namespace Blog.Servicios
                     ListaTags = m.Tags
                 })
                 .OrderByDescending(m => m.FechaPost)
-                .ToListAsync()
+                .ToPagedListAsync(numeroPagina, postsPorPagina)
             };
         }
 

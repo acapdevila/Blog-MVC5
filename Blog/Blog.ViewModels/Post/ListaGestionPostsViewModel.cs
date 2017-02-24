@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Tags;
+using PagedList;
 
 namespace Blog.ViewModels.Post
 {
@@ -9,10 +10,10 @@ namespace Blog.ViewModels.Post
     {
         public ListaGestionPostsViewModel()
         {
-            ListaPosts = new List<LineaGestionPost>();
+         
         }
 
-        public List<LineaGestionPost> ListaPosts { get; set; }
+        public IPagedList<LineaGestionPost> ListaPosts { get; set; }
     }
 
     public class LineaGestionPost

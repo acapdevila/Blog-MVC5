@@ -28,7 +28,7 @@ namespace Blog.Web.Controllers
         }
         
 
-        public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
+        public async Task<ActionResult> Detalles(int dia, int mes, int anyo, string urlSlug)
         {
             if (string.IsNullOrEmpty(urlSlug))
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -47,19 +47,9 @@ namespace Blog.Web.Controllers
             return View(post);
         }
 
-        private DateTime? GenerarFecha(string dia, string mes, string anyo)
+        private DateTime? GenerarFecha(int dia, int mes, int anyo)
         {
-            int numDia;
-            if (!int.TryParse(dia, out numDia)) return null;
-
-            int numMes;
-            if (!int.TryParse(mes, out numMes)) return null;
-
-            int numAnyo;
-            if (!int.TryParse(anyo, out numAnyo)) return null;
-
-            return new DateTime(numAnyo, numMes, numDia);
-
+            return new DateTime(anyo, mes, dia);
         }
 
         public async Task<ActionResult> Etiqueta(string id, int numeroPagina = 1)

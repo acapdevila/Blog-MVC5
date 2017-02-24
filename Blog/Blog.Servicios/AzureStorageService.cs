@@ -8,13 +8,13 @@ namespace Blog.Servicios
 {
     public static class AzureStorageService
     {
-        public static CloudBlobContainer GetBloobContainer()
+        public static CloudBlobContainer ObtenerBlobContainer()
         {
-                var storageAccount  = CloudStorageAccount.Parse(WebConfigParametro.StorageConnectionString);
+                CloudStorageAccount storageAccount  = CloudStorageAccount.Parse(WebConfigParametro.StorageConnectionString);
 
-                var blobClient = storageAccount.CreateCloudBlobClient();
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-                var contenedor = blobClient.GetContainerReference(WebConfigParametro.NombreContenedorBlobAzure);
+                CloudBlobContainer contenedor = blobClient.GetContainerReference(WebConfigParametro.NombreContenedorBlobAzure);
 
                 if (contenedor.CreateIfNotExists())
                 {
@@ -28,15 +28,20 @@ namespace Blog.Servicios
                 return contenedor;
             }
 
-        public static void UploadImage(this CloudBlobContainer storageContainer, string blobName, WebImage image)
+        public static void SubirImagen(this CloudBlobContainer storageContainer, string blobName, WebImage image)
         {
-            var blob = storageContainer.GetBlockBlobReference(blobName);
+            CloudBlockBlob blob = storageContainer.GetBlockBlobReference(blobName);
             blob.Properties.ContentType = "image/" + image.ImageFormat;
 
             using (var stream = new MemoryStream(image.GetBytes(), writable: false))
             {
                 blob.UploadFromStream(stream);
             }
+        }
+
+        public static string GetBlobName(string folderPath, string filename)
+        {
+            return $"{folderPath}{filename}".Substring(1, folderPath.Length + filename.Length - 1);
         }
 
         public static void CopyBlob(this CloudBlobContainer storageContainer, string sourceBlobName, string targetBlobName)
@@ -54,12 +59,5 @@ namespace Blog.Servicios
             var blockBlob = storageContainer.GetBlockBlobReference(blobName);
             blockBlob.DeleteAsync(); 
         }
-
-
-        public static string GetBlobName(string folderPath, string filename)
-        {
-            return $"{folderPath}{filename}".Substring(1, folderPath.Length + filename.Length - 1);
-        }
-
     }
 }

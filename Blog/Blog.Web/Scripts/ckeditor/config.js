@@ -13,9 +13,11 @@ CKEDITOR.editorConfig = function( config ) {
     config.allowedContent = true;
     config.fillEmptyBlocks = false;
 
+    config.extraPlugins = 'sourcedialog';
+
     config.toolbar_PorDefecto =
     [
-         { name: 'document', items: ['Source', '-', 'DocProps', "-", 'Templates'] },
+         { name: 'document', items: [/*'Source'*/ 'Sourcedialog', '-', 'DocProps', "-", 'Templates'] },
         { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'About'] },
         { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
        // { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
@@ -40,7 +42,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.toolbar_Mediano =
    [
-   ['Source', '-', 'Bold', 'Italic', 'Underline', '-',
+   [/*'Source'*/ 'Sourcedialog', '-', 'Bold', 'Italic', 'Underline', '-',
     'Link', 'Unlink', '-', 'HorizontalRule', 'HorizontalLine', '-',
     'Font', 'FontSize', '-', 'Image', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
 

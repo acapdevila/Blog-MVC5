@@ -34,9 +34,9 @@ namespace Blog.Web.Controllers
             _postsServicio = postsServicio;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pagina = 1)
         {
-            var viewModel = await ObtenerListaPostViewModel();
+            var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 100);
             return View(viewModel);
         }
 
@@ -156,9 +156,9 @@ namespace Blog.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel()
+        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int pagina, int postsPorPagina)
         {
-            return await _postsServicio.ObtenerListaPostViewModel();
+            return await _postsServicio.ObtenerListaPostViewModel(pagina, postsPorPagina);
         }
 
 

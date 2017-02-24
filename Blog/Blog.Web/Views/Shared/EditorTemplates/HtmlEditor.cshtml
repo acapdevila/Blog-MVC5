@@ -6,7 +6,9 @@
 
             $.validator.setDefaults({ ignore: [] });
 
-            @*CKEDITOR.replace('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
+            @*
+            Configuración del CkEditor estándar    
+            CKEDITOR.replace('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
             {
                 toolbar: 'PorDefecto',
                 filebrowserImageUploadUrl: '@Url.Action("SubirImagen", "Imagenes")',
@@ -15,6 +17,8 @@
                 filebrowserWindowHeight: '700'
             });*@
 
+
+            // Configuración del CkEditor inline
             CKEDITOR.inline('@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)',
             {
                 toolbar: 'PorDefecto',

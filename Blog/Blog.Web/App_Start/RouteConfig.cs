@@ -19,8 +19,13 @@ namespace Blog.Web
             routes.MapRoute(
               name: NombreRutaBlogPost,
               url: "{dia}/{mes}/{anyo}/{urlSlug}",
-              defaults: new { controller = "Blog", action = "Detalles" }//,
-              //constraints: new { dia = @"d{4}-d{2}-d{2}" }
+              defaults: new { controller = "Blog", action = "Detalles" },
+              constraints: new
+              {
+                  dia = @"\d{1,2}",
+                  mes = @"\d{1,2}",
+                  anyo = @"\d{4}"
+              }
           );
 
 

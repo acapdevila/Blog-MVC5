@@ -41,6 +41,10 @@ namespace Blog.Modelo.Posts
         public BlogEntidad Blog { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
-        public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;
+        public bool EsPublico
+        {
+            get { return !EsBorrador && FechaPublicacion <= DateTime.Now;}
+        }
+    
      }
 }
