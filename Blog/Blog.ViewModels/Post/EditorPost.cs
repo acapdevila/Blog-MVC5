@@ -46,6 +46,10 @@ namespace Blog.ViewModels.Post
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
 
+        [AllowHtml]
+        [Display(Name = "Metatags")]
+        public string MetatagsHtml { get; set; }
+
         [Display(Name = "Borrador")]
         public bool EsBorrador { get; set; }
 

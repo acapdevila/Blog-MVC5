@@ -1,14 +1,9 @@
-﻿@using Blog.Servicios.Configuracion
-@using Blog.Smoothies.Helpers
-@model Blog.Modelo.Posts.Post
+﻿@model Blog.Modelo.Posts.Post
 
 @{
     ViewBag.Title = "Details";
 }
 
-@section Scripts {
-    <script id="dsq-count-scr" src="@($"//{WebConfigParametro.DisqusShortname}.disqus.com/count.js")" async></script>
-}
 
 <br />
 <div class="row">
@@ -73,13 +68,7 @@
         <dd>
             @Html.DisplayFor(model => model.FechaPublicacion)
         </dd>
-        <dt>
-            Comentarios
-        </dt>
-
-        <dd>
-            <a href="@($"{Url.RutaUrlBlogPost(Model.FechaPublicacion, Model.UrlSlug)}#disqus_thread")"></a>
-        </dd>
+    
     </dl>
 </div>
 

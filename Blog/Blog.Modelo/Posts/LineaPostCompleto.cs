@@ -11,5 +11,6 @@ namespace Blog.Modelo.Posts
         public DateTime FechaPost { get; set; }
         public string Autor { get; set; }
         public string ContenidoHtml { get; set; }
+        
     }
 }

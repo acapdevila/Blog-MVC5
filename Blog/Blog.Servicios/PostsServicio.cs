@@ -94,6 +94,8 @@ namespace Blog.Servicios
             var editor = new EditorPost();
             editor.CopiaValores(post);
 
+          
+
             return editor;
             
         }

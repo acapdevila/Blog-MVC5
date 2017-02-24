@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Smoothies de Cuchara" : ViewBag.Title)</title>
 
+    @RenderSection("metatags", required: false)
+
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")

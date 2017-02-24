@@ -32,6 +32,8 @@ namespace Blog.Modelo.Posts
         public string UrlSlug { get; set; }
         public DateTime FechaPost { get; set; }
         public string ContenidoHtml { get; set; }
+
+        public string MetatagsHtml { get; set; }
         public bool EsBorrador { get; set; }
         public bool EsRssAtom { get; set; }
         public DateTime FechaPublicacion { get; set; }

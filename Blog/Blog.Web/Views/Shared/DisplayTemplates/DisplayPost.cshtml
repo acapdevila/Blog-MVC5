@@ -16,12 +16,9 @@
         <hr>-->
         <!-- Post Content -->
         @Html.Raw(Model.ContenidoHtml)
-        <hr>
-        <!-- Blog Comments -->
-        <div class="well">
-            @Html.Partial("_Disqus", Model)
-        </div>
+     
         
         @Html.Partial("_SyntaxHightLighter")
 
 
+<hr>

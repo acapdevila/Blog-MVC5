@@ -61,7 +61,30 @@ namespace Blog.Smoothies.Controllers
             {
                 EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Laura García")
             };
-            
+
+            viewModel.EditorPost.MetatagsHtml = @"
+                <meta property='og: site_name' content='http://smoothiesdecuchara.com/' />
+                    <div itemscope itemtype='http://schema.org/Recipe'>
+                        <h1 itemprop='name'>Título</h1>
+                            <meta itemprop='url' content='http://smoothiesdecuchara.com/' />
+                            <span itemprop='totalTime'>10 minutos</span>
+                            <span itemprop='recipeYield'> 1 persona </span>
+                                            Base:
+                            <span itemprop='ingredients'> </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>
+                            <span itemprop='ingredients'> </span>
+                                            Arriba:
+                            <span itemprop='ingredients'> </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>,
+                            <span itemprop='ingredients'>  </span>
+                            <span itemprop='ingredients'> </span>
+                       </div> ";
+
             return View(viewModel);
         }
         
