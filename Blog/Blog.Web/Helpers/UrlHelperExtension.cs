@@ -8,7 +8,7 @@ namespace Blog.Web.Helpers
     {
         public static string RutaUrlBlogPost(this UrlHelper url, DateTime fechaPost, string urlSlug)
         {
-            return url.RouteUrl("BlogPost",
+            var result = url.RouteUrl("BlogPost",
                 new
                 {
                     dia = fechaPost.Day,
@@ -16,6 +16,8 @@ namespace Blog.Web.Helpers
                     anyo = fechaPost.Year,
                     urlSlug
                 }, url.RequestContext.HttpContext.Request.Url.Scheme);
+
+            return result;
         }
 
         public static string RutaUrlRssFeed(this UrlHelper url)
