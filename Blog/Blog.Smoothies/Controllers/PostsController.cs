@@ -64,8 +64,8 @@ namespace Blog.Smoothies.Controllers
 
             viewModel.EditorPost.PostContenidoHtml = @"
                                 <p>
-                                <span itemprop='totalTime'>10 minutos</span>
-                                <span itemprop='recipeYield'> 1 persona </span>
+                                <span itemprop='totalTime' class='small color1'>10 minutos</span> · 
+                                <span itemprop='recipeYield' class='small color1'>1 persona</span>
                                 </p>
                                  <strong>Base:</strong>
                                     <ul>
