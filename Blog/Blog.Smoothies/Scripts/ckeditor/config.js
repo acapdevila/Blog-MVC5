@@ -1,11 +1,11 @@
 /**
- * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
+CKEDITOR.editorConfig = function (config) {
+    // Define changes to default configuration here. For example:
+    // config.language = 'fr';
     // config.uiColor = '#AADC6E';
 
     config.height = 500;
@@ -13,9 +13,11 @@ CKEDITOR.editorConfig = function( config ) {
     config.allowedContent = true;
     config.fillEmptyBlocks = false;
 
+    config.extraPlugins = 'sourcedialog';
+
     config.toolbar_PorDefecto =
     [
-         { name: 'document', items: ['Source', '-', 'DocProps', "-", 'Templates'] },
+         { name: 'document', items: [/*'Source'*/ 'Sourcedialog', '-', 'DocProps', "-", 'Templates'] },
         { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'About'] },
         { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
        // { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
@@ -40,10 +42,10 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.toolbar_Mediano =
    [
-   ['Source', '-', 'Bold', 'Italic', 'Underline', '-',
+   [/*'Source'*/ 'Sourcedialog', '-', 'Bold', 'Italic', 'Underline', '-',
     'Link', 'Unlink', '-', 'HorizontalRule', 'HorizontalLine', '-',
     'Font', 'FontSize', '-', 'Image', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
-   
+
     'Undo', 'Redo']
    ];
 };
