@@ -33,7 +33,7 @@ namespace Blog.Modelo.Posts
         public DateTime FechaPost { get; set; }
         public string ContenidoHtml { get; set; }
 
-        public string MetatagsHtml { get; set; }
+        public string PostContenidoHtml { get; set; }
         public bool EsBorrador { get; set; }
         public bool EsRssAtom { get; set; }
         public DateTime FechaPublicacion { get; set; }

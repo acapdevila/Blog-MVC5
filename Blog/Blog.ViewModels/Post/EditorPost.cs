@@ -42,13 +42,13 @@ namespace Blog.ViewModels.Post
         public DateTime FechaPost { get; set; }
         
         [AllowHtml]
-        [Display(Name = "Contenido")]
+        [Display(Name = "Intro")]
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Metatags")]
-        public string MetatagsHtml { get; set; }
+        [Display(Name = "Contenido")]
+        public string PostContenidoHtml { get; set; }
 
         [Display(Name = "Borrador")]
         public bool EsBorrador { get; set; }

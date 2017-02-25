@@ -39,11 +39,7 @@ namespace Blog.Servicios
             }
         }
 
-        public static string GetBlobName(string folderPath, string filename)
-        {
-            return $"{folderPath}{filename}".Substring(1, folderPath.Length + filename.Length - 1);
-        }
-
+       
         public static void CopyBlob(this CloudBlobContainer storageContainer, string sourceBlobName, string targetBlobName)
         {
                 var blobSource = storageContainer.GetBlockBlobReference(sourceBlobName);

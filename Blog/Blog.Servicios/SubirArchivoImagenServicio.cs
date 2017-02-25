@@ -18,9 +18,9 @@ namespace Blog.Servicios
 
             WebImage imagenRedimensionada = RedimensionarImagen(imagen, dimensionMaxima);
 
-            string nombreUnico = GenerarUnNombreUnico(imagen.FileName);
+            string nombreUnico = GenerarUnNombreUnico(Path.GetFileName(imagen.FileName));
 
-            GuardarImagenEnAzure(imagenRedimensionada, ImagenHelper.DirectorioImagenes, nombreUnico);
+            GuardarImagenEnAzure(imagenRedimensionada, nombreUnico);
 
             return nombreUnico;
         }
@@ -55,11 +55,10 @@ namespace Blog.Servicios
         }
 
 
-        private void GuardarImagenEnAzure(WebImage imagen, string rutaDirectorio, string nombreArchivo)
+        private void GuardarImagenEnAzure(WebImage imagen, string nombreArchivo)
         {
             CloudBlobContainer storageContainer = AzureStorageService.ObtenerBlobContainer();
-            string blobName = AzureStorageService.GetBlobName(rutaDirectorio, nombreArchivo);
-            storageContainer.SubirImagen(blobName, imagen);
+            storageContainer.SubirImagen(nombreArchivo, imagen);
         }
 
         private void GuardarImagenEnServidor(WebImage imagen, string rutaDirectorio,string nombreArchivo)

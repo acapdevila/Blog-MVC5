@@ -2,7 +2,7 @@
 
         <!-- Blog Post -->
         <!-- Title -->
-        <h2 class="color1">@Html.DisplayFor(model => model.Titulo)</h2>
+        <h2 itemprop="name" class="color1" >@Html.DisplayFor(model => model.Titulo)</h2>
         <!-- Author -->
         @*<p class="lead">
             by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
@@ -16,6 +16,11 @@
         <hr>-->
         <!-- Post Content -->
         @Html.Raw(Model.ContenidoHtml)
+
+        @Html.Raw(Model.PostContenidoHtml)
+
+<!-- Post Content -->
+@Html.Raw(Model.ContenidoHtml)
 
 @if (User.Identity.IsAuthenticated)
 {

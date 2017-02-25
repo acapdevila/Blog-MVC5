@@ -2,12 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="p:domain_verify" content="92957699e08a4b05be4fa0e9b0fee111" />
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Smoothies de Cuchara" : ViewBag.Title)</title>
-
-    @RenderSection("metatags", required: false)
-
+    <meta property="og: site_name" content="http://smoothiesdecuchara.com/" />
+  
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")

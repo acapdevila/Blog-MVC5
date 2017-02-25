@@ -62,28 +62,25 @@ namespace Blog.Smoothies.Controllers
                 EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Laura García")
             };
 
-            viewModel.EditorPost.MetatagsHtml = @"
-                <meta property='og: site_name' content='http://smoothiesdecuchara.com/' />
-                    <div itemscope itemtype='http://schema.org/Recipe'>
-                        <h1 itemprop='name'>Título</h1>
-                            <meta itemprop='url' content='http://smoothiesdecuchara.com/' />
-                            <span itemprop='totalTime'>10 minutos</span>
-                            <span itemprop='recipeYield'> 1 persona </span>
-                                            Base:
-                            <span itemprop='ingredients'> </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>
-                            <span itemprop='ingredients'> </span>
-                                            Arriba:
-                            <span itemprop='ingredients'> </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>,
-                            <span itemprop='ingredients'>  </span>
-                            <span itemprop='ingredients'> </span>
-                       </div> ";
+            viewModel.EditorPost.PostContenidoHtml = @"
+                                <p>
+                                <span itemprop='totalTime'>10 minutos</span>
+                                <span itemprop='recipeYield'> 1 persona </span>
+                                </p>
+                                 <strong>Base:</strong>
+                                    <ul>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    </ul>
+
+                                    <strong>Arriba:</strong>
+                                    <ul>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <liitemprop='ingredients'></li>
+                                    </ul>";
 
             return View(viewModel);
         }

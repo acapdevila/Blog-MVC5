@@ -41,14 +41,10 @@ namespace Blog.Servicios
         }
         
 
-
-        public static string DirectorioImagenes = "/imagenes";
-
         public static string GenerarUrlImagen(this string relativefilepath)
         {
-            return string.Format("{0}{1}{2}", 
+            return string.Format("{0}/{1}", 
                 WebConfigParametro.UrlRaizImagenes,
-                DirectorioImagenes, 
                 relativefilepath);
         }
 

@@ -44,7 +44,7 @@ namespace Blog.Web.Controllers
 
         private string CrearRespuestaParaCkEditor(string filename, string ckEditorFuncNum)
         {
-            if (!String.IsNullOrEmpty(filename))
+            if (String.IsNullOrEmpty(filename))
             {
                  return CrearMensageErrorParaCkEditor(ckEditorFuncNum, "Error: No se ha guardado la imagen.");
             }
