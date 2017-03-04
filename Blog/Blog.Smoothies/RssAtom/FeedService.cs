@@ -10,6 +10,7 @@ using Blog.Datos;
 using Blog.Modelo.Posts;
 using Blog.Servicios.Configuracion;
 using Blog.Servicios.RssAtom;
+using Blog.Smoothies.Controllers;
 using Blog.Smoothies.Helpers;
 
 namespace Blog.Smoothies.RssAtom
@@ -190,6 +191,7 @@ namespace Blog.Smoothies.RssAtom
             private List<SyndicationItem> GetItems(CancellationToken cancellationToken)
             {
                 var posts = _db.Posts
+                    .Where(m=>m.Blog.Titulo == BlogController.TituloBlog)
                     .PublicadosRssAtom()
                     .OrderByDescending(m => m.FechaPost)
                     .Take(4)

@@ -10,6 +10,7 @@ using Blog.Datos;
 using Blog.Modelo.Posts;
 using Blog.Servicios.Configuracion;
 using Blog.Servicios.RssAtom;
+using Blog.Web.Controllers;
 using Blog.Web.Helpers;
 
 namespace Blog.Web.RssAtom
@@ -23,10 +24,10 @@ namespace Blog.Web.RssAtom
         {
             private readonly ContextoBaseDatos _db;
 
-            /// <summary>
-            /// The feed universally unique identifier. Do not use the URL of your feed as this can change.
-            /// A much better ID is to use a GUID which you can generate from Tools->Create GUID in Visual Studio.
-            /// </summary>
+        /// <summary>
+        /// The feed universally unique identifier. Do not use the URL of your feed as this can change.
+        /// A much better ID is to use a GUID which you can generate from Tools->Create GUID in Visual Studio.
+        /// </summary>
             private const string FeedId = "8c444c58-c14a-48b3-858d-49f8703234d6"; //"[INSERT GUID HERE]";
             private const string PubSubHubbubHubUrl = "https://pubsubhubbub.appspot.com/";
 
@@ -35,12 +36,13 @@ namespace Blog.Web.RssAtom
 
             #region Constructors
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FeedService"/> class.
-            /// </summary>
-            /// <param name="urlHelper">The URL helper.</param>
-            /// <param name="db">Context base datos</param>
-            public FeedService(UrlHelper urlHelper, ContextoBaseDatos db)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FeedService"/> class.
+        /// </summary>
+        /// <param name="urlHelper">The URL helper.</param>
+        /// <param name="db">Context base datos</param>
+        /// <param name="tituloBlog"></param>
+        public FeedService(UrlHelper urlHelper, ContextoBaseDatos db)
             {
                 this._urlHelper = urlHelper;
                 _db = db;
@@ -190,6 +192,7 @@ namespace Blog.Web.RssAtom
             private List<SyndicationItem> GetItems(CancellationToken cancellationToken)
             {
                 var posts = _db.Posts
+                    .Where(m => m.Blog.Titulo == BlogController.TituloBlog)
                     .PublicadosRssAtom()
                     .OrderByDescending(m => m.FechaPost)
                     .Take(4)
