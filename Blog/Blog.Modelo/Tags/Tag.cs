@@ -10,10 +10,11 @@ namespace Blog.Modelo.Tags
             Posts = new List<Post>();
         }
 
+        
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string UrlSlug { get; set; }
 
-        public virtual ICollection<Post> Posts { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 }
