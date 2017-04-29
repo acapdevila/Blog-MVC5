@@ -8,7 +8,7 @@
     <!-- Blog Entries Column -->
     <div class="col-md-8">
         <!-- First Blog Post -->
-        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts)
+        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts.ToList())
 
 
         <!-- Pager-->
@@ -29,6 +29,9 @@
         </ul>
 
     </div>
-    @Html.Partial("_SidebarPrincipal")
+
    
+            @Html.Partial("_SidebarPrincipal")
+
+
 </div>

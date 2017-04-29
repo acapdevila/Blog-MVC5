@@ -15,7 +15,7 @@
         </h1>
 
         <!-- First Blog Post -->
-        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts)
+        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts.ToList())
 
         <!-- Pager-->
         <div class="clearfix"></div>

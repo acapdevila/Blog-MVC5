@@ -7,7 +7,7 @@ namespace Blog.Smoothies.Helpers
     {
         public static string RutaUrlBlogPost(this UrlHelper url, DateTime fechaPost, string urlSlug)
         {
-            return url.RouteUrl("BlogPost",
+            return url.RouteUrl(RouteConfig.NombreRutaBlogPost,
                 new
                 {
                     dia = fechaPost.Day,
@@ -15,6 +15,18 @@ namespace Blog.Smoothies.Helpers
                     anyo = fechaPost.Year,
                     urlSlug
                 }, url.RequestContext.HttpContext.Request.Url.Scheme);
+        }
+
+        public static string RutaUrlArchivo(this UrlHelper url, int anyo, int mes)
+        {
+            var result = url.RouteUrl(RouteConfig.NombreRutaArchivoPosts,
+                new
+                {
+                    mes = mes,
+                    anyo = anyo
+                }, url.RequestContext.HttpContext.Request.Url.Scheme);
+
+            return result;
         }
 
         public static string RutaUrlRssFeed(this UrlHelper url)

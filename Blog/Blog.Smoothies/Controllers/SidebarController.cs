@@ -9,13 +9,47 @@ namespace Blog.Smoothies.Controllers
 {
     public class SidebarController : Controller
     {
-        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
+        private readonly TagsServicio _tagsServicio;
+        private readonly BlogServicio _blogServicio;
+
+        public SidebarController() : this(new ContextoBaseDatos())
+        {
+
+        }
+
+        public SidebarController(ContextoBaseDatos bd) : this(new TagsServicio(bd, BlogController.TituloBlog), new BlogServicio(bd, BlogController.TituloBlog))
+        {
+
+        }
+
+        public SidebarController(TagsServicio tagsServicio, BlogServicio blogServicio)
+        {
+            _tagsServicio = tagsServicio;
+            _blogServicio = blogServicio;
+        }
+
 
         [ChildActionOnly]
         public ActionResult NubeEtiquetas()
         {
             var etiquetas = _tagsServicio.TagsConPostsPublicados();
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
+
+            return View(nubeEtiquetasViewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult ArchivoEtiquetas()
+        {
+            var etiquetasArchivo = _blogServicio
+                                    .ConsultaDeArchivoBlog()
+                                    .ToList()
+                                    .Select(m => new ArchivoItemViewModel(m))
+                                    .OrderByDescending(m => m.Anyo)
+                                    .ThenByDescending(m => m.Mes)
+                                    .ToList();
+
+            var nubeEtiquetasViewModel = new ArchivoEtiquetasViewModel(etiquetasArchivo);
 
             return View(nubeEtiquetasViewModel);
         }

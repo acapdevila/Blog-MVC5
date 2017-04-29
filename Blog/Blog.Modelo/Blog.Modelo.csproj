@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\ArchivoItemDto.cs" />
     <Compile Include="Posts\LineaPostCompleto.cs" />
     <Compile Include="Posts\LineaResumenPost.cs" />
     <Compile Include="Posts\ExtensionesPost.cs" />

@@ -736,6 +736,8 @@
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Blog\_ListaPostsEtiqueta.cshtml" />
+    <Content Include="Views\Blog\Archivo.cshtml" />
+    <Content Include="Views\Sidebar\ArchivoEtiquetas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

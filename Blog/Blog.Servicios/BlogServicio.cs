@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
-using Blog.ViewModels.Blog;
 using PagedList;
 
 namespace Blog.Servicios
@@ -20,7 +21,7 @@ namespace Blog.Servicios
             _tituloBlog = tituloBlog;
         }
 
-        private IQueryable<Post> Posts()
+        public IQueryable<Post> Posts()
         {
             return _db.Posts
                 .Include(m => m.Tags)
@@ -69,9 +70,28 @@ namespace Blog.Servicios
         }
 
 
+        public IQueryable<ArchivoItemDto> ConsultaDeArchivoBlog()
+        {
+            return Posts()
+                .Publicados()
+                .OrderByDescending(m => m.FechaPost)
+                .GroupBy(p => new { p.FechaPost.Year, p.FechaPost.Month })
+                .Select(g => new ArchivoItemDto
+                {
+                    Mes = g.Key.Month,
+                    Anyo = g.Key.Year,
+                    NumPosts = g.Count()
+                });
+        }
+
+
+
         public void Dispose()
         {
             _db.Dispose();
         }
+
+
+    
     }
 }

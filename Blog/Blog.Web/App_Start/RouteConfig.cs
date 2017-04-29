@@ -11,6 +11,7 @@ namespace Blog.Web
     {
         public const string NombreRutaPorDefecto = "Default";
         public const string NombreRutaBlogPost = "BlogPost";
+        public const string NombreRutaArchivoPosts = "ArchivoPots";
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -27,6 +28,17 @@ namespace Blog.Web
                   anyo = @"\d{4}"
               }
           );
+
+            routes.MapRoute(
+                 name: NombreRutaArchivoPosts,
+                 url: "Blog/Archivo/{anyo}/{mes}",
+                 defaults: new { controller = "Blog", action = "Archivo" }//,
+                 //constraints: new
+                 //{
+                 //    mes = @"\d{1,2}",
+                 //    anyo = @"\d{4}"
+                 //}
+             );
 
 
             routes.MapRoute(

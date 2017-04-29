@@ -88,6 +88,24 @@ h4,h5,h6,
 .linketiqueta a {color: #fff;
 }
 
+/*Sidebar archivo*/
+
+.linkarchivo {
+    background: #fff; 
+    color: #222;
+    padding: 5px 8px;
+    font-size:90%;
+    margin-bottom: 4px;
+}
+
+.linkarchivo a:hover {
+    color: #91e1bc;    
+}
+
+
+.linkarchivo a {color: #222;
+}
+
 /*Para que los posts pequeños de la home se vayan alineando correctamente*/
 
 .clear-row:nth-child(2n) {clear: left;}

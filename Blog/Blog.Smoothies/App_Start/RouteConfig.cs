@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Blog.Smoothies
@@ -11,6 +7,7 @@ namespace Blog.Smoothies
     {
         public const string NombreRutaPorDefecto = "Default";
         public const string NombreRutaBlogPost = "BlogPost";
+        public const string NombreRutaArchivoPosts = "ArchivoPots";
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -19,9 +16,25 @@ namespace Blog.Smoothies
             routes.MapRoute(
               name: NombreRutaBlogPost,
               url: "{dia}/{mes}/{anyo}/{urlSlug}",
-              defaults: new { controller = "Blog", action = "Detalles" }//,
-              //constraints: new { dia = @"d{4}-d{2}-d{2}" }
+              defaults: new { controller = "Blog", action = "Detalles" },
+                 constraints: new
+                 {
+                     dia = @"\d{1,2}",
+                     mes = @"\d{1,2}",
+                     anyo = @"\d{4}"
+                 }
           );
+
+            routes.MapRoute(
+                      name: NombreRutaArchivoPosts,
+                      url: "Blog/Archivo/{anyo}/{mes}",
+                      defaults: new { controller = "Blog", action = "Archivo" },
+                      constraints: new
+                      {
+                          mes = @"\d{1,2}",
+                          anyo = @"\d{4}"
+                      }
+      );
 
 
             routes.MapRoute(

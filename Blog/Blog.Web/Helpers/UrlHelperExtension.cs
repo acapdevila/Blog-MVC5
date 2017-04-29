@@ -8,13 +8,25 @@ namespace Blog.Web.Helpers
     {
         public static string RutaUrlBlogPost(this UrlHelper url, DateTime fechaPost, string urlSlug)
         {
-            var result = url.RouteUrl("BlogPost",
+            var result = url.RouteUrl(RouteConfig.NombreRutaBlogPost,
                 new
                 {
                     dia = fechaPost.Day,
                     mes = fechaPost.Month,
                     anyo = fechaPost.Year,
                     urlSlug
+                }, url.RequestContext.HttpContext.Request.Url.Scheme);
+
+            return result;
+        }
+
+        public static string RutaUrlArchivo(this UrlHelper url, int anyo, int mes)
+        {
+            var result = url.RouteUrl(RouteConfig.NombreRutaArchivoPosts,
+                new
+                {
+                    mes = mes,
+                    anyo = anyo
                 }, url.RequestContext.HttpContext.Request.Url.Scheme);
 
             return result;

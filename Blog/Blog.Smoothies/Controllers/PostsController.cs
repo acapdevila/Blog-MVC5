@@ -73,13 +73,17 @@ namespace Blog.Smoothies.Controllers
                                     <li itemprop='ingredients'></li>
                                     <li itemprop='ingredients'></li>
                                     <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
                                     </ul>
 
                                     <strong>Arriba:</strong>
                                     <ul>
                                     <li itemprop='ingredients'></li>
                                     <li itemprop='ingredients'></li>
-                                    <liitemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
                                     </ul>";
 
             return View(viewModel);
