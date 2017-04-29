@@ -52,7 +52,7 @@ namespace Blog.Web.Controllers
             return new DateTime(anyo, mes, dia);
         }
 
-        public async Task<ActionResult> Etiqueta(string id, int numeroPagina = 1)
+        public async Task<ActionResult> Etiqueta(string id, int pagina = 1)
         {
             var tag = await RecuperarTag(id);
 
@@ -65,7 +65,7 @@ namespace Blog.Web.Controllers
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)
-                        .ToPagedList(numeroPagina, NumeroItemsPorPagina)
+                        .ToPagedList(pagina, NumeroItemsPorPagina)
             };
                 
                 

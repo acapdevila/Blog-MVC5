@@ -62,7 +62,7 @@ namespace Blog.Smoothies.Controllers
 
         }
 
-        public async Task<ActionResult> Etiqueta(string id, int numeroPagina = 1)
+        public async Task<ActionResult> Etiqueta(string id, int pagina = 1)
         {
             var tag = await RecuperarTag(id);
 
@@ -75,7 +75,7 @@ namespace Blog.Smoothies.Controllers
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)
-                        .ToPagedList(numeroPagina, NumeroItemsPorPagina)
+                        .ToPagedList(pagina, NumeroItemsPorPagina)
             };
                 
                 
