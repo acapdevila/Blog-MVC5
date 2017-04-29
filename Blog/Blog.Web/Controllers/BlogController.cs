@@ -60,7 +60,8 @@ namespace Blog.Web.Controllers
 
             var viewModel = new EtiquetaViewModel
             {
-              NombreEtiqueta = tag.Nombre,
+                Id = id,
+                NombreEtiqueta = tag.Nombre,
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)

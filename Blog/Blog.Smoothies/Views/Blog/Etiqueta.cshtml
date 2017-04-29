@@ -16,6 +16,25 @@
 
         <!-- First Blog Post -->
         @Html.Partial("_ListaPostsEtiqueta", Model.ListaPosts)
+
+
+        <!-- Pager-->
+        <div class="clearfix"></div>
+        <ul class="pager">
+            @if (Model.ListaPosts.HasNextPage)
+            {
+                <li class="previous">
+                    <a href="@Url.Action("Etiqueta", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber + 1})">&larr; Entradas más antiguas</a>
+                </li>
+            }
+            @if (Model.ListaPosts.HasPreviousPage)
+            {
+                <li class="next">
+                    <a href="@Url.Action("Etiqueta", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                </li>
+            }
+        </ul>
+
     </div>
     @Html.Partial("_SidebarPrincipal")
 

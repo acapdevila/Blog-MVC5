@@ -49,20 +49,5 @@
                         </div>
                     }
 
-                    <!-- Pager-->
-<div class="clearfix"></div>
-                    <ul class="pager">
-                        @if (Model.HasNextPage)
-                        {
-                            <li class="previous">
-                                <a href="@Url.Action("Index", new {pagina = Model.PageNumber + 1})">&larr; Entradas más antiguas</a>
-                            </li>
-                        }
-                        @if (Model.HasPreviousPage)
-                        {
-                            <li class="next">
-                                <a href="@Url.Action("Index", new {pagina = Model.PageNumber - 1})">Entradas más recientes &rarr;</a>
-                            </li>
-                        }
-                    </ul>
+                  
 

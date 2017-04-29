@@ -70,6 +70,7 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new EtiquetaViewModel
             {
+                Id =  id,
               NombreEtiqueta = tag.Nombre,
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
