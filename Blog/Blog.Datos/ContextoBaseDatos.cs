@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using Blog.Datos.MapeosTablas;
-using Blog.Modelo;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Modelo.Usuarios;
@@ -19,6 +19,8 @@ namespace Blog.Datos
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Categoria> Categorias { get; set; }
+
         public DbSet<BlogEntidad> Blogs { get; set; }
 
         public static ContextoBaseDatos Create()
@@ -31,6 +33,8 @@ namespace Blog.Datos
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextoBaseDatos, Migrations.Configuration>());
 
             modelBuilder.Configurations.Add(new MapeoTag());
+
+            modelBuilder.Configurations.Add(new MapeoCategoria());
 
             modelBuilder.Configurations.Add(new MapeoPost());
 

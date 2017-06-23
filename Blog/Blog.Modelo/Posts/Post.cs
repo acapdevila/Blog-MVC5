@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Posts
@@ -27,6 +27,8 @@ namespace Blog.Modelo.Posts
 
         public int Id { get; set; }
         public int BlogId { get; set; }
+
+        public int? CategoriaId { get; set; }
         public string Subtitulo { get; set; }
         public string Titulo { get; set; }
         public string UrlSlug { get; set; }
@@ -42,6 +44,8 @@ namespace Blog.Modelo.Posts
 
         public BlogEntidad Blog { get; set; }
         public ICollection<Tag> Tags { get; set; }
+
+        public Categoria Categoria { get; set; }
 
         public bool EsPublico
         {

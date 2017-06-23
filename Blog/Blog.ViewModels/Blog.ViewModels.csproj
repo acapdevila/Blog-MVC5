@@ -108,8 +108,10 @@
     <Compile Include="Blog\ArchivoViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogCompletosViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogResumidosViewModel.cs" />
+    <Compile Include="Categoria\EditarCategoriaViewModel.cs" />
     <Compile Include="Contacto\FormularioContactoViewModel.cs" />
     <Compile Include="Etiqueta\EtiquetaViewModel.cs" />
+    <Compile Include="Categoria\ListaGestionCategoriasViewModel.cs" />
     <Compile Include="Post\Conversores\ConversorBlogs.cs" />
     <Compile Include="Post\Conversores\ConversorPost.cs" />
     <Compile Include="Post\EditorBlog.cs" />

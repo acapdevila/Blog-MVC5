@@ -152,6 +152,7 @@
     <Compile Include="AzureStorageService.cs" />
     <Compile Include="BlogServicio.cs" />
     <Compile Include="IdentityConfig.cs" />
+    <Compile Include="CategoriasServicio.cs" />
     <Compile Include="TagsServicio.cs" />
     <Compile Include="BlogsServicio.cs" />
     <Compile Include="Configuracion\WebConfigParametro.cs" />
