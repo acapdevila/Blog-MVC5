@@ -28,7 +28,7 @@ namespace Blog.Smoothies.RssAtom
             /// The feed universally unique identifier. Do not use the URL of your feed as this can change.
             /// A much better ID is to use a GUID which you can generate from Tools->Create GUID in Visual Studio.
             /// </summary>
-            private const string FeedId = "8c444c58-c14a-48b3-858d-49f8703234d6"; //"[INSERT GUID HERE]";
+            private const string FeedId = @"http://albertcapdevila.net/"; //"[INSERT GUID HERE]";
             private const string PubSubHubbubHubUrl = "https://pubsubhubbub.appspot.com/";
 
             private readonly HttpClient _httpClient;
@@ -65,7 +65,7 @@ namespace Blog.Smoothies.RssAtom
                     Id = FeedId,
                     // title (Required) - Contains a human readable title for the feed. Often the same as the title of the 
                     //                    associated website. This value should not be blank.
-                    Title = SyndicationContent.CreatePlaintextContent("albert.capdevila.net"),
+                    Title = SyndicationContent.CreatePlaintextContent("Smoothies de Cuchara"),
                     // items (Required) - The items to add to the feed.
                     Items = this.GetItems(cancellationToken),
                     // subtitle (Recommended) - Contains a human-readable description or subtitle for the feed.
@@ -97,7 +97,7 @@ namespace Blog.Smoothies.RssAtom
 
                 // alternate link (Recommended) - The URL for the web page showing the same data as the syndication feed.
                 feed.Links.Add(SyndicationLink.CreateAlternateLink(
-                    new Uri(this._urlHelper.RutaUrlRssFeed()),
+                    new Uri(this._urlHelper.RutaUrlBase()),
                     ContentType.Html));
 
                 // hub link (Recommended) - The URL for the PubSubHubbub hub. Used to push new entries to subscribers 

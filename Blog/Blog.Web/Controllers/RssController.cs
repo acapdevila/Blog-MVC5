@@ -28,7 +28,7 @@ namespace Blog.Web.Controllers
         /// http://rehansaeed.com/building-rssatom-feeds-for-asp-net-mvc/
         /// </summary>
         /// <returns>The Atom 1.0 feed for the current site.</returns>
-        [OutputCache(Duration = 86400, Location = OutputCacheLocation.Any, VaryByParam = "none")]
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Any, VaryByParam = "none")]
         public ActionResult Feed()
         {
             // A CancellationToken signifying if the request is cancelled. See

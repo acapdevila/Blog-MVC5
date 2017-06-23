@@ -40,7 +40,7 @@ namespace Blog.Web.Helpers
 
         public static string RutaUrlBase(this UrlHelper url)
         {
-            return url.RouteUrl("Default",
+            return url.Action("Index", "Blog",
                 null, url.RequestContext.HttpContext.Request.Url.Scheme);
         }
     }
