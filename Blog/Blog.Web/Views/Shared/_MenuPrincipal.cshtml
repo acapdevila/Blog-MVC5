@@ -11,6 +11,9 @@
     <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
         @Html.ActionLink("Contacto", "Index", "Contacto")
     </li>
+    <li class="@(currentController == "Rss" ? activeClass : string.Empty)">
+        @Html.ActionLink("RSS", "Feed", "Rss")
+    </li>
     <li>
         <a href="https://github.com/acapdevila/Blog-MVC5" target="_blank">Código fuente</a>
     </li>

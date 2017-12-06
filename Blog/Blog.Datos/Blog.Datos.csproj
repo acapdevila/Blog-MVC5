@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="MapeosTablas\MapeoBlogEntidad.cs" />
     <Compile Include="MapeosTablas\MapeoPost.cs" />
+    <Compile Include="MapeosTablas\MapeoCategoria.cs" />
     <Compile Include="MapeosTablas\MapeoTag.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.Designer.cs">

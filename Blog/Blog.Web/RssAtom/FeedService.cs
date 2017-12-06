@@ -63,10 +63,10 @@ namespace Blog.Web.RssAtom
                 SyndicationFeed feed = new SyndicationFeed()
                 {
                     // id (Required) - The feed universally unique identifier.
-                    Id = FeedId,
+                    Id = @"http://albertcapdevila.net/",
                     // title (Required) - Contains a human readable title for the feed. Often the same as the title of the 
                     //                    associated website. This value should not be blank.
-                    Title = SyndicationContent.CreatePlaintextContent("albert.capdevila.net"),
+                    Title = SyndicationContent.CreatePlaintextContent("albertcapdevila.net"),
                     // items (Required) - The items to add to the feed.
                     Items = this.GetItems(cancellationToken),
                     // subtitle (Recommended) - Contains a human-readable description or subtitle for the feed.
@@ -94,12 +94,12 @@ namespace Blog.Web.RssAtom
                 // self link (Required) - The URL for the syndication feed.
                 feed.Links.Add(
                         SyndicationLink.CreateSelfLink(
-                            new Uri(this._urlHelper.RutaUrlBase()), ContentType.Atom));
+                            new Uri(_urlHelper.RutaUrlRssFeed()), ContentType.Atom));
 
-                // alternate link (Recommended) - The URL for the web page showing the same data as the syndication feed.
+                //// alternate link (Recommended) - The URL for the web page showing the same data as the syndication feed.
                 feed.Links.Add(SyndicationLink.CreateAlternateLink(
-                    new Uri(this._urlHelper.RutaUrlRssFeed()),
-                    ContentType.Html));
+                     //new Uri(this._urlHelper.RutaUrlRssFeed()),
+                     new Uri(_urlHelper.RutaUrlBase() + @"Blog/Index"), ContentType.Html));
 
                 // hub link (Recommended) - The URL for the PubSubHubbub hub. Used to push new entries to subscribers 
                 //                          instead of making them poll the feed. See feed updated method below.
@@ -207,12 +207,12 @@ namespace Blog.Web.RssAtom
                         // id (Required) - Identifies the entry using a universally unique and permanent URI. Two entries 
                         //                 in a feed can have the same value for id if they represent the same entry at 
                         //                 different points in time.
-                        Id = FeedId + post.Id,
+                        Id = _urlHelper.RutaUrlBlogPost(post.FechaPost, post.UrlSlug), //FeedId + post.Id,
                         // title (Required) - Contains a human readable title for the entry. This value should not be blank.
                         Title = SyndicationContent.CreatePlaintextContent(post.Titulo),
                         
                         // description (Recommended) - A summary of the entry.
-                        Summary = SyndicationContent.CreatePlaintextContent(post.Subtitulo),
+                        Summary = SyndicationContent.CreateHtmlContent(post.Subtitulo),
                         
                         // updated (Optional) - Indicates the last time the entry was modified in a significant way. This 
                         //                      value need not change after a typo is fixed, only after a substantial 
@@ -224,8 +224,10 @@ namespace Blog.Web.RssAtom
                         // rights (Optional) - Conveys information about rights, e.g. copyrights, held in and over the entry.
                         //Copyright = new TextSyndicationContent(
                         //    string.Format("© {0} - {1}", DateTime.Now.Year, WebConfigParametro.NombreAplicacion)),
-
+                       
                     };
+
+                    
 
                 // link (Recommended) - Identifies a related Web page. An entry must contain an alternate link if there 
                 //                      is no content element.

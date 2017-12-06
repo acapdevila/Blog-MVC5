@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Blog.Servicios
             _tituloBlog = tituloBlog;
         }
 
-        private IQueryable<Tag> Tags()
+        public IQueryable<Tag> Tags()
         {
             return _db.Tags
                 .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
@@ -63,6 +64,6 @@ namespace Blog.Servicios
             _db.Dispose();
         }
 
-       
+        
     }
 }

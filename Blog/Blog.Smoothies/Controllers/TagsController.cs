@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
@@ -109,6 +110,18 @@ namespace Blog.Smoothies.Controllers
             await _tagsServicio.EliminarTag(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult QuickMultipleSearch(string term)
+        {
+            var search = _tagsServicio.Tags()
+                            .Where(m => m.Nombre.Contains(term))
+                            .OrderBy(m => m.Nombre)
+                            .Take(10)
+                            .Select(m => new { value = m.Nombre, id = m.Id }).ToList();
+            ;
+            return Json(search, JsonRequestBehavior.AllowGet);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

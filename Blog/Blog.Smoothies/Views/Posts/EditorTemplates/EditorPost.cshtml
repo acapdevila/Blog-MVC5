@@ -36,9 +36,14 @@
 <div class="form-group">
     @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
-        * Nota: Separar por ";"
+        
+        @Html.EditorFor(model => model.Tags, "AutocompleteMultiple", new
+               {
+                   ajaxCallbackUrlAction = "QuickMultipleSearch",
+                   ajaxCallbackUrlController = "Tags"
+               })
+        @Html.ValidationMessageFor(model => model.Tags, "", new {@class = "text-danger"})
+       
     </div>
 </div>
 <hr/>
