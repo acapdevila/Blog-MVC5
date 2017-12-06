@@ -9,9 +9,9 @@
     {
         var item = Model.First();
 
-        <h3 class="typo">
+        <h1 class="typo">
             <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-        </h3>
+        </h1>
                     @*<p class="lead">
                             by @item.Autor
                         </p>*@
@@ -32,9 +32,9 @@
                     @foreach (var item in Model.Skip(1))
                     {
                         <div class="col-md-6 clear-row">
-                            <h4 class="typo">
+                            <h2 class="typo">
                                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-                            </h4>
+                            </h2>
                             @*<p class="lead">
                                     by @item.Autor
                                 </p>*@
