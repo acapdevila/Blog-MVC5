@@ -1,30 +1,31 @@
 ﻿@using Blog.Smoothies.Helpers
 @using PagedList;
 
-@model IPagedList<Blog.Modelo.Posts.LineaResumenPost>
+@model IPagedList<Blog.Modelo.Posts.LineaPostCompleto>
 
 @*Primera entrada del blog en gran*@
 
     @if (Model.Any())
     {
-        var item = Model.First();
+        Blog.Modelo.Posts.LineaPostCompleto item = Model.First();
 
-        <h1 class="typo">
+        <h2 class="typo">
             <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-        </h1>
-                    @*<p class="lead">
-                            by @item.Autor
-                        </p>*@
-                <p class="small grey">
-                    <span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
+        </h2>
+                <p class="small grey text-uppercase">
+                   @item.FechaPost.ToString("D")
                 </p>
 
                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
                     @Html.Raw(item.Subtitulo)
                     </a>
-                    <a class="btn btn-default btn-sm text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Seguir leyendo <span class="glyphicon glyphicon-arrow-right"></span></a>
+                    <div class="postcontent">
+                        @Html.Raw(item.ContenidoHtml)
+                    </div>
+
                     <hr>
                     }
+
 
                     @*Resta d'entrades en petit*@
 
@@ -38,14 +39,14 @@
                             @*<p class="lead">
                                     by @item.Autor
                                 </p>*@
-                            <p class="small grey">
-                                <span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
+                            <p class="small grey text-uppercase">
+                               @item.FechaPost.ToString("D")
                             </p>
                             <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
                                 @Html.Raw(item.Subtitulo)
                             </a>
 
-                            <a class="btn btn-default btn-sm text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Seguir leyendo <span class="glyphicon glyphicon-arrow-right"></span></a>
+                            <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Leer más</a>
                         </div>
                     }
 

@@ -6,24 +6,35 @@
 
 <ul class="nav navbar-nav">
     <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
-        @Html.ActionLink("Inicio", "Index", "Blog")
+        <div class="centerer c">
+        @Html.ActionLink("Blog", "Index", "Blog", null, new { @class = "custom-underline-text" })
+        </div>
+        
     </li>
     <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
-        @Html.ActionLink("¡Hola!", "Index", "Hola")
-    </li>
+        <div class="centerer c">
+            @Html.ActionLink("¡Hola!", "Index", "Hola", null, new { @class = "custom-underline-text" })
+        </div>
+</li>
          
     <li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
-        @Html.ActionLink("Contacto", "Index", "Contacto")
-    </li>
+        <div class="centerer c">
+            @Html.ActionLink("Contacto", "Index", "Contacto", null, new { @class = "custom-underline-text" })
+        </div>
+</li>
    
     @if (User.Identity.IsAuthenticated)
     {
         <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
-            @Html.ActionLink("Etiquetas", "Index", "Tags")
-        </li>
+            <div class="centerer c">
+                @Html.ActionLink("Etiquetas", "Index", "Tags", null, new { @class = "custom-underline-text" })
+            </div>
+</li>
         <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
-            @Html.ActionLink("Posts", "Index", "Posts")
-        </li>
+            <div class="centerer c">
+                @Html.ActionLink("Posts", "Index", "Posts", null, new { @class = "custom-underline-text" })
+            </div>
+</li>
     
 
     }

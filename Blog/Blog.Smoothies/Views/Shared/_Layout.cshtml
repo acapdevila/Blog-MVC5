@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="p:domain_verify" content="92957699e08a4b05be4fa0e9b0fee111" />
     <meta name="description" content="Smoothies y batidos de fruta, verdura y superalimentos. Recetas fáciles y saludables para un desayuno sano y completo." />
-    <meta name="keywords" content="smoothies,batidos,superalimentos,superfoods,desayuno,smoothie">
+    <meta name="keywords" content="smoothies,recetas,batidos,superalimentos,superfoods,desayuno,smoothie">
     <meta name="author" content="Laura García">
-    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Smoothies de Cuchara" : ViewBag.Title)</title>
-    <meta property="og: site_name" content="http://smoothiesdecuchara.com/" />
-    <link rel="canonical" href="http://smoothiesdecuchara.com" />
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "by Laura García" : ViewBag.Title)</title>
+    <meta property="og: site_name" content="http://bylauragarcia.com/" />
+    <link rel="canonical" href="http://bylauragarcia.com" />
 
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -32,58 +32,49 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            @*<div class="social_header">
-                    <a href="http://www.instagram.com/smoothiesdecuchara" target="_blank">
-                        <img src="~/Content/imagenes/instagram.png" alt="Smoothies de cuchara" />
-                    </a>
-                    <a href="http://www.facebook.com/smoothiesdecuchara" target="_blank">
-                        <img src="~/Content/imagenes/facebook.png" alt="Smoothies de cuchara" />
-                    </a>
-                </div>*@
-
-            <div class="navbar-collapse collapse">
-                @Html.Partial("_MenuPrincipal")
-            </div>
-
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <a href="/">
-            <img class="center-block logo" src="~/Content/imagenes/logo.png" alt="Smoothies de cuchara" />
-        </a>
-    </div>
-
 
     <div class="container body-content">
+
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse navbar-right">
+                    @Html.Partial("_MenuPrincipal")
+                </div>
+                <div class="navbar-header logo">
+                    @*<h4 class="adjust color1">by</h4>
+                    <h1 class="adjust"><a href="/">Laura <br />García </a></h1>*@
+                    <a href="/"><img src="~/Content/imagenes/logo.png" alt="by Laura García" /></a>
+                </div>
+            </div>
+        </nav>   
+
+
         @RenderBody()
         <div class="clearfix"></div>
         <hr />
 
 
         <footer class="footer">
-            <div class="col-md-3">
+            @*<div class="col-md-3">
                 <a href="/">
                     <img src="/content/imagenes/logo2.png" alt="Smoothies de Cuchara" title="Smoothies de Cuchara" class="logo">
                 </a>
 
-            </div>
+            </div>*@
             <div class="col-md-2 pull-right text-right">
-                <a href="http://www.instagram.com/smoothiesdecuchara" target="_blank">
-                    <img src="~/Content/imagenes/instagram_white.png" alt="Smoothies de cuchara" />
+                <a href="http://www.instagram.com/bylauragarcia" target="_blank">
+                    <img src="~/Content/imagenes/instagram_white.png" alt="by Laura García" />
                 </a>
-                <a href="http://www.facebook.com/smoothiesdecuchara" target="_blank">
-                    <img src="~/Content/imagenes/facebook_white.png" alt="Smoothies de cuchara" />
+                <a href="http://www.facebook.com/bylauragarcia" target="_blank">
+                    <img src="~/Content/imagenes/facebook_white.png" alt="by Laura García" />
                 </a>
 
             </div>

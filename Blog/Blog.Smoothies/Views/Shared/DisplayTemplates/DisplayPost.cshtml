@@ -2,34 +2,35 @@
 
         <!-- Blog Post -->
         <!-- Title -->
-        <h1 itemprop="name" class="color1" >@Html.DisplayFor(model => model.Titulo)</h1>
+        <h2 itemprop="name">@Html.DisplayFor(model => model.Titulo)</h2>
         <!-- Author -->
         @*<p class="lead">
             by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
         </p>*@
         <hr>
         <!-- Date/Time -->
-        <p class="small grey"><span class="glyphicon glyphicon-time"></span> @Model.FechaPost.ToString("D")</p>
+        <p class="small grey text-uppercase">@Model.FechaPost.ToString("D")</p>
         @Html.Raw(Model.Subtitulo)
         <!-- Preview Image 
         <img class="img-responsive" src="http://placehold.it/900x300" alt="">
         <hr>-->
         <!-- Post Content -->
-        @Html.Raw(Model.ContenidoHtml)
+<div class="postcontent">
+    @Html.Raw(Model.ContenidoHtml)
+    </div>
+    @*@Html.Raw(Model.PostContenidoHtml)*@
 
-        @*@Html.Raw(Model.PostContenidoHtml)*@
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+            @Html.ActionLink("Volver al listado", "Index", "Posts")
+        </p>
+    }
+    <hr>
 
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
-        @Html.ActionLink("Volver al listado", "Index", "Posts")
-    </p>
-}
-        <hr>
-  
-        
-        @Html.Partial("_SyntaxHightLighter")
+    @Html.Partial("_SyntaxHightLighter")
 
 

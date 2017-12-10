@@ -122,11 +122,11 @@ namespace Blog.Smoothies.Controllers
                         .FirstOrDefaultAsync(m=>m.Anyo == anyo && m.Mes == mes);
         }
 
-        private ListaPostsBlogResumidosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private ListaPostsBlogCompletosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return new ListaPostsBlogResumidosViewModel
+            return new ListaPostsBlogCompletosViewModel
             {
-                ListaPosts = _blogServicio.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
+                ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
             };
         }
 
