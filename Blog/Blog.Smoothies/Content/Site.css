@@ -53,6 +53,29 @@ h4,h5,h6,
 .h1,.h2,.h3,
 .h4,.h5,.h6 {font-family: 'open_sansbold'; text-transform: uppercase; letter-spacing: -1px;}
 
+/*Buscador menú principal*/
+
+.buscador-menu {
+    margin-top:5px;
+    display: inline-block;
+    float:right;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+    width: 30%;
+    
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
 /*Posts*/
 
 .postcontent {}
@@ -61,7 +84,7 @@ h4,h5,h6,
     line-height:25px;}
 
     .postcontent a {
-    border-bottom: 1px solid #000}
+    border-bottom: 2px solid #91e1bc}
 
 /*Sidebar etiquetas*/
 
@@ -108,6 +131,26 @@ h4,h5,h6,
 
 .clear-row:nth-child(2n) {clear: left;}
 
+/*Autocomplete tags*/
+
+.ui-autocomplete {
+	list-style: none;
+    background: #ffffff;
+	line-height: 32px;
+	cursor: pointer;
+    width: auto;
+    font-weight: bold;
+    width: 30%;
+}
+    .ui-autocomplete li {
+    border-bottom: 1px dashed #bef3db;
+    width: 100%;
+    }
+
+    .ui-autocomplete li:hover {
+    color: #64c699;
+    }
+    
 
 /*Footer*/
 

@@ -9,7 +9,17 @@
         </p>*@
         <hr>
         <!-- Date/Time -->
-        <p class="small grey text-uppercase">@Model.FechaPost.ToString("D")</p>
+        <p class="small text-uppercase">
+    @Model.FechaPost.ToString("D")
+
+        @if (User.Identity.IsAuthenticated)
+        {
+        <span class="pull-right">
+            @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+            @Html.ActionLink("Volver al listado", "Index", "Posts")
+        </span>
+        }
+        </p>
         @Html.Raw(Model.Subtitulo)
         <!-- Preview Image 
         <img class="img-responsive" src="http://placehold.it/900x300" alt="">
@@ -20,17 +30,17 @@
     </div>
     @*@Html.Raw(Model.PostContenidoHtml)*@
 
-
-    @if (User.Identity.IsAuthenticated)
-    {
-        <p>
-            @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
-            @Html.ActionLink("Volver al listado", "Index", "Posts")
-        </p>
-    }
+  
     <hr>
 
-
+@if (User.Identity.IsAuthenticated)
+{
+    <p class="small text-uppercase">
+        @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+        @Html.ActionLink("Volver al listado", "Index", "Posts")
+    </p>
+}
+<br />
     @Html.Partial("_SyntaxHightLighter")
 
 
