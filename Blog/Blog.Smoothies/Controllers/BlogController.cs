@@ -13,6 +13,7 @@ using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
 using PagedList;
+using CSharpFunctionalExtensions;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -31,7 +32,22 @@ namespace Blog.Smoothies.Controllers
             var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
             return View(viewModel);
         }
-        
+
+
+        public ActionResult Buscar(string buscarPor,int? pagina)
+        {
+            Result<CriteriosBusqueda> criteriosBusquedaOError = CriteriosBusqueda.Crear(buscarPor);
+
+            if (criteriosBusquedaOError.IsFailure)
+                return RedirectToAction("Index");
+
+            CriteriosBusqueda critersosBusqueda = criteriosBusquedaOError.Value;
+
+            var viewModel = ObtenerResultadosBusquedaViewModel(critersosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
+            return View("ResultadoBusqueda" ,viewModel);
+        }
+
+
 
         public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
         {
@@ -127,6 +143,17 @@ namespace Blog.Smoothies.Controllers
             return new ListaPostsBlogCompletosViewModel
             {
                 ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
+            };
+        }
+
+
+        private ResultadoBusquedaViewModel ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
+        {
+
+            return new ResultadoBusquedaViewModel
+            {
+                BuscarPor = buscarPor,
+                ListaPosts = _blogServicio.BuscarPostsCompletosPublicados(buscarPor, pagina, numeroItemsPorPagina)
             };
         }
 

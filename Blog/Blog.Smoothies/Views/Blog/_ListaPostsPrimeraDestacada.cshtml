@@ -32,22 +32,7 @@
 
                     @foreach (var item in Model.Skip(1))
                     {
-                        <div class="col-md-6 clear-row">
-                            <h2 class="typo">
-                                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-                            </h2>
-                            @*<p class="lead">
-                                    by @item.Autor
-                                </p>*@
-                            <p class="small grey text-uppercase">
-                               @item.FechaPost.ToString("D")
-                            </p>
-                            <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
-                                @Html.Raw(item.Subtitulo)
-                            </a>
-
-                            <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Leer más</a>
-                        </div>
+                        @Html.Partial("_ItemPostPequeño", item)
                     }
 
                   

@@ -1,0 +1,42 @@
+﻿@model Blog.ViewModels.Blog.ResultadoBusquedaViewModel
+
+@{
+    ViewBag.Title = "Resultado búsqueda";
+}
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<br />
+<div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+        
+        @foreach (var item in Model.ListaPosts)
+        {
+            @Html.Partial("_ItemPostPequeño", item)
+        }
+        
+        <!-- Pager-->
+        <div class="clearfix"></div>
+
+        <ul class="pager">
+            @if (Model.ListaPosts.HasNextPage)
+            {
+                <li class="previous">
+                    <a href="@Url.Action("Buscar", new {buscarPor = Model.BuscarPor, pagina = Model.ListaPosts.PageNumber + 1})">&larr; Entradas más antiguas</a>
+                </li>
+            }
+            @if (Model.ListaPosts.HasPreviousPage)
+            {
+                <li class="next">
+                    <a href="@Url.Action("Buscar", new {buscarPor = Model.BuscarPor, pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+    @Html.Partial("_SidebarPrincipal")
+
+</div>@*
+
+

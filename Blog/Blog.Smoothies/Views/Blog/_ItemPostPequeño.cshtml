@@ -1,0 +1,19 @@
+﻿@using Blog.Smoothies.Helpers
+@model Blog.Modelo.Posts.LineaPostCompleto
+
+<div class="col-md-6 clear-row">
+    <h2 class="typo">
+        <a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">@Model.Titulo</a>
+    </h2>
+    @*<p class="lead">
+                                    by @Model.Autor
+                                </p>*@
+    <p class="small grey text-uppercase">
+        @Model.FechaPost.ToString("D")
+    </p>
+    <a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">
+        @Html.Raw(Model.Subtitulo)
+    </a>
+
+    <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">Leer más</a>
+</div>

@@ -42,5 +42,7 @@ namespace Blog.Datos
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<Blog.Modelo.Posts.LineaPostCompleto> LineaPostCompletoes { get; set; }
     }
 }

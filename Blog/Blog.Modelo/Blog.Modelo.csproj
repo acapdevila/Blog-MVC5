@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFunctionalExtensions, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSharpFunctionalExtensions.1.8.1\lib\net461\CSharpFunctionalExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -65,6 +68,7 @@
     <Compile Include="Dtos\ArchivoItemDto.cs" />
     <Compile Include="Dtos\LineaCategoriaDto.cs" />
     <Compile Include="Dtos\CategoriaDto.cs" />
+    <Compile Include="Posts\CriteriosBusqueda.cs" />
     <Compile Include="Posts\LineaPostCompleto.cs" />
     <Compile Include="Posts\LineaResumenPost.cs" />
     <Compile Include="Posts\ExtensionesPost.cs" />

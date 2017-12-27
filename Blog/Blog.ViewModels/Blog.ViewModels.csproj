@@ -108,6 +108,7 @@
     <Compile Include="Blog\ArchivoViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogCompletosViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogResumidosViewModel.cs" />
+    <Compile Include="Blog\ResultadoBusquedaViewModel.cs" />
     <Compile Include="Categoria\EditarCategoriaViewModel.cs" />
     <Compile Include="Contacto\FormularioContactoViewModel.cs" />
     <Compile Include="Etiqueta\EtiquetaViewModel.cs" />

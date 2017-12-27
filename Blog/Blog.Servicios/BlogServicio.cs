@@ -55,6 +55,18 @@ namespace Blog.Servicios
 
         }
 
+
+        public IPagedList<LineaPostCompleto> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
+        {
+            return Posts()
+                .Publicados()
+                .BuscarPor(criteriosBusqueda)
+                .SeleccionaLineaPostCompleto()
+                .OrderByDescending(m => m.FechaPost)
+                .ToPagedList(pagina, nummeroItemsPorPagina);
+
+        }
+
         public async Task<Tag> RecuperarTagConPostsRelacionados(string urlSlug)
         {
             return await Tags()

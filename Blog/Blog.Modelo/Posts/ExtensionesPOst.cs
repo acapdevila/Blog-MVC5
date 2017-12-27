@@ -10,6 +10,22 @@ namespace Blog.Modelo.Posts
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }
 
+        public static IQueryable<Post> BuscarPor(this IQueryable<Post> posts, CriteriosBusqueda criterios)
+        {
+            if(criterios == CriteriosBusqueda.Vacio())
+            return posts;
+
+            var consulta = posts;
+
+            foreach (var palabraBuscada in criterios.PalabrasBuscadas)
+            {
+                consulta = consulta.Where(m => m.Titulo.Contains(palabraBuscada) || palabraBuscada.Contains(m.Titulo) ||
+                                               m.Tags.Any(t =>t.Nombre.Contains(palabraBuscada) || palabraBuscada.Contains(t.Nombre)));
+            }
+
+            return consulta;
+        }
+
         public static IQueryable<Post> PublicadosRssAtom(this IQueryable<Post> posts)
         {
             return posts.Publicados().Where(m => m.EsRssAtom);
