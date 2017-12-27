@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Blog.Modelo.Tags;
 using CSharpFunctionalExtensions;
 
 namespace Blog.Modelo.Posts
 {
     public class CriteriosBusqueda : ValueObject<CriteriosBusqueda>
     {
+        private List<Tag> _tags;
+        private List<string> _palabras;
+
         public static CriteriosBusqueda Vacio()
         {
             return new CriteriosBusqueda(string.Empty);
@@ -22,15 +27,23 @@ namespace Blog.Modelo.Posts
             return Result.Ok(new CriteriosBusqueda(buscarPor));
         }
 
+        public IReadOnlyCollection<Tag> Tags
+        {
+            get { return _tags; }
+        }
 
-        public IReadOnlyList<string> PalabrasBuscadas { get; }
+        public IReadOnlyList<string> PalabrasBuscadas
+        {
+            get { return _palabras; }
+        }
 
         public string BuscarPor { get;  }
         
         private CriteriosBusqueda(string buscarPor)
         {
             BuscarPor = buscarPor;
-            PalabrasBuscadas = buscarPor.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            _palabras = buscarPor.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            _tags = new List<Tag>();
         }
 
 
@@ -52,6 +65,20 @@ namespace Blog.Modelo.Posts
         public static explicit operator CriteriosBusqueda(string buscarPor)
         {
             return Crear(buscarPor).Value;
+        }
+
+        public void AñadirTags(List<Tag> tags)
+        {
+            foreach (var tag in tags)
+            {
+                AñadirTag(tag);
+            }
+        }
+
+        private void AñadirTag(Tag tag)
+        {
+            _tags.Add(tag);
+            _palabras.Remove(tag.Nombre);
         }
     }
 }

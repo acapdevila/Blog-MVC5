@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
@@ -15,31 +16,43 @@ namespace Blog.Smoothies.Controllers
     public class PostsController : Controller
     {
         private readonly PostsServicio _postsServicio;
+        private readonly TagsServicio _tagsServicio;
+
+        private const int NumeroItemsPorPagina = 50;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
             
         }
 
-        public PostsController(ContextoBaseDatos contexto): this(new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), BlogController.TituloBlog))
+        public PostsController(ContextoBaseDatos contexto): this(
+            new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), BlogController.TituloBlog), 
+            new TagsServicio(contexto, BlogController.TituloBlog))
         {
 
         }
 
 
-        public PostsController(PostsServicio postsServicio)
+        public PostsController(PostsServicio postsServicio, TagsServicio tagsServicio)
         {
             _postsServicio = postsServicio;
+            _tagsServicio = tagsServicio;
         }
 
-        public async Task<ActionResult> Index(int pagina = 1)
+        public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
         {
-            var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 50);
+            var criteriosBusqueda = CriteriosBusqueda.Crear(buscarPor).Value;
+
+            List<Tag> tags = _tagsServicio.BuscarTags(criteriosBusqueda);
+
+            criteriosBusqueda.AñadirTags(tags);
+
+            var viewModel = await ObtenerListaPostViewModel(criteriosBusqueda, pagina, NumeroItemsPorPagina);
             return View(viewModel);
         }
 
-    
-
+      
+        
 
         public async Task<ActionResult> Details(int? id)
         {
@@ -178,9 +191,9 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int numeroPagina, int postsPorPagina)
+        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
         {
-            return await _postsServicio.ObtenerListaPostViewModel(numeroPagina, postsPorPagina);
+            return await _postsServicio.ObtenerListaPostViewModel(criteriosBusqueda, numeroPagina, postsPorPagina);
         }
 
 

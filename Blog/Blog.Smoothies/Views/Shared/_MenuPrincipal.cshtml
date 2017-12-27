@@ -35,20 +35,14 @@
                     @Html.ActionLink("Posts", "Index", "Posts", null, new { @class = "custom-underline-text" })
                 </div>
             </li>
-
-
         }
     </ul>
 
 <!-- Buscador -->
 
-@*<div class="buscador-menu">
-        <div class="input-group stylish-input-group">
-            <input type="text" class="form-control" placeholder="Buscar">
-            <span class="input-group-addon">
-                <button type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div>
-    </div>*@
+<div class="buscador-menu">
+    
+    @Html.Partial("_InputBuscador")
+
+  
+</div>

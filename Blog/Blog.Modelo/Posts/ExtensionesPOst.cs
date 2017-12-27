@@ -13,14 +13,18 @@ namespace Blog.Modelo.Posts
         public static IQueryable<Post> BuscarPor(this IQueryable<Post> posts, CriteriosBusqueda criterios)
         {
             if(criterios == CriteriosBusqueda.Vacio())
-            return posts;
+                    return posts;
 
             var consulta = posts;
 
-            foreach (var palabraBuscada in criterios.PalabrasBuscadas)
+            foreach (var palabraBuscada in criterios.PalabrasBuscadas.Distinct())
             {
-                consulta = consulta.Where(m => m.Titulo.Contains(palabraBuscada) || palabraBuscada.Contains(m.Titulo) ||
-                                               m.Tags.Any(t =>t.Nombre.Contains(palabraBuscada) || palabraBuscada.Contains(t.Nombre)));
+                consulta = consulta.Where(m => m.Titulo.Contains(palabraBuscada) || palabraBuscada.Contains(m.Titulo));
+            }
+
+            foreach (var tag in criterios.Tags.Distinct())
+            {
+                consulta = consulta.Where(m => m.Tags.Any(t => t.Nombre == tag.Nombre));
             }
 
             return consulta;

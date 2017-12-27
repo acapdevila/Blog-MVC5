@@ -47,23 +47,62 @@ namespace Blog.Servicios
 
         public IPagedList<LineaPostCompleto> ObtenerListaPostsCompletosPublicados(int pagina, int nummeroItemsPorPagina)
         {
-            return Posts()
+            var postsProyectados = Posts()
                 .Publicados()
-                .SeleccionaLineaPostCompleto()
                 .OrderByDescending(m => m.FechaPost)
+                .Select(m => new
+                {
+                    m.Id,
+                    m.UrlSlug,
+                    m.Titulo,
+                    m.Subtitulo,
+                    m.FechaPost,
+                    m.Autor,
+                    m.ContenidoHtml
+                })
                 .ToPagedList(pagina, nummeroItemsPorPagina);
-
+            
+            return  new PagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
+            {
+                  Id   = m.Id,
+                  UrlSlug  = m.UrlSlug,
+                  Titulo  = m.Titulo,
+                  Subtitulo  = m.Subtitulo,
+                   FechaPost  = m.FechaPost,
+                    Autor = m.Autor,
+                    ContenidoHtml = m.ContenidoHtml
+            }), postsProyectados.PageNumber, postsProyectados.PageSize);
         }
 
-
+        
         public IPagedList<LineaPostCompleto> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
         {
-            return Posts()
+            var postsProyectados = Posts()
                 .Publicados()
                 .BuscarPor(criteriosBusqueda)
-                .SeleccionaLineaPostCompleto()
                 .OrderByDescending(m => m.FechaPost)
+                .Select(m => new
+                {
+                    m.Id,
+                    m.UrlSlug,
+                    m.Titulo,
+                    m.Subtitulo,
+                    m.FechaPost,
+                    m.Autor,
+                    m.ContenidoHtml
+                })
                 .ToPagedList(pagina, nummeroItemsPorPagina);
+
+                return new PagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
+                {
+                    Id = m.Id,
+                    UrlSlug = m.UrlSlug,
+                    Titulo = m.Titulo,
+                    Subtitulo = m.Subtitulo,
+                    FechaPost = m.FechaPost,
+                    Autor = m.Autor,
+                    ContenidoHtml = m.ContenidoHtml
+                }), postsProyectados.PageNumber, postsProyectados.PageSize);
 
         }
 
@@ -104,6 +143,6 @@ namespace Blog.Servicios
         }
 
 
-    
+     
     }
 }

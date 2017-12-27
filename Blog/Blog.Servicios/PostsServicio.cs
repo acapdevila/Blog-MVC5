@@ -29,11 +29,14 @@ namespace Blog.Servicios
             return _db.Posts.Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
-        public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int numeroPagina, int postsPorPagina)
+        public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
         {
             return new ListaGestionPostsViewModel
             {
-                ListaPosts = await Posts().Select(m => new LineaGestionPost
+                BuscarPor = criteriosBusqueda,
+                ListaPosts = await Posts()
+                    .BuscarPor(criteriosBusqueda)
+                    .Select(m => new LineaGestionPost
                 {
                     Id = m.Id,
                     UrlSlug = m.UrlSlug,

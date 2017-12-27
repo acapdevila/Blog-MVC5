@@ -111,6 +111,7 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult QuickMultipleSearch(string term)
         {
             var search = _tagsServicio.Tags()

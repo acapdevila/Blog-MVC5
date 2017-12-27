@@ -1,0 +1,16 @@
+﻿  @using (Html.BeginForm("Buscar", "Blog", FormMethod.Get))
+  {
+      <div class="input-group stylish-input-group">
+          @Html.Editor("buscarPor", "AutocompleteMultipleBuscador", new
+          {
+              ajaxCallbackUrlAction = "QuickMultipleSearch",
+              ajaxCallbackUrlController = "Tags"
+          })
+          @*    <input type="text" class="form-control" name="buscarPor" placeholder="Buscar">*@
+          <span class="input-group-addon">
+              <button type="submit">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+          </span>
+      </div>
+  }

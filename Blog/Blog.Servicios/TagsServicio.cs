@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
 namespace Blog.Servicios
@@ -23,6 +24,17 @@ namespace Blog.Servicios
         {
             return _db.Tags
                 .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+        }
+
+        public List<Tag> BuscarTags(CriteriosBusqueda criteriosBusqueda)
+        {
+            if (criteriosBusqueda == CriteriosBusqueda.Vacio())
+                return new List<Tag>();
+
+            return Tags()
+                .Where(m => criteriosBusqueda.PalabrasBuscadas.Contains(m.Nombre))
+                .ToList();
+
         }
 
         public async Task<List<Tag>> ObtenerListaTagsViewModel()

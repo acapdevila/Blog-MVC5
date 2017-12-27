@@ -14,7 +14,18 @@
 <h2>Posts (@Model.ListaPosts.TotalItemCount)</h2>
 
 <p>
+    @using (Html.BeginForm())
+    { 
+    @Html.EditorFor(m => m.BuscarPor, "AutocompleteMultipleBuscador", new
+{
+    ajaxCallbackUrlAction = "QuickMultipleSearch",
+    ajaxCallbackUrlController = "Tags"
+})
+
+    <input id="btnBuscar" name="boton" type="submit" value="Buscar" class="btn btn-default navbar-btn"/>
+
     @Html.ActionLink("Crear nuevo", "Create")
+    }
 </p>
 <table class="table">
     <tr>

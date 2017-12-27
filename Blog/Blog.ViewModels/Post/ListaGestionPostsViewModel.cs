@@ -13,6 +13,7 @@ namespace Blog.ViewModels.Post
          
         }
 
+        public string BuscarPor { get; set; }
         public IPagedList<LineaGestionPost> ListaPosts { get; set; }
     }
 

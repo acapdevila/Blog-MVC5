@@ -158,7 +158,7 @@ namespace Blog.Web.Controllers
 
         private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int pagina, int postsPorPagina)
         {
-            return await _postsServicio.ObtenerListaPostViewModel(pagina, postsPorPagina);
+            return await _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(),  pagina, postsPorPagina);
         }
 
 

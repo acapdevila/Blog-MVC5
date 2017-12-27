@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,17 @@ namespace Blog.Smoothies.Controllers
     {
         public static string TituloBlog = "Smoothies de Cuchara";
 
-        private readonly BlogServicio _blogServicio = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
+        private readonly BlogServicio _blogServicio;
+        private readonly TagsServicio _tagsServicio;
+
+        public BlogController()
+        {
+            var contexto = new ContextoBaseDatos();
+            _blogServicio = new BlogServicio(contexto, TituloBlog);
+            _tagsServicio = new TagsServicio(contexto, TituloBlog);
+
+        }
+
         private const int NumeroItemsPorPagina = 11;
 
 
@@ -41,9 +52,13 @@ namespace Blog.Smoothies.Controllers
             if (criteriosBusquedaOError.IsFailure)
                 return RedirectToAction("Index");
 
-            CriteriosBusqueda critersosBusqueda = criteriosBusquedaOError.Value;
+            CriteriosBusqueda criteriosBusqueda = criteriosBusquedaOError.Value;
 
-            var viewModel = ObtenerResultadosBusquedaViewModel(critersosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
+            List<Tag> tags = _tagsServicio.BuscarTags(criteriosBusqueda);
+
+            criteriosBusqueda.AñadirTags(tags);
+
+            var viewModel = ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
             return View("ResultadoBusqueda" ,viewModel);
         }
 

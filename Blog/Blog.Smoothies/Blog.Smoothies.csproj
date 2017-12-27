@@ -838,6 +838,8 @@
     <Content Include="Views\Shared\EditorTemplates\AutocompleteMultiple.cshtml" />
     <Content Include="Views\Blog\_ItemPostPequeño.cshtml" />
     <Content Include="Views\Blog\ResultadoBusqueda.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AutocompleteMultipleBuscador.cshtml" />
+    <Content Include="Views\Shared\_InputBuscador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
