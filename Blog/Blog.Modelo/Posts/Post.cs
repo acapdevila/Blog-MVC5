@@ -23,6 +23,7 @@ namespace Blog.Modelo.Posts
         public Post()
         {
             Tags = new List<Tag>();
+            Categorias = new List<Categoria>();
         }
 
         public int Id { get; set; }
@@ -45,7 +46,7 @@ namespace Blog.Modelo.Posts
         public BlogEntidad Blog { get; set; }
         public ICollection<Tag> Tags { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public ICollection<Categoria> Categorias { get; set; }
 
         public bool EsPublico
         {

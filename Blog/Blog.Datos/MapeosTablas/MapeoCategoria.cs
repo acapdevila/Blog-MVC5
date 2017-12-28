@@ -18,6 +18,7 @@ namespace Blog.Datos.MapeosTablas
             Property(m => m.UrlSlug)
                 .HasMaxLength(64)
                 .HasColumnType("varchar");
+            
         }
     }
 }

@@ -189,7 +189,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\SidebarController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -840,6 +842,14 @@
     <Content Include="Views\Blog\ResultadoBusqueda.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutocompleteMultipleBuscador.cshtml" />
     <Content Include="Views\Shared\_InputBuscador.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Menu\Categorias.cshtml" />
+    <Content Include="Views\Blog\Categoria.cshtml" />
+    <Content Include="Views\Blog\_ListaPostsCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

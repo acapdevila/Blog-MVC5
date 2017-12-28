@@ -1,10 +1,9 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
@@ -23,7 +22,11 @@ namespace Blog.Web.Controllers
             
         }
 
-        public PostsController(ContextoBaseDatos contexto): this(new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), BlogController.TituloBlog))
+        public PostsController(ContextoBaseDatos contexto): 
+            this(new PostsServicio(contexto, 
+                    new AsignadorTags(new TagRepositorio(contexto)),
+                    new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
+                    BlogController.TituloBlog))
         {
 
         }

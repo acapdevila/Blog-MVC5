@@ -1,4 +1,5 @@
-﻿using Blog.Modelo.Tags;
+﻿using Blog.Modelo.Categorias;
+using Blog.Modelo.Tags;
 using Omu.ValueInjecter;
 
 namespace Blog.ViewModels.Post.Conversores
@@ -9,12 +10,18 @@ namespace Blog.ViewModels.Post.Conversores
         {
             editorPost.InjectFrom(post);
             editorPost.Tags = post.Tags.TagsSeparadosPorComma();
+            editorPost.Categorias = post.Categorias.CategoriasSeparadasPorComma();
         }
 
-        public static void CopiaValores(this Modelo.Posts.Post post, EditorPost editorPost, AsignadorTags asignadorTags)
+        public static void CopiaValores(this Modelo.Posts.Post post, 
+            EditorPost editorPost, 
+            AsignadorTags asignadorTags,
+            AsignadorCategorias asignadorCategorias)
         {
             post.InjectFrom(editorPost);
             asignadorTags.AsignarTags(post, editorPost.ListaTags);
+            asignadorCategorias.AsignarCategorias(post, editorPost.ListaCategorias);
+
         }
 
     }

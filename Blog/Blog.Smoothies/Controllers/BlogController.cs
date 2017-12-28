@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
@@ -15,6 +16,7 @@ using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
 using PagedList;
 using CSharpFunctionalExtensions;
+using Blog.ViewModels.Categoria;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -24,7 +26,7 @@ namespace Blog.Smoothies.Controllers
 
         private readonly BlogServicio _blogServicio;
         private readonly TagsServicio _tagsServicio;
-
+        
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
@@ -119,6 +121,28 @@ namespace Blog.Smoothies.Controllers
             return View(viewModel);
         }
 
+        public async Task<ActionResult> Categoria(string id, int pagina = 1)
+        {
+            var categoria = await RecuperarCategoria(id);
+
+            if (categoria == null) return HttpNotFound();
+
+            var viewModel = new CategoriaViewModel
+            {
+                Id = id,
+                NombreCategoria = categoria.Nombre,
+                ListaPosts = categoria.Posts.AsQueryable()
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .ToPagedList(pagina, NumeroItemsPorPagina)
+            };
+
+
+
+            return View(viewModel);
+        }
+
+
         public async Task<ActionResult> Archivo(int anyo, int mes)
         {
             var archivo = await RecuperarArchivoBlog(anyo, mes);
@@ -144,6 +168,10 @@ namespace Blog.Smoothies.Controllers
         private async Task<Tag> RecuperarTag(string urlSlug)
         {
             return await _blogServicio.RecuperarTagConPostsRelacionados(urlSlug);
+        }
+        private async Task<Categoria> RecuperarCategoria(string urlSlug)
+        {
+            return await _blogServicio.RecuperarCategoriaConPostsRelacionados(urlSlug);
         }
 
         private async Task<ArchivoItemDto> RecuperarArchivoBlog(int anyo, int mes)

@@ -36,6 +36,16 @@ namespace Blog.Datos.MapeosTablas
                    m.MapLeftKey("IdPost");
                    m.MapRightKey("IdTag");
                });
+
+            HasMany(m => m.Categorias)
+                .WithMany(m => m.Posts)
+                .Map(m =>
+                {
+                    m.ToTable("CategoriaPost");
+                    m.MapLeftKey("IdPost");
+                    m.MapRightKey("IdCategoria");
+                    
+                });
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
@@ -34,6 +35,13 @@ namespace Blog.Servicios
                 .Include(m => m.Posts)
                 .Where(m => m.Posts.Any(p=>p.Blog.Titulo == _tituloBlog));
         }
+        private IQueryable<Categoria> Categorias()
+        {
+            return _db.Categorias
+                .Include(m => m.Posts)
+                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+        }
+
 
         public IPagedList<LineaResumenPost> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
         {
@@ -109,6 +117,13 @@ namespace Blog.Servicios
         public async Task<Tag> RecuperarTagConPostsRelacionados(string urlSlug)
         {
             return await Tags()
+                .ConPostsPublicados()
+                .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
+        }
+
+        public async Task<Categoria> RecuperarCategoriaConPostsRelacionados(string urlSlug)
+        {
+            return await Categorias()
                 .ConPostsPublicados()
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }

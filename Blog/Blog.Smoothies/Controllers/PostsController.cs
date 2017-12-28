@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
@@ -26,7 +27,7 @@ namespace Blog.Smoothies.Controllers
         }
 
         public PostsController(ContextoBaseDatos contexto): this(
-            new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), BlogController.TituloBlog), 
+            new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), new AsignadorCategorias(new CategoriaRepositorio(contexto)), BlogController.TituloBlog), 
             new TagsServicio(contexto, BlogController.TituloBlog))
         {
 
@@ -37,6 +38,7 @@ namespace Blog.Smoothies.Controllers
         {
             _postsServicio = postsServicio;
             _tagsServicio = tagsServicio;
+            
         }
 
         public async Task<ActionResult> Index(string buscarPor, int pagina = 1)

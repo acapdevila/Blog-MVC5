@@ -22,7 +22,7 @@ namespace Blog.Servicios
             _tituloBlog = tituloBlog;
         }
 
-        private IQueryable<Categoria> Categorias()
+        public IQueryable<Categoria> Categorias()
         {
             return _db.Categorias.Where(m => m.Blog.Titulo == _tituloBlog);
         }
@@ -62,16 +62,17 @@ namespace Blog.Servicios
             return lineas;
         }
 
-        public CategoriaDto ObtenerNuevoEditorPorDefecto()
+        public List<Categoria> CategoriasConPostsPublicados()
+        {
+            return Categorias().ConPostsPublicados().OrderBy(m => m.Nombre).ToList();
+        }
+
+        public Categoria ObtenerNuevoEditorPorDefecto()
         {
             var blog = _db.Blogs.First(m => m.Titulo == _tituloBlog);
 
-            var categoria = Categoria.CrearNuevaPorDefecto(blog.Id);
-
-            var categoriaDto = new CategoriaDto(categoria);
+            return Categoria.CrearNuevaPorDefecto(blog.Id);
             
-            return categoriaDto;
-
         }
 
         public async Task<Categoria> RecuperarCategoriaPorId(int id)

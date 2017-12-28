@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
 
 namespace Blog.ViewModels.Post
@@ -65,6 +66,10 @@ namespace Blog.ViewModels.Post
         
         public string Tags { get; set; }
 
+        public string Categorias { get; set; }
+
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
+
+        public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(ExtensionesCategoria.SeparadorCategorias).ToList();
     }
 }

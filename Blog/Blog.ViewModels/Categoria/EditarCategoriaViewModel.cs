@@ -1,9 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
+using Blog.Modelo.Dtos;
 
 namespace Blog.ViewModels.Categoria
 {
     public  class EditarCategoriaViewModel
     {
+        public EditarCategoriaViewModel(Modelo.Categorias.Categoria categoria)
+        {
+            Id = categoria.Id;
+            BlogId = categoria.BlogId;
+            Nombre = categoria.Nombre;
+            UrlSlug = categoria.UrlSlug;
+        }
+
         private string _urlSlug;
 
         public int Id { get; set; }
@@ -24,4 +34,21 @@ namespace Blog.ViewModels.Categoria
             set { _urlSlug = string.IsNullOrEmpty(value) ? value : value.Replace(" ", "-"); }
         }
     }
+
+
+    public static class EditarCategoriaViewModelExtensiones
+    {
+        public static CategoriaDto ToDto(this EditarCategoriaViewModel editor)
+        {
+            return new CategoriaDto
+            {
+                Nombre = editor.Nombre,
+                UrlSlug = editor.UrlSlug,
+                Id = editor.Id,
+                BlogId = editor.BlogId
+            };
+            
+        }
+    }
+
 }

@@ -33,9 +33,15 @@ namespace Blog.ViewModels.Post
         public DateTime FechaPublicacion { get; set; }
         public string Autor { get; set; }
         public ICollection<Tag> ListaTags { get; set; }
+        public ICollection<Modelo.Categorias.Categoria> ListaCategorias { get; set; }
 
         public string Tags {
             get { return string.Join(" ", ListaTags.Select(m=>m.Nombre)); }
+        }
+
+        public string Categorias
+        {
+            get { return string.Join(" ", ListaCategorias.Select(m => m.Nombre)); }
         }
     }
 }

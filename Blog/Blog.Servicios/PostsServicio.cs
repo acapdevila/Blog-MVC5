@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.ViewModels.Post;
@@ -15,13 +16,16 @@ namespace Blog.Servicios
     {
         private readonly ContextoBaseDatos _db;
         private readonly AsignadorTags _asignadorTags;
+        private readonly AsignadorCategorias _asignadorCategorias;
         private readonly string _tituloBlog;
 
-        public PostsServicio(ContextoBaseDatos db, AsignadorTags asignadorTags, string tituloBlog)
+        public PostsServicio(ContextoBaseDatos db, AsignadorTags asignadorTags, AsignadorCategorias asignadorCategorias, string tituloBlog)
         {
             _db = db;
             _asignadorTags = asignadorTags;
+            _asignadorCategorias = asignadorCategorias;
             _tituloBlog = tituloBlog;
+            
         }
 
         private IQueryable<Post> Posts()
@@ -46,7 +50,8 @@ namespace Blog.Servicios
                     EsRssAtom = m.EsRssAtom,
                     FechaPublicacion = m.FechaPublicacion,
                     Autor = m.Autor,
-                    ListaTags = m.Tags
+                    ListaTags = m.Tags,
+                    ListaCategorias = m.Categorias
                 })
                 .OrderByDescending(m => m.FechaPost)
                 .ToPagedListAsync(numeroPagina, postsPorPagina)
@@ -62,7 +67,7 @@ namespace Blog.Servicios
         public async Task CrearPost(EditorPost editorPost)
         {
             var post = Post.CrearNuevoPorDefecto(editorPost.Autor, editorPost.BlogId);
-            post.CopiaValores(editorPost, _asignadorTags);
+            post.CopiaValores(editorPost, _asignadorTags, _asignadorCategorias);
             _db.Posts.Add(post);
             await _db.SaveChangesAsync();
             editorPost.Id = post.Id;
@@ -71,7 +76,7 @@ namespace Blog.Servicios
         public async Task ActualizarPost(EditorPost editorPost)
         {
             var post = await RecuperarPost(editorPost.Id);
-            post.CopiaValores(editorPost, _asignadorTags);
+            post.CopiaValores(editorPost, _asignadorTags, _asignadorCategorias);
             await _db.SaveChangesAsync();
         }
 

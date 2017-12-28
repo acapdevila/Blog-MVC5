@@ -85,7 +85,12 @@
     <Compile Include="Migrations\201602271822321_PostsCampoEsRss.Designer.cs">
       <DependentUpon>201602271822321_PostsCampoEsRss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712281829189_MigracionCategorias.cs" />
+    <Compile Include="Migrations\201712281829189_MigracionCategorias.Designer.cs">
+      <DependentUpon>201712281829189_MigracionCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
     <Compile Include="ContextoBaseDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602271822321_PostsCampoEsRss.resx">
       <DependentUpon>201602271822321_PostsCampoEsRss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281829189_MigracionCategorias.resx">
+      <DependentUpon>201712281829189_MigracionCategorias.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
