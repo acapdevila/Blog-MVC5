@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
+using Blog.Modelo.Categorias;
 using Blog.Servicios;
 using Blog.ViewModels.Categoria;
 
@@ -38,8 +39,7 @@ namespace Blog.Smoothies.Controllers
         // GET: Categorias/Create
         public ActionResult Create()
         {
-            var categoria = _categoriasServicio.ObtenerNuevoEditorPorDefecto();
-            return View(new EditarCategoriaViewModel(categoria));
+            return View(new EditarCategoriaViewModel(new Categoria()));
         }
 
         // POST: Categorias/Create

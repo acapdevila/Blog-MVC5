@@ -24,7 +24,8 @@ namespace Blog.Servicios
 
         public IQueryable<Categoria> Categorias()
         {
-            return _db.Categorias.Where(m => m.Blog.Titulo == _tituloBlog);
+            return _db.Categorias
+                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
         }
 
         public async Task<IPagedList<LineaCategoriaDto>> ObtenerListaGestionCategorias(int numeroPagina, int categoriasPorPagina)
@@ -37,8 +38,7 @@ namespace Blog.Servicios
                 UrlSlug = m.UrlSlug,
                 Nombre = m.Nombre,
                 NumeroPost = m.Posts.Count,
-                BlogId = m.BlogId
-            })
+             })
                 .OrderBy(m => m.Nombre) 
                 .ToPagedListAsync(numeroPagina, categoriasPorPagina);
 
@@ -53,8 +53,7 @@ namespace Blog.Servicios
                 {
                     Id = m.Id,
                     UrlSlug = m.UrlSlug,
-                    Nombre = m.Nombre,
-                    BlogId = m.BlogId
+                    Nombre = m.Nombre
                 })
                 .OrderBy(m => m.Nombre)
                 .ToListAsync();
@@ -66,14 +65,7 @@ namespace Blog.Servicios
         {
             return Categorias().ConPostsPublicados().OrderBy(m => m.Nombre).ToList();
         }
-
-        public Categoria ObtenerNuevoEditorPorDefecto()
-        {
-            var blog = _db.Blogs.First(m => m.Titulo == _tituloBlog);
-
-            return Categoria.CrearNuevaPorDefecto(blog.Id);
-            
-        }
+        
 
         public async Task<Categoria> RecuperarCategoriaPorId(int id)
         {
@@ -83,7 +75,7 @@ namespace Blog.Servicios
 
         public async Task CrearCategoria(CategoriaDto categoriaDto)
         {
-            var categoria = Categoria.CrearNuevaPorDefecto(categoriaDto.BlogId);
+            var categoria = new Categoria();
             categoria.CambiarNombre(categoria.Nombre);
             categoria.CambiarUrlSlug(categoria.UrlSlug);
             _db.Categorias.Add(categoria);

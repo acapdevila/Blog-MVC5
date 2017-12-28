@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
@@ -60,7 +62,9 @@ namespace Blog.Servicios
 
         public async Task<Post> RecuperarPost(int id)
         {
-            return await Posts().Include(m => m.Tags)
+            return await Posts()
+                        .Include(m => m.Tags)
+                        .Include(m=>m.Categorias)
                         .FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -78,6 +82,8 @@ namespace Blog.Servicios
             var post = await RecuperarPost(editorPost.Id);
             post.CopiaValores(editorPost, _asignadorTags, _asignadorCategorias);
             await _db.SaveChangesAsync();
+           
+           
         }
 
         public async Task EliminarPost(int id)

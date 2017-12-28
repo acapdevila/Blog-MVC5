@@ -9,7 +9,6 @@ namespace Blog.ViewModels.Categoria
         public EditarCategoriaViewModel(Modelo.Categorias.Categoria categoria)
         {
             Id = categoria.Id;
-            BlogId = categoria.BlogId;
             Nombre = categoria.Nombre;
             UrlSlug = categoria.UrlSlug;
         }
@@ -17,8 +16,7 @@ namespace Blog.ViewModels.Categoria
         private string _urlSlug;
 
         public int Id { get; set; }
-        public int BlogId { get; set; }
-
+        
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "Escribe un nombre")]
         [StringLength(64, ErrorMessage = "La longitud máxima es de {1} dígitos")]
@@ -45,8 +43,7 @@ namespace Blog.ViewModels.Categoria
                 Nombre = editor.Nombre,
                 UrlSlug = editor.UrlSlug,
                 Id = editor.Id,
-                BlogId = editor.BlogId
-            };
+                };
             
         }
     }

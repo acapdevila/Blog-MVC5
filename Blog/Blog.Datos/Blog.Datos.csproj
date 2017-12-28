@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201712281829189_MigracionCategorias.Designer.cs">
       <DependentUpon>201712281829189_MigracionCategorias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.cs" />
+    <Compile Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.Designer.cs">
+      <DependentUpon>201712281920215_MigracionCategoriasQuitarBlogId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712281829189_MigracionCategorias.resx">
       <DependentUpon>201712281829189_MigracionCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.resx">
+      <DependentUpon>201712281920215_MigracionCategoriasQuitarBlogId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
