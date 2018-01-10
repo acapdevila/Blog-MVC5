@@ -41,8 +41,8 @@ namespace Blog.Modelo.Posts
         
         private CriteriosBusqueda(string buscarPor)
         {
-            BuscarPor = buscarPor;
-            _palabras = buscarPor.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            BuscarPor = buscarPor.Trim().Trim(',');
+            _palabras = BuscarPor.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
             _tags = new List<Tag>();
         }
 

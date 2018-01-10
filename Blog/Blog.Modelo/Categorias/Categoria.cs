@@ -24,7 +24,7 @@ namespace Blog.Modelo.Categorias
         
         public void CambiarNombre(string nombre)
         {
-            Nombre = Nombre;
+            Nombre = nombre;
         }
 
         public void CambiarUrlSlug(string urlSlug)

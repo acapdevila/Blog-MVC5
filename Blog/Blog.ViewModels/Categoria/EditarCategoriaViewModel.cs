@@ -6,6 +6,11 @@ namespace Blog.ViewModels.Categoria
 {
     public  class EditarCategoriaViewModel
     {
+        public EditarCategoriaViewModel() : this(new Modelo.Categorias.Categoria())
+        {
+            
+        }
+
         public EditarCategoriaViewModel(Modelo.Categorias.Categoria categoria)
         {
             Id = categoria.Id;

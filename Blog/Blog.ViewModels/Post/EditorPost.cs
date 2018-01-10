@@ -20,7 +20,7 @@ namespace Blog.ViewModels.Post
         public int BlogId { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Subtítulo")]
+        [Display(Name = "Imagen")]
         [Required(ErrorMessage = "Escribe un subtítulo")]
         public string Subtitulo { get; set; }
 
@@ -43,12 +43,12 @@ namespace Blog.ViewModels.Post
         public DateTime FechaPost { get; set; }
         
         [AllowHtml]
-        [Display(Name = "Intro")]
+        [Display(Name = "Contenido")]
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Contenido")]
+        [Display(Name = "Eliminado")]
         public string PostContenidoHtml { get; set; }
 
         [Display(Name = "Borrador")]
