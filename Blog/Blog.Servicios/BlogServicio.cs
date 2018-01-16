@@ -56,30 +56,33 @@ namespace Blog.Servicios
         public IPagedList<LineaPostCompleto> ObtenerListaPostsCompletosPublicados(int pagina, int nummeroItemsPorPagina)
         {
             var postsProyectados = Posts()
-                .Publicados()
-                .OrderByDescending(m => m.FechaPost)
-                .Select(m => new
+                    .Publicados()
+                    .Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now)
+                .Select(m => new 
                 {
-                    m.Id,
-                    m.UrlSlug,
-                    m.Titulo,
-                    m.Subtitulo,
-                    m.FechaPost,
-                    m.Autor,
-                    m.ContenidoHtml
+                   m.Id,
+                  m.UrlSlug,
+                  m.Titulo,
+                  m.Subtitulo,
+                   m.FechaPost,
+                  m.Autor,
+                  m.ContenidoHtml
                 })
+                .OrderByDescending(m => m.FechaPost)
                 .ToPagedList(pagina, nummeroItemsPorPagina);
-            
-            return  new PagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
+
+
+
+            return new StaticPagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
             {
-                  Id   = m.Id,
-                  UrlSlug  = m.UrlSlug,
-                  Titulo  = m.Titulo,
-                  Subtitulo  = m.Subtitulo,
-                   FechaPost  = m.FechaPost,
-                    Autor = m.Autor,
-                    ContenidoHtml = m.ContenidoHtml
-            }), postsProyectados.PageNumber, postsProyectados.PageSize);
+                Id = m.Id,
+                UrlSlug = m.UrlSlug,
+                Titulo = m.Titulo,
+                Subtitulo = m.Subtitulo,
+                FechaPost = m.FechaPost,
+                Autor = m.Autor,
+                ContenidoHtml = m.ContenidoHtml
+            }), postsProyectados.PageNumber, postsProyectados.PageSize, postsProyectados.TotalItemCount);
         }
 
         
