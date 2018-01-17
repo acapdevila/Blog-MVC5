@@ -86,6 +86,10 @@ h4,h5,h6,
     .postcontent a {
     border-bottom: 2px solid #91e1bc}
 
+.postsmall {
+    min-height: 570px;
+}
+
 /*Sidebar etiquetas*/
 
 .linketiqueta {
@@ -126,10 +130,6 @@ h4,h5,h6,
 
 .linkarchivo a {color: #222;
 }
-
-/*Para que los posts pequeños de la home se vayan alineando correctamente*/
-
-.clear-row:nth-child(2n) {clear: left;}
 
 /*Autocomplete tags*/
 
@@ -243,8 +243,10 @@ footer {
   .normal-underline-text,
   .custom-underline-text{
     font-size:18px;}
-}
 
+
+    .postsmall {
+        min-height: unset;}
 .normal-underline-text,
 .normal-underline-text:hover{
   color: #444;
