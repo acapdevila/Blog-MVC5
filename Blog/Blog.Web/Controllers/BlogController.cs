@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -43,11 +44,20 @@ namespace Blog.Web.Controllers
 
             var post = await RecuperarPost(fechaPost.Value, urlSlug);
 
+            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 3);
+            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 3);
+
+            var viewModel = new DetallesPostBlogViewModel
+            {
+                Post = post,
+                PostsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList()
+            };
+
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(viewModel);
         }
 
         private DateTime? GenerarFecha(int dia, int mes, int anyo)
@@ -122,7 +132,42 @@ namespace Blog.Web.Controllers
         {
             return await _blogServicio.RecuperarPost(fechaPost, urlSlug);
         }
+
+
+        private async Task<List<LineaResumenPost>> RecuperarPostsAterioresMismoTag(Post post, int numPostAnteriores)
+        {
+            var postsAnterioresMismaCategoria =
+                await _blogServicio.Posts()
+                    .Publicados()
+                    .DeTags(post.Tags)
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(numPostAnteriores)
+                    .ToListAsync();
+
+
+            return postsAnterioresMismaCategoria;
+        }
+
+
+
+        private async Task<List<LineaResumenPost>> RecuperarPostsPosterioresMismoTag(Post post, int numPostPosteriores)
+        {
+            var postsAnterioresMismTag =
+                await _blogServicio.Posts()
+                    .Publicados()
+                    .DeTags(post.Tags)
+                    .Posteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderBy(m => m.FechaPost)
+                    .Take(numPostPosteriores)
+                    .ToListAsync();
+
+            return postsAnterioresMismTag;
+        }
+
     }
 
-  
+
 }

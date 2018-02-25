@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Blog.Modelo.Categorias;
+using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Posts
 {
@@ -11,13 +13,15 @@ namespace Blog.Modelo.Posts
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }
 
-        public static IQueryable<Post> DeCategorias(this IQueryable<Post> posts, List<int> idsCategorias)
+        public static IQueryable<Post> DeCategorias(this IQueryable<Post> posts,ICollection<Categoria> categorias)
         {
+            List<int> idsCategorias = categorias.Select(m => m.Id).ToList();
             return posts.Where(m => m.Categorias.Any(c=> idsCategorias.Contains(c.Id)));
         }
 
-        public static IQueryable<Post> DeTags(this IQueryable<Post> posts, List<int> idsTags)
+        public static IQueryable<Post> DeTags(this IQueryable<Post> posts,ICollection<Tag> tags)
         {
+            List<int> idsTags = tags.Select(m => m.Id).ToList();
             return posts.Where(m => m.Tags.Any(c => idsTags.Contains(c.Id)));
         }
 

@@ -211,12 +211,10 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<List<LineaResumenPost>> RecuperarPostsAterioresMismaCategoria(Post post, int numPostAnteriores)
         {
-            var idsCategorias = post.Categorias.Select(m => m.Id).ToList();
-
             var postsAnterioresMismaCategoria =
                 await _blogServicio.Posts()
                     .Publicados()
-                    .DeCategorias(idsCategorias)
+                    .DeCategorias(post.Categorias)
                     .Anteriores(post)
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)
@@ -231,12 +229,10 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<List<LineaResumenPost>> RecuperarPostsPosterioresMismaCategoria(Post post, int numPostPosteriores)
         {
-            var idsCategorias = post.Categorias.Select(m => m.Id).ToList();
-
             var postsAnterioresMismaCategoria =
                 await _blogServicio.Posts()
                     .Publicados()
-                    .DeCategorias(idsCategorias)
+                    .DeCategorias(post.Categorias)
                     .Posteriores(post)
                     .SeleccionaLineaResumenPost()
                     .OrderBy(m => m.FechaPost)
