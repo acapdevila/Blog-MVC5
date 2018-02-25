@@ -12,7 +12,7 @@
         @Model.FechaPost.ToString("D")
     </p>
     @*<a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">
-        @Html.Raw(Model.Subtitulo.Substring(0, Model.Subtitulo.IndexOf(@"</ hr>", 0, StringComparison.InvariantCulture) -4))
+        @Html.Raw(Model.Subtitulo)
     </a>*@
 
     <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">Leer más</a>
