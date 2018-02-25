@@ -14,11 +14,15 @@
         
         
         <div>
-          @Html.Partial("_ListaLineasResumenPost",Model.PostsSugeridos)
+            @foreach (var item in Model.PostsSugeridos)
+            {
+                @Html.Partial("_ItemLineaResumenPost", item)
+            }
+                    
         </div>
-                
         <div class="clearfix"></div>
-        
+        <br />
+        <br />
 
         <!-- Blog Comments -->
         <div class="well">

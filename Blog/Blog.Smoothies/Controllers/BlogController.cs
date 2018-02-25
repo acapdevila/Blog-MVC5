@@ -81,10 +81,24 @@ namespace Blog.Smoothies.Controllers
             List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
             List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
 
+            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
+            
+            if (postsSugeridos.Any())
+            {
+                postsSugeridos = await _blogServicio.Posts()
+                    .Publicados()
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(6)
+                    .ToListAsync();
+            }
+
+
             var viewModel = new DetallesPostBlogViewModel
             {
                 Post = post,
-                PostsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList()
+                PostsSugeridos = postsSugeridos
             };
 
             if (post == null)

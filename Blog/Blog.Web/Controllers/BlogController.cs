@@ -44,13 +44,26 @@ namespace Blog.Web.Controllers
 
             var post = await RecuperarPost(fechaPost.Value, urlSlug);
 
-            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 3);
-            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 3);
+            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 2);
+            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 2);
+
+            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
+
+            if (postsSugeridos.Any())
+            {
+                postsSugeridos = await _blogServicio.Posts()
+                    .Publicados()
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(4)
+                    .ToListAsync();
+            }
 
             var viewModel = new DetallesPostBlogViewModel
             {
                 Post = post,
-                PostsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList()
+                PostsSugeridos = postsSugeridos
             };
 
             if (post == null)

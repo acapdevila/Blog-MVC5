@@ -748,6 +748,7 @@
     <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Sidebar\ArchivoEtiquetas.cshtml" />
     <Content Include="Views\Blog\Archivo.cshtml" />
+    <Content Include="Views\Blog\_ItemLineaResumenPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
