@@ -83,11 +83,15 @@ h4,h5,h6,
     .postcontent p {
     line-height:25px;}
 
+    
+    .postcontent li {
+    line-height:25px;}
+
     .postcontent a {
     border-bottom: 2px solid #91e1bc}
 
 .postsmall {
-    min-height: 570px;
+    min-height: 550px;
 }
 
 /*Sidebar etiquetas*/
