@@ -106,6 +106,7 @@
     <Compile Include="Account\AccountViewModels.cs" />
     <Compile Include="Account\ManageViewModels.cs" />
     <Compile Include="Blog\ArchivoViewModel.cs" />
+    <Compile Include="Blog\DetallesPostBlogViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogCompletosViewModel.cs" />
     <Compile Include="Blog\ListaPostsBlogResumidosViewModel.cs" />
     <Compile Include="Blog\ResultadoBusquedaViewModel.cs" />

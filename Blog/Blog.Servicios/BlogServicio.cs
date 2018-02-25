@@ -26,6 +26,7 @@ namespace Blog.Servicios
         {
             return _db.Posts
                 .Include(m => m.Tags)
+                .Include(m=>m.Categorias)
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
@@ -57,7 +58,6 @@ namespace Blog.Servicios
         {
             var postsProyectados = Posts()
                     .Publicados()
-                    .Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now)
                 .Select(m => new 
                 {
                    m.Id,
@@ -85,7 +85,6 @@ namespace Blog.Servicios
             }), postsProyectados.PageNumber, postsProyectados.PageSize, postsProyectados.TotalItemCount);
         }
 
-        
         public IPagedList<LineaPostCompleto> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
         {
             var postsProyectados = Posts()
@@ -161,6 +160,6 @@ namespace Blog.Servicios
         }
 
 
-     
+       
     }
 }

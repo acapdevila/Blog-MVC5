@@ -75,14 +75,23 @@ namespace Blog.Smoothies.Controllers
 
             if(fechaPost == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+            Post post = await _blogServicio.RecuperarPost(fechaPost.Value, urlSlug);
 
-            var post = await RecuperarPost(fechaPost.Value, urlSlug);
+            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
+            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
+
+            var viewModel = new DetallesPostBlogViewModel
+            {
+                Post = post,
+                PostsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList()
+            };
 
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(viewModel);
         }
 
         private DateTime? GenerarFecha(string dia, string mes, string anyo)
@@ -200,11 +209,46 @@ namespace Blog.Smoothies.Controllers
             };
         }
 
-        private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
+        private async Task<List<LineaResumenPost>> RecuperarPostsAterioresMismaCategoria(Post post, int numPostAnteriores)
         {
-            return await _blogServicio.RecuperarPost(fechaPost, urlSlug);
+            var idsCategorias = post.Categorias.Select(m => m.Id).ToList();
+
+            var postsAnterioresMismaCategoria =
+                await _blogServicio.Posts()
+                    .Publicados()
+                    .DeCategorias(idsCategorias)
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(numPostAnteriores)
+                    .ToListAsync();
+
+
+            return postsAnterioresMismaCategoria;
         }
+
+
+
+        private async Task<List<LineaResumenPost>> RecuperarPostsPosterioresMismaCategoria(Post post, int numPostPosteriores)
+        {
+            var idsCategorias = post.Categorias.Select(m => m.Id).ToList();
+
+            var postsAnterioresMismaCategoria =
+                await _blogServicio.Posts()
+                    .Publicados()
+                    .DeCategorias(idsCategorias)
+                    .Posteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderBy(m => m.FechaPost)
+                    .Take(numPostPosteriores)
+                    .ToListAsync();
+
+            return postsAnterioresMismaCategoria;
+        }
+
+
+
     }
 
-  
+
 }

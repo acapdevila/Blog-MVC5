@@ -1,21 +1,29 @@
 ﻿@using Blog.Smoothies.Helpers
-@model Blog.Modelo.Posts.Post
+
+@model Blog.ViewModels.Blog.DetallesPostBlogViewModel
 
 @{
-    ViewBag.Title = Model.Titulo;
+    ViewBag.Title = Model.Post.Titulo;
  }
-<meta itemprop="url" content="@Url.RutaUrlBlogPost(Model.FechaPost,Model.UrlSlug)" />
+<meta itemprop="url" content="@Url.RutaUrlBlogPost(Model.Post.FechaPost,Model.Post.UrlSlug)" />
         <br />
         <div class="row">
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
                 <!-- Blog Post -->
                 <div itemscope itemtype="http://schema.org/Recipe">
-                    @Html.DisplayFor(m => m, "DisplayPost")
-                 </div>
-                    <!-- Blog Comments -->
+                    @Html.DisplayFor(m => m.Post, "DisplayPost")
+                </div>
+                
+              
+                @foreach (var item in Model.PostsSugeridos)
+                {
+                    @Html.Partial("_ItemLineaResumenPost", item)
+                }
+
+                <!-- Blog Comments -->
                     <div class="well">
-                        @Html.Partial("_Disqus", Model)
+                        @Html.Partial("_Disqus", Model.Post)
                     </div>
                 </div>
 

@@ -838,7 +838,7 @@
     <Content Include="Views\Blog\Archivo.cshtml" />
     <Content Include="Views\Sidebar\ArchivoEtiquetas.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutocompleteMultiple.cshtml" />
-    <Content Include="Views\Blog\_ItemPostPequeño.cshtml" />
+    <Content Include="Views\Blog\_ItemLineaPostCompleto.cshtml" />
     <Content Include="Views\Blog\ResultadoBusqueda.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutocompleteMultipleBuscador.cshtml" />
     <Content Include="Views\Shared\_InputBuscador.cshtml" />
@@ -850,6 +850,7 @@
     <Content Include="Views\Menu\Categorias.cshtml" />
     <Content Include="Views\Blog\Categoria.cshtml" />
     <Content Include="Views\Blog\_ListaPostsCategoria.cshtml" />
+    <Content Include="Views\Blog\_ItemLineaResumenPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -276,9 +276,17 @@ footer {
     left:25%;
 }
 
-.c:hover .custom-underline-text::after{
+.c:hover .custom-underline-text::after {
     width:90%;
     left:5%;
     background-color:rgba(132,240,209,.6);
+    -ms-transition:.8s ease all;
+    -o-transition:.8s ease all;
+    -webkit-transition:.8s ease all;
     transition:.8s ease all;
 }
+    }
+
+    
+
+    

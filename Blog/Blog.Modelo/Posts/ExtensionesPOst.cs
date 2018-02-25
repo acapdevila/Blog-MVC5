@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Blog.Modelo.Posts
@@ -6,8 +7,28 @@ namespace Blog.Modelo.Posts
    public static class ExtensionesPost
     {
        public static IQueryable<Post> Publicados(this IQueryable<Post> posts)
-       {
+        {
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
+        }
+
+        public static IQueryable<Post> DeCategorias(this IQueryable<Post> posts, List<int> idsCategorias)
+        {
+            return posts.Where(m => m.Categorias.Any(c=> idsCategorias.Contains(c.Id)));
+        }
+
+        public static IQueryable<Post> DeTags(this IQueryable<Post> posts, List<int> idsTags)
+        {
+            return posts.Where(m => m.Tags.Any(c => idsTags.Contains(c.Id)));
+        }
+
+        public static IQueryable<Post> Anteriores(this IQueryable<Post> posts, Post post)
+        {
+            return posts.Where(m => m.FechaPost < post.FechaPost);
+        }
+
+        public static IQueryable<Post> Posteriores(this IQueryable<Post> posts, Post post)
+        {
+            return posts.Where(m => post.FechaPost < m.FechaPost);
         }
 
         public static IQueryable<Post> BuscarPor(this IQueryable<Post> posts, CriteriosBusqueda criterios)
