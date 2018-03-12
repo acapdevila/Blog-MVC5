@@ -44,6 +44,11 @@ namespace Blog.Web.Controllers
 
             var post = await RecuperarPost(fechaPost.Value, urlSlug);
 
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
             List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 2);
             List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 2);
 
@@ -66,10 +71,7 @@ namespace Blog.Web.Controllers
                 PostsSugeridos = postsSugeridos
             };
 
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
+            
             return View(viewModel);
         }
 

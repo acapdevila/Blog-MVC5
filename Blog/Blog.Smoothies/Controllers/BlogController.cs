@@ -78,6 +78,11 @@ namespace Blog.Smoothies.Controllers
             
             Post post = await _blogServicio.RecuperarPost(fechaPost.Value, urlSlug);
 
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
             List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
             List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
 
@@ -101,10 +106,7 @@ namespace Blog.Smoothies.Controllers
                 PostsSugeridos = postsSugeridos
             };
 
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
+         
             return View(viewModel);
         }
 
