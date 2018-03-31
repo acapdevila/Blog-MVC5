@@ -88,7 +88,7 @@ namespace Blog.Smoothies.Controllers
 
             var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
             
-            if (postsSugeridos.Any())
+            if (!postsSugeridos.Any())
             {
                 postsSugeridos = await _blogServicio.Posts()
                     .Publicados()
