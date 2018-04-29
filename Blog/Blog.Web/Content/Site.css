@@ -121,6 +121,10 @@ footer {
 
 /*Sidebar*/
 
+.well {
+    background-color: #8aa596;
+}
+
 .well a {
     color: #ffffff;}
 
