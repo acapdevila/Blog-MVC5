@@ -236,6 +236,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\Oswald-Bold-webfont.svg" />
+    <Content Include="fonts\Oswald-Regular-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2">
@@ -254,6 +256,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\Oswald-Regular-webfont.eot" />
+    <Content Include="fonts\Oswald-Regular-webfont.ttf" />
+    <Content Include="fonts\Oswald-Regular-webfont.woff" />
+    <Content Include="fonts\Oswald-Bold-webfont.eot" />
+    <Content Include="fonts\Oswald-Bold-webfont.ttf" />
+    <Content Include="fonts\Oswald-Bold-webfont.woff" />
     <None Include="Properties\PublishProfiles\acapdevila - Azure.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

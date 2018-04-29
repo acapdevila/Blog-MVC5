@@ -50,7 +50,7 @@
                     @*<a href="/">
                         <img class="img-responsive navbar-brand" src="~/Content/imagenes/logo.png" alt="Albert Capdevila"/>
                     </a>*@
-                    <a href="/" class="navbar-brand">albertcapdevila<span style="color: white">.net</span></a>
+                    <a href="/" class="navbar-brand tipo color2">albertcapdevila<span class="color3">.net</span></a>
                     @*<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;albertcapdevila.net</a>*@
                 </div>
                 <div class="navbar-collapse collapse">
@@ -64,17 +64,28 @@
             <hr/>
             <footer>
                 <div class="container">
-                    <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" style="max-width: 150px; float: left" src="~/Content/imagenes/asp.png" alt="asp.net"/>
-                    </div>
-                    
-                    <div class="navbar-collapse collapse">
-                        @Html.Partial("_LoginPartial")
+                  <div class="col-lg-3"><h3 class="color2">albertcapdevila<span class="color3">.net</span></h3></div> 
+                    <div class="col-lg-3">
+                        <ul>                           
+                            <li>
+                                <a href="https://github.com/acapdevila/Blog-MVC5" target="_blank">Github</a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/programadorwebalbertcapdevila/" target="_blank">Linkedin</a>
+                            </li>
+                            <li>
+                                @Html.ActionLink("Contacto", "Index", "Contacto")
+                            </li>
+                           
+                        </ul>
                     </div>
 
 
                 </div>
             </footer>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
 
 

@@ -9,14 +9,15 @@
             <h2>
                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
             </h2>
-            <p>
-                <span class="glyphicon glyphicon-time"></span> Publicado el @item.FechaPost.ToString("D")
+            <p class="fechapost">
+                <span class="glyphicon glyphicon-time"></span> @item.FechaPost.ToString("D")
             </p>
             @Html.Raw(item.Subtitulo)
-            <a class="btn btn-primary btn-sm" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
-                leer más<span class="glyphicon glyphicon-chevron-right"></span>
+            <br />
+            <a class="leermas" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
+                leer más
             </a>
-            <hr style="border-color: black">
+            <hr>
         }
 
   

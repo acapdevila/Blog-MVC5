@@ -8,12 +8,12 @@
     @*<p class="lead">
                                     by @Model.Autor
                                 </p>*@
-    <p class="small grey text-uppercase">
+    <p class="fechapost">
         @Model.FechaPost.ToString("D")
     </p>
     @*<a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">
         @Html.Raw(Model.Subtitulo)
     </a>*@
-
-    <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">Leer más</a>
+    <br />
+    <a class="leermas" href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">Leer más</a>
 </div>
