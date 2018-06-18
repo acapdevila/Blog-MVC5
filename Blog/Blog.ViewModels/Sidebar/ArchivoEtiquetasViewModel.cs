@@ -26,6 +26,13 @@ namespace Blog.ViewModels.Sidebar
             NumPosts = itemDto.NumPosts;
         }
 
+        public ArchivoItemViewModel(LineaArchivoDto itemDto)
+        {
+            Anyo = itemDto.Año;
+            Mes = itemDto.Mes;
+            //NumPosts = itemDto.;
+        }
+
         public int Anyo { get; set; }
 
         public int Mes { get; set; }

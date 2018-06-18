@@ -767,6 +767,8 @@
     <Content Include="Views\Sidebar\ArchivoEtiquetas.cshtml" />
     <Content Include="Views\Blog\Archivo.cshtml" />
     <Content Include="Views\Blog\_ItemLineaResumenPost.cshtml" />
+    <Content Include="Views\Shared\_SubscripcionMailChimp.cshtml" />
+    <Content Include="Views\Sidebar\ArchivoArbol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

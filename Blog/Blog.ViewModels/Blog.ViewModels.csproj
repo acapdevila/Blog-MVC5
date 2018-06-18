@@ -125,6 +125,7 @@
     <Compile Include="Post\ListaGestionBlogsViewModel.cs" />
     <Compile Include="Post\ListaGestionPostsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sidebar\ArchivoArbolViewModel.cs" />
     <Compile Include="Sidebar\ArchivoEtiquetasViewModel.cs" />
     <Compile Include="Sidebar\NubeEtiquetasViewModel.cs" />
   </ItemGroup>

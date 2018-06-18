@@ -13,6 +13,11 @@ namespace Blog.Modelo.Posts
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }
 
+        public static IQueryable<Post> OrdenadosPorFecha(this IQueryable<Post> posts)
+        {
+            return posts.OrderByDescending(m => m.FechaPost);
+        }
+
         public static IQueryable<Post> DeCategorias(this IQueryable<Post> posts,ICollection<Categoria> categorias)
         {
             List<int> idsCategorias = categorias.Select(m => m.Id).ToList();

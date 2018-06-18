@@ -154,6 +154,21 @@ namespace Blog.Servicios
 
 
 
+        public List<LineaArchivoDto> RecuperarTodasLineasArchivoBlog()
+        {
+            return Posts()
+                .Publicados()
+                .OrdenadosPorFecha()
+                .Select(g => new LineaArchivoDto
+                {
+                    FechaPost = g.FechaPost,
+                    Titulo = g.Titulo,
+                    UrlSlug = g.UrlSlug
+                })
+                .ToList();
+        }
+
+
         public void Dispose()
         {
             _db.Dispose();

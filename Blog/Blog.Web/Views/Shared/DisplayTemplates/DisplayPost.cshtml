@@ -1,24 +1,26 @@
 ﻿@model Blog.Modelo.Posts.Post
 
-        <!-- Blog Post -->
-        <!-- Title -->
-        <h1>@Html.DisplayFor(model => model.Titulo)</h1>
-        <!-- Author -->
-        @*<p class="lead">
+<article class="articulo">
+    <!-- Blog Post -->
+    <!-- Title -->
+    <h1>@Html.DisplayFor(model => model.Titulo)</h1>
+    <!-- Author -->
+    @*<p class="lead">
             by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
         </p>*@
-        <hr>
-        <!-- Date/Time -->
-        <p class="fechapost"><span class="glyphicon glyphicon-time"></span> @Model.FechaPost.ToString("D")</p>
-        @Html.Raw(Model.Subtitulo)
-        <!-- Preview Image 
-        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-        <hr>-->
-        <!-- Post Content -->
-        @Html.Raw(Model.ContenidoHtml)
-     
-        
-        @Html.Partial("_SyntaxHightLighter")
+    <hr>
+    <!-- Date/Time -->
+    <p class="fechapost"><span class="glyphicon glyphicon-time"></span> @Model.FechaPost.ToString("D")</p>
+    @Html.Raw(Model.Subtitulo)
+    <!-- Preview Image
+    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+    <hr>-->
+    <!-- Post Content -->
+    @Html.Raw(Model.ContenidoHtml)
 
 
-<hr>
+    @Html.Partial("_SyntaxHightLighter")
+
+
+    <hr>
+</article>

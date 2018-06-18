@@ -14,13 +14,18 @@
              </div>
              <!-- /.input-group -->
          </div> *@
+    
+    
+        @Html.Partial("_SubscripcionMailChimp")
 
-
-        <!-- Blog Categories Well -->
+    <!-- Blog Categories Well -->
         @Html.Action("NubeEtiquetas", "Sidebar")
 
         <!-- Archivo blog  Well -->
-        @Html.Action("ArchivoEtiquetas", "Sidebar")
+        @*@Html.Action("ArchivoEtiquetas", "Sidebar")*@
+    
+        <!-- Archivo blog  -->
+        @Html.Action("ArchivoArbol", "Sidebar")
 
     <!-- Side Widget Well -->
         @*<div class="well">

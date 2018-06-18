@@ -68,6 +68,7 @@
     <Compile Include="Categorias\Categoria.cs" />
     <Compile Include="Categorias\ICategoriaRepositorio.cs" />
     <Compile Include="Dtos\ArchivoItemDto.cs" />
+    <Compile Include="Dtos\LineaArchivoDto.cs" />
     <Compile Include="Dtos\LineaCategoriaDto.cs" />
     <Compile Include="Dtos\CategoriaDto.cs" />
     <Compile Include="Posts\CriteriosBusqueda.cs" />

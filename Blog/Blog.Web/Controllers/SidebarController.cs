@@ -56,6 +56,45 @@ namespace Blog.Web.Controllers
             return View(nubeEtiquetasViewModel);
         }
 
+        [ChildActionOnly]
+        public ActionResult ArchivoArbol()
+        {
+            var itemsArchivo = _blogServicio
+                    .Posts()
+                    .Publicados()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Select(m => new ItemArchivoArbolViewModel
+                    {
+                        FechaPost = m.FechaPost,
+                        Titulo = m.Titulo,
+                        Url = m.UrlSlug,
+                    })
+                    .ToList();
+
+            var arbolArchivoViewModel = new ArchivoArbolViewModel(itemsArchivo);
+
+            return View(arbolArchivoViewModel);
+
+
+        }
+
+
+      
+
+        [ChildActionOnly]
+        public ActionResult ArchivoEnModoArbol()
+        {
+            var etiquetasArchivo = _blogServicio.RecuperarTodasLineasArchivoBlog()
+                                    .Select(m => new ArchivoItemViewModel(m))
+                                    .OrderByDescending(m => m.Anyo)
+                                    .ThenByDescending(m => m.Mes)
+                                    .ToList();
+
+            var nubeEtiquetasViewModel = new ArchivoEtiquetasViewModel(etiquetasArchivo);
+
+            return Content(string.Empty); //  View(nubeEtiquetasViewModel);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

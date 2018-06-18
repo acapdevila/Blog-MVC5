@@ -121,20 +121,37 @@ footer {
 
 /*Sidebar*/
 
+
+.itemArchivoArbol {
+    color: #8aa596 !important;
+}
+
 .well {
     background-color: #8aa596;
 }
 
-.well a {
-    color: #ffffff;}
+    .well a {
+        color: #ffffff;
+    }
+
+
+.panel-default > .panel-heading-arbol {
+    background: #8aa596;
+    color: #fff;
+}
+
+
+
 
 /*Fuentes*/
-
 .tipo {
     font-family: 'OswaldBook';
     text-transform: uppercase;
 }
 
+.articulo h4 {
+    margin-top: 35px;
+}
 
 @font-face {
     font-family: 'OswaldBook';
