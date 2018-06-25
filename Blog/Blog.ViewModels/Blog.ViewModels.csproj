@@ -124,6 +124,8 @@
     <Compile Include="Post\EditPostViewModel.cs" />
     <Compile Include="Post\ListaGestionBlogsViewModel.cs" />
     <Compile Include="Post\ListaGestionPostsViewModel.cs" />
+    <Compile Include="Principal\AvisoLegalViewmodel.cs" />
+    <Compile Include="Principal\PoliticaCookiesViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sidebar\ArchivoArbolViewModel.cs" />
     <Compile Include="Sidebar\ArchivoEtiquetasViewModel.cs" />

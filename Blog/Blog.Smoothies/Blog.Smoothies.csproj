@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ImagenesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\SidebarController.cs" />
@@ -851,6 +852,11 @@
     <Content Include="Views\Blog\Categoria.cshtml" />
     <Content Include="Views\Blog\_ListaPostsCategoria.cshtml" />
     <Content Include="Views\Blog\_ItemLineaResumenPost.cshtml" />
+    <Content Include="Views\Principal\AvisoLegal.cshtml" />
+    <Content Include="Views\Principal\PoliticaCookies.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_AceptarCookies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

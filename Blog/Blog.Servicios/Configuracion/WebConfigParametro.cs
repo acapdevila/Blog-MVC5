@@ -14,6 +14,16 @@ namespace Blog.Servicios.Configuracion
         public static string DisqusShortname => ConfigurationManager.AppSettings["DisqusShortname"];
 
         public static string NombreAplicacion => ConfigurationManager.AppSettings["NombreAplicacion"];
-    }
+
+
+
+        // Parametros legales
+        public static string AvisoLegalPaginaWeb => ConfigurationManager.AppSettings["AvisoLegal_PaginaWeb"];
+        public static string AvisoLegalEmail => ConfigurationManager.AppSettings["AvisoLegal_Email"];
+        public static string AvisoLegalNombreLegal => ConfigurationManager.AppSettings["AvisoLegal_NombreLegal"];
+        public static string AvisoLegalCifNif => ConfigurationManager.AppSettings["AvisoLegal_CifNif"];
+        public static string AvisoLegalDireccion => ConfigurationManager.AppSettings["AvisoLegal_Direccion"];
+
+        }
 
 }
