@@ -22,7 +22,7 @@ namespace Blog.Smoothies.Controllers
 {
     public class BlogController : Controller
     {
-        public static string TituloBlog = "Smoothies de Cuchara";
+        public static string TituloBlog = "by Laura García";
 
         private readonly BlogServicio _blogServicio;
         private readonly TagsServicio _tagsServicio;

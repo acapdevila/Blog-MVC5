@@ -65,7 +65,7 @@ namespace Blog.Smoothies.RssAtom
                     Id = FeedId,
                     // title (Required) - Contains a human readable title for the feed. Often the same as the title of the 
                     //                    associated website. This value should not be blank.
-                    Title = SyndicationContent.CreatePlaintextContent("Smoothies de Cuchara"),
+                    Title = SyndicationContent.CreatePlaintextContent("by Laura García"),
                     // items (Required) - The items to add to the feed.
                     Items = this.GetItems(cancellationToken),
                     // subtitle (Recommended) - Contains a human-readable description or subtitle for the feed.
