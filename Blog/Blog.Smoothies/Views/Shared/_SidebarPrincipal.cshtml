@@ -2,13 +2,13 @@
  <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
     <!-- Side Widget Well -->
-    <div class="well">
+    @*<div class="well">
         <h3>¡Hola!</h3>
 
         <p>Mi nombre es Laura y vivo en El Masnou, un pueblo de playa cerca de Barcelona.<br /><a class="smaller" href="Hola/Index">Seguir leyendo...</a></p>
         <img class="img-circle center-block" src="~/Content/imagenes/laura.jpg" alt="by Laura García" style="max-width:80%; padding: 5px;" />
 
-    </div>
+    </div>*@
 
   <h4> INSTAGRAM @@bylauragarcia</h4>
     
@@ -19,8 +19,7 @@
     <!-- Nube de etiquetas -->
     @*@Html.Action("NubeEtiquetas", "Sidebar")*@
 
-    <!-- Nube de etiquetas -->
-    @Html.Action("ArchivoEtiquetas", "Sidebar")
+   
 
     <div class="well">
 
@@ -39,7 +38,7 @@
             <form action="//smoothiesdecuchara.us14.list-manage.com/subscribe/post?u=5ee18a52106457acb5c8717af&amp;id=1e360c6d32" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                 <div id="mc_embed_signup_scroll">
                     <h4>
-                        Quizá algun día empiece a enviar una newsletter, si te gustaría recibirla subscríbete aquí
+                       ¡Subscríbete!
                     </h4>
                     <div class="mc-field-group">
                         <label for="mce-EMAIL">Email </label>
@@ -58,7 +57,7 @@
                         <div class="response" id="mce-success-response" style="display:none"></div>
                     </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5ee18a52106457acb5c8717af_1e360c6d32" tabindex="-1" value=""></div>
-                    <div class="clear"><input type="submit" value="Subscribirme" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                    <div class="clear"><input type="submit" value="Ok" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
                 </div>
             </form>
         </div>
@@ -66,5 +65,6 @@
         <!--End mc_embed_signup-->
     </div>
 
-    
+    <!-- Nube de etiquetas -->
+    @Html.Action("ArchivoEtiquetas", "Sidebar")
 </div>

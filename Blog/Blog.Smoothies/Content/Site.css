@@ -53,6 +53,14 @@ h4,h5,h6,
 .h1,.h2,.h3,
 .h4,.h5,.h6 {font-family: 'open_sansbold'; text-transform: uppercase; letter-spacing: -1px;}
 
+
+/*Menú superior*/
+
+nav {
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
 /*Buscador menú principal*/
 
 .buscador-menu {
@@ -91,7 +99,7 @@ h4,h5,h6,
     border-bottom: 2px solid #91e1bc}
 
 .postsmall {
-    min-height: 550px;
+    min-height: 580px;
 }
 
 /*Sidebar etiquetas*/
@@ -161,7 +169,17 @@ h4,h5,h6,
 footer {
     background: #64c699;
     padding: 20px 0;
+     text-transform: uppercase;
 }
+    footer ul {
+        margin: 10px 0 0 0;
+    }
+
+    footer li {
+    list-style:none}
+
+    footer li a:hover {
+    color: #ffffff;}
 
 /*Colors*/
 

@@ -11,20 +11,23 @@
         </div>
 
     </li>
-    <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
+    
+            @{ Html.RenderAction("Categorias", "Menu"); }
+
+
+    @*<li class="@(currentController == "Hola" ? activeClass : string.Empty)">
         <div class="centerer c">
             @Html.ActionLink("¡Hola!", "Index", "Hola", null, new { @class = "custom-underline-text" })
         </div>
-    </li>
+    </li>*@
 
-    <li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
+    @*<li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
         <div class="centerer c">
             @Html.ActionLink("Contacto", "Index", "Contacto", null, new { @class = "custom-underline-text" })
         </div>
-    </li>
+    </li>*@
 
 
-    @{ Html.RenderAction("Categorias", "Menu"); }
   
 
     @if (User.Identity.IsAuthenticated)

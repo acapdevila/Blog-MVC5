@@ -1,24 +1,39 @@
 ﻿ <footer class="footer">
-    <div class="col-md-3">
-        <ul>
-            <li>
-                <a href="@Url.Action("AvisoLegal", "Principal")" target="_blank" rel="nofollow">Aviso legal</a>
-            </li>
-            <li>
-                <a href="@Url.Action("PoliticaCookies", "Principal")" target="_blank" rel="nofollow">Política de cookies</a>
-            </li>
-        </ul>
 
-            </div>
-     <div class="col-md-2 pull-right text-right">
-         <a href="http://www.instagram.com/bylauragarcia" target="_blank">
-             <img src="~/Content/imagenes/instagram_white.png" alt="by Laura García" />
-         </a>
-         <a href="http://www.facebook.com/bylauragarcia" target="_blank">
-             <img src="~/Content/imagenes/facebook_white.png" alt="by Laura García" />
-         </a>
+     <div class="col-md-2">
 
-     </div>
-     <div class="clearfix"></div>
+         <a href="/"><img src="~/Content/imagenes/logo.png" alt="by Laura García" /></a>
+         </div>
+     
+         <div class="col-md-3">
+             <ul>
+                 <li>
+                     <a href="@Url.Action("Index", "Blog")" rel="nofollow">Blog</a>
+                 </li>
+                 <li>
+                     <a href="@Url.Action("Index", "Hola")" rel="nofollow">Sobre mí</a>
+                 </li>
+                 <li>
+                     <a href="@Url.Action("Index", "Contacto")" rel="nofollow">Contacta conmigo</a>
+                 </li>
+                 <li>
+                     <a href="@Url.Action("AvisoLegal", "Principal")" rel="nofollow">Aviso legal</a>
+                 </li>
+                 <li>
+                     <a href="@Url.Action("PoliticaCookies", "Principal")" rel="nofollow">Política de cookies</a>
+                 </li>
+             </ul>
 
- </footer>
+         </div>
+         @*<div class="col-md-2 pull-right text-right">
+             <a href="http://www.instagram.com/bylauragarcia" target="_blank">
+                 <img src="~/Content/imagenes/instagram_white.png" alt="by Laura García" />
+             </a>
+             <a href="http://www.facebook.com/bylauragarcia" target="_blank">
+                 <img src="~/Content/imagenes/facebook_white.png" alt="by Laura García" />
+             </a>
+
+         </div>*@
+         <div class="clearfix"></div>
+
+</footer>
