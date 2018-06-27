@@ -83,23 +83,9 @@ namespace Blog.Smoothies.Controllers
                 return HttpNotFound();
             }
 
-            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
-            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
+            var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
 
-            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
             
-            if (!postsSugeridos.Any())
-            {
-                postsSugeridos = await _blogServicio.Posts()
-                    .Publicados()
-                    .Anteriores(post)
-                    .SeleccionaLineaResumenPost()
-                    .OrderByDescending(m => m.FechaPost)
-                    .Take(6)
-                    .ToListAsync();
-            }
-
-
             var viewModel = new DetallesPostBlogViewModel
             {
                 Post = post,
@@ -108,6 +94,30 @@ namespace Blog.Smoothies.Controllers
 
          
             return View(viewModel);
+        }
+
+   
+        public async Task<ActionResult> DetallesAmigable(string urlSlug)
+        {
+            Post post = await _blogServicio.RecuperarPost(urlSlug);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
+
+
+            var viewModel = new DetallesPostBlogViewModel
+            {
+                Post = post,
+                PostsSugeridos = postsSugeridos
+            };
+
+            return View("Detalles",viewModel);
+
         }
 
         private DateTime? GenerarFecha(string dia, string mes, string anyo)
@@ -258,6 +268,28 @@ namespace Blog.Smoothies.Controllers
             return postsAnterioresMismaCategoria;
         }
 
+
+
+        private async Task<List<LineaResumenPost>> RecuperarPostsSugeridosViewmodel(Post post)
+        {
+            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
+            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
+
+            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
+
+            if (!postsSugeridos.Any())
+            {
+                postsSugeridos = await _blogServicio.Posts()
+                    .Publicados()
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(6)
+                    .ToListAsync();
+            }
+
+            return postsSugeridos;
+        }
 
 
     }

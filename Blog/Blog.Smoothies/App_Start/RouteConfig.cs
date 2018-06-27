@@ -7,6 +7,7 @@ namespace Blog.Smoothies
     {
         public const string NombreRutaPorDefecto = "Default";
         public const string NombreRutaBlogPost = "BlogPost";
+        public const string NombreRutaAmigable = "Amigable";
         public const string NombreRutaArchivoPosts = "ArchivoPots";
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -41,6 +42,13 @@ namespace Blog.Smoothies
                 name: NombreRutaPorDefecto,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional }
+            );
+
+
+            routes.MapRoute(
+                name: NombreRutaAmigable,
+                url: "{urlSlug}",
+                defaults: new {controller = "Blog", action = "Detalles"}
             );
         }
     }

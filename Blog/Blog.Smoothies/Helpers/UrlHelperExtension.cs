@@ -7,6 +7,7 @@ namespace Blog.Smoothies.Helpers
     {
         public static string RutaUrlBlogPost(this UrlHelper url, DateTime fechaPost, string urlSlug)
         {
+            //return RutaAmigable(url, urlSlug);
             return url.RouteUrl(RouteConfig.NombreRutaBlogPost,
                 new
                 {
@@ -14,6 +15,14 @@ namespace Blog.Smoothies.Helpers
                     mes = fechaPost.Month,
                     anyo = fechaPost.Year,
                     urlSlug
+                }, url.RequestContext.HttpContext.Request.Url.Scheme);
+        }
+
+        public static string RutaAmigable(this UrlHelper url, string urlSlug)
+        {
+            return url.RouteUrl(RouteConfig.NombreRutaAmigable,
+                new
+                {   urlSlug
                 }, url.RequestContext.HttpContext.Request.Url.Scheme);
         }
 

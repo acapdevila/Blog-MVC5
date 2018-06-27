@@ -333,6 +333,7 @@
     <Content Include="fonts\OpenSans-Bold-webfont.ttf" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara.pubxml" />
+    <Content Include="google69a10687168cf33a.html" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

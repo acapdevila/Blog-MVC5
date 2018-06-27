@@ -16,6 +16,7 @@
         {
         <span class="pull-right">
             @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+            @Html.ActionLink("Eliminar", "Delete", "Posts", new { id = Model.Id }, null) |
             @Html.ActionLink("Volver al listado", "Index", "Posts")
         </span>
         }
@@ -37,6 +38,7 @@
 {
     <p class="small text-uppercase">
         @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
+        @Html.ActionLink("Eliminar", "Delete", "Posts", new { id = Model.Id }, null) |
         @Html.ActionLink("Volver al listado", "Index", "Posts")
     </p>
 }

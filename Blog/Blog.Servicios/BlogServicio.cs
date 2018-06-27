@@ -138,6 +138,12 @@ namespace Blog.Servicios
         }
 
 
+        public async Task<Post> RecuperarPost(string urlSlug)
+        {
+            return await Posts()
+                .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
+        }
+
         public IQueryable<ArchivoItemDto> ConsultaDeArchivoBlog()
         {
             return Posts()
