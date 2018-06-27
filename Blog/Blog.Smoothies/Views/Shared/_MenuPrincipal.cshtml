@@ -6,55 +6,65 @@
 
 <ul class="nav navbar-nav">
     <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
-        <div class="centerer c">
-            @Html.ActionLink("Blog", "Index", "Blog", null, new { @class = "custom-underline-text" })
-        </div>
+            @Html.ActionLink("Blog", "Index", "Blog")
+        
 
     </li>
     
-            @{ Html.RenderAction("Categorias", "Menu"); }
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Categorías
+            <span class="caret"></span>
+        </a>
 
+        @{ Html.RenderAction("Categorias", "Menu"); }
+
+    </li>
 
     @*<li class="@(currentController == "Hola" ? activeClass : string.Empty)">
-        <div class="centerer c">
-            @Html.ActionLink("¡Hola!", "Index", "Hola", null, new { @class = "custom-underline-text" })
-        </div>
-    </li>*@
-
-    @*<li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
-        <div class="centerer c">
-            @Html.ActionLink("Contacto", "Index", "Contacto", null, new { @class = "custom-underline-text" })
-        </div>
-    </li>*@
-
-
-  
-
-    @if (User.Identity.IsAuthenticated)
-    {
-        <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
             <div class="centerer c">
-                @Html.ActionLink("Etiquetas", "Index", "Tags", null, new { @class = "custom-underline-text" })
+                @Html.ActionLink("¡Hola!", "Index", "Hola", null, new { @class = "custom-underline-text" })
             </div>
-        </li>
-        <li class="@(currentController == "Categorias" ? activeClass : string.Empty)">
+        </li>*@
+
+        @*<li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
             <div class="centerer c">
-                @Html.ActionLink("Categorías", "Index", "Categorias", null, new { @class = "custom-underline-text" })
+                @Html.ActionLink("Contacto", "Index", "Contacto", null, new { @class = "custom-underline-text" })
             </div>
-        </li>
-        <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
-            <div class="centerer c">
-                @Html.ActionLink("Posts", "Index", "Posts", null, new { @class = "custom-underline-text" })
-            </div>
-        </li>
-    }
+        </li>*@
+
+
+
 </ul>
 
-<!-- Buscador -->
 
-<div class="buscador-menu">
-    
-    @Html.Partial("_InputBuscador")
 
-  
-</div>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
+                    <div class="centerer c">
+                        @Html.ActionLink("Etiquetas", "Index", "Tags", null, new { @class = "custom-underline-text" })
+                    </div>
+                </li>
+                <li class="@(currentController == "Categorias" ? activeClass : string.Empty)">
+                    <div class="centerer c">
+                        @Html.ActionLink("Categorías", "Index", "Categorias", null, new { @class = "custom-underline-text" })
+                    </div>
+                </li>
+                <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
+                    <div class="centerer c">
+                        @Html.ActionLink("Posts", "Index", "Posts", null, new { @class = "custom-underline-text" })
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+}

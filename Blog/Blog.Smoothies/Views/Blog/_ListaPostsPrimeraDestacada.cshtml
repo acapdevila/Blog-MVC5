@@ -12,10 +12,7 @@
         <h2 class="typo">
             <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
         </h2>
-                <p class="small grey text-uppercase">
-                   @item.FechaPost.ToString("D")
-                </p>
-
+              
                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
                     @Html.Raw(item.Subtitulo)
                     </a>

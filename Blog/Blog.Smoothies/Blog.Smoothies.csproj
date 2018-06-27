@@ -213,7 +213,6 @@
     <Content Include="Content\imagenes\instagram_white.png" />
     <Content Include="Content\imagenes\laura.jpg" />
     <Content Include="Content\imagenes\logo.png" />
-    <Content Include="Content\imagenes\logo2.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
@@ -335,6 +334,7 @@
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara.pubxml" />
     <Content Include="google69a10687168cf33a.html" />
     <Content Include="Icon.png" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />

@@ -13,10 +13,7 @@
                 @*<p class="lead">
                         by @item.Autor
                     </p>*@
-                <p class="small grey text-uppercase">
-                    @item.FechaPost.ToString("D")
-                </p>
-                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
+               <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
                     @Html.Raw(item.Subtitulo)
                 </a>
                 <a class="text-uppercase smallest" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">Leer más</a>

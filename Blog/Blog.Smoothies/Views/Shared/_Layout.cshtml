@@ -1,21 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    @if (Request != null && Request.Url != null && Request.Url.AbsoluteUri.Contains("azurewebsites.net"))
+
+    @if (Request != null && Request.Url != null && (Request.Url.AbsoluteUri.Contains("azurewebsites.net") || Request.Url.AbsoluteUri.Contains("pagina=")))
     {
-        <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
+        <meta name="robots" content="noindex,follow" />
     }
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="p:domain_verify" content="92957699e08a4b05be4fa0e9b0fee111"/>
-    
-    <meta name="description" content="Maquetadora web, pianista y cocinillas. Mamá de Kai y loca de las plantas. Recetas sin gluten y sin azúcar."/>
-    <meta name="keywords" content="paleo,recetas paleo,pan de trigo sarraceno,trigo sarraceno,pilea peperomioides,pilea,smoothies,recetas,batidos,superalimentos,superfoods,desayuno,yogur de leche de coco,leche de coco,sin gluten,sin azúcar,ghee, brownie">
-    
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="p:domain_verify" content="92957699e08a4b05be4fa0e9b0fee111" />
+
+    <meta name="description" content="@(ViewBag.MetaDescripcion ?? "Maquetadora web, pianista y cocinillas. Mamá de Kai y loca de las plantas. Recetas sin gluten y sin azúcar.")" />
+    <meta name="keywords" content="@(ViewBag.MetaPalabrasClave ??"paleo,recetas paleo,pan de trigo sarraceno,trigo sarraceno,pilea peperomioides,pilea,smoothies,recetas,batidos,superalimentos,superfoods,desayuno,yogur de leche de coco,leche de coco,sin gluten,sin azúcar,ghee, brownie")">
+
     <meta name="author" content="Laura García">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "by Laura García" : ViewBag.Title)</title>
-    <meta property="og: site_name" content="http://bylauragarcia.com/"/>
-    <link rel="canonical" href="http://bylauragarcia.com"/>
+    <meta property="og: site_name" content="http://bylauragarcia.com/" />
+    <link rel="canonical" href="http://bylauragarcia.com" />
 
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")

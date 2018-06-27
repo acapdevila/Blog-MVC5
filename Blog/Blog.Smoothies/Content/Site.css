@@ -61,12 +61,13 @@ text-transform: uppercase;
 letter-spacing: 1px;
 }
 
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+}
 /*Buscador menú principal*/
-
 .buscador-menu {
-    margin-top:5px;
     display: inline-block;
-    float:right;
+    margin: 10px 0;
 }
 
 .stylish-input-group .input-group-addon{
