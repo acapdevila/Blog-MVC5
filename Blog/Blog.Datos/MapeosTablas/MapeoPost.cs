@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration;
 using Blog.Modelo;
 using Blog.Modelo.Posts;
 
@@ -9,7 +11,20 @@ namespace Blog.Datos.MapeosTablas
         public MapeoPost()
         {
             ToTable("Post");
-            
+
+            Property(m => m.BlogId)
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("IX_UrlSlug", 1) { IsUnique = true })
+                );
+
+            Property(m => m.UrlSlug)
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(new IndexAttribute("IX_UrlSlug", 2) { IsUnique = true }));
+
+
 
             Property(m => m.Titulo)
                 .IsRequired()

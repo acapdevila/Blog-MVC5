@@ -1,4 +1,5 @@
-﻿@model  Blog.ViewModels.Menu.MenuCategoriasViewModel
+﻿@using Blog.Smoothies.Helpers
+@model  Blog.ViewModels.Menu.MenuCategoriasViewModel
 
 @{
     Layout = null;
@@ -8,7 +9,7 @@
         @foreach (var categoria in Model.Categorias)
         {
             <li>
-                <a href="@Url.Action("Categoria", "Blog", new {id = categoria.UrlSlug})">@categoria.Nombre</a>
+                <a href="@Url.RutaCategoria(categoria.UrlSlug)">@categoria.Nombre</a>
             </li>
         }
 

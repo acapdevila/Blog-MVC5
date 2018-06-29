@@ -1,9 +1,30 @@
 ﻿@using System.Web.Mvc.Html
+@using Blog.Smoothies.Helpers
 @model Blog.ViewModels.Categoria.CategoriaViewModel
 
 @{
     ViewData["Title"] = Model.NombreCategoria;
 }
+
+@section metatags {
+    @if (Model.ListaPosts.HasNextPage)
+    {
+       <link rel="next" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
+    }
+    @if (Model.ListaPosts.HasPreviousPage)
+    {
+         if (Model.ListaPosts.PageNumber == 2)
+         {
+             <link rel="prev" href="@Url.RutaCategoria(Model.Id)" />
+         }
+         else
+         {
+             <link rel="prev" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
+         }
+
+    }
+}
+
 <br />
 <div class="row">
     <!-- Blog Entries Column -->
@@ -24,13 +45,21 @@
             @if (Model.ListaPosts.HasNextPage)
             {
                 <li class="previous">
-                    <a href="@Url.Action("Categoria", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber + 1})">&larr; Entradas más antiguas</a>
+                    <a href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)">&larr; Entradas más antiguas</a>
                 </li>
             }
             @if (Model.ListaPosts.HasPreviousPage)
             {
                 <li class="next">
-                    <a href="@Url.Action("Categoria", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                    @if (Model.ListaPosts.PageNumber == 2)
+                    {
+                        <a href="@Url.RutaCategoria(Model.Id)">Entradas más recientes &rarr;</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)">Entradas más recientes &rarr;</a>
+                    }
+
                 </li>
             }
         </ul>
@@ -39,3 +68,4 @@
     @Html.Partial("_SidebarPrincipal")
 
 </div>
+

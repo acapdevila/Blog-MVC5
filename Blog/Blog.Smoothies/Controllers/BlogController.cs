@@ -66,37 +66,11 @@ namespace Blog.Smoothies.Controllers
 
 
 
-        public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
+        public ActionResult Detalles(string dia, string mes, string anyo, string urlSlug)
         {
-            if (string.IsNullOrEmpty(urlSlug))
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var fechaPost = GenerarFecha(dia, mes, anyo);
-
-            if(fechaPost == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
-            Post post = await _blogServicio.RecuperarPost(fechaPost.Value, urlSlug);
-
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-
-            var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
-
-            
-            var viewModel = new DetallesPostBlogViewModel
-            {
-                Post = post,
-                PostsSugeridos = postsSugeridos
-            };
-
-         
-            return View(viewModel);
+            return RedirectPermanent(@"/" + urlSlug);
         }
-
-   
+        
         public async Task<ActionResult> DetallesAmigable(string urlSlug)
         {
             Post post = await _blogServicio.RecuperarPost(urlSlug);
@@ -156,25 +130,33 @@ namespace Blog.Smoothies.Controllers
             return View(viewModel);
         }
 
-        public async Task<ActionResult> Categoria(string id, int pagina = 1)
+        public ActionResult Categoria(string id, int pagina = 1)
         {
-            var categoria = await RecuperarCategoria(id);
+            if(1 < pagina)
+                return RedirectPermanent(@"/" + id + @"?pagina=" + 1);
+
+            return RedirectPermanent(@"/" + id);
+
+        }
+
+        public async Task<ActionResult> CategoriaAmigable(string urlCategoria, int pagina = 1)
+        {
+            var categoria = await RecuperarCategoria(urlCategoria);
 
             if (categoria == null) return HttpNotFound();
 
             var viewModel = new CategoriaViewModel
             {
-                Id = id,
+                Id = urlCategoria,
                 NombreCategoria = categoria.Nombre,
                 ListaPosts = categoria.Posts.AsQueryable()
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)
                     .ToPagedList(pagina, NumeroItemsPorPagina)
             };
+            
 
-
-
-            return View(viewModel);
+            return View("Categoria", viewModel);
         }
 
 

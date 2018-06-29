@@ -1,5 +1,26 @@
 ﻿@model Blog.ViewModels.Blog.ListaPostsBlogCompletosViewModel
 
+
+@section metatags {
+    @if (Model.ListaPosts.HasNextPage)
+    {
+        <link rel="next" href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber + 1})" />
+    }
+    @if (Model.ListaPosts.HasPreviousPage)
+    {
+        if (Model.ListaPosts.PageNumber == 2)
+        {
+            <link rel="prev" href="@Url.Action("Index")" />
+        }
+        else
+        {
+            <link rel="prev" href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber - 1})" />
+        }
+
+    }
+}
+
+
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <br/>
@@ -22,7 +43,18 @@
             @if (Model.ListaPosts.HasPreviousPage)
             {
                 <li class="next">
-                    <a href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                    
+                    @if (Model.ListaPosts.PageNumber == 2)
+                    {
+                        <a href="@Url.Action("Index")">Entradas más recientes &rarr;</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                    }
+                    
+
+                   
                 </li>
             }
         </ul>
