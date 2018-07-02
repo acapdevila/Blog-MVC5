@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
@@ -77,9 +78,17 @@ namespace Blog.Smoothies.Controllers
                 EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Laura García")
             };
 
-            viewModel.EditorPost.PostContenidoHtml = @"
-                                <p>
-                                <span itemprop='totalTime' class='small color1'>10 minutos</span> · 
+            viewModel.EditorPost.PostContenidoHtml = ObtenerContenidoHtmlPorDefecto();
+            viewModel.EditorPost.DatosEstructurados = ObtenerDatosEstructucturadosPorDefecto();
+            
+            return View(viewModel);
+        }
+
+        private string ObtenerContenidoHtmlPorDefecto()
+        {
+            return @"
+                               <p>
+                                <span itemprop=totalTime' class='small color1'>10 minutos</span> · 
                                 <span itemprop='recipeYield' class='small color1'>1 persona</span>
                                 </p>
                                  <strong>Base:</strong>
@@ -100,10 +109,39 @@ namespace Blog.Smoothies.Controllers
                                     <li itemprop='ingredients'></li>
                                     <li itemprop='ingredients'></li>
                                     </ul>";
-
-            return View(viewModel);
         }
-        
+
+        private string ObtenerDatosEstructucturadosPorDefecto()
+        {
+            return @"<script type=""application / ld + json"">
+                    {
+                        ""@context"": ""http://schema.org"",
+                        ""@type"": ""Article"",
+                        ""headline"": ""Max110Palabras"",
+                        ""image"": [
+                            ""https://storagequedat.blob.core.windows.net/contenedorblog/XXXXXXXXXXXX""
+                            ],
+                        ""datePublished"": ""2018-02-25T08:00:00+02:00"",
+                        ""author"": {
+                            ""@type"": ""Person"",
+                            ""name"": ""Laura García""
+                        },
+                        ""publisher"": {
+                        ""@type"": ""Organization"",
+                        ""name"": ""by Laura García"",
+                        ""logo"": {
+                            ""@type"": ""ImageObject"",
+                            ""url"": ""https://bylauragarcia.com/content/imagenes/logo.png""
+                            }
+                        },
+                        ""description"": ""UnArtículoMaravilloso""
+                    }
+                </script>
+                ";
+
+        }
+
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

@@ -1,4 +1,5 @@
-﻿using Blog.Modelo.Categorias;
+﻿using System;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
 using Omu.ValueInjecter;
 
@@ -21,7 +22,7 @@ namespace Blog.ViewModels.Post.Conversores
             post.InjectFrom(editorPost);
             asignadorTags.AsignarTags(post, editorPost.ListaTags);
             asignadorCategorias.AsignarCategorias(post, editorPost.ListaCategorias);
-
+            post.FechaModificacion = DateTime.Now;
         }
 
     }

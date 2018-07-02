@@ -1,7 +1,7 @@
 ﻿@model Blog.ViewModels.Blog.ListaPostsBlogCompletosViewModel
 
 
-@section metatags {
+@section linksnextprev {
     @if (Model.ListaPosts.HasNextPage)
     {
         <link rel="next" href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber + 1})" />

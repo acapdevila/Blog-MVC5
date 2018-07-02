@@ -6,21 +6,21 @@
     ViewData["Title"] = Model.NombreCategoria;
 }
 
-@section metatags {
+@section linksnextprev {
     @if (Model.ListaPosts.HasNextPage)
     {
-       <link rel="next" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
+        <link rel="next" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
     }
     @if (Model.ListaPosts.HasPreviousPage)
     {
-         if (Model.ListaPosts.PageNumber == 2)
-         {
-             <link rel="prev" href="@Url.RutaCategoria(Model.Id)" />
-         }
-         else
-         {
-             <link rel="prev" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
-         }
+        if (Model.ListaPosts.PageNumber == 2)
+        {
+            <link rel="prev" href="@Url.RutaCategoria(Model.Id)" />
+        }
+        else
+        {
+            <link rel="prev" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
+        }
 
     }
 }

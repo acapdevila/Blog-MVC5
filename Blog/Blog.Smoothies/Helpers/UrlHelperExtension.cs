@@ -56,7 +56,7 @@ namespace Blog.Smoothies.Helpers
 
         public static string RutaUrlBase(this UrlHelper url)
         {
-            return url.RouteUrl("Default",
+            return url.RouteUrl(RouteConfig.NombreRutaMvc,
                 null, url.RequestContext.HttpContext.Request.Url.Scheme);
         }
     }

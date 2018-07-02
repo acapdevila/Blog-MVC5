@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
@@ -20,14 +18,14 @@ namespace Blog.Smoothies.RutasAmigables
         }
 
 
-        public IQueryable<Post> Posts()
+        private IQueryable<Post> Posts()
         {
             return _db.Posts
                 .Where(m => m.Blog.Titulo == _tituloBlog);
 
         }
 
-        public IQueryable<Categoria> Categorias()
+        private IQueryable<Categoria> Categorias()
         {
             return _db.Categorias
                 .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
@@ -42,6 +40,36 @@ namespace Blog.Smoothies.RutasAmigables
         public bool ExisteCategoria(string urlCategoria)
         {
             return Categorias().Any(m => m.UrlSlug.ToLower() == urlCategoria);
+        }
+
+        public List<RutaDto> BuscarRutasDePosts()
+        {
+            return 
+                Posts()
+                    .Publicados()
+                    .Where(m => m.UrlSlug != null && m.UrlSlug != "")
+                    .OrdenadosPorFecha()
+                        .Select(m => new RutaDto
+                    {
+                        UrlSlug =  m.UrlSlug,
+                        FechaPublicacion = m.FechaPublicacion
+                    })
+                    .ToList();
+        }
+
+        public List<RutaDto> BuscarRutasDeCategorias()
+        {
+            return
+                Categorias()
+                    .ConPostsPublicados()
+                    .Where(m=>m.UrlSlug != null && m.UrlSlug != "")
+                    .OrderBy(m=>m.UrlSlug)
+                    .Select(m => new RutaDto
+                    {
+                        UrlSlug = m.UrlSlug,
+                        FechaPublicacion = m.Posts.OrderByDescending(p=>p.FechaPublicacion).FirstOrDefault().FechaPublicacion
+                    })
+                    .ToList();
         }
     }
 }

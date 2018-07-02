@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Blog.Datos;
-using Blog.Smoothies.Controllers;
 using Blog.Smoothies.RutasAmigables;
 
 namespace Blog.Smoothies
@@ -13,23 +8,35 @@ namespace Blog.Smoothies
 
     public class RouteConfig
     {
-        public const string NombreRutaPorDefecto = "Default";
-        public const string NombreRutaBlogPost = "BlogPost";
-        public const string NombreRutaAmigable = "Amigable";
-        public const string NombreRutaCategoriaAmigable = "CategoriaAmigable";
-        public const string NombreRutaArchivoPosts = "ArchivoPots";
+        public const string NombreRutaMvc = "RutaMvc";
+        public const string NombreRutaPostConFecha = "RutaPostConFecha";
+        public const string NombreRutaAmigable = "RutaAmigable";
+        public const string NombreRutaCategoriaAmigable = "RutaCategoriaAmigable";
+        public const string NombreRutaArchivoPosts = "RutaArchivoPots";
+        public const string NombreRutaSitemap = "RutaSitemapXml";
         
         public static void RegisterRoutes(RouteCollection routes)
         {
+            // Improve SEO by stopping duplicate URL's due to case differences or trailing slashes.
+            // See http://googlewebmastercentral.blogspot.co.uk/2010/04/to-slash-or-not-to-slash.html
+            routes.AppendTrailingSlash = true;
+            routes.LowercaseUrls = true;
+
+            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("humans.txt");
 
 
-           
-            var controllerConstraint = 
-
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
-              name: NombreRutaBlogPost,
+                name: NombreRutaSitemap,
+                url: "sitemapxml",
+                defaults: new { controller = "Sitemap", action = "Xml"}
+            );
+
+            routes.MapRoute(
+              name: NombreRutaPostConFecha,
               url: "{dia}/{mes}/{anyo}/{urlSlug}",
               defaults: new { controller = "Blog", action = "Detalles" },
                  constraints: new
@@ -67,13 +74,13 @@ namespace Blog.Smoothies
 
 
             routes.MapRoute(
-                name: NombreRutaPorDefecto,
+                name: NombreRutaMvc,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                     {
                         controller = "Account|Blog|Blogs|Categorias|Contacto|Error|Hola|Imagenes|Manage|Menu|Posts|Principal|Rss|Sidebar|Tags"
-                    }
+                }
             );
 
 
@@ -81,7 +88,7 @@ namespace Blog.Smoothies
             routes.MapRoute(
                 name: "RutaNoEncontrada",
                 url: "{*restoderutas}",
-                defaults: new { controller = "Error", action = "NotFound"}
+                defaults: new { controller = "Error", action = "NotFound" }
             );
 
 

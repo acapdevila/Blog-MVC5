@@ -29,6 +29,16 @@ namespace Blog.ViewModels.Post
         [StringLength(128, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         public string Titulo { get; set; }
 
+
+        [Display(Name = "Descripción")]
+        [Required(ErrorMessage = "Escribe una descripción")]
+        [StringLength(128, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        public string Descripcion { get; set; }
+
+        [Display(Name = "Url imagen principal de la página")]
+        [Required(ErrorMessage = "Escribe la url de la imagen principal")]
+        public string UrlImagenPrincipal { get; set; }
+
         [Display(Name = "Url del post")]
         [Required(ErrorMessage = "Escribe una url")]
         [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
@@ -63,7 +73,14 @@ namespace Blog.ViewModels.Post
 
         [Required]
         public string Autor { get; set; }
-        
+
+        [AllowHtml]
+        [Display(Name = "Datos estructurados")]
+        [Required(ErrorMessage = "Introduce los datos estructurados")]
+        public string DatosEstructurados { get; set; }
+
+
+        [Display(Name = "Etiquetas / palabras clave")]
         public string Tags { get; set; }
 
         public string Categorias { get; set; }

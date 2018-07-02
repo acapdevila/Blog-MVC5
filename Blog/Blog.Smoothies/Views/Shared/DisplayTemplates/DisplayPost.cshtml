@@ -1,8 +1,17 @@
 ﻿@model Blog.Modelo.Posts.Post
 
-        <!-- Blog Post -->
+@{
+    ViewBag.Title = Model.Titulo;
+    ViewBag.MetaDescripcion = Model.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.UrlImagenPrincipal;
+}
+
+
+
+<!-- Blog Post -->
         <!-- Title -->
-        <h2 itemprop="name">@Html.DisplayFor(model => model.Titulo)</h2>
+        <h2>@Html.DisplayFor(model => model.Titulo)</h2>
         <!-- Author -->
         @*<p class="lead">
             by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
@@ -42,6 +51,6 @@
     </p>
 }
 <br />
-    @Html.Partial("_SyntaxHightLighter")
+ 
 
 
