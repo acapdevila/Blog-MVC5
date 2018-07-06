@@ -1,38 +1,42 @@
-﻿@using Blog.Smoothies.Helpers
-
+﻿
 @model Blog.ViewModels.Blog.DetallesPostBlogViewModel
 
 @{
     ViewBag.Title = Model.Post.Titulo;
- }
-<meta itemprop="url" content="@Url.RutaUrlBlogPost(Model.Post.FechaPost,Model.Post.UrlSlug)" />
-        <br />
-        <div class="row">
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
-                <!-- Blog Post -->
-                <div itemscope itemtype="http://schema.org/Recipe">
-                    @Html.DisplayFor(m => m.Post, "DisplayPost")
-                </div>
-                
-                <div>
-                    @foreach (var item in Model.PostsSugeridos)
-                    {
-                        @Html.Partial("_ItemLineaResumenPost", item)
-                    }
-                    
-                </div>
-                
-                <div class="clearfix"></div>
-                
+    ViewBag.MetaDescripcion = Model.Post.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Post.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Post.UrlImagenPrincipal;
+}
 
-                <!-- Blog Comments -->
-                    <div class="well">
-                        @Html.Partial("_Disqus", Model.Post)
-                    </div>
-                </div>
 
-            @Html.Partial("_SidebarPrincipal")
+
+<br />
+<div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8">
+        <!-- Blog Post -->
+        <div>
+            @Html.DisplayFor(m => m.Post, "DisplayPost")
+        </div>
+
+        <div>
+            @foreach (var item in Model.PostsSugeridos)
+            {
+                @Html.Partial("_ItemLineaResumenPost", item)
+            }
 
         </div>
-        <!-- /.row -->
+
+        <div class="clearfix"></div>
+
+
+        <!-- Blog Comments -->
+        <div class="well">
+            @Html.Partial("_Disqus", Model.Post)
+        </div>
+    </div>
+
+    @Html.Partial("_SidebarPrincipal")
+
+</div>
+<!-- /.row -->

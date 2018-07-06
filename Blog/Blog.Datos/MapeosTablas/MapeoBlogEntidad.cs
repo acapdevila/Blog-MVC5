@@ -32,7 +32,19 @@ namespace Blog.Datos.MapeosTablas
                 .IsRequired()
                .HasMaxLength(64);
 
-            
+            Property(m => m.Descripcion)
+                .HasMaxLength(512)
+                .HasColumnType("varchar");
+
+            Property(m => m.PalabrasClave)
+                .HasMaxLength(256)
+                .HasColumnType("varchar");
+
+            Property(m => m.UrlImagenPrincipal)
+                .HasMaxLength(512)
+                .HasColumnType("varchar");
+
+
             //HasMany(m => m.Tags)
             //   .WithMany(m => m.Posts)
             //   .Map(m =>

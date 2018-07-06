@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
 
@@ -35,6 +34,8 @@ namespace Blog.Modelo.Posts
 
         public string Descripcion { get; set; }
 
+        public string PalabrasClave { get; set; }
+
         public string UrlImagenPrincipal { get; set; }
 
         public string UrlSlug { get; set; }
@@ -50,17 +51,6 @@ namespace Blog.Modelo.Posts
 
         public string Autor { get; set; }
         
-        public string DatosEstructurados { get; set; }
-
-        public string PalabrasClave
-        {
-            get
-            {
-                if (!Tags.Any()) return null;
-                return string.Join(",", Tags);
-            }
-        }
-
         public BlogEntidad Blog { get; set; }
         public ICollection<Tag> Tags { get; set; }
 
@@ -70,6 +60,10 @@ namespace Blog.Modelo.Posts
         {
             get { return !EsBorrador && FechaPublicacion <= DateTime.Now;}
         }
-    
-     }
+
+        public bool EsMostrarDatosEstructurados
+        {
+            get { return !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion); }
+        }
+    }
 }

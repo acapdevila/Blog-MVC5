@@ -63,6 +63,11 @@
                         @Html.ActionLink("Posts", "Index", "Posts", null, new { @class = "custom-underline-text" })
                     </div>
                 </li>
+                <li class="@(currentController == "Blogs" ? activeClass : string.Empty)">
+                    <div class="centerer c">
+                        @Html.ActionLink("Página principal", "EditarPaginaPrincipal", "Blogs", null, new { @class = "custom-underline-text" })
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

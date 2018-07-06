@@ -79,7 +79,6 @@ namespace Blog.Smoothies.Controllers
             };
 
             viewModel.EditorPost.PostContenidoHtml = ObtenerContenidoHtmlPorDefecto();
-            viewModel.EditorPost.DatosEstructurados = ObtenerDatosEstructucturadosPorDefecto();
             
             return View(viewModel);
         }
@@ -222,7 +221,10 @@ namespace Blog.Smoothies.Controllers
             }
             return View(post);
         }
-        
+
+
+ 
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

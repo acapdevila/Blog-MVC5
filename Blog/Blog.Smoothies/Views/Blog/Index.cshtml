@@ -1,6 +1,14 @@
 ﻿@model Blog.ViewModels.Blog.ListaPostsBlogCompletosViewModel
 
 
+@{
+    ViewBag.Title = Model.Blog.Titulo;
+    ViewBag.MetaDescripcion = Model.Blog.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Blog.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Blog.UrlImagenPrincipal ?? "https://bylauragarcía/content/imagenes/logo.png";
+}
+
+
 @section linksnextprev {
     @if (Model.ListaPosts.HasNextPage)
     {
@@ -20,13 +28,28 @@
     }
 }
 
+@section head
+{
+    <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
 
-<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<br/>
+
+<br />
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
+
+
+        @if (!string.IsNullOrEmpty(Model.Blog.Descripcion))
+        {
+            <div>
+                @Html.DisplayFor(m => m.Blog, "DisplayBlog")
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+        }
+
         <!-- First Blog Post -->
         @Html.Partial("_ListaPostsPrimeraDestacada", Model.ListaPosts)
 
@@ -43,7 +66,7 @@
             @if (Model.ListaPosts.HasPreviousPage)
             {
                 <li class="next">
-                    
+
                     @if (Model.ListaPosts.PageNumber == 2)
                     {
                         <a href="@Url.Action("Index")">Entradas más recientes &rarr;</a>
@@ -52,9 +75,9 @@
                     {
                         <a href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
                     }
-                    
 
-                   
+
+
                 </li>
             }
         </ul>
@@ -63,7 +86,7 @@
 
     </div>
     @Html.Partial("_SidebarPrincipal")
-   
+
 </div>@*
       LightWidget WIDGET INSTAGRAM
     <hr />

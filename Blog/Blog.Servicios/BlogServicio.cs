@@ -144,6 +144,12 @@ namespace Blog.Servicios
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }
 
+        public async Task<BlogEntidad> RecuperarBlog()
+        {
+            return await _db.Blogs
+                .FirstOrDefaultAsync(m => m.Titulo == _tituloBlog);
+        }
+
         public IQueryable<ArchivoItemDto> ConsultaDeArchivoBlog()
         {
             return Posts()

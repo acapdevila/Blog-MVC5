@@ -47,7 +47,26 @@ namespace Blog.Smoothies.Controllers
             }
             return View(blog);
         }
-        
+
+        public async Task<ActionResult> EditarPaginaPrincipal()
+        {
+            var blog = await _blogServicio.RecuperarBlogPorTitulo(BlogController.TituloBlog);
+            if (blog == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new EditBlogViewModel
+            {
+                EditorBlog = new EditorBlog()
+            };
+
+            viewModel.EditorBlog.CopiaValores(blog);
+
+            return View("Edit", viewModel);
+        }
+
+
         public ActionResult Create()
         {
             var post = BlogEntidad.CrearNuevoPorDefecto();
@@ -114,7 +133,7 @@ namespace Blog.Smoothies.Controllers
             {
                 await ActualizarBlog(viewModel.EditorBlog);
               
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Blog");
             }
             return View(viewModel);
         }

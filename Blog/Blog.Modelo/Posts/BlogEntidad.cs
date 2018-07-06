@@ -20,7 +20,11 @@ namespace Blog.Modelo.Posts
         public string ContenidoHtml { get; set; }
         public string Autor { get; set; }
 
-       // public virtual ICollection<Post> Posts { get; set; }
+
+        public string Descripcion { get; set; }
+        public string PalabrasClave { get; set; }
+        public string UrlImagenPrincipal { get; set; }
+        
 
         public static BlogEntidad CrearNuevoPorDefecto()
         {

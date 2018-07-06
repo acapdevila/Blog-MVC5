@@ -40,6 +40,12 @@ namespace Blog.Servicios
                         .FirstOrDefaultAsync(m => m.Id == id);
         }
 
+        public async Task<BlogEntidad> RecuperarBlogPorTitulo(string titulo)
+        {
+            return await _db.Blogs
+                .FirstOrDefaultAsync(m => m.Titulo.ToLower() == titulo.ToLower());
+        }
+
         public async Task CrearBlog(EditorBlog editorBlog)
         {
             var post = BlogEntidad.CrearNuevoPorDefecto();

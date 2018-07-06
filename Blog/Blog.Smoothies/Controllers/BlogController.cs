@@ -38,11 +38,9 @@ namespace Blog.Smoothies.Controllers
         private const int NumeroItemsPorPagina = 11;
 
 
-
-
-        public ActionResult Index(int? pagina)
+        public async Task<ActionResult> Index(int? pagina)
         {
-            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
+            var viewModel = await ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
             return View(viewModel);
         }
 
@@ -160,6 +158,8 @@ namespace Blog.Smoothies.Controllers
         }
 
 
+       
+
         public async Task<ActionResult> Archivo(int anyo, int mes)
         {
             var archivo = await RecuperarArchivoBlog(anyo, mes);
@@ -198,10 +198,11 @@ namespace Blog.Smoothies.Controllers
                         .FirstOrDefaultAsync(m=>m.Anyo == anyo && m.Mes == mes);
         }
 
-        private ListaPostsBlogCompletosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
             return new ListaPostsBlogCompletosViewModel
             {
+                Blog = await _blogServicio.RecuperarBlog(),
                 ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
             };
         }

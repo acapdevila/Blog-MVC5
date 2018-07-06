@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using Blog.Modelo;
 using Blog.Modelo.Posts;
 
 namespace Blog.Datos.MapeosTablas
@@ -30,6 +29,18 @@ namespace Blog.Datos.MapeosTablas
                 .IsRequired()
              .HasMaxLength(128)
              .HasColumnType("varchar");
+
+            Property(m => m.Descripcion)
+                .HasMaxLength(512)
+                .HasColumnType("varchar");
+
+            Property(m => m.PalabrasClave)
+                .HasMaxLength(256)
+                .HasColumnType("varchar");
+
+            Property(m => m.UrlImagenPrincipal)
+                .HasMaxLength(512)
+                .HasColumnType("varchar");
 
             Property(m => m.Subtitulo)
                 .HasColumnType("varchar");
