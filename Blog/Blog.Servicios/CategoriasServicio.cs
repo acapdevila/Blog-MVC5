@@ -76,8 +76,7 @@ namespace Blog.Servicios
         public async Task CrearCategoria(CategoriaDto categoriaDto)
         {
             var categoria = new Categoria();
-            categoria.CambiarNombre(categoria.Nombre);
-            categoria.CambiarUrlSlug(categoria.UrlSlug);
+            categoria.CopiarValores(categoriaDto);
             _db.Categorias.Add(categoria);
             await _db.SaveChangesAsync();
             categoriaDto.Id = categoriaDto.Id;
@@ -86,10 +85,11 @@ namespace Blog.Servicios
         public async Task ActualizarCategoria(CategoriaDto categoriaDto)
         {
             var categoria = await RecuperarCategoriaPorId(categoriaDto.Id);
-            categoria.CambiarNombre(categoriaDto.Nombre);
-            categoria.CambiarUrlSlug(categoriaDto.UrlSlug);
+            categoria.CopiarValores(categoriaDto);
             await _db.SaveChangesAsync();
         }
+
+     
 
         public async Task EliminarCategoria(int id)
         {

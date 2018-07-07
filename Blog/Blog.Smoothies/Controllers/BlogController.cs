@@ -145,8 +145,7 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new CategoriaViewModel
             {
-                Id = urlCategoria,
-                NombreCategoria = categoria.Nombre,
+                Categoria = categoria,
                 ListaPosts = categoria.Posts.AsQueryable()
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)

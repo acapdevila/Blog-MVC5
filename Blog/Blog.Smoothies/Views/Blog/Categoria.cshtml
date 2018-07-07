@@ -2,25 +2,52 @@
 @using Blog.Smoothies.Helpers
 @model Blog.ViewModels.Categoria.CategoriaViewModel
 
+
 @{
-    ViewData["Title"] = Model.NombreCategoria;
-    ViewBag.ImagenPrincipal = "https://bylauragarcía/content/imagenes/logo.png";
+    ViewData["Title"] = Model.Categoria.Nombre;
+    ViewBag.Title = Model.Categoria.Nombre;
+    ViewBag.MetaDescripcion = Model.Categoria.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Categoria.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Categoria.UrlImagenPrincipal ?? "https://bylauragarcía/content/imagenes/logo.png";
 }
+
+@if (Model.Categoria.EsMostrarDatosEstructurados)
+{
+@section head
+{
+    <script type="application/ld+json">
+             {
+                    "@@context": "http://schema.org",
+                    "@@type": "Article",
+                    "headline": "@Model.Categoria.Nombre",
+                    "image": ["@Model.Categoria.UrlImagenPrincipal"],
+                    "datePublished": "@Model.Categoria.FechaPublicacion.Value.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
+                    "author": { "@@type": "Person", "name": "Laura García" },
+                    "publisher": { "@@type": "Organization", "name": "by Laura García", 
+                            "logo": { "@@type": "ImageObject", "url": "https://bylauragarcia.com/content/imagenes/logo.png"}},
+                    "description": "@Model.Categoria.Descripcion"
+             }
+            </script>
+}
+}
+
+
+
 
 @section linksnextprev {
     @if (Model.ListaPosts.HasNextPage)
     {
-        <link rel="next" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
+        <link rel="next" href="@Url.RutaCategoria(Model.Categoria.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
     }
     @if (Model.ListaPosts.HasPreviousPage)
     {
         if (Model.ListaPosts.PageNumber == 2)
         {
-            <link rel="prev" href="@Url.RutaCategoria(Model.Id)" />
+            <link rel="prev" href="@Url.RutaCategoria(Model.Categoria.UrlSlug)" />
         }
         else
         {
-            <link rel="prev" href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
+            <link rel="prev" href="@Url.RutaCategoria(Model.Categoria.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
         }
 
     }
@@ -32,9 +59,19 @@
     <div class="col-md-8">
 
         <h2 class="page-header">
-            Categoría: @Model.NombreCategoria
+            @Model.Categoria.Nombre
             @*<small>Secondary Text</small>*@
         </h2>
+
+        @if (!string.IsNullOrEmpty(Model.Categoria.Descripcion))
+        {
+            <div>
+                @Html.DisplayFor(m => m.Categoria, "DisplayCategoria")
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+        }
+        
 
         <!-- First Blog Post -->
         @Html.Partial("_ListaPostsCategoria", Model.ListaPosts.ToList())
@@ -46,7 +83,7 @@
             @if (Model.ListaPosts.HasNextPage)
             {
                 <li class="previous">
-                    <a href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber + 1)">&larr; Entradas más antiguas</a>
+                    <a href="@Url.RutaCategoria(Model.Categoria.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber + 1)">&larr; Entradas más antiguas</a>
                 </li>
             }
             @if (Model.ListaPosts.HasPreviousPage)
@@ -54,11 +91,11 @@
                 <li class="next">
                     @if (Model.ListaPosts.PageNumber == 2)
                     {
-                        <a href="@Url.RutaCategoria(Model.Id)">Entradas más recientes &rarr;</a>
+                        <a href="@Url.RutaCategoria(Model.Categoria.UrlSlug)">Entradas más recientes &rarr;</a>
                     }
                     else
                     {
-                        <a href="@Url.RutaCategoria(Model.Id)?pagina=@(Model.ListaPosts.PageNumber - 1)">Entradas más recientes &rarr;</a>
+                        <a href="@Url.RutaCategoria(Model.Categoria.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber - 1)">Entradas más recientes &rarr;</a>
                     }
 
                 </li>

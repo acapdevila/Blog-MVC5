@@ -884,9 +884,11 @@
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_AceptarCookies.cshtml" />
+    <Content Include="Views\Categorias\EditorTemplates\EditorCategoria.cshtml" />
     <None Include="Views\Error\InternalError.cshtml" />
     <None Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayBlog.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

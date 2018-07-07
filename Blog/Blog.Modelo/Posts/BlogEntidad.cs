@@ -21,6 +21,7 @@ namespace Blog.Modelo.Posts
         public string Autor { get; set; }
 
 
+
         public string Descripcion { get; set; }
         public string PalabrasClave { get; set; }
         public string UrlImagenPrincipal { get; set; }

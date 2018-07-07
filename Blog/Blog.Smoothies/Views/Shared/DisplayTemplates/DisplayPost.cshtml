@@ -1,25 +1,7 @@
 ﻿@model Blog.Modelo.Posts.Post
 
 
-@if (Model.EsMostrarDatosEstructurados)
-{
-    @section head
-    {
-        <script type="application/ld+json">
-         {
-                "@@context": "http://schema.org",
-                "@@type": "Article",
-                "headline": "@Model.Titulo",
-                "image": ["@Model.UrlImagenPrincipal"],
-                "datePublished": "@Model.FechaPublicacion.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
-                "author": { "@@type": "Person", "name": "@(Model.Autor ?? "Laura García")" },
-                "publisher": { "@@type": "Organization", "name": "by Laura García", 
-                        "logo": { "@@type": "ImageObject", "url": "https://bylauragarcia.com/content/imagenes/logo.png"}},
-                "description": "@Model.Descripcion"
-         }
-        </script>
-    }
-}
+
 
 <!-- Blog Post -->
 <!-- Title -->

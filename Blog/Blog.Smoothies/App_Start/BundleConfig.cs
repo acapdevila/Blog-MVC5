@@ -30,6 +30,7 @@ namespace Blog.Smoothies
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/PagedList.css",
                       "~/Content/site.css"
                       ));
 
