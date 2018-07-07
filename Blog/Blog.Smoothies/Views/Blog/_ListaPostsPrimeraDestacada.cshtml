@@ -9,9 +9,9 @@
     {
         Blog.Modelo.Posts.LineaPostCompleto item = Model.First();
 
-        <h2 class="typo">
+        <h1 class="typo">
             <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
-        </h2>
+        </h1>
               
                 <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
                     @Html.Raw(item.Subtitulo)
