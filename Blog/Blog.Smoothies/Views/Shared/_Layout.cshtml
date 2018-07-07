@@ -4,7 +4,14 @@
 
     @if (Request != null && Request.Url != null && (Request.Url.AbsoluteUri.Contains("azurewebsites.net")
                                                     || Request.Url.AbsoluteUri.Contains("pagina=")
-                                                    || Request.Url.AbsoluteUri.Contains(@"/Archivo/")))
+                                                    || Request.Url.AbsoluteUri.Contains(@"/archivo/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/posts/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/categorias/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/blogs/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/account/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/manage/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/tags/")
+                ))
     {
         <meta name="robots" content="noindex,follow" />
     }
