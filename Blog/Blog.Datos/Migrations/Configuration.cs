@@ -10,7 +10,7 @@ namespace Blog.Datos.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(Blog.Datos.ContextoBaseDatos context)
