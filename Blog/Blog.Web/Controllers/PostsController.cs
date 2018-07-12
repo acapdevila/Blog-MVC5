@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Net;
+using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
@@ -133,8 +134,20 @@ namespace Blog.Web.Controllers
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
+                return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
             }
-            return Content(string.Empty);
+
+            var sb = new StringBuilder();
+            foreach (ModelState modelState in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in modelState.Errors)
+                {
+                    sb.AppendLine(error.ErrorMessage);
+                }
+            }
+
+            return Json(new { esOk = false, textoRespuesta = sb.ToString() }, JsonRequestBehavior.AllowGet);
+
         }
 
         public async Task<ActionResult> Delete(int? id)
