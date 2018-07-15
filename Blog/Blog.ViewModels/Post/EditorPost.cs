@@ -87,6 +87,6 @@ namespace Blog.ViewModels.Post
 
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
 
-        public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(ExtensionesCategoria.SeparadorCategorias).ToList();
+        public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(new[] { ExtensionesCategoria.SeparadorCategorias }, StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 }

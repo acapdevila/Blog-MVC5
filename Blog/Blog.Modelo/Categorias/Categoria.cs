@@ -83,7 +83,7 @@ namespace Blog.Modelo.Categorias
 
         public static string CategoriasSeparadasPorComma(this ICollection<Categoria> categorias)
         {
-            return categorias.Any() ? string.Join(SeparadorCategorias + " ", categorias.Select(m => m.Nombre)) : string.Empty;
+            return categorias.Any() ? string.Join(SeparadorCategorias + " ", categorias.Where(m => !string.IsNullOrEmpty(m.Nombre)).Select(m => m.Nombre)) : string.Empty;
         }
     }
 }
