@@ -83,7 +83,10 @@ namespace Blog.Web.Controllers
               
                 if(boton.ToLower().Contains(@"salir"))
                 return RedirectToAction("Index");
-                
+
+                if (boton.ToLower().Contains(@"ver"))
+                    return RedirectToAction("Details", new { id = viewModel.EditorPost.Id });
+
                 return RedirectToAction("Edit", new { viewModel.EditorPost.Id });
             }
 
@@ -122,8 +125,8 @@ namespace Blog.Web.Controllers
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
-              
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Details", new { id = viewModel.EditorPost.Id });
             }
             return View(viewModel);
         }
