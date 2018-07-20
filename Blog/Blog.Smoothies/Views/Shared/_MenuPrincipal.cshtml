@@ -6,35 +6,30 @@
 
 <ul class="nav navbar-nav">
     <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
-            @Html.ActionLink("Blog", "Index", "Blog")
-        
+            @Html.ActionLink("Blog", "Index", "Blog")        
 
     </li>
+
     
+        
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Categorías
             <span class="caret"></span>
         </a>
-
         @{ Html.RenderAction("Categorias", "Menu"); }
 
     </li>
 
-    @*<li class="@(currentController == "Hola" ? activeClass : string.Empty)">
-            <div class="centerer c">
-                @Html.ActionLink("¡Hola!", "Index", "Hola", null, new { @class = "custom-underline-text" })
-            </div>
-        </li>*@
+    @*<li class="@(currentController == "Utensilios" ? activeClass : string.Empty)">
+        @Html.ActionLink("Utensilios", "Index", "Utensilios")
 
-        @*<li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
-            <div class="centerer c">
-                @Html.ActionLink("Contacto", "Index", "Contacto", null, new { @class = "custom-underline-text" })
-            </div>
-        </li>*@
+    </li>*@
 
+    <li class="@(currentController == "Libros" ? activeClass : string.Empty)">
+        @Html.ActionLink("Libros", "Index", "Libros")
 
-
+    </li>
 </ul>
 
 

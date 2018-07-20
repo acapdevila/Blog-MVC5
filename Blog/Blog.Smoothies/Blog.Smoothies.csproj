@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
     <Compile Include="Controllers\ImagenesController.cs" />
+    <Compile Include="Controllers\LibrosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\UtensiliosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,12 +233,60 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\imagenes\alignmentmatters.jpg" />
+    <Content Include="Content\imagenes\alimentacionprebiotica.jpg" />
+    <Content Include="Content\imagenes\alimentatucerebro.jpg" />
+    <Content Include="Content\imagenes\ayearofbeautifuleating.jpg" />
+    <Content Include="Content\imagenes\cleanskinfromwithin.jpg" />
+    <Content Include="Content\imagenes\cleansweets.jpg" />
+    <Content Include="Content\imagenes\diastasisrecti.jpg" />
+    <Content Include="Content\imagenes\dontjustsitthere.jpg" />
+    <Content Include="Content\imagenes\dormirsinlagrimas.jpg" />
+    <Content Include="Content\imagenes\eatdirt.jpg" />
+    <Content Include="Content\imagenes\elbebeesunmamifero.jpg" />
     <Content Include="Content\imagenes\facebook.png" />
     <Content Include="Content\imagenes\facebook_white.png" />
+    <Content Include="Content\imagenes\fermentedvegetables.jpg" />
+    <Content Include="Content\imagenes\geniusfoods.jpg" />
+    <Content Include="Content\imagenes\gettheglow.jpg" />
+    <Content Include="Content\imagenes\glutenfreeartisanbread.jpg" />
+    <Content Include="Content\imagenes\greenkitchen.jpg" />
+    <Content Include="Content\imagenes\growallyoucaneat.jpg" />
+    <Content Include="Content\imagenes\healingmushrooms.jpg" />
     <Content Include="Content\imagenes\instagram.png" />
     <Content Include="Content\imagenes\instagram_white.png" />
+    <Content Include="Content\imagenes\kalecaramel.jpg" />
+    <Content Include="Content\imagenes\ketodiet.jpg" />
+    <Content Include="Content\imagenes\lacrianzafeliz.jpg" />
+    <Content Include="Content\imagenes\ladigestioneslacuestion.jpg" />
+    <Content Include="Content\imagenes\laescuelamasfeliz.jpg" />
+    <Content Include="Content\imagenes\lamaternidadyelencuentro.jpg" />
     <Content Include="Content\imagenes\laura.jpg" />
     <Content Include="Content\imagenes\logo.png" />
+    <Content Include="Content\imagenes\mightysalads.jpg" />
+    <Content Include="Content\imagenes\migraña.jpg" />
+    <Content Include="Content\imagenes\moveyourdna.jpg" />
+    <Content Include="Content\imagenes\nacimientoylaevolucion.jpg" />
+    <Content Include="Content\imagenes\nicecream.jpg" />
+    <Content Include="Content\imagenes\niñossanosadultossanos.jpg" />
+    <Content Include="Content\imagenes\nourish.jpg" />
+    <Content Include="Content\imagenes\perfecthealthdiet.jpg" />
+    <Content Include="Content\imagenes\plenty.jpg" />
+    <Content Include="Content\imagenes\primalmoms.jpg" />
+    <Content Include="Content\imagenes\renegadebeauty.jpg" />
+    <Content Include="Content\imagenes\slowcooker.jpg" />
+    <Content Include="Content\imagenes\somoslaleche.jpg" />
+    <Content Include="Content\imagenes\thealchemyofherbs.jpg" />
+    <Content Include="Content\imagenes\thedentaldiet.jpg" />
+    <Content Include="Content\imagenes\thenondairyevolution.jpg" />
+    <Content Include="Content\imagenes\thepaleoaproach.jpg" />
+    <Content Include="Content\imagenes\thesavvycook.jpg" />
+    <Content Include="Content\imagenes\transformatusalud.jpg" />
+    <Content Include="Content\imagenes\trigosarraceno.jpg" />
+    <Content Include="Content\imagenes\unregaloparatodalavida.jpg" />
+    <Content Include="Content\imagenes\urbanjungle.jpg" />
+    <Content Include="Content\imagenes\whole30.jpg" />
+    <Content Include="Content\imagenes\younger.jpg" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
@@ -889,6 +939,8 @@
     <None Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayBlog.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayCategoria.cshtml" />
+    <Content Include="Views\Libros\Index.cshtml" />
+    <Content Include="Views\Utensilios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
