@@ -158,7 +158,7 @@ footer {
     text-transform: uppercase;
 }
 
-.articulo h4 {
+.articulo h3, .articulo h4 {
     margin-top: 35px;
 }
 
