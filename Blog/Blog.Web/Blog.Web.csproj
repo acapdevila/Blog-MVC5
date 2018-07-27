@@ -224,6 +224,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="16\7\2018\images\handle-fixed.png" />
+    <Content Include="16\7\2018\images\handle-main.png" />
+    <Content Include="16\7\2018\images\handle-rotate.png" />
+    <Content Include="16\7\2018\images\handle-secondary.png" />
+    <Content Include="16\7\2018\images\handle-terminal.png" />
+    <Content Include="16\7\2018\images\refresh.png" />
+    <Content Include="16\7\2018\images\round-drop.png" />
+    <Content Include="16\7\2018\images\triangle-down.png" />
+    <Content Include="16\7\2018\images\triangle-left.png" />
+    <Content Include="16\7\2018\images\triangle-right.png" />
+    <Content Include="16\7\2018\images\triangle-up.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -265,6 +276,17 @@
     <Content Include="fonts\Oswald-Bold-webfont.woff" />
     <None Include="Properties\PublishProfiles\acapdevila - Azure.pubxml" />
     <Content Include="google69a10687168cf33a.html" />
+    <Content Include="images\handle-fixed.png" />
+    <Content Include="images\handle-main.png" />
+    <Content Include="images\handle-rotate.png" />
+    <Content Include="images\handle-secondary.png" />
+    <Content Include="images\handle-terminal.png" />
+    <Content Include="images\refresh.png" />
+    <Content Include="images\round-drop.png" />
+    <Content Include="images\triangle-down.png" />
+    <Content Include="images\triangle-left.png" />
+    <Content Include="images\triangle-right.png" />
+    <Content Include="images\triangle-up.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
