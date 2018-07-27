@@ -264,6 +264,7 @@
     <Content Include="fonts\Oswald-Bold-webfont.ttf" />
     <Content Include="fonts\Oswald-Bold-webfont.woff" />
     <None Include="Properties\PublishProfiles\acapdevila - Azure.pubxml" />
+    <Content Include="google69a10687168cf33a.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />

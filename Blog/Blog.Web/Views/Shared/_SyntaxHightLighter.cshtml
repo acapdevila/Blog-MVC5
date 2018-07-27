@@ -1,5 +1,8 @@
 ﻿<!-- Include required JS files -->
-<script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+@*NO es https
+    <script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>*@
+<script type="text/javascript" src="https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shCore.js"></script>
+
 
 <!--
     At least one brush, here we choose JS. You need to include a brush for every
@@ -8,29 +11,39 @@
 @*
     No es necesario con Autoloader
     <script type="text/javascript" src="/Scripts/SyntaxHighlighter/shBrushJScript.js"></script>*@
-<script type="text/javascript"src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js"> </script>
+
+@*No es https
+    <script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js"></script>*@
+<script type="text/javascript" src="https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shAutoloader.js"></script>
+
+
 
 <!-- Include *at least* the core style and default theme -->
-<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
-<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+@*NO es https
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />*@
+<link href="https://agorbatchev.typepad.com/pub/sh/3_0_83/styles/shCore.css" rel="stylesheet" type="text/css" />
+
+@*No es https
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />*@
+<link href="https://agorbatchev.typepad.com/pub/sh/3_0_83/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+
 <link href="~/Content/syntaxhighlighter.css" rel="stylesheet" />
 <!-- You also need to add some content to highlight, but that is covered elsewhere.
 <pre class="brush: js">
     function foo()
     {
     }
-    </pre> 
+    </pre>
 -->
-
 <!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
 <script type="text/javascript">
-    
-    SyntaxHighlighter.autoloader(
-      'js jscript javascript  http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js',
-      'xml html               http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js',
-      'csharp c#              http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js',
-      'css                    http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js'
 
+    SyntaxHighlighter.autoloader(
+        'js jscript javascript  https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushJScript.js',
+        'xml html               https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushXml.js',
+        'csharp c#              https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushCSharp.js',
+        'css                    https://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushCss.js'
     );
 
     SyntaxHighlighter.all();
