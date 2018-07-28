@@ -64,8 +64,23 @@ namespace Blog.Smoothies.Controllers
 
 
 
-        public ActionResult Detalles(string dia, string mes, string anyo, string urlSlug)
+        public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
         {
+            if (string.IsNullOrEmpty(urlSlug))
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var fechaPost = GenerarFecha(dia, mes, anyo);
+
+            if (fechaPost == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var post = await RecuperarPost(fechaPost.Value, urlSlug);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
             return RedirectPermanent(@"/" + urlSlug);
         }
         
@@ -115,8 +130,7 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new EtiquetaViewModel
             {
-                Id =  id,
-              NombreEtiqueta = tag.Nombre,
+                Etiqueta =  tag,
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)
@@ -204,6 +218,11 @@ namespace Blog.Smoothies.Controllers
                 Blog = await _blogServicio.RecuperarBlog(),
                 ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
             };
+        }
+
+        private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
+        {
+            return await _blogServicio.RecuperarPost(fechaPost, urlSlug);
         }
 
 
