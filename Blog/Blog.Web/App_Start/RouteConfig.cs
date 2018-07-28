@@ -55,7 +55,7 @@ namespace Blog.Web
                 name: NombreRutaEtiquetaAmigable,
                 url: "{urlEtiqueta}",
                 defaults: new { controller = "Blog", action = "EtiquetaAmigable" },
-                constraints: new { urlCategoria = new RutaEtiquetaAmigableConstraint() });
+                constraints: new { urlEtiqueta = new RutaEtiquetaAmigableConstraint() });
 
 
 
