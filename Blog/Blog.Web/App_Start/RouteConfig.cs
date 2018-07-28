@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Blog.Web.RutasAmigables;
 
 namespace Blog.Web
 {
@@ -12,6 +13,9 @@ namespace Blog.Web
         public const string NombreRutaPorDefecto = "Default";
         public const string NombreRutaBlogPost = "BlogPost";
         public const string NombreRutaArchivoPosts = "ArchivoPots";
+
+        public const string NombreRutaAmigable = "RutaAmigable";
+        public const string NombreRutaEtiquetaAmigable = "RutaEtiquetaAmigable";
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -39,6 +43,20 @@ namespace Blog.Web
                  //    anyo = @"\d{4}"
                  //}
              );
+
+
+            routes.MapRoute(
+                name: NombreRutaAmigable,
+                url: "{urlSlug}",
+                defaults: new { controller = "Blog", action = "DetallesAmigable" },
+                constraints: new { urlSlug = new RutaAmigableConstraint() });
+
+            routes.MapRoute(
+                name: NombreRutaEtiquetaAmigable,
+                url: "{urlEtiqueta}",
+                defaults: new { controller = "Blog", action = "EtiquetaAmigable" },
+                constraints: new { urlCategoria = new RutaEtiquetaAmigableConstraint() });
+
 
 
             routes.MapRoute(

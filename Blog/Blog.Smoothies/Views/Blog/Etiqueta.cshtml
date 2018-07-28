@@ -2,7 +2,7 @@
 @model Blog.ViewModels.Etiqueta.EtiquetaViewModel
 
 @{
-    ViewData["Title"] = Model.NombreEtiqueta;
+    ViewData["Title"] = Model.Etiqueta.Nombre;
     ViewBag.ImagenPrincipal = "https://bylauragarcía/content/imagenes/logo.png";
 }
 <br />
@@ -11,7 +11,7 @@
     <div class="col-md-8">
 
         <h2 class="page-header">
-            @Model.NombreEtiqueta
+            @Model.Etiqueta.Nombre
             @*<small>Secondary Text</small>*@
         </h2>
 
@@ -25,13 +25,13 @@
             @if (Model.ListaPosts.HasNextPage)
             {
                 <li class="previous">
-                    <a href="@Url.Action("Etiqueta", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber + 1})">&larr; Entradas más antiguas</a>
+                    <a href="@Url.Action("Etiqueta", new { id=Model.Etiqueta.Id, pagina = Model.ListaPosts.PageNumber + 1})">&larr; Entradas más antiguas</a>
                 </li>
             }
             @if (Model.ListaPosts.HasPreviousPage)
             {
                 <li class="next">
-                    <a href="@Url.Action("Etiqueta", new { id=Model.Id, pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
+                    <a href="@Url.Action("Etiqueta", new { id=Model.Etiqueta.Id, pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
                 </li>
             }
         </ul>

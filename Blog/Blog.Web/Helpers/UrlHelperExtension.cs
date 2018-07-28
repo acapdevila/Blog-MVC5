@@ -8,17 +8,37 @@ namespace Blog.Web.Helpers
     {
         public static string RutaUrlBlogPost(this UrlHelper url, DateTime fechaPost, string urlSlug)
         {
-            var result = url.RouteUrl(RouteConfig.NombreRutaBlogPost,
+            return RutaAmigable(url, urlSlug);
+            //var result = url.RouteUrl(RouteConfig.NombreRutaBlogPost,
+            //    new
+            //    {
+            //        dia = fechaPost.Day,
+            //        mes = fechaPost.Month,
+            //        anyo = fechaPost.Year,
+            //        urlSlug
+            //    }, url.RequestContext.HttpContext.Request.Url.Scheme);
+
+            //return result;
+        }
+
+        public static string RutaAmigable(this UrlHelper url, string urlSlug)
+        {
+            return url.RouteUrl(RouteConfig.NombreRutaAmigable,
                 new
                 {
-                    dia = fechaPost.Day,
-                    mes = fechaPost.Month,
-                    anyo = fechaPost.Year,
                     urlSlug
                 }, url.RequestContext.HttpContext.Request.Url.Scheme);
-
-            return result;
         }
+
+        public static string RutaEtiqueta(this UrlHelper url, string urlEtiqueta)
+        {
+            return url.RouteUrl(RouteConfig.NombreRutaEtiquetaAmigable,
+                new
+                {
+                    urlEtiqueta
+                }, url.RequestContext.HttpContext.Request.Url.Scheme);
+        }
+
 
         public static string RutaUrlArchivo(this UrlHelper url, int anyo, int mes)
         {

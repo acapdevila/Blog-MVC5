@@ -39,7 +39,7 @@ namespace Blog.Web.Controllers
 
             var fechaPost = GenerarFecha(dia, mes, anyo);
 
-            if(fechaPost == null)
+            if (fechaPost == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var post = await RecuperarPost(fechaPost.Value, urlSlug);
@@ -49,21 +49,21 @@ namespace Blog.Web.Controllers
                 return HttpNotFound();
             }
 
-            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 2);
-            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 2);
+            return RedirectPermanent(@"/" + urlSlug);
+        }
 
-            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
+        public async Task<ActionResult> DetallesAmigable(string urlSlug)
+        {
+            Post post = await _blogServicio.RecuperarPost(urlSlug);
 
-            if (!postsSugeridos.Any())
+            if (post == null)
             {
-                postsSugeridos = await _blogServicio.Posts()
-                    .Publicados()
-                    .Anteriores(post)
-                    .SeleccionaLineaResumenPost()
-                    .OrderByDescending(m => m.FechaPost)
-                    .Take(4)
-                    .ToListAsync();
+                return HttpNotFound();
             }
+
+
+            var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
+
 
             var viewModel = new DetallesPostBlogViewModel
             {
@@ -71,35 +71,45 @@ namespace Blog.Web.Controllers
                 PostsSugeridos = postsSugeridos
             };
 
-            
-            return View(viewModel);
+            return View("Detalles", viewModel);
+
         }
+
 
         private DateTime? GenerarFecha(int dia, int mes, int anyo)
         {
             return new DateTime(anyo, mes, dia);
         }
 
-        public async Task<ActionResult> Etiqueta(string id, int pagina = 1)
+        public ActionResult Etiqueta(string id, int pagina = 1)
         {
-            var tag = await RecuperarTag(id);
+            if (1 < pagina)
+                return RedirectPermanent(@"/" + id + @"?pagina=" + 1);
 
-            if (tag == null) return HttpNotFound();
+            return RedirectPermanent(@"/" + id);
+
+        }
+
+        public async Task<ActionResult> EtiquetaAmigable(string urlEtiqueta, int pagina = 1)
+        {
+            var etiqueta = await RecuperarTag(urlEtiqueta);
+
+            if (etiqueta == null) return HttpNotFound();
 
             var viewModel = new EtiquetaViewModel
             {
-                Id = id,
-                NombreEtiqueta = tag.Nombre,
-              ListaPosts = tag.Posts.AsQueryable()
-                        .SeleccionaLineaResumenPost()
-                        .OrderByDescending(m => m.FechaPost)
-                        .ToPagedList(pagina, NumeroItemsPorPagina)
+                Etiqueta = etiqueta,
+                ListaPosts = etiqueta.Posts.AsQueryable()
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .ToPagedList(pagina, NumeroItemsPorPagina)
             };
-                
-                
-                
-            return View(viewModel);
+
+
+            return View("Etiqueta", viewModel);
         }
+
+
 
         public async Task<ActionResult> Archivo(int anyo, int mes)
         {
@@ -180,6 +190,27 @@ namespace Blog.Web.Controllers
                     .ToListAsync();
 
             return postsAnterioresMismTag;
+        }
+
+        private async Task<List<LineaResumenPost>> RecuperarPostsSugeridosViewmodel(Post post)
+        {
+            List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismoTag(post, 3);
+            List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismoTag(post, 3);
+
+            var postsSugeridos = postsSugeridosAnteriores.Union(postsSugeridosPosteriores).ToList();
+
+            if (!postsSugeridos.Any())
+            {
+                postsSugeridos = await _blogServicio.Posts()
+                    .Publicados()
+                    .Anteriores(post)
+                    .SeleccionaLineaResumenPost()
+                    .OrderByDescending(m => m.FechaPost)
+                    .Take(6)
+                    .ToListAsync();
+            }
+
+            return postsSugeridos;
         }
 
     }
