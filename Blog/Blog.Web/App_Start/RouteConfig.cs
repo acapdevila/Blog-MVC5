@@ -17,6 +17,8 @@ namespace Blog.Web
         public const string NombreRutaAmigable = "RutaAmigable";
         public const string NombreRutaEtiquetaAmigable = "RutaEtiquetaAmigable";
 
+        public const string NombreRutaSitemap = "RutaSitemapXml";
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             // Improve SEO by stopping duplicate URL's due to case differences or trailing slashes.
@@ -25,6 +27,14 @@ namespace Blog.Web
             routes.LowercaseUrls = true;
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+
+            routes.MapRoute(
+                name: NombreRutaSitemap,
+                url: "sitemapxml",
+                defaults: new { controller = "Sitemap", action = "Xml" }
+            );
+
 
             routes.MapRoute(
               name: NombreRutaBlogPost,
@@ -67,8 +77,14 @@ namespace Blog.Web
             routes.MapRoute(
                 name: NombreRutaPorDefecto,
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
+                constraints: new
+                {
+                    controller = "Account|Blog|Blogs|Contacto|Error|Hola|Imagenes|Manage|Posts|Principal|Rss|Sidebar|Tags"
+                }
             );
+
+
         }
     }
 }

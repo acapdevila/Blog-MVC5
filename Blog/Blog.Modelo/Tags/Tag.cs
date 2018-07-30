@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 
@@ -69,4 +71,6 @@ namespace Blog.Modelo.Tags
             ContenidoHtml = etiquetaDto.ContenidoHtml;
         }
     }
+
+   
 }

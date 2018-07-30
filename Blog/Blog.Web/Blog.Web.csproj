@@ -90,6 +90,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.8.1\lib\net40\System.Spatial.dll</HintPath>
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\SidebarController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\ImagenesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,6 +227,18 @@
     <Compile Include="RutasAmigables\RutaAmigableConstraint.cs" />
     <Compile Include="RutasAmigables\RutaEtiquetaAmigableConstraint.cs" />
     <Compile Include="RutasAmigables\RutaDto.cs" />
+    <Compile Include="Sitemap\CacheService.cs" />
+    <Compile Include="Sitemap\CacheSetting.cs" />
+    <Compile Include="Sitemap\ICacheService.cs" />
+    <Compile Include="Sitemap\NoTrailingSlashAttribute.cs" />
+    <Compile Include="Sitemap\SitemapException.cs" />
+    <Compile Include="Sitemap\SitemapFrequency.cs" />
+    <Compile Include="Sitemap\SitemapGenerator.cs" />
+    <Compile Include="Sitemap\SitemapNode.cs" />
+    <Compile Include="Sitemap\SitemapService.cs" />
+    <Compile Include="Sitemap\StringWriterWithEncoding.cs" />
+    <Compile Include="Sitemap\UrlHelperExtensions.cs" />
+    <Compile Include="Sitemap\XDocumentExtensions.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

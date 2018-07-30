@@ -70,10 +70,10 @@ namespace Blog.Web.RutasAmigables
                     .ToList();
         }
 
-        public List<RutaDto> BuscarRutasDeCategorias()
+        public List<RutaDto> BuscarRutasDeEtiquetas()
         {
             return
-                ExtensionesCategoria.ConPostsPublicados(Categorias())
+                    Etiquetas().ConPostsPublicados()
                     .Where(m=>m.UrlSlug != null && m.UrlSlug != "")
                     .OrderBy(m=>m.UrlSlug)
                     .Select(m => new RutaDto
