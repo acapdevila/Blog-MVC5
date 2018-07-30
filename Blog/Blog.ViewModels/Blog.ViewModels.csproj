@@ -113,6 +113,7 @@
     <Compile Include="Categoria\EditarCategoriaViewModel.cs" />
     <Compile Include="Categoria\CategoriaViewModel.cs" />
     <Compile Include="Contacto\FormularioContactoViewModel.cs" />
+    <Compile Include="Etiqueta\EditarEtiquetaViewModel.cs" />
     <Compile Include="Etiqueta\EtiquetaViewModel.cs" />
     <Compile Include="Categoria\ListaGestionCategoriasViewModel.cs" />
     <Compile Include="Menu\MenuCategoriasViewModel.cs" />

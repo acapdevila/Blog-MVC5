@@ -291,6 +291,7 @@
     <Content Include="images\triangle-left.png" />
     <Content Include="images\triangle-right.png" />
     <Content Include="images\triangle-up.png" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -802,6 +803,7 @@
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_AceptarCookies.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Tags\EditorTemplates\EditorTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
