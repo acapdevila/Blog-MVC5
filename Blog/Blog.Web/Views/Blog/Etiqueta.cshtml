@@ -14,19 +14,19 @@
 {
     @section head
 {
-        <script type="application/ld+json">
-            {
-            "@@context": "http://schema.org",
-            "@@type": "Article",
-            "headline": "@Model.Etiqueta.Nombre",
-            "image": ["@Model.Etiqueta.UrlImagenPrincipal"],
-            "datePublished": "@Model.Etiqueta.FechaPublicacion.Value.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
-            "author": { "@@type": "Person", "name": "Laura García" },
-            "publisher": { "@@type": "Organization", "name": "by Laura García",
-            "logo": { "@@type": "ImageObject", "url": "https://bylauragarcia.com/content/imagenes/logo.png"}},
-            "description": "@Model.Etiqueta.Descripcion"
-            }
-        </script>
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "Article",
+    "headline": "@Model.Etiqueta.Nombre",
+    "image": ["@Model.Etiqueta.UrlImagenPrincipal"],
+    "datePublished": "@(Model.Etiqueta.FechaPublicacion?.ToString("yyyy-MM-ddTHH:mm:ss"))+02:00",
+    "author": { "@@type": "Person", "name": "Laura García" },
+    "publisher": { "@@type": "Organization", "name": "albertcapdevila.net",
+    "logo": { "@@type": "ImageObject", "url": "https://albertcapdevila.net/content/imagenes/logo.png"}},
+    "description": "@Model.Etiqueta.Descripcion"
+    }
+</script>
     }
 }
 
@@ -61,6 +61,15 @@
             @Model.Etiqueta.Nombre
             @*<small>Secondary Text</small>*@
         </h1>
+        
+        @if (!string.IsNullOrEmpty(Model.Etiqueta.Descripcion))
+        {
+            <div>
+                @Html.DisplayFor(m => m.Etiqueta, "DisplayEtiqueta")
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+        }
 
         <!-- First Blog Post -->
         @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts.ToList())

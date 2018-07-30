@@ -5,18 +5,19 @@
 }
 
 <h2>Create</h2>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/config.js"></script>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Tag</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-      
-        @Html.EditorFor(m=> m , "EditorTag")  
+
+        @Html.EditorFor(m => m, "EditorTag")
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

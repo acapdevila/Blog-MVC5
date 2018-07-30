@@ -2,6 +2,29 @@
 
 @{
     ViewBag.Title = Model.Post.Titulo;
+    ViewBag.MetaDescripcion = Model.Post.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Post.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Post.UrlImagenPrincipal;
+}
+
+@if (Model.Post.EsMostrarDatosEstructurados)
+{
+@section head
+{
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "Article",
+    "headline": "@Model.Post.Titulo",
+    "image": ["@Model.Post.UrlImagenPrincipal"],
+    "datePublished": "@Model.Post.FechaPublicacion.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
+    "author": { "@@type": "Person", "name": "@(Model.Post.Autor ?? "Albert Capdevila")" },
+    "publisher": { "@@type": "Organization", "name": "albertcapdevila.net",
+    "logo": { "@@type": "ImageObject", "url": "https://albertcapdevila.net/content/imagenes/logo.png"}},
+    "description": "@Model.Post.Descripcion"
+    }
+</script>
+}
 }
 
 
