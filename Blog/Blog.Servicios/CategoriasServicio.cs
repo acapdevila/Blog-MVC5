@@ -79,7 +79,7 @@ namespace Blog.Servicios
             categoria.CopiarValores(categoriaDto);
             _db.Categorias.Add(categoria);
             await _db.SaveChangesAsync();
-            categoriaDto.Id = categoriaDto.Id;
+            categoriaDto.Id = categoria.Id;
         }
 
         public async Task ActualizarCategoria(CategoriaDto categoriaDto)

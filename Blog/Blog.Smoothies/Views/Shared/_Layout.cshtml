@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     @if (Request != null && Request.Url != null && (Request.Url.AbsoluteUri.Contains("azurewebsites.net")
                                                     || Request.Url.AbsoluteUri.Contains("pagina=")
@@ -15,9 +17,6 @@
     {
         <meta name="robots" content="noindex,follow" />
     }
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     @RenderSection("linksnextprev", false)
 

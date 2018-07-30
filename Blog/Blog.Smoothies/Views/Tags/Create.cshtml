@@ -1,4 +1,4 @@
-﻿@model Blog.Modelo.Tags.Tag
+﻿@model Blog.ViewModels.Etiqueta.EditarEtiquetaViewModel
 
 @{
     ViewBag.Title = "Crear";
@@ -15,21 +15,7 @@
         <h4>Tag</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UrlSlug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UrlSlug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UrlSlug, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.EditorFor(m => m, "EditorTag")
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
