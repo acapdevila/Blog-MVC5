@@ -120,10 +120,12 @@
     <Compile Include="Post\Conversores\ConversorBlogs.cs" />
     <Compile Include="Post\Conversores\ConversorPost.cs" />
     <Compile Include="Post\EditorBlog.cs" />
+    <Compile Include="Post\EditorBorrador.cs" />
     <Compile Include="Post\EditorPost.cs" />
     <Compile Include="Post\EditBlogViewModel.cs" />
     <Compile Include="Post\EditPostViewModel.cs" />
     <Compile Include="Post\ListaGestionBlogsViewModel.cs" />
+    <Compile Include="Post\ListaBorradoresViewModel.cs" />
     <Compile Include="Post\ListaGestionPostsViewModel.cs" />
     <Compile Include="Principal\AvisoLegalViewmodel.cs" />
     <Compile Include="Principal\PoliticaCookiesViewmodel.cs" />

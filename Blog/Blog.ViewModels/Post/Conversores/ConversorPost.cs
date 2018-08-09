@@ -25,5 +25,18 @@ namespace Blog.ViewModels.Post.Conversores
             post.FechaModificacion = DateTime.Now;
         }
 
+
+
+        public static void CopiaValores(this Modelo.Posts.Post post,
+            EditorBorrador editorBorrador,
+            AsignadorTags asignadorTags,
+            AsignadorCategorias asignadorCategorias)
+        {
+            post.InjectFrom(editorBorrador);
+            asignadorTags.AsignarTags(post, editorBorrador.ListaTags);
+            asignadorCategorias.AsignarCategorias(post, editorBorrador.ListaCategorias);
+            post.FechaModificacion = DateTime.Now;
+        }
+
     }
 }

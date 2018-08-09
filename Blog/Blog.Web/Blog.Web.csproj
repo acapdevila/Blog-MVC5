@@ -210,6 +210,7 @@
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\BorradoresController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\RssController.cs" />
@@ -819,6 +820,12 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Tags\EditorTemplates\EditorTag.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayEtiqueta.cshtml" />
+    <Content Include="Views\Borradores\Crear.cshtml" />
+    <Content Include="Views\Borradores\Eliminar.cshtml" />
+    <Content Include="Views\Borradores\Detalles.cshtml" />
+    <Content Include="Views\Borradores\Editar.cshtml" />
+    <Content Include="Views\Borradores\EditorTemplates\EditorBorrador.cshtml" />
+    <Content Include="Views\Borradores\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
