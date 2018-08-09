@@ -57,7 +57,7 @@ namespace Blog.Servicios
             var etiqueta = new Tag();
             etiqueta.CopiarValores(etiquetaDto);
             _db.Tags.Add(etiqueta);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
             etiquetaDto.Id = etiqueta.Id;
          }
 
@@ -65,14 +65,14 @@ namespace Blog.Servicios
         {
             var tag = await RecuperarTag(etiquetaDto.Id);
             tag.CopiarValores(etiquetaDto);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
          }
 
         public async Task EliminarTag(int id)
         {
             var tag = await RecuperarTag(id);
             _db.Tags.Remove(tag);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()

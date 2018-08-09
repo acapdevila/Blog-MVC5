@@ -1,0 +1,57 @@
+﻿@model Blog.ViewModels.Post.ListaBorradoresViewModel
+
+@{
+    ViewBag.Title = "Lista boraradores";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            Título
+        </th>
+        <th>
+            Tags
+        </th>
+        <th>
+            Fecha post
+        </th>
+        <th>
+            Fecha publicación
+        </th>
+        <th></th>
+
+    </tr>
+
+@foreach (var item in Model.ListaPosts) {
+    <tr>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) 
+        </td>
+        <td>
+            @Html.ActionLink(item.Titulo, "Detalles", new {id = item.Id})
+
+        </td>
+        <td>
+            @item.Tags
+        </td>
+        <td>
+            @item.FechaPost.ToShortDateString()
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPublicacion)
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+        </td>
+
+    </tr>
+}
+
+</table>

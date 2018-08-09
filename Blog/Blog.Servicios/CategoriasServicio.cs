@@ -78,7 +78,7 @@ namespace Blog.Servicios
             var categoria = new Categoria();
             categoria.CopiarValores(categoriaDto);
             _db.Categorias.Add(categoria);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
             categoriaDto.Id = categoria.Id;
         }
 
@@ -86,7 +86,7 @@ namespace Blog.Servicios
         {
             var categoria = await RecuperarCategoriaPorId(categoriaDto.Id);
             categoria.CopiarValores(categoriaDto);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
      
@@ -95,7 +95,7 @@ namespace Blog.Servicios
         {
             var categoria = await RecuperarCategoriaPorId(id);
             _db.Categorias.Remove(categoria);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()

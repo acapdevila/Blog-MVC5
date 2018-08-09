@@ -1,7 +1,6 @@
 ﻿@model Blog.ViewModels.Post.EditorPost
 
 @Html.HiddenFor(model => model.Id)
-@Html.HiddenFor(model => model.BlogId)
 <div class="form-group">
     @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -38,8 +37,8 @@
 <div class="form-group">
     @Html.LabelFor(model => model.FechaPost, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-xs-2">
-        @Html.EditorFor(model => model.FechaPost, "DatePicker", new { htmlAttributes = new { @class = "form-control col-xs-2" } })
-        @Html.ValidationMessageFor(model => model.FechaPost, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FechaPost)
+        @Html.TextBoxFor(model => model.FechaPost, new { @class = "text-danger", disabled="disabled" })
     </div>
 </div>
 
@@ -97,14 +96,22 @@
             <li>
                 <div class="navbar-form navbar-left">
                     @Html.LabelFor(model => model.FechaPublicacion)
-                    @Html.EditorFor(model => model.FechaPublicacion, "DatetimePicker")
+                    @Html.HiddenFor(model => model.FechaPublicacion)
+                    @Html.TextBoxFor(model => model.FechaPublicacion, new { @class = "text-danger", disabled="disabled" })
                 </div>
                 <label class="btn navbar-btn">
-                    @Html.EditorFor(model => model.EsRssAtom) Rss
+                    @if (Model.EsRssAtom)
+                    {
+                        <label style="color: red">NO RSS</label>
+                    }
+                  
                 </label>
 
                 <label class="btn navbar-btn">
-                    @Html.EditorFor(model => model.EsBorrador) Borrador
+                    @if (Model.FechaPublicacion < DateTime.Now)
+                    {
+                        <label style="color: red">BORRADOR</label>
+                    }
                 </label>
                 <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
                 <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />

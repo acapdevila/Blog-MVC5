@@ -61,38 +61,6 @@ namespace Blog.Web.Controllers
             return View(post);
         }
         
-        public ActionResult Create()
-        {
-            var viewModel = new EditPostViewModel
-            {
-                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Albert Capdevila")
-            };
-            
-            return View(viewModel);
-        }
-        
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string boton, EditPostViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                await CrearPost(viewModel.EditorPost);
-              
-                if(boton.ToLower().Contains(@"salir"))
-                return RedirectToAction("Index");
-
-                if (boton.ToLower().Contains(@"ver"))
-                    return RedirectToAction("Details", new { id = viewModel.EditorPost.Id });
-
-                return RedirectToAction("Edit", new { viewModel.EditorPost.Id });
-            }
-
-            return View(viewModel);
-        }
-        
 
         public async Task<ActionResult> Edit(int? id)
         {
@@ -111,7 +79,7 @@ namespace Blog.Web.Controllers
                 EditorPost = new EditorPost()
             };
 
-            viewModel.EditorPost.CopiaValores(post);
+            viewModel.EditorPost.ActualizaBorrador(post);
             
             return View(viewModel);
         }
@@ -153,6 +121,46 @@ namespace Blog.Web.Controllers
 
         }
 
+        public async Task<ActionResult> Publicar(int id)
+        {
+            Post post = await RecuperarPost(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new PublicarPost(post);
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
+        {
+            if (boton.ToLower().Contains("cancelar"))
+            {
+                var post = await _postsServicio.RecuperarPost(viewModel.Id);
+
+                if(post.EsBorrador)
+                    return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
+                else
+                    return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
+            }
+
+            if (ModelState.IsValid)
+            {
+                await _postsServicio.PublicarPost(viewModel);
+
+                if(boton.ToLower().Contains("ver"))
+                    return RedirectToAction("Details", new { id = viewModel.Id });
+
+                return RedirectToAction("Index", "Blog");
+            }
+            return View(viewModel);
+        }
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -186,10 +194,6 @@ namespace Blog.Web.Controllers
             return await _postsServicio.RecuperarPost(id);
         }
 
-        private async Task CrearPost(EditorPost editorPost)
-        {
-            await _postsServicio.CrearPost(editorPost);
-        }
 
         private async Task ActualizarPost(EditorPost editorPost)
         {

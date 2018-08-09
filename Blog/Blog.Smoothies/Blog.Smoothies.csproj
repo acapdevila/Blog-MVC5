@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\BorradoresController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
@@ -885,7 +886,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Delete.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
@@ -935,6 +935,12 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_AceptarCookies.cshtml" />
     <Content Include="Views\Categorias\EditorTemplates\EditorCategoria.cshtml" />
+    <Content Include="Views\Borradores\Crear.cshtml" />
+    <Content Include="Views\Borradores\Detalles.cshtml" />
+    <Content Include="Views\Borradores\Editar.cshtml" />
+    <Content Include="Views\Borradores\EditorTemplates\EditorBorrador.cshtml" />
+    <Content Include="Views\Borradores\Eliminar.cshtml" />
+    <Content Include="Views\Borradores\Lista.cshtml" />
     <None Include="Views\Error\InternalError.cshtml" />
     <None Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayBlog.cshtml" />
@@ -942,6 +948,7 @@
     <Content Include="Views\Libros\Index.cshtml" />
     <Content Include="Views\Utensilios\Index.cshtml" />
     <Content Include="Views\Tags\EditorTemplates\EditorTag.cshtml" />
+    <Content Include="Views\Posts\Publicar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,7 @@
-﻿@model Blog.ViewModels.Post.EditPostViewModel
+﻿@model Blog.ViewModels.Post.EditorBorrador
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear borrador";
  }
 
 @Scripts.Render("~/bundles/controlesedicion")
@@ -10,7 +10,7 @@
 <script src="~/Scripts/ckeditor/config.js"></script>
 
 
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm()) 
@@ -24,14 +24,11 @@
 
 
 
-        @Html.EditorFor(m=>m.EditorPost, "EditorPost")
+        @Html.EditorFor(m=>m, "EditorBorrador")
 
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 
   

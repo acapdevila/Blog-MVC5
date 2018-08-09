@@ -7,14 +7,14 @@ namespace Blog.ViewModels.Post.Conversores
 {
     public static class ConversorPost
     {
-        public static void CopiaValores(this EditorPost editorPost, Modelo.Posts.Post post)
+        public static void ActualizaBorrador(this EditorPost editorPost, Modelo.Posts.Post post)
         {
             editorPost.InjectFrom(post);
             editorPost.Tags = post.Tags.TagsSeparadosPorComma();
             editorPost.Categorias = post.Categorias.CategoriasSeparadasPorComma();
         }
 
-        public static void CopiaValores(this Modelo.Posts.Post post, 
+        public static void ActualizaPost(this Modelo.Posts.Post post, 
             EditorPost editorPost, 
             AsignadorTags asignadorTags,
             AsignadorCategorias asignadorCategorias)
@@ -27,7 +27,7 @@ namespace Blog.ViewModels.Post.Conversores
 
 
 
-        public static void CopiaValores(this Modelo.Posts.Post post,
+        public static void ActualizaBorrador(this Modelo.Posts.Post post,
             EditorBorrador editorBorrador,
             AsignadorTags asignadorTags,
             AsignadorCategorias asignadorCategorias)

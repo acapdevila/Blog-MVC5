@@ -16,7 +16,7 @@ namespace Blog.Modelo.Posts
                 EsBorrador = true,
                 EsRssAtom = false,
                 FechaPost = DateTime.Now,
-                FechaPublicacion = DateTime.Now.AddDays(5)
+                FechaPublicacion = DateTime.Now.AddMonths(6)
             };
         }
 
@@ -64,6 +64,14 @@ namespace Blog.Modelo.Posts
         public bool EsMostrarDatosEstructurados
         {
             get { return !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion); }
+        }
+
+        public void Publicar(DateTime fechaPost, DateTime fechaPublicacion, bool esRssAtom)
+        {
+            FechaPost = fechaPost;
+            FechaPublicacion = fechaPublicacion;
+            EsRssAtom = esRssAtom;
+            EsBorrador = false;
         }
     }
 }

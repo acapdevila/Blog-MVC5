@@ -51,7 +51,7 @@ namespace Blog.Servicios
             var post = BlogEntidad.CrearNuevoPorDefecto();
             post.CopiaValores(editorBlog);
             _db.Blogs.Add(post);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
             editorBlog.Id = post.Id;
         }
 
@@ -59,14 +59,14 @@ namespace Blog.Servicios
         {
             var post = await RecuperarBlog(editorBlog.Id);
             post.CopiaValores(editorBlog);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public async Task EliminarBlog(int id)
         {
             var post = await RecuperarBlog(id);
             _db.Blogs.Remove(post);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()

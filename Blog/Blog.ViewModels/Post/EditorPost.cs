@@ -17,8 +17,6 @@ namespace Blog.ViewModels.Post
           
         }
         public int Id { get; set; }
-        public int BlogId { get; set; }
-
         [AllowHtml]
         [Display(Name = "Imagen")]
         [Required(ErrorMessage = "Escribe un subtítulo")]
@@ -62,12 +60,6 @@ namespace Blog.ViewModels.Post
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "Eliminado")]
-        public string PostContenidoHtml { get; set; }
-
-        [Display(Name = "Borrador")]
-        public bool EsBorrador { get; set; }
 
         [Display(Name = "Rss Atom")]
         public bool EsRssAtom { get; set; }

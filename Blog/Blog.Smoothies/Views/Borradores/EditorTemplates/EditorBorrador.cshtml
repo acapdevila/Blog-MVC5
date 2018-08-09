@@ -97,18 +97,17 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 @Html.ActionLink("Volver a la lista", "Index")
-            </li>
+            <li/>
             <li>
-               
-                <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn"/>&nbsp;&nbsp;
-                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn"/>&nbsp;&nbsp;
+                <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
                 @if (Model.Id > 0)
                 {
-                    <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn"/>
+                    <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
                 }
                 else
                 {
-                    <input id="btnGuardar" name="boton" type="submit" value="Guardar" class="btn btn-primary navbar-btn"/>
+                    <input id="btnGuardar" name="boton" type="submit" value="Guardar" class="btn btn-primary navbar-btn" />
                 }
             </li>
         </ul>

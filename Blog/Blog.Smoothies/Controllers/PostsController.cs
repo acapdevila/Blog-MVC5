@@ -71,97 +71,11 @@ namespace Blog.Smoothies.Controllers
             return View(post);
         }
         
-        public ActionResult Create()
-        {
-            var viewModel = new EditPostViewModel
-            {
-                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Laura García")
-            };
-
-            viewModel.EditorPost.PostContenidoHtml = ObtenerContenidoHtmlPorDefecto();
-            
-            return View(viewModel);
-        }
-
-        private string ObtenerContenidoHtmlPorDefecto()
-        {
-            return @"
-                               <p>
-                                <span itemprop=totalTime' class='small color1'>10 minutos</span> · 
-                                <span itemprop='recipeYield' class='small color1'>1 persona</span>
-                                </p>
-                                 <strong>Base:</strong>
-                                    <ul>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    </ul>
-
-                                    <strong>Arriba:</strong>
-                                    <ul>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    </ul>";
-        }
-
-        private string ObtenerDatosEstructucturadosPorDefecto()
-        {
-            return @"<script type=""application / ld + json"">
-                    {
-                        ""@context"": ""http://schema.org"",
-                        ""@type"": ""Article"",
-                        ""headline"": ""Max110Palabras"",
-                        ""image"": [
-                            ""https://storagequedat.blob.core.windows.net/contenedorblog/XXXXXXXXXXXX""
-                            ],
-                        ""datePublished"": ""2018-02-25T08:00:00+02:00"",
-                        ""author"": {
-                            ""@type"": ""Person"",
-                            ""name"": ""Laura García""
-                        },
-                        ""publisher"": {
-                        ""@type"": ""Organization"",
-                        ""name"": ""by Laura García"",
-                        ""logo"": {
-                            ""@type"": ""ImageObject"",
-                            ""url"": ""https://bylauragarcia.com/content/imagenes/logo.png""
-                            }
-                        },
-                        ""description"": ""UnArtículoMaravilloso""
-                    }
-                </script>
-                ";
-
-        }
+    
 
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string boton, EditPostViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                await CrearPost(viewModel.EditorPost);
-              
-                if(boton.ToLower().Contains(@"salir"))
-                return RedirectToAction("Index");
 
-                if (boton.ToLower().Contains(@"ver"))
-                    return RedirectToAction("Details", new {id = viewModel.EditorPost.Id});
 
-                return RedirectToAction("Edit", new { viewModel.EditorPost.Id });
-            }
-
-            return View(viewModel);
-        }
         
 
         public async Task<ActionResult> Edit(int? id)
@@ -181,7 +95,7 @@ namespace Blog.Smoothies.Controllers
                 EditorPost = new EditorPost()
             };
 
-            viewModel.EditorPost.CopiaValores(post);
+            viewModel.EditorPost.ActualizaBorrador(post);
             
             return View(viewModel);
         }
@@ -211,6 +125,37 @@ namespace Blog.Smoothies.Controllers
             return Content(string.Empty);
         }
 
+
+        public async Task<ActionResult> Publicar(int id)
+        {
+            Post post = await RecuperarPost(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new PublicarPost(post);
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _postsServicio.PublicarPost(viewModel);
+
+                if (boton.ToLower().Contains("ver"))
+                    return RedirectToAction("Details", new { id = viewModel.Id });
+
+                return RedirectToAction("Index", "Blog");
+            }
+            return View(viewModel);
+        }
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -224,9 +169,7 @@ namespace Blog.Smoothies.Controllers
             }
             return View(post);
         }
-
-
- 
+        
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -246,12 +189,7 @@ namespace Blog.Smoothies.Controllers
         {
             return await _postsServicio.RecuperarPost(id);
         }
-
-        private async Task CrearPost(EditorPost editorPost)
-        {
-            await _postsServicio.CrearPost(editorPost);
-        }
-
+        
         private async Task ActualizarPost(EditorPost editorPost)
         {
             await _postsServicio.ActualizarPost(editorPost);

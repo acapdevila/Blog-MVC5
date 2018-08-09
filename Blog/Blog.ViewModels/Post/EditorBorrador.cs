@@ -47,11 +47,11 @@ namespace Blog.ViewModels.Post
         public string PalabrasClave { get; set; }
 
         [Display(Name = "Url imagen principal de la página")]
-        [Required(ErrorMessage = "Escribe una url")]
         public string UrlImagenPrincipal { get; set; }
 
         [Display(Name = "Url del post")]
         [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        [Required(ErrorMessage = "Escribe una url")]
         public string UrlSlug
         {
             get { return _urlSlug; }
@@ -66,14 +66,6 @@ namespace Blog.ViewModels.Post
         [Display(Name = "Contenido")]
         public string ContenidoHtml { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "Eliminado")]
-        public string PostContenidoHtml { get; set; }
-
-
-        [Display(Name = "Fecha de publicación")]
-        [Required(ErrorMessage = "Escribe una fecha")]
-        public DateTime FechaPublicacion { get; set; }
 
         [Required]
         public string Autor { get; set; }

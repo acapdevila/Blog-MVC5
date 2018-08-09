@@ -121,6 +121,7 @@
     <Compile Include="Post\Conversores\ConversorPost.cs" />
     <Compile Include="Post\EditorBlog.cs" />
     <Compile Include="Post\EditorBorrador.cs" />
+    <Compile Include="Post\PublicarPost.cs" />
     <Compile Include="Post\EditorPost.cs" />
     <Compile Include="Post\EditBlogViewModel.cs" />
     <Compile Include="Post\EditPostViewModel.cs" />

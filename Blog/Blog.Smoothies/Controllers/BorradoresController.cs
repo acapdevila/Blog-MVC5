@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -11,7 +10,7 @@ using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.ViewModels.Post;
 
-namespace Blog.Web.Controllers
+namespace Blog.Smoothies.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
@@ -67,17 +66,77 @@ namespace Blog.Web.Controllers
             return View(post);
         }
         
+
         public ActionResult Crear()
         {
             var viewModel = new EditorBorrador
             {
-                Autor = "Albert Capdevila",
-                FechaPost = DateTime.Today
+                Autor = "Laura García",
+                ContenidoHtml = ObtenerContenidoHtmlPorDefecto()
             };
-            
+
             return View(viewModel);
         }
-        
+
+
+        private string ObtenerContenidoHtmlPorDefecto()
+        {
+            return @"
+                               <p>
+                                <span itemprop=totalTime' class='small color1'>10 minutos</span> · 
+                                <span itemprop='recipeYield' class='small color1'>1 persona</span>
+                                </p>
+                                 <strong>Base:</strong>
+                                    <ul>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    </ul>
+
+                                    <strong>Arriba:</strong>
+                                    <ul>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    <li itemprop='ingredients'></li>
+                                    </ul>";
+        }
+
+        private string ObtenerDatosEstructucturadosPorDefecto()
+        {
+            return @"<script type=""application / ld + json"">
+                    {
+                        ""@context"": ""http://schema.org"",
+                        ""@type"": ""Article"",
+                        ""headline"": ""Max110Palabras"",
+                        ""image"": [
+                            ""https://storagequedat.blob.core.windows.net/contenedorblog/XXXXXXXXXXXX""
+                            ],
+                        ""datePublished"": ""2018-02-25T08:00:00+02:00"",
+                        ""author"": {
+                            ""@type"": ""Person"",
+                            ""name"": ""Laura García""
+                        },
+                        ""publisher"": {
+                        ""@type"": ""Organization"",
+                        ""name"": ""by Laura García"",
+                        ""logo"": {
+                            ""@type"": ""ImageObject"",
+                            ""url"": ""https://bylauragarcia.com/content/imagenes/logo.png""
+                            }
+                        },
+                        ""description"": ""UnArtículoMaravilloso""
+                    }
+                </script>
+                ";
+
+        }
+
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -125,7 +184,7 @@ namespace Blog.Web.Controllers
                 await ActualizarPost(viewModel);
 
                 if (boton.ToLower().Contains(@"publicar"))
-                    return RedirectToAction("Publicar","Posts", new { id = viewModel.Id });
+                    return RedirectToAction("Publicar", "Posts", new { id = viewModel.Id });
 
                 return RedirectToAction("Detalles", new { id = viewModel.Id });
             }
