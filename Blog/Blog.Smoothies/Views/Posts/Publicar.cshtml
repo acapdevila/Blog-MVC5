@@ -21,7 +21,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @Html.HiddenFor(model => model.Id)
-    
+
     <div class="form-group">
         @Html.LabelFor(model => model.FechaPost, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-xs-2">
@@ -29,24 +29,28 @@
             @Html.ValidationMessageFor(model => model.FechaPost, "", new { @class = "text-danger" })
         </div>
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(model => model.FechaPublicacion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-xs-2">
-            @Html.EditorFor(model => model.FechaPublicacion, "DatePicker", new { htmlAttributes = new { @class = "form-control col-xs-2" } })
+            @Html.EditorFor(model => model.FechaPublicacion, "DatetimePicker", new { htmlAttributes = new { @class = "form-control col-xs-2" } })
             @Html.ValidationMessageFor(model => model.FechaPublicacion, "", new { @class = "text-danger" })
         </div>
     </div>
-    
+
     <div class="form-group">
+        @Html.LabelFor(model => model.EsRssAtom, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-xs-2">
-            @Html.EditorFor(model => model.EsRssAtom) Rss
+            @Html.EditorFor(model => model.EsRssAtom)
         </div>
     </div>
-    
-    
-    <input id="btnPublicarYVer" name="boton" type="button" value="Publicar y ver" class="btn btn-primary navbar-btn" />
-    <input id="btnPublicarYMostrarHome" name="boton" type="button" value="Publicar y mostrar Home" class="btn btn-primary navbar-btn" />
+
+
+    <input id="btnCancelar" name="boton" type="submit" value="Cancelar" class="btn btn-default " />
+
+
+    <input id="btnGuardarYVer" name="boton" type="submit" value="Guardar y ver" class="btn btn-primary navbar-btn" />
+    <input id="btnGuardarYMostrarHome" name="boton" type="submit" value="Guardar y mostrar Home" class="btn btn-primary navbar-btn" />
 
 </div>
 }

@@ -31,7 +31,23 @@
 @foreach (var item in Model.ListaPosts) {
     <tr>
         <td>
-            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) 
+            <!-- Split button -->
+            <div class="btn-group">
+                @Html.ActionLink("Editar", "Editar", new {id = item.Id}, new{@class= "btn btn-default" })
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Acciones</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Publicar", "Publicar", "Posts", new {id = item.Id}, null)
+                    </li>
+                    @*<li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>*@
+                </ul>
+            </div>
         </td>
         <td>
             @Html.ActionLink(item.Titulo, "Detalles", new {id = item.Id})

@@ -27,9 +27,6 @@
         <th>
             Fecha post
         </th>
-        <th>
-           Es borrador
-        </th>
 		<th>
            Rss Atom
         </th>
@@ -46,7 +43,24 @@
 @foreach (var item in Model.ListaPosts) {
     <tr>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
+            <!-- Split button -->
+            <div class="btn-group">
+                @Html.ActionLink("Editar", "Edit", new {id = item.Id}, new{@class= "btn btn-default" })
+               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Acciones</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Modificar publicación", "Publicar", new {id = item.Id})
+                     </li>
+                    @*<li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>*@
+                </ul>
+            </div>
+           
         </td>
         <td>
             @Html.ActionLink(item.Titulo, "Details", new {id = item.Id})
@@ -58,11 +72,7 @@
         <td>
             @item.FechaPost.ToShortDateString()
         </td>
-        
         <td>
-            @Html.DisplayFor(modelItem => item.EsBorrador)
-        </td>
-		  <td>
             @Html.DisplayFor(modelItem => item.EsRssAtom)
         </td>
         <td>

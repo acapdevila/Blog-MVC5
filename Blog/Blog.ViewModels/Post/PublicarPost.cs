@@ -6,7 +6,11 @@ namespace Blog.ViewModels.Post
 {
     public class PublicarPost
     {
-        public PublicarPost(Modelo.Posts.Post post)
+        public PublicarPost()
+        {
+            
+        }
+        public PublicarPost(Modelo.Posts.Post post): this()
         {
             this.InjectFrom(post);
         }

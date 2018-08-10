@@ -40,7 +40,7 @@ namespace Blog.Web.Controllers
 
         public async Task<ActionResult> Index(int pagina = 1)
         {
-            var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 100);
+            var viewModel = await  _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(), pagina, 100);
             return View(viewModel);
         }
 
@@ -88,8 +88,11 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditPostViewModel viewModel)
+        public async Task<ActionResult> Edit(string boton, EditPostViewModel viewModel)
         {
+            if (boton.ToLower().Contains("modificar publicación"))
+                return RedirectToAction("Publicar", new {id = viewModel.EditorPost.Id});
+
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
@@ -139,24 +142,32 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
         {
-            if (boton.ToLower().Contains("cancelar"))
+            string accion = boton.ToLower();
+
+            if (accion.Contains("cancelar"))
             {
                 var post = await _postsServicio.RecuperarPost(viewModel.Id);
 
-                if(post.EsBorrador)
+                if (post.EsBorrador)
                     return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
-                else
-                    return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
+
+                return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
             }
 
             if (ModelState.IsValid)
             {
-                await _postsServicio.PublicarPost(viewModel);
+                if (accion.Contains("programar"))
+                    await _postsServicio.ProgramarPublicacion(viewModel);
+                else if (accion.Contains("publicar"))
+                    await _postsServicio.PublicarPost(viewModel);
 
-                if(boton.ToLower().Contains("ver"))
-                    return RedirectToAction("Details", new { id = viewModel.Id });
+                if (accion.Contains("programar"))
+                    return RedirectToAction("Index", "Borradores");
 
-                return RedirectToAction("Index", "Blog");
+                if (accion.Contains("home"))
+                    return RedirectToAction("Index", "Blog");
+
+                return RedirectToAction("Details", new { id = viewModel.Id });
             }
             return View(viewModel);
         }
@@ -183,10 +194,7 @@ namespace Blog.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int pagina, int postsPorPagina)
-        {
-            return await _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(),  pagina, postsPorPagina);
-        }
+    
 
 
         private async Task<Post> RecuperarPost(int id)

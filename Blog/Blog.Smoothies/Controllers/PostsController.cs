@@ -144,14 +144,32 @@ namespace Blog.Smoothies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
         {
+            string accion = boton.ToLower();
+
+            if (accion.Contains("cancelar"))
+            {
+                var post = await _postsServicio.RecuperarPost(viewModel.Id);
+
+                if (post.EsBorrador)
+                    return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
+
+                return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
+            }
+
             if (ModelState.IsValid)
             {
-                await _postsServicio.PublicarPost(viewModel);
+                if (accion.Contains("programar"))
+                    await _postsServicio.ProgramarPublicacion(viewModel);
+                else if (accion.Contains("publicar"))
+                    await _postsServicio.PublicarPost(viewModel);
 
-                if (boton.ToLower().Contains("ver"))
-                    return RedirectToAction("Details", new { id = viewModel.Id });
+                if (accion.Contains("programar"))
+                    return RedirectToAction("Index", "Borradores");
+             
+                if (accion.Contains("home"))
+                    return RedirectToAction("Index", "Blog");
 
-                return RedirectToAction("Index", "Blog");
+                return RedirectToAction("Details", new { id = viewModel.Id });
             }
             return View(viewModel);
         }

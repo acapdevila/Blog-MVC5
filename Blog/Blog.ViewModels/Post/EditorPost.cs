@@ -68,6 +68,11 @@ namespace Blog.ViewModels.Post
         [Required(ErrorMessage = "Escribe una fecha")]
         public DateTime FechaPublicacion { get; set; }
 
+        public bool PendienteDePublicar
+        {
+            get { return DateTime.Now < FechaPublicacion; }
+        }
+
         [Required]
         public string Autor { get; set; }
 

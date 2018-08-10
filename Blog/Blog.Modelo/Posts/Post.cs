@@ -43,9 +43,9 @@ namespace Blog.Modelo.Posts
         public string ContenidoHtml { get; set; }
 
         public string PostContenidoHtml { get; set; }
-        public bool EsBorrador { get; set; }
-        public bool EsRssAtom { get; set; }
-        public DateTime FechaPublicacion { get; set; }
+        public bool EsBorrador { get; private set; }
+        public bool EsRssAtom { get; private set; }
+        public DateTime FechaPublicacion { get; private set; }
 
         public DateTime FechaModificacion { get; set; }
 
@@ -66,12 +66,22 @@ namespace Blog.Modelo.Posts
             get { return !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion); }
         }
 
-        public void Publicar(DateTime fechaPost, DateTime fechaPublicacion, bool esRssAtom)
+        public void Publicar(DateTime fechaPost, bool esRssAtom)
         {
             FechaPost = fechaPost;
-            FechaPublicacion = fechaPublicacion;
+
+            if(DateTime.Now < FechaPublicacion)
+                FechaPublicacion = DateTime.Now.AddHours(-2).AddMinutes(-1);
+
             EsRssAtom = esRssAtom;
+
             EsBorrador = false;
+        }
+
+        public void ProgramarPublicacion(DateTime fechaPost, bool esRssAtom, DateTime fechaPublicacion)
+        {
+            Publicar(fechaPost, esRssAtom);
+            FechaPublicacion = fechaPublicacion;
         }
     }
 }

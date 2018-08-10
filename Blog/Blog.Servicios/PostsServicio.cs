@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
@@ -37,16 +36,7 @@ namespace Blog.Servicios
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
-        private IQueryable<Post> PostsPublicados()
-        {
-            return Posts().Where(m => !m.EsBorrador);
-        }
-
-        private IQueryable<Post> Borradores()
-        {
-            return Posts().Where(m=>m.EsBorrador);
-        }
-
+        
         private BlogEntidad RecuperarBlog()
         {
             return _db.Blogs.First(m => m.Titulo == _tituloBlog);
@@ -66,7 +56,8 @@ namespace Blog.Servicios
             return new ListaGestionPostsViewModel
             {
                 BuscarPor = criteriosBusqueda,
-                ListaPosts = await PostsPublicados()
+                ListaPosts = await Posts()
+                    .Publicados()
                     .BuscarPor(criteriosBusqueda)
                     .Select(m => new LineaGestionPost
                 {
@@ -74,7 +65,6 @@ namespace Blog.Servicios
                     UrlSlug = m.UrlSlug,
                     Titulo = m.Titulo,
                     FechaPost = m.FechaPost,
-                    EsBorrador = m.EsBorrador,
                     EsRssAtom = m.EsRssAtom,
                     FechaPublicacion = m.FechaPublicacion,
                     Autor = m.Autor,
@@ -89,7 +79,8 @@ namespace Blog.Servicios
 
         public async Task<List<LineaBorrador>> ObtenerListaBorradores(CriteriosBusqueda criteriosBusqueda)
         {
-            return await Borradores()
+            return await Posts()
+                .Borradores()
                 .BuscarPor(criteriosBusqueda)
                 .Select(m => new LineaBorrador
                 {
@@ -139,7 +130,14 @@ namespace Blog.Servicios
         public async Task PublicarPost(PublicarPost editor)
         {
             var post = await RecuperarPost(editor.Id);
-            post.Publicar(editor.FechaPost, editor.FechaPublicacion, editor.EsRssAtom);
+            post.Publicar(editor.FechaPost, editor.EsRssAtom);
+            await _db.GuardarCambios();
+        }
+
+        public async Task ProgramarPublicacion(PublicarPost editor)
+        {
+            var post = await RecuperarPost(editor.Id);
+            post.ProgramarPublicacion(editor.FechaPost, editor.EsRssAtom, editor.FechaPublicacion);
             await _db.GuardarCambios();
         }
 
