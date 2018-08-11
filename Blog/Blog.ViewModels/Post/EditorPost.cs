@@ -5,17 +5,25 @@ using System.Linq;
 using System.Web.Mvc;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
+using Omu.ValueInjecter;
 
 namespace Blog.ViewModels.Post
 {
     public class EditorPost
     {
-        private string _urlSlug;
 
         public EditorPost()
         {
           
         }
+
+        public EditorPost(Modelo.Posts.Post post): this()
+        {
+           this.InjectFrom(post);
+           Tags = post.Tags.TagsSeparadosPorComma();
+           Categorias = post.Categorias.CategoriasSeparadasPorComma();
+        }
+
         public int Id { get; set; }
         [AllowHtml]
         [Display(Name = "Imagen")]
@@ -43,12 +51,10 @@ namespace Blog.ViewModels.Post
         public string UrlImagenPrincipal { get; set; }
 
         [Display(Name = "Url del post")]
-        [Required(ErrorMessage = "Escribe una url")]
-        [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         public string UrlSlug
         {
-            get { return _urlSlug; }
-            set { _urlSlug = string.IsNullOrEmpty(value) ? value : value.Replace(" ", "-") ; }
+            get; 
+        set;
         }
 
         [Display(Name = @"Fecha")]

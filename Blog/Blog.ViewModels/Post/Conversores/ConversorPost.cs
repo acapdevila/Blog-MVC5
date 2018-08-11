@@ -7,19 +7,19 @@ namespace Blog.ViewModels.Post.Conversores
 {
     public static class ConversorPost
     {
-        public static void ActualizaBorrador(this EditorPost editorPost, Modelo.Posts.Post post)
-        {
-            editorPost.InjectFrom(post);
-            editorPost.Tags = post.Tags.TagsSeparadosPorComma();
-            editorPost.Categorias = post.Categorias.CategoriasSeparadasPorComma();
-        }
-
         public static void ActualizaPost(this Modelo.Posts.Post post, 
             EditorPost editorPost, 
             AsignadorTags asignadorTags,
             AsignadorCategorias asignadorCategorias)
         {
-            post.InjectFrom(editorPost);
+            post.Titulo = editorPost.Titulo;
+            post.Subtitulo = editorPost.Subtitulo;
+            post.Descripcion = editorPost.Descripcion;
+            post.Autor = editorPost.Autor;
+            post.ContenidoHtml = editorPost.ContenidoHtml;
+            post.PalabrasClave = editorPost.PalabrasClave;
+            post.UrlImagenPrincipal = editorPost.UrlImagenPrincipal;
+            
             asignadorTags.AsignarTags(post, editorPost.ListaTags);
             asignadorCategorias.AsignarCategorias(post, editorPost.ListaCategorias);
             post.FechaModificacion = DateTime.Now;

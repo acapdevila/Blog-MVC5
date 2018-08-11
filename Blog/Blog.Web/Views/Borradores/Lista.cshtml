@@ -24,7 +24,6 @@
         <th>
             Fecha publicación
         </th>
-        <th></th>
 
     </tr>
 
@@ -40,12 +39,15 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        @Html.ActionLink("Publicar", "Publicar", "Posts", new {id = item.Id}, null)
+                        @Html.ActionLink("Publicar", "Publicar", "Posts", new { id = item.Id }, null)
                     </li>
                     @*<li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+        <li><a href="#">Something else here</a></li>*@
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>*@
+                    <li>
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+
+                    </li>
                 </ul>
             </div>
         </td>
@@ -62,9 +64,6 @@
         
         <td>
             @Html.DisplayFor(modelItem => item.FechaPublicacion)
-        </td>
-        <td>
-            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
         </td>
 
     </tr>

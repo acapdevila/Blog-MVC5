@@ -76,11 +76,9 @@ namespace Blog.Web.Controllers
 
             var viewModel = new EditPostViewModel
             {
-                EditorPost = new EditorPost()
+                EditorPost = new EditorPost(post)
             };
 
-            viewModel.EditorPost.ActualizaBorrador(post);
-            
             return View(viewModel);
         }
         
@@ -167,7 +165,7 @@ namespace Blog.Web.Controllers
                 if (accion.Contains("home"))
                     return RedirectToAction("Index", "Blog");
 
-                return RedirectToAction("Details", new { id = viewModel.Id });
+                return RedirectToRoute(RouteConfig.NombreRutaAmigable, new { urlSlug = viewModel.UrlSlug });
             }
             return View(viewModel);
         }

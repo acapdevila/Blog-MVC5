@@ -92,10 +92,8 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new EditPostViewModel
             {
-                EditorPost = new EditorPost()
+                EditorPost = new EditorPost(post)
             };
-
-            viewModel.EditorPost.ActualizaBorrador(post);
             
             return View(viewModel);
         }
@@ -165,11 +163,11 @@ namespace Blog.Smoothies.Controllers
 
                 if (accion.Contains("programar"))
                     return RedirectToAction("Index", "Borradores");
-             
+
                 if (accion.Contains("home"))
                     return RedirectToAction("Index", "Blog");
 
-                return RedirectToAction("Details", new { id = viewModel.Id });
+                return RedirectToRoute(RouteConfig.NombreRutaAmigable, new { urlSlug = viewModel.UrlSlug });
             }
             return View(viewModel);
         }

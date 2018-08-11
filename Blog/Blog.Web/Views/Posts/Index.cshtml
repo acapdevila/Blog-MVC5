@@ -36,7 +36,6 @@
         <th>
             Comentarios
         </th>
-        <th></th>
 
     </tr>
 
@@ -50,15 +49,17 @@
                     <span class="caret"></span>
                     <span class="sr-only">Acciones</span>
                 </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        @Html.ActionLink("Modificar publicación", "Publicar", new {id = item.Id})
-                     </li>
-                    @*<li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>*@
-                </ul>
+               <ul class="dropdown-menu">
+                   <li>
+                       @Html.ActionLink("Modificar publicación", "Publicar", new { id = item.Id })
+                   </li>
+                   @*<li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>*@
+                   <li role="separator" class="divider">  b bv</li>
+                   <li>
+                       @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                   </li>
+               </ul>
             </div>
            
         </td>
@@ -80,9 +81,6 @@
         </td>
         <td>
             <a href="@($"{Url.RutaUrlBlogPost(item.FechaPublicacion, item.UrlSlug)}#disqus_thread")" data-disqus-identifier="@item.Id"></a>
-        </td>
-        <td>
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
 
     </tr>

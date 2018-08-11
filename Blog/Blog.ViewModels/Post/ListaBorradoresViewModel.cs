@@ -28,8 +28,9 @@ namespace Blog.ViewModels.Post
         public string Titulo { get; set; }
         public string UrlSlug { get; set; }
         public DateTime FechaPost { get; set; }
-        public DateTime FechaPublicacion { get; set; }
+        public DateTime? FechaPublicacion { get; set; }
         public string Autor { get; set; }
+
         public ICollection<Tag> ListaTags { get; set; }
         public ICollection<Modelo.Categorias.Categoria> ListaCategorias { get; set; }
 

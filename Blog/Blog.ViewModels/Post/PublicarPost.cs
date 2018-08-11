@@ -6,6 +6,7 @@ namespace Blog.ViewModels.Post
 {
     public class PublicarPost
     {
+
         public PublicarPost()
         {
             
@@ -15,7 +16,17 @@ namespace Blog.ViewModels.Post
             this.InjectFrom(post);
         }
         public int Id { get; set; }
-        
+
+
+        [Display(Name = "Url del post")]
+        [Required(ErrorMessage = "Escribe una url")]
+        [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        public string UrlSlug
+        {
+            get; 
+        set;
+        }
+
         [Display(Name = @"Fecha")]
         [Required(ErrorMessage = @"Escribe una fecha")]
         public DateTime FechaPost { get; set; }

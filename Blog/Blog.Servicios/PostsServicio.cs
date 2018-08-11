@@ -88,7 +88,7 @@ namespace Blog.Servicios
                     UrlSlug = m.UrlSlug,
                     Titulo = m.Titulo,
                     FechaPost = m.FechaPost,
-                    FechaPublicacion = m.FechaPublicacion,
+                    FechaPublicacion = m.EsBorrador ? (DateTime?) null :  m.FechaPublicacion,
                     Autor = m.Autor,
                     ListaTags = m.Tags,
                     ListaCategorias = m.Categorias
@@ -130,14 +130,14 @@ namespace Blog.Servicios
         public async Task PublicarPost(PublicarPost editor)
         {
             var post = await RecuperarPost(editor.Id);
-            post.Publicar(editor.FechaPost, editor.EsRssAtom);
+            post.Publicar(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom);
             await _db.GuardarCambios();
         }
 
         public async Task ProgramarPublicacion(PublicarPost editor)
         {
             var post = await RecuperarPost(editor.Id);
-            post.ProgramarPublicacion(editor.FechaPost, editor.EsRssAtom, editor.FechaPublicacion);
+            post.ProgramarPublicacion(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom, editor.FechaPublicacion);
             await _db.GuardarCambios();
         }
 
@@ -154,17 +154,6 @@ namespace Blog.Servicios
          
         }
 
-        public EditorPost ObtenerNuevoEditorPorDefecto(string autor)
-        {
-            var blog = RecuperarBlog();
-
-            var post = Post.CrearNuevoPorDefecto(autor, blog.Id);
-
-            var editor = new EditorPost();
-            editor.ActualizaBorrador(post);
-            return editor;
-            
-        }
 
        
     }
