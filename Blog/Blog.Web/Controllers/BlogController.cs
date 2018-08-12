@@ -150,7 +150,7 @@ namespace Blog.Web.Controllers
         private async Task<ListaPostsBlogResumidosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
             ListaPostsBlogResumidosViewModel listaPostViewmodel = await _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Key, async () =>
+                CacheSetting.PaginaPrincipal.Posts, async () =>
                 {
                     return new ListaPostsBlogResumidosViewModel
                     {

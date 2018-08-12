@@ -217,7 +217,7 @@ namespace Blog.Smoothies.Controllers
         private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
             ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Key, async () =>
+                CacheSetting.PaginaPrincipal.Posts, async () =>
                 {
                     return new ListaPostsBlogCompletosViewModel
                     {

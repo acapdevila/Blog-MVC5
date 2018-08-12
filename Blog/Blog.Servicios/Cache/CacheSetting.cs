@@ -31,7 +31,11 @@ namespace Blog.Servicios.Cache
 
         public static class PaginaPrincipal
         {
-            public const string Key = "PaginaPrincipal";
+            public const string Posts = "PaginaPrincipalPosts";
+            public const string Etiquetas = "PaginaPrincipalEtiquetas";
+            public const string Categorias = "PaginaPrincipalCategorias";
+            public const string Archivo = "PaginaPrincipalArchivo";
+
             public static readonly TimeSpan SlidingExpiration = TimeSpan.FromHours(1);
         }
     }

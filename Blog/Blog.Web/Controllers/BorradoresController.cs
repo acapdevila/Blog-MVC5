@@ -84,8 +84,17 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Crear(string boton, EditorBorrador viewModel)
         {
+            if (boton.ToLower().Contains(@"publicar"))
+            {
+                var editorPost = new EditorPost(viewModel);
+
+                TryValidateModel(editorPost);
+
+                if (!ModelState.IsValid) return View(viewModel);
+            }
+
             if (!ModelState.IsValid) return View(viewModel);
-            
+
             await _postsServicio.CrearBorrador(viewModel);
                 
             if(boton.ToLower().Contains(@"salir"))
@@ -93,6 +102,10 @@ namespace Blog.Web.Controllers
 
             if (boton.ToLower().Contains(@"ver"))
                return RedirectToAction("Detalles", new { id = viewModel.Id });
+
+
+            if (boton.ToLower().Contains(@"publicar"))
+                return RedirectToAction("Publicar", "Posts", new { id = viewModel.Id });
 
             return RedirectToAction("Editar", new { viewModel.Id });
             
