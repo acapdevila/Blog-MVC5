@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Smoothies.RutasAmigables
+namespace Blog.Servicios.Rutas
 {
     public class RutaDto
     {

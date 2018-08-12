@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
-using Blog.Smoothies.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;
+
 namespace Blog.Smoothies.Sitemap
 {
     /// <summary>

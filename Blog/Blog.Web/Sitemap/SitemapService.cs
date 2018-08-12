@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
-using Blog.Web.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;
 namespace Blog.Web.Sitemap
 {
     /// <summary>

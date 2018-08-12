@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Blog.Web.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;
+using Blog.Web.Controllers;
 
 namespace Blog.Web
 {
@@ -59,18 +61,19 @@ namespace Blog.Web
                  //}
              );
 
+            var servicioCahce = new CacheService();
 
             routes.MapRoute(
                 name: NombreRutaAmigable,
                 url: "{urlSlug}",
                 defaults: new { controller = "Blog", action = "DetallesAmigable" },
-                constraints: new { urlSlug = new RutaAmigableConstraint() });
+                constraints: new { urlSlug = new RutaPostConstraint(servicioCahce, BlogController.TituloBlog) });
 
             routes.MapRoute(
                 name: NombreRutaEtiquetaAmigable,
                 url: "{urlEtiqueta}",
                 defaults: new { controller = "Blog", action = "EtiquetaAmigable" },
-                constraints: new { urlEtiqueta = new RutaEtiquetaAmigableConstraint() });
+                constraints: new { urlEtiqueta = new RutaEtiquetaConstraint(servicioCahce, BlogController.TituloBlog) });
 
 
 

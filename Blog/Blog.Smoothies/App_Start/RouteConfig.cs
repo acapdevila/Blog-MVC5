@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Blog.Smoothies.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;
+using Blog.Smoothies.Controllers;
 
 namespace Blog.Smoothies
 {
@@ -58,18 +60,19 @@ namespace Blog.Smoothies
                       }
             );
 
+            var servicioCahce = new CacheService();
 
             routes.MapRoute(
                 name: NombreRutaAmigable,
                 url: "{urlSlug}",
                 defaults: new { controller = "Blog", action = "DetallesAmigable" },
-                constraints: new { urlSlug = new RutaAmigableConstraint() });
+                constraints: new { urlSlug = new RutaPostConstraint(servicioCahce, BlogController.TituloBlog) });
 
            routes.MapRoute(
                 name: NombreRutaCategoriaAmigable,
                 url: "{urlCategoria}",
                 defaults: new { controller = "Blog", action = "CategoriaAmigable" },
-                constraints: new { urlCategoria = new RutaCategoriaAmigableConstraint() });
+                constraints: new { urlCategoria = new RutaCategoriaAmigableConstraint(servicioCahce, BlogController.TituloBlog) });
             
 
 

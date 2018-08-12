@@ -2,7 +2,8 @@
 using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Smoothies.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;
 using Blog.Smoothies.Sitemap;
 
 namespace Blog.Smoothies.Controllers

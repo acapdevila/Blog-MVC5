@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 
-namespace Blog.Smoothies.Sitemap
+namespace Blog.Servicios.Cache
 {
     /// <summary>
     /// A cached collection of key value pairs. This can be used to cache objects internally on the server.

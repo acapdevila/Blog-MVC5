@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Blog.Smoothies.Sitemap
+namespace Blog.Servicios.Cache
 {
     /// <summary>
     /// A cached collection of key value pairs.

@@ -112,6 +112,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
@@ -152,8 +153,16 @@
   <ItemGroup>
     <Compile Include="AzureStorageService.cs" />
     <Compile Include="BlogServicio.cs" />
+    <Compile Include="Cache\CacheService.cs" />
+    <Compile Include="Cache\CacheSetting.cs" />
+    <Compile Include="Cache\ICacheService.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
+    <Compile Include="Rutas\BuscadorRutas.cs" />
+    <Compile Include="Rutas\RutaPostConstraint.cs" />
+    <Compile Include="Rutas\RutaEtiquetaConstraint.cs" />
+    <Compile Include="Rutas\RutaCategoriaConstraint.cs" />
+    <Compile Include="Rutas\RutaDto.cs" />
     <Compile Include="TagsServicio.cs" />
     <Compile Include="BlogsServicio.cs" />
     <Compile Include="Configuracion\WebConfigParametro.cs" />

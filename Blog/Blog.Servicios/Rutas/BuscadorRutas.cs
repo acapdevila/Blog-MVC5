@@ -5,7 +5,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
-namespace Blog.Web.RutasAmigables
+namespace Blog.Servicios.Rutas
 {
     public  class BuscadorRutas
     {
@@ -70,16 +70,31 @@ namespace Blog.Web.RutasAmigables
                     .ToList();
         }
 
-        public List<RutaDto> BuscarRutasDeEtiquetas()
+        public List<RutaDto> BuscarRutasDeCategorias()
         {
             return
-                    Etiquetas().ConPostsPublicados()
+                Categorias()
+                    .ConPostsPublicados()
                     .Where(m=>m.UrlSlug != null && m.UrlSlug != "")
                     .OrderBy(m=>m.UrlSlug)
                     .Select(m => new RutaDto
                     {
                         UrlSlug = m.UrlSlug,
                         FechaPublicacion = m.Posts.OrderByDescending(p=>p.FechaPublicacion).FirstOrDefault().FechaPublicacion
+                    })
+                    .ToList();
+        }
+
+        public List<RutaDto> BuscarRutasDeEtiquetas()
+        {
+            return
+                Etiquetas().ConPostsPublicados()
+                    .Where(m => m.UrlSlug != null && m.UrlSlug != "")
+                    .OrderBy(m => m.UrlSlug)
+                    .Select(m => new RutaDto
+                    {
+                        UrlSlug = m.UrlSlug,
+                        FechaPublicacion = m.Posts.OrderByDescending(p => p.FechaPublicacion).FirstOrDefault().FechaPublicacion
                     })
                     .ToList();
         }

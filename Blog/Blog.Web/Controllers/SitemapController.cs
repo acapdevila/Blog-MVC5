@@ -2,7 +2,8 @@
 using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Web.RutasAmigables;
+using Blog.Servicios.Cache;
+using Blog.Servicios.Rutas;   
 using Blog.Web.Sitemap;
 
 namespace Blog.Web.Controllers

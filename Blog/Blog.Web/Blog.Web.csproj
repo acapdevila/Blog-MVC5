@@ -224,13 +224,6 @@
     <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RssAtom\FeedService.cs" />
-    <Compile Include="RutasAmigables\BuscadorRutas.cs" />
-    <Compile Include="RutasAmigables\RutaAmigableConstraint.cs" />
-    <Compile Include="RutasAmigables\RutaEtiquetaAmigableConstraint.cs" />
-    <Compile Include="RutasAmigables\RutaDto.cs" />
-    <Compile Include="Sitemap\CacheService.cs" />
-    <Compile Include="Sitemap\CacheSetting.cs" />
-    <Compile Include="Sitemap\ICacheService.cs" />
     <Compile Include="Sitemap\NoTrailingSlashAttribute.cs" />
     <Compile Include="Sitemap\SitemapException.cs" />
     <Compile Include="Sitemap\SitemapFrequency.cs" />
