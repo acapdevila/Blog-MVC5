@@ -12,7 +12,6 @@ namespace Blog.Smoothies.Controllers
     {
         private readonly TagsServicio _tagsServicio;
         private readonly BlogServicio _blogServicio;
-        private readonly CacheService _cache = new CacheService();
 
         public SidebarController() : this(new ContextoBaseDatos())
         {
@@ -44,9 +43,9 @@ namespace Blog.Smoothies.Controllers
         public ActionResult ArchivoEtiquetas()
         {
 
-            ArchivoEtiquetasViewModel viewModel = _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Etiquetas, () =>
-                {
+            //ArchivoEtiquetasViewModel viewModel = _cache.GetOrAdd(
+            //    CacheSetting.PaginaPrincipal.Etiquetas, () =>
+            //    {
                     var etiquetasArchivo = _blogServicio
                         .ConsultaDeArchivoBlog()
                         .ToList()
@@ -55,9 +54,9 @@ namespace Blog.Smoothies.Controllers
                         .ThenByDescending(m => m.Mes)
                         .ToList();
 
-                    return new ArchivoEtiquetasViewModel(etiquetasArchivo);
-                },
-                CacheSetting.PaginaPrincipal.SlidingExpiration);
+            var  viewModel = new ArchivoEtiquetasViewModel(etiquetasArchivo);
+                //},
+                //CacheSetting.PaginaPrincipal.SlidingExpiration);
 
 
             return View(viewModel);

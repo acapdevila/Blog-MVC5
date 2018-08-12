@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
 using Blog.ViewModels.Menu;
 
 namespace Blog.Smoothies.Controllers
@@ -10,7 +8,7 @@ namespace Blog.Smoothies.Controllers
     public class MenuController : Controller
     {
         private readonly CategoriasServicio _categoriasServicio;
-        private readonly CacheService _cache = new CacheService();
+        //private readonly CacheService _cache = new CacheService();
 
         public MenuController() : this(new ContextoBaseDatos())
         {
@@ -32,14 +30,14 @@ namespace Blog.Smoothies.Controllers
         [ChildActionOnly]
         public ActionResult Categorias()
         {
-            MenuCategoriasViewModel viewModel = _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Categorias, () =>
-                {
+            //MenuCategoriasViewModel viewModel = _cache.GetOrAdd(
+            //    CacheSetting.PaginaPrincipal.Categorias, () =>
+            //    {
                     var categorias = _categoriasServicio.CategoriasConPostsPublicados();
 
-                    return new MenuCategoriasViewModel(categorias);
-                },
-                CacheSetting.PaginaPrincipal.SlidingExpiration);
+                    var viewModel = new MenuCategoriasViewModel(categorias);
+                //},
+                //CacheSetting.PaginaPrincipal.SlidingExpiration);
 
 
             return View(viewModel);

@@ -23,7 +23,6 @@ namespace Blog.Web.Controllers
         public static string TituloBlog = "albertcapdevila.net";
 
         private readonly BlogServicio _blogServicio = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
-        private readonly CacheService _cache = new CacheService();
         private const int NumeroItemsPorPagina = 10;
 
 
@@ -149,18 +148,10 @@ namespace Blog.Web.Controllers
 
         private async Task<ListaPostsBlogResumidosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            ListaPostsBlogResumidosViewModel listaPostViewmodel = await _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Posts, async () =>
-                {
-                    return new ListaPostsBlogResumidosViewModel
-                    {
-                        ListaPosts = await _blogServicio.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
-                    };
-                },
-                CacheSetting.PaginaPrincipal.SlidingExpiration);
-
-            return listaPostViewmodel;
-               
+            return new ListaPostsBlogResumidosViewModel
+            {
+                ListaPosts = await _blogServicio.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
+            };
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)

@@ -28,14 +28,12 @@ namespace Blog.Smoothies.Controllers
 
         private readonly BlogServicio _blogServicio;
         private readonly TagsServicio _tagsServicio;
-        private readonly CacheService _cache;
         
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
             _blogServicio = new BlogServicio(contexto, TituloBlog);
             _tagsServicio = new TagsServicio(contexto, TituloBlog);
-            _cache = new CacheService();
 
         }
 
@@ -216,17 +214,17 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
-                CacheSetting.PaginaPrincipal.Posts, async () =>
-                {
+            //ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
+            //    CacheSetting.PaginaPrincipal.Posts, async () =>
+            //    {
                     return new ListaPostsBlogCompletosViewModel
                     {
                         ListaPosts = await _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
                     };
-                },
-                CacheSetting.PaginaPrincipal.SlidingExpiration);
+                //},
+                //CacheSetting.PaginaPrincipal.SlidingExpiration);
 
-            return listaPostViewmodel;
+            //return listaPostViewmodel;
 
         }
 
