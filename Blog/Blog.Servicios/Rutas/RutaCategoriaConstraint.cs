@@ -42,13 +42,13 @@ namespace Blog.Servicios.Rutas
                 return false;
 
             List<RutaDto> rutas = _cache.GetOrAdd(
-                CacheSetting.RutasEtiquetas.Key,
+                CacheSetting.RutasCategorias.Key,
                 () =>
                 {
                     var buscadorRutas = new BuscadorRutas(new ContextoBaseDatos(), _tituloBlog);
                     return buscadorRutas.BuscarRutasDeCategorias();
                 },
-                CacheSetting.RutasEtiquetas.SlidingExpiration);
+                CacheSetting.RutasCategorias.SlidingExpiration);
 
 
             return rutas.Any(m=>m.UrlSlug.ToLower() == urlCategoria.ToLower());

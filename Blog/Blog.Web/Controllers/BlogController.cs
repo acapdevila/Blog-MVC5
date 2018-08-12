@@ -10,6 +10,7 @@ using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
@@ -22,12 +23,13 @@ namespace Blog.Web.Controllers
         public static string TituloBlog = "albertcapdevila.net";
 
         private readonly BlogServicio _blogServicio = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
+        private readonly CacheService _cache = new CacheService();
         private const int NumeroItemsPorPagina = 10;
 
 
-        public ActionResult Index(int? pagina)
+        public async Task<ActionResult> Index(int? pagina)
         {
-            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1, NumeroItemsPorPagina);
+            var viewModel = await ObtenerListaPostsBlogViewModel(pagina ?? 1, NumeroItemsPorPagina);
             return View(viewModel);
         }
         
@@ -145,12 +147,20 @@ namespace Blog.Web.Controllers
                         .FirstOrDefaultAsync(m => m.Anyo == anyo && m.Mes == mes);
         }
 
-        private ListaPostsBlogResumidosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private async Task<ListaPostsBlogResumidosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return new ListaPostsBlogResumidosViewModel
-            {
-                ListaPosts = _blogServicio.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
-            };        
+            ListaPostsBlogResumidosViewModel listaPostViewmodel = await _cache.GetOrAdd(
+                CacheSetting.PaginaPrincipal.Key, async () =>
+                {
+                    return new ListaPostsBlogResumidosViewModel
+                    {
+                        ListaPosts = await _blogServicio.ObtenerListaResumenPostsPublicados(pagina, numeroItemsPorPagina)
+                    };
+                },
+                CacheSetting.PaginaPrincipal.SlidingExpiration);
+
+            return listaPostViewmodel;
+               
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)

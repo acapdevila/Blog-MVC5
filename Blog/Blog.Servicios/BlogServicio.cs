@@ -9,6 +9,7 @@ using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using PagedList;
+using PagedList.EntityFramework;
 
 namespace Blog.Servicios
 {
@@ -44,19 +45,19 @@ namespace Blog.Servicios
         }
 
 
-        public IPagedList<LineaResumenPost> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
+        public async Task<IPagedList<LineaResumenPost>> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
         {
-            return Posts()
+            return await Posts()
                 .Publicados()
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .ToPagedList(pagina, nummeroItemsPorPagina);
+                .ToPagedListAsync(pagina, nummeroItemsPorPagina);
             
         }
 
-        public IPagedList<LineaPostCompleto> ObtenerListaPostsCompletosPublicados(int pagina, int nummeroItemsPorPagina)
+        public async Task<IPagedList<LineaPostCompleto>> ObtenerListaPostsCompletosPublicados(int pagina, int nummeroItemsPorPagina)
         {
-            var postsProyectados = Posts()
+            var  postsProyectados = await Posts()
                     .Publicados()
                 .Select(m => new 
                 {
@@ -69,7 +70,7 @@ namespace Blog.Servicios
                   m.ContenidoHtml
                 })
                 .OrderByDescending(m => m.FechaPost)
-                .ToPagedList(pagina, nummeroItemsPorPagina);
+                .ToPagedListAsync(pagina, nummeroItemsPorPagina);
 
 
 
@@ -85,9 +86,9 @@ namespace Blog.Servicios
             }), postsProyectados.PageNumber, postsProyectados.PageSize, postsProyectados.TotalItemCount);
         }
 
-        public IPagedList<LineaPostCompleto> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
+        public async Task<IPagedList<LineaPostCompleto>> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
         {
-            var postsProyectados = Posts()
+            var postsProyectados = await Posts()
                 .Publicados()
                 .BuscarPor(criteriosBusqueda)
                 .OrderByDescending(m => m.FechaPost)
@@ -101,9 +102,9 @@ namespace Blog.Servicios
                     m.Autor,
                     m.ContenidoHtml
                 })
-                .ToPagedList(pagina, nummeroItemsPorPagina);
+                .ToPagedListAsync(pagina, nummeroItemsPorPagina);
 
-                return new PagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
+                return new StaticPagedList<LineaPostCompleto>(postsProyectados.Select(m => new LineaPostCompleto
                 {
                     Id = m.Id,
                     UrlSlug = m.UrlSlug,
@@ -112,7 +113,7 @@ namespace Blog.Servicios
                     FechaPost = m.FechaPost,
                     Autor = m.Autor,
                     ContenidoHtml = m.ContenidoHtml
-                }), postsProyectados.PageNumber, postsProyectados.PageSize);
+                }), postsProyectados.PageNumber, postsProyectados.PageSize, postsProyectados.Count);
 
         }
 

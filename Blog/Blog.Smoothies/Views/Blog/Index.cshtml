@@ -2,10 +2,7 @@
 
 
 @{
-    ViewBag.Title = Model.Blog.Titulo;
-    ViewBag.MetaDescripcion = Model.Blog.Descripcion;
-    ViewBag.MetaPalabrasClave = Model.Blog.PalabrasClave;
-    ViewBag.ImagenPrincipal = Model.Blog.UrlImagenPrincipal ?? "https://bylauragarcía/content/imagenes/logo.png";
+    ViewBag.ImagenPrincipal = "https://bylauragarcía/content/imagenes/logo.png";
 }
 
 
@@ -32,17 +29,7 @@
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-
-
-        @if (!string.IsNullOrEmpty(Model.Blog.Descripcion))
-        {
-            <div>
-                @Html.DisplayFor(m => m.Blog, "DisplayBlog")
-            </div>
-            <div class="clearfix"></div>
-            <hr />
-        }
-
+        
         <!-- First Blog Post -->
         @Html.Partial("_ListaPostsPrimeraDestacada", Model.ListaPosts)
 

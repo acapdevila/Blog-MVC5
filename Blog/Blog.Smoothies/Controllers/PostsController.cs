@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
@@ -9,8 +10,8 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Post;
-using Blog.ViewModels.Post.Conversores;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -164,6 +165,8 @@ namespace Blog.Smoothies.Controllers
                 else if (accion.Contains("publicar"))
                     await _postsServicio.PublicarPost(viewModel);
 
+                LimpiarCache();
+
                 if (accion.Contains("programar"))
                     return RedirectToAction("Index", "Borradores");
 
@@ -173,6 +176,12 @@ namespace Blog.Smoothies.Controllers
                 return RedirectToRoute(RouteConfig.NombreRutaAmigable, new { urlSlug = viewModel.UrlSlug });
             }
             return View(viewModel);
+        }
+
+        private void LimpiarCache()
+        {
+            var cache = new CacheService();
+            cache.Clear();
         }
 
         public async Task<ActionResult> Delete(int? id)

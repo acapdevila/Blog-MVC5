@@ -28,5 +28,11 @@ namespace Blog.Servicios.Cache
             public const string Key = "RutasEtiquetas";
             public static readonly TimeSpan SlidingExpiration = TimeSpan.FromDays(1);
         }
+
+        public static class PaginaPrincipal
+        {
+            public const string Key = "PaginaPrincipal";
+            public static readonly TimeSpan SlidingExpiration = TimeSpan.FromHours(1);
+        }
     }
 }

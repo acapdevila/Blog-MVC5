@@ -8,6 +8,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 
@@ -17,6 +18,7 @@ namespace Blog.Web.Controllers
     public class PostsController : Controller
     {
         private readonly PostsServicio _postsServicio;
+        
 
         public PostsController() : this(new ContextoBaseDatos())
         {
@@ -162,6 +164,9 @@ namespace Blog.Web.Controllers
                 else if (accion.Contains("publicar"))
                     await _postsServicio.PublicarPost(viewModel);
 
+                LimpiarCache();
+                
+
                 if (accion.Contains("programar"))
                     return RedirectToAction("Index", "Borradores");
 
@@ -171,6 +176,12 @@ namespace Blog.Web.Controllers
                 return RedirectToRoute(RouteConfig.NombreRutaAmigable, new { urlSlug = viewModel.UrlSlug });
             }
             return View(viewModel);
+        }
+
+        private void LimpiarCache()
+        {
+            var cache = new CacheService();
+            cache.Clear();
         }
 
         public async Task<ActionResult> Delete(int? id)

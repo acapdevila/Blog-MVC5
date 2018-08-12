@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
@@ -26,17 +28,18 @@ namespace Blog.Smoothies.Controllers
 
         private readonly BlogServicio _blogServicio;
         private readonly TagsServicio _tagsServicio;
+        private readonly CacheService _cache;
         
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
             _blogServicio = new BlogServicio(contexto, TituloBlog);
             _tagsServicio = new TagsServicio(contexto, TituloBlog);
+            _cache = new CacheService();
 
         }
 
         private const int NumeroItemsPorPagina = 11;
-
 
         public async Task<ActionResult> Index(int? pagina)
         {
@@ -45,7 +48,7 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        public ActionResult Buscar(string buscarPor,int? pagina)
+        public async  Task<ActionResult> Buscar(string buscarPor,int? pagina)
         {
             Result<CriteriosBusqueda> criteriosBusquedaOError = CriteriosBusqueda.Crear(buscarPor);
 
@@ -58,7 +61,7 @@ namespace Blog.Smoothies.Controllers
 
             criteriosBusqueda.AñadirTags(tags);
 
-            var viewModel = ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
+            var viewModel = await ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
             return View("ResultadoBusqueda" ,viewModel);
         }
 
@@ -213,11 +216,18 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return new ListaPostsBlogCompletosViewModel
-            {
-                Blog = await _blogServicio.RecuperarBlog(),
-                ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
-            };
+            ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
+                CacheSetting.PaginaPrincipal.Key, async () =>
+                {
+                    return new ListaPostsBlogCompletosViewModel
+                    {
+                        ListaPosts = await _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
+                    };
+                },
+                CacheSetting.PaginaPrincipal.SlidingExpiration);
+
+            return listaPostViewmodel;
+
         }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
@@ -226,13 +236,13 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        private ResultadoBusquedaViewModel ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
+        private async Task<ResultadoBusquedaViewModel> ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
         {
 
             return new ResultadoBusquedaViewModel
             {
                 BuscarPor = buscarPor,
-                ListaPosts = _blogServicio.BuscarPostsCompletosPublicados(buscarPor, pagina, numeroItemsPorPagina)
+                ListaPosts = await _blogServicio.BuscarPostsCompletosPublicados(buscarPor, pagina, numeroItemsPorPagina)
             };
         }
 
