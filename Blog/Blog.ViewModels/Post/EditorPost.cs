@@ -11,7 +11,6 @@ namespace Blog.ViewModels.Post
 {
     public class EditorPost
     {
-
         public EditorPost()
         {
           
@@ -22,6 +21,11 @@ namespace Blog.ViewModels.Post
            this.InjectFrom(post);
            Tags = post.Tags.TagsSeparadosPorComma();
            Categorias = post.Categorias.CategoriasSeparadasPorComma();
+        }
+
+        public EditorPost(EditorBorrador viewModel)
+        {
+            this.InjectFrom(viewModel);
         }
 
         public int Id { get; set; }
@@ -71,14 +75,8 @@ namespace Blog.ViewModels.Post
         public bool EsRssAtom { get; set; }
 
         [Display(Name = "Fecha de publicación")]
-        [Required(ErrorMessage = "Escribe una fecha")]
         public DateTime FechaPublicacion { get; set; }
-
-        public bool PendienteDePublicar
-        {
-            get { return DateTime.Now < FechaPublicacion; }
-        }
-
+        
         [Required]
         public string Autor { get; set; }
 

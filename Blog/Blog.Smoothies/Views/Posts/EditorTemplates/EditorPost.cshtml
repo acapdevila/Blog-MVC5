@@ -2,10 +2,10 @@
 
 @Html.HiddenFor(model => model.Id)
 <div class="form-group">
-    @Html.LabelFor(model => model.Titulo, htmlAttributes: new {@class = "control-label col-md-2"})
+    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.Titulo, new {htmlAttributes = new {@class = "form-control"}})
-        @Html.ValidationMessageFor(model => model.Titulo, "", new {@class = "text-danger"})
+        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
     </div>
 </div>
 
@@ -33,10 +33,16 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.FechaPost, htmlAttributes: new {@class = "control-label col-md-2"})
+    @Html.LabelFor(model => model.FechaPost, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-xs-2">
-        @Html.EditorFor(model => model.FechaPost, "DatetimePicker", new {htmlAttributes = new {@class = "form-control col-xs-2"}})
-        @Html.ValidationMessageFor(model => model.FechaPost, "", new {@class = "text-danger"})
+        @Html.TextBoxFor(model => model.FechaPost, new { @class = "form-control", disabled = "disabled" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FechaPublicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-xs-2">
+        @Html.TextBoxFor(model => model.FechaPublicacion, new { @class = "form-control", disabled = "disabled" })
     </div>
 </div>
 
@@ -51,28 +57,28 @@
 <div class="form-group">
     @Html.LabelFor(model => model.Categorias, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        
+
         @Html.EditorFor(model => model.Categorias, "AutocompleteMultiple", new
         {
             ajaxCallbackUrlAction = "QuickMultipleSearch",
             ajaxCallbackUrlController = "Categorias"
         })
-        @Html.ValidationMessageFor(model => model.Categorias, "", new {@class = "text-danger"})
-       
+        @Html.ValidationMessageFor(model => model.Categorias, "", new { @class = "text-danger" })
+
     </div>
 </div>
 
 <div class="form-group">
     @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        
+
         @Html.EditorFor(model => model.Tags, "AutocompleteMultiple", new
         {
             ajaxCallbackUrlAction = "QuickMultipleSearch",
             ajaxCallbackUrlController = "Tags"
         })
-        @Html.ValidationMessageFor(model => model.Tags, "", new {@class = "text-danger"})
-       
+        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+
     </div>
 </div>
 
@@ -84,7 +90,7 @@
     </div>
 </div>
 
-<hr/>
+<hr />
 <div class="form-group">
     @Html.LabelFor(model => model.Subtitulo, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -96,21 +102,21 @@
 
 
 <div class="form-group">
-    @Html.LabelFor(model => model.ContenidoHtml, htmlAttributes: new {@class = "control-label col-md-2"})
+    @Html.LabelFor(model => model.ContenidoHtml, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.EditorFor(model => model.ContenidoHtml, "HtmlEditor", new {htmlAttributes = new {@class = "form-control"}})
-        @Html.ValidationMessageFor(model => model.ContenidoHtml, "", new {@class = "text-danger"})
+        @Html.EditorFor(model => model.ContenidoHtml, "HtmlEditor", new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ContenidoHtml, "", new { @class = "text-danger" })
     </div>
 </div>
 
 
 @*<div class="form-group">
-    @Html.LabelFor(model => model.PostContenidoHtml, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.TextAreaFor(model => model.PostContenidoHtml, new { @class = "form-control", @rows = 40, @cols = 80 })
-        @Html.ValidationMessageFor(model => model.PostContenidoHtml, "", new { @class = "text-danger" })
-    </div>
-</div>*@
+        @Html.LabelFor(model => model.PostContenidoHtml, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.PostContenidoHtml, new { @class = "form-control", @rows = 40, @cols = 80 })
+            @Html.ValidationMessageFor(model => model.PostContenidoHtml, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
 
 
 
@@ -120,19 +126,19 @@
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <div class="navbar-form navbar-left">
-                    @Html.LabelFor(model => model.FechaPublicacion)
-                    @Html.HiddenFor(model => model.FechaPublicacion)
-                    @Html.TextBoxFor(model => model.FechaPublicacion, new { @class = "text-danger", disabled="disabled" })
-                </div>
                 <label class="btn navbar-btn">
-                    @if (Model.EsRssAtom)
+                    @if (!Model.EsRssAtom)
                     {
                         <label style="color: red">NO RSS</label>
                     }
-                  
+
                 </label>
+
+                <input id="btnModificarPublicacion" name="boton" type="submit" value="Modificar publicación" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+            </li>
+            <li>
                 <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+
                 <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
             </li>
         </ul>

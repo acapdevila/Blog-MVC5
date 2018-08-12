@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -65,76 +66,21 @@ namespace Blog.Smoothies.Controllers
             }
             return View(post);
         }
-        
+
+
 
         public ActionResult Crear()
         {
             var viewModel = new EditorBorrador
             {
                 Autor = "Laura García",
-                ContenidoHtml = ObtenerContenidoHtmlPorDefecto()
+                FechaPost = DateTime.Today
             };
 
             return View(viewModel);
         }
 
-
-        private string ObtenerContenidoHtmlPorDefecto()
-        {
-            return @"
-                               <p>
-                                <span itemprop=totalTime' class='small color1'>10 minutos</span> · 
-                                <span itemprop='recipeYield' class='small color1'>1 persona</span>
-                                </p>
-                                 <strong>Base:</strong>
-                                    <ul>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    </ul>
-
-                                    <strong>Arriba:</strong>
-                                    <ul>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    <li itemprop='ingredients'></li>
-                                    </ul>";
-        }
-
-        private string ObtenerDatosEstructucturadosPorDefecto()
-        {
-            return @"<script type=""application / ld + json"">
-                    {
-                        ""@context"": ""http://schema.org"",
-                        ""@type"": ""Article"",
-                        ""headline"": ""Max110Palabras"",
-                        ""image"": [
-                            ""https://storagequedat.blob.core.windows.net/contenedorblog/XXXXXXXXXXXX""
-                            ],
-                        ""datePublished"": ""2018-02-25T08:00:00+02:00"",
-                        ""author"": {
-                            ""@type"": ""Person"",
-                            ""name"": ""Laura García""
-                        },
-                        ""publisher"": {
-                        ""@type"": ""Organization"",
-                        ""name"": ""by Laura García"",
-                        ""logo"": {
-                            ""@type"": ""ImageObject"",
-                            ""url"": ""https://bylauragarcia.com/content/imagenes/logo.png""
-                            }
-                        },
-                        ""description"": ""UnArtículoMaravilloso""
-                    }
-                </script>
-                ";
-
-        }
+       
 
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -144,19 +90,20 @@ namespace Blog.Smoothies.Controllers
         public async Task<ActionResult> Crear(string boton, EditorBorrador viewModel)
         {
             if (!ModelState.IsValid) return View(viewModel);
-            
+
             await _postsServicio.CrearBorrador(viewModel);
-                
-            if(boton.ToLower().Contains(@"salir"))
-              return RedirectToAction("Index");
+
+            if (boton.ToLower().Contains(@"salir"))
+                return RedirectToAction("Index");
 
             if (boton.ToLower().Contains(@"ver"))
-               return RedirectToAction("Detalles", new { id = viewModel.Id });
+                return RedirectToAction("Detalles", new { id = viewModel.Id });
 
             return RedirectToAction("Editar", new { viewModel.Id });
-            
+
+
         }
-        
+
 
         public async Task<ActionResult> Editar(int? id)
         {
@@ -179,16 +126,25 @@ namespace Blog.Smoothies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Editar(string boton, EditorBorrador viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(viewModel);
+
+            await ActualizarPost(viewModel);
+
+            if (boton.ToLower().Contains(@"publicar"))
             {
-                await ActualizarPost(viewModel);
+                var editorPost = new EditorPost(viewModel);
 
-                if (boton.ToLower().Contains(@"publicar"))
-                    return RedirectToAction("Publicar", "Posts", new { id = viewModel.Id });
+                TryValidateModel(editorPost);
 
-                return RedirectToAction("Detalles", new { id = viewModel.Id });
-            }
-            return View(viewModel);
+                if (!ModelState.IsValid) return View(viewModel);
+
+                return RedirectToAction("Publicar", "Posts", new { id = viewModel.Id });
+
+             }
+
+             return RedirectToAction("Detalles", new { id = viewModel.Id });
+           
+          
         }
 
         [HttpPost]

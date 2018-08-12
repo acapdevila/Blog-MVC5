@@ -141,11 +141,10 @@ namespace Blog.Web.Controllers
         public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
         {
             string accion = boton.ToLower();
+            var post = await _postsServicio.RecuperarPost(viewModel.Id);
 
             if (accion.Contains("cancelar"))
             {
-                var post = await _postsServicio.RecuperarPost(viewModel.Id);
-
                 if (post.EsBorrador)
                     return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
 
@@ -154,6 +153,10 @@ namespace Blog.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                var editorPost = new EditorPost(post);
+                TryValidateModel(editorPost);
+                if (!ModelState.IsValid) return View(viewModel);
+                
                 if (accion.Contains("programar"))
                     await _postsServicio.ProgramarPublicacion(viewModel);
                 else if (accion.Contains("publicar"))

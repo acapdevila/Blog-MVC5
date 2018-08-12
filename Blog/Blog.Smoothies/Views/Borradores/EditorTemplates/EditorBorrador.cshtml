@@ -92,12 +92,14 @@
 
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Volver a la lista", "Index")
-            <li/>
+                <div class="centerer c">
+                    @Html.ActionLink("Volver a la lista", "Index")
+                </div>
+            <li />
             <li>
                 <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
                 <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;

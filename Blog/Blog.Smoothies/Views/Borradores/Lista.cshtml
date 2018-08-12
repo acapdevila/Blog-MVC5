@@ -11,9 +11,12 @@
 </p>
 <table class="table">
     <tr>
-        <th></th>
+        <th style="width: 110px"></th>
         <th>
             Título
+        </th>
+        <th>
+            Categorías
         </th>
         <th>
             Tags
@@ -24,34 +27,51 @@
         <th>
             Fecha publicación
         </th>
-        <th></th>
 
     </tr>
 
-@foreach (var item in Model.ListaPosts) {
-    <tr>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) 
-        </td>
-        <td>
-            @Html.ActionLink(item.Titulo, "Detalles", new {id = item.Id})
+    @foreach (var item in Model.ListaPosts) {
+        <tr>
+            <td>
+                <!-- Split button -->
+                <div class="btn-group">
+                    @Html.ActionLink("Editar", "Editar", new {id = item.Id}, new{@class= "btn btn-default" })
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Acciones</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            @Html.ActionLink("Publicar", "Publicar", "Posts", new { id = item.Id }, null)
+                        </li>
+                        @*<li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>*@
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
 
-        </td>
-        <td>
-            @item.Tags
-        </td>
-        <td>
-            @item.FechaPost.ToShortDateString()
-        </td>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink(item.Titulo, "Detalles", new {id = item.Id})
+            </td>
+            <td>
+                @item.Categorias
+            </td>
+            <td>
+                @item.Tags
+            </td>
+            <td>
+                @item.FechaPost.ToShortDateString()
+            </td>
         
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaPublicacion)
-        </td>
-        <td>
-            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPublicacion)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>

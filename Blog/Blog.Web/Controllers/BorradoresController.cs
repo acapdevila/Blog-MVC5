@@ -120,16 +120,23 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Editar(string boton, EditorBorrador viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(viewModel);
+
+            await ActualizarPost(viewModel);
+
+            if (boton.ToLower().Contains(@"publicar"))
             {
-                await ActualizarPost(viewModel);
+                var editorPost = new EditorPost(viewModel);
 
-                if (boton.ToLower().Contains(@"publicar"))
-                    return RedirectToAction("Publicar","Posts", new { id = viewModel.Id });
+                TryValidateModel(editorPost);
 
-                return RedirectToAction("Detalles", new { id = viewModel.Id });
+                if (!ModelState.IsValid) return View(viewModel);
+
+                return RedirectToAction("Publicar", "Posts", new { id = viewModel.Id });
+
             }
-            return View(viewModel);
+
+            return RedirectToAction("Detalles", new { id = viewModel.Id });
         }
 
         [HttpPost]

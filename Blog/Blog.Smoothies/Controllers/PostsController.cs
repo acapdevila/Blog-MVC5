@@ -18,44 +18,35 @@ namespace Blog.Smoothies.Controllers
     public class PostsController : Controller
     {
         private readonly PostsServicio _postsServicio;
-        private readonly TagsServicio _tagsServicio;
-
-        private const int NumeroItemsPorPagina = 50;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
-            
+
         }
 
-        public PostsController(ContextoBaseDatos contexto): this(
-            new PostsServicio(contexto, new AsignadorTags(new TagRepositorio(contexto)), new AsignadorCategorias(new CategoriaRepositorio(contexto)), BlogController.TituloBlog), 
-            new TagsServicio(contexto, BlogController.TituloBlog))
+        public PostsController(ContextoBaseDatos contexto) :
+            this(new PostsServicio(contexto,
+                    new AsignadorTags(new TagRepositorio(contexto)),
+                    new AsignadorCategorias(new CategoriaRepositorio(contexto)),
+                    BlogController.TituloBlog))
         {
 
         }
 
 
-        public PostsController(PostsServicio postsServicio, TagsServicio tagsServicio)
+        public PostsController(PostsServicio postsServicio)
         {
             _postsServicio = postsServicio;
-            _tagsServicio = tagsServicio;
-            
         }
 
-        public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
+        public async Task<ActionResult> Index(int pagina = 1)
         {
-            var criteriosBusqueda = CriteriosBusqueda.Crear(buscarPor).Value;
-
-            List<Tag> tags = _tagsServicio.BuscarTags(criteriosBusqueda);
-
-            criteriosBusqueda.AñadirTags(tags);
-
-            var viewModel = await ObtenerListaPostViewModel(criteriosBusqueda, pagina, NumeroItemsPorPagina);
+            var viewModel = await _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(), pagina, 100);
             return View(viewModel);
         }
 
-      
-        
+
+
 
         public async Task<ActionResult> Details(int? id)
         {
@@ -70,13 +61,7 @@ namespace Blog.Smoothies.Controllers
             }
             return View(post);
         }
-        
-    
 
-
-
-
-        
 
         public async Task<ActionResult> Edit(int? id)
         {
@@ -94,16 +79,19 @@ namespace Blog.Smoothies.Controllers
             {
                 EditorPost = new EditorPost(post)
             };
-            
+
             return View(viewModel);
         }
-        
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditPostViewModel viewModel)
+        public async Task<ActionResult> Edit(string boton, EditPostViewModel viewModel)
         {
+            if (boton.ToLower().Contains("modificar publicación"))
+                return RedirectToAction("Publicar", new { id = viewModel.EditorPost.Id });
+
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
@@ -119,10 +107,21 @@ namespace Blog.Smoothies.Controllers
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
+                return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
             }
-            return Content(string.Empty);
-        }
 
+            var sb = new StringBuilder();
+            foreach (ModelState modelState in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in modelState.Errors)
+                {
+                    sb.AppendLine(error.ErrorMessage);
+                }
+            }
+
+            return Json(new { esOk = false, textoRespuesta = sb.ToString() }, JsonRequestBehavior.AllowGet);
+
+        }
 
         public async Task<ActionResult> Publicar(int id)
         {
@@ -144,10 +143,10 @@ namespace Blog.Smoothies.Controllers
         {
             string accion = boton.ToLower();
 
+            var post = await _postsServicio.RecuperarPost(viewModel.Id);
+
             if (accion.Contains("cancelar"))
             {
-                var post = await _postsServicio.RecuperarPost(viewModel.Id);
-
                 if (post.EsBorrador)
                     return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
 
@@ -156,6 +155,10 @@ namespace Blog.Smoothies.Controllers
 
             if (ModelState.IsValid)
             {
+                var editorPost = new EditorPost(post);
+                TryValidateModel(editorPost);
+                if (!ModelState.IsValid) return View(viewModel);
+
                 if (accion.Contains("programar"))
                     await _postsServicio.ProgramarPublicacion(viewModel);
                 else if (accion.Contains("publicar"))
@@ -185,7 +188,6 @@ namespace Blog.Smoothies.Controllers
             }
             return View(post);
         }
-        
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -195,17 +197,15 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
-        {
-            return await _postsServicio.ObtenerListaPostViewModel(criteriosBusqueda, numeroPagina, postsPorPagina);
-        }
+
 
 
         private async Task<Post> RecuperarPost(int id)
         {
             return await _postsServicio.RecuperarPost(id);
         }
-        
+
+
         private async Task ActualizarPost(EditorPost editorPost)
         {
             await _postsServicio.ActualizarPost(editorPost);
