@@ -1,0 +1,27 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+        var currentController = (string)ViewContext.RouteData.Values["Controller"];
+        const string activeClass = "active";
+     
+
+  <nav id="menuBackOffice" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="@(currentController == "Tags" ? activeClass : string.Empty)">
+                @Html.ActionLink("Tags", "Index", "Tags")
+            </li>
+            <li class="@(currentController == "Borradores" ? activeClass : string.Empty)">
+                @Html.ActionLink("Borradores", "Index", "Borradores")
+            </li>
+            <li class="@(currentController == "Posts" ? activeClass : string.Empty)">
+                @Html.ActionLink("Posts", "Index", "Posts")
+            </li>
+            <li class="@(currentController == "Blogs" ? activeClass : string.Empty)">
+                @Html.ActionLink("Blogs", "Index", "Blogs")
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+}

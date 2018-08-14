@@ -12,13 +12,7 @@
     @Html.AntiForgeryToken()
         <br />
     <ul class="list-inline text-uppercase smallest" style="padding-right:10px">
-        <li class="@(currentController == "Manage" ? activeClass : string.Empty)">
-            @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
-        </li>
-        @*<li class="@(currentController == "Account" ? activeClass : string.Empty)">
-            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})
-        </li>*@
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
     </ul>
     }
 }

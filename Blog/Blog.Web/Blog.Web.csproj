@@ -207,7 +207,6 @@
     <Compile Include="Controllers\HolaController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -744,9 +743,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Hola\Index.cshtml" />
     <Content Include="Views\Contacto\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
@@ -756,12 +753,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Tags\Create.cshtml" />
@@ -781,7 +772,6 @@
     <Content Include="Views\Posts\EditorTemplates\EditorPost.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatetimePicker.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
-    <Content Include="Views\Shared\_MenuPrincipal.cshtml" />
     <Content Include="Views\Shared\_SidebarPrincipal.cshtml" />
     <Content Include="Views\Blog\Etiqueta.cshtml" />
     <Content Include="Views\Sidebar\DisplayTemplates\LinkEtiqueta.cshtml" />
@@ -817,6 +807,7 @@
     <Content Include="Views\Borradores\EditorTemplates\EditorBorrador.cshtml" />
     <Content Include="Views\Borradores\Lista.cshtml" />
     <Content Include="Views\Posts\Publicar.cshtml" />
+    <Content Include="Views\Shared\_MenuBackOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
