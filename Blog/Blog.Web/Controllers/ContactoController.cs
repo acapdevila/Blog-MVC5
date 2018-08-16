@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.UI;
 using Blog.Servicios;
 using Blog.ViewModels.Contacto;
 
@@ -18,6 +19,7 @@ namespace Blog.Web.Controllers
             _emailServicio = emailServicio;
         }
 
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "none", NoStore = true)]
         public ActionResult Index()
         {
             return View();

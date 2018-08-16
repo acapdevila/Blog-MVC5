@@ -4,10 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-@Scripts.Render("~/bundles/controlesedicion")
-@Styles.Render("~/bundles/controlesedicioncss")
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<script src="~/Scripts/ckeditor/config.js"></script>
+
 
 <h2>Edit</h2>
 
@@ -15,15 +12,15 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Post</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       
+
 
         @Html.EditorFor(m => m, "EditorBorrador")
-    
+
     </div>
 }
 
@@ -31,6 +28,10 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-   
+    @Scripts.Render("~/bundles/controlesedicion")
+    @Styles.Render("~/bundles/controlesedicioncss")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/ckeditor/config.js"></script>
+
 
 }

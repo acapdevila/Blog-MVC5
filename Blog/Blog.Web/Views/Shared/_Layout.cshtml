@@ -1,8 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     @if (Request != null && Request.Url != null && (Request.Url.AbsoluteUri.Contains("azurewebsites.net")
                                                     || Request.Url.AbsoluteUri.Contains("pagina=")
@@ -16,11 +19,11 @@
                                                     || Request.Url.AbsoluteUri.Contains(@"/tags/")
         ))
     {
-        <meta name="robots" content="noindex,follow" />
+        <meta name="robots" content="noindex,follow"/>
     }
 
     @RenderSection("linksnextprev", false)
-    
+
     @* seo *@
 
     @{
@@ -33,49 +36,48 @@
 
     <title>@titulo</title>
 
-    <link rel="canonical" href="@urlcanonica" />
-    <meta name="description" content="@descripcion" />
+    <link rel="canonical" href="@urlcanonica"/>
+    <meta name="description" content="@descripcion"/>
     <meta name="keywords" content="@palabrasclave">
     <meta name="author" content="Albert Capdevila">
-    
-    <meta property="og: site_name" content="albertcapdevila.net" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="@titulo" />
-    <meta property="og:description" content="@descripcion" />
-    <meta property="og:url" content="@urlcanonica" />
+
+    <meta property="og: site_name" content="albertcapdevila.net"/>
+    <meta property="og:locale" content="es_ES"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="@titulo"/>
+    <meta property="og:description" content="@descripcion"/>
+    <meta property="og:url" content="@urlcanonica"/>
     @if (!string.IsNullOrEmpty(imagenPrincipal))
     {
         <meta property="og:image" content="@imagenPrincipal">
 
-        <meta name="twitter:image" content="@imagenPrincipal" />
+        <meta name="twitter:image" content="@imagenPrincipal"/>
     }
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="@descripcion" />
-    <meta name="twitter:title" content="@titulo" />
-    
-    @* seo *@
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="@descripcion"/>
+    <meta name="twitter:title" content="@titulo"/>
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+    @* seo *@
     
     @Html.Partial("_GoogleAnalytics")
-    
-    @Html.Partial("_AceptarCookies")
-    
-    <!-- Begin MailChimp Signup Form -->
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+
     <style type="text/css">
         #mc_embed_signup {
             background: #fff;
             clear: left;
-            font: 14px Helvetica,Arial,sans-serif;
+            font: 14px Helvetica, Arial, sans-serif;
         }
     /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
     
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+
+    <!-- Begin MailChimp Signup Form -->
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+ 
+
     @RenderSection("head", required: false)
 
 </head>
@@ -130,9 +132,15 @@
 
     
         @Html.Partial("_MenuBackOffice")
+    
 
+    
+        @Scripts.Render("~/bundles/modernizr")
+   
 
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+
+        @Html.Partial("_AceptarCookies")
 </body>
 </html>

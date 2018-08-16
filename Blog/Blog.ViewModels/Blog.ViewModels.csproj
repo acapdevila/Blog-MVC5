@@ -116,6 +116,8 @@
     <Compile Include="Etiqueta\EditarEtiquetaViewModel.cs" />
     <Compile Include="Etiqueta\EtiquetaViewModel.cs" />
     <Compile Include="Categoria\ListaGestionCategoriasViewModel.cs" />
+    <Compile Include="Libros\LibrosProgramacionViewmodel.cs" />
+    <Compile Include="Libros\LibroViewmodel.cs" />
     <Compile Include="Menu\MenuCategoriasViewModel.cs" />
     <Compile Include="Post\Conversores\ConversorBlogs.cs" />
     <Compile Include="Post\Conversores\ConversorPost.cs" />

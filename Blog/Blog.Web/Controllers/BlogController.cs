@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using Blog.Datos;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
@@ -25,7 +26,7 @@ namespace Blog.Web.Controllers
         private readonly BlogServicio _blogServicio = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
         private const int NumeroItemsPorPagina = 10;
 
-
+        [OutputCache(Duration = 3600,  Location = OutputCacheLocation.Client, VaryByParam = "pagina", NoStore = true)]
         public async Task<ActionResult> Index(int? pagina)
         {
             var viewModel = await ObtenerListaPostsBlogViewModel(pagina ?? 1, NumeroItemsPorPagina);

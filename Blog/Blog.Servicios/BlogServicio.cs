@@ -47,6 +47,8 @@ namespace Blog.Servicios
 
         public async Task<IPagedList<LineaResumenPost>> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
         {
+            if (pagina < 1) pagina = 1;
+
             return await Posts()
                 .Publicados()
                 .SeleccionaLineaResumenPost()

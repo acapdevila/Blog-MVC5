@@ -2,21 +2,18 @@
 
 @{
     ViewBag.Title = "Crear borrador";
- }
+}
 
-@Scripts.Render("~/bundles/controlesedicion")
-@Styles.Render("~/bundles/controlesedicioncss")
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<script src="~/Scripts/ckeditor/config.js"></script>
+
 
 
 <h2>@ViewBag.Title</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Post</h4>
         <hr />
@@ -24,16 +21,22 @@
 
 
 
-        @Html.EditorFor(m=>m, "EditorBorrador")
+        @Html.EditorFor(m => m, "EditorBorrador")
 
     </div>
 }
 
 
 
-  
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    @Scripts.Render("~/bundles/controlesedicion")
+    @Styles.Render("~/bundles/controlesedicioncss")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/ckeditor/config.js"></script>
 
 }

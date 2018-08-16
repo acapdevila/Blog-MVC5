@@ -99,82 +99,86 @@
                 @Html.ActionLink("Volver a la lista", "Index")
             </li>
             <li>
-               
-                <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn"/>&nbsp;&nbsp;
-                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn"/>&nbsp;&nbsp;
+
+                <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
                 @if (Model.Id > 0)
                 {
-                    <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn"/>
+                    <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
                 }
                 else
                 {
-                    <input id="btnGuardar" name="boton" type="submit" value="Guardar" class="btn btn-primary navbar-btn"/>
+                    <input id="btnGuardar" name="boton" type="submit" value="Guardar" class="btn btn-primary navbar-btn" />
                 }
             </li>
         </ul>
     </div>
-</nav>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#menuBackOffice").hide();
-    });
-</script>
 
-@if (Model.Id > 0)
-{
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menuBackOffice").hide();
+        });
+    </script>
 
-        $(document).ready(function() {
-            jQuery.validator.setDefaults({ ignore: [] });
+    @if (Model.Id > 0)
+    {
+        <script type="text/javascript">
 
-            $("#btnGuardar").click(function(event) {
+            $(document).ready(function() {
+                jQuery.validator.setDefaults({ ignore: [] });
 
-                $(this).val('Guardando...')
-                    .prop('disabled', true);;
+                $("#btnGuardar").click(function(event) {
 
-                event.preventDefault();
+                    $(this).val('Guardando...')
+                        .prop('disabled', true);;
 
-                for (instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
-                }
+                    event.preventDefault();
 
-                Guardar();
+                    for (instance in CKEDITOR.instances) {
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+
+                    Guardar();
+                });
+
             });
 
-        });
-
-        function Guardar() {
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("Guardar", "Borradores")",
-                data: $("form").serialize(),
-                dataType: "html"
-            }).done(function (data) {
-                var obj = JSON.parse(data);
-                if (!obj.esOk) {
-                    alert(obj.textoRespuesta);
-                }
-
-                $("#btnGuardar")
-                    .val("Guardado")
-                    .prop('disabled', false)
-                    .removeClass("btn-primary").addClass("btn-success");
-
-                setTimeout(function() {
+            function Guardar() {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Guardar", "Borradores")",
+                    data: $("form").serialize(),
+                    dataType: "html"
+                }).done(function (data) {
+                    var obj = JSON.parse(data);
+                    if (!obj.esOk) {
+                        alert(obj.textoRespuesta);
+                    }
 
                     $("#btnGuardar")
-                        .val("Guardar")
-                        .removeClass("btn-success").addClass("btn-primary");
+                        .val("Guardado")
+                        .prop('disabled', false)
+                        .removeClass("btn-primary").addClass("btn-success");
 
-                }, 1000);
+                    setTimeout(function() {
+
+                        $("#btnGuardar")
+                            .val("Guardar")
+                            .removeClass("btn-success").addClass("btn-primary");
+
+                    }, 1000);
 
 
-            }).fail(function() {
-                    alert("Se ha producido un error inesperado.");
-                    return false;
-                }
-            );
-        }
+                }).fail(function() {
+                        alert("Se ha producido un error inesperado.");
+                        return false;
+                    }
+                );
+            }
 
-    </script>
-}
+        </script>
+
+    }
+
+</nav>
