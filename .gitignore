@@ -235,3 +235,5 @@ _Pvt_Extensions
 *.Release.config
 *.Debug.config
 Blog/Blog.Deploy/**
+Blog/Blog.Web/ImagenesAzure/**
+CopiaImagenes2018_08_14/**
