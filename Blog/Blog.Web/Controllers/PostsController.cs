@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Net;
+using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
@@ -7,6 +8,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 
@@ -16,6 +18,7 @@ namespace Blog.Web.Controllers
     public class PostsController : Controller
     {
         private readonly PostsServicio _postsServicio;
+        
 
         public PostsController() : this(new ContextoBaseDatos())
         {
@@ -39,7 +42,7 @@ namespace Blog.Web.Controllers
 
         public async Task<ActionResult> Index(int pagina = 1)
         {
-            var viewModel = await ObtenerListaPostViewModel(pagina, postsPorPagina: 100);
+            var viewModel = await  _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(), pagina, 100);
             return View(viewModel);
         }
 
@@ -60,35 +63,6 @@ namespace Blog.Web.Controllers
             return View(post);
         }
         
-        public ActionResult Create()
-        {
-            var viewModel = new EditPostViewModel
-            {
-                EditorPost = _postsServicio.ObtenerNuevoEditorPorDefecto("Albert Capdevila")
-            };
-            
-            return View(viewModel);
-        }
-        
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string boton, EditPostViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                await CrearPost(viewModel.EditorPost);
-              
-                if(boton.ToLower().Contains(@"salir"))
-                return RedirectToAction("Index");
-                
-                return RedirectToAction("Edit", new { viewModel.EditorPost.Id });
-            }
-
-            return View(viewModel);
-        }
-        
 
         public async Task<ActionResult> Edit(int? id)
         {
@@ -104,11 +78,9 @@ namespace Blog.Web.Controllers
 
             var viewModel = new EditPostViewModel
             {
-                EditorPost = new EditorPost()
+                EditorPost = new EditorPost(post)
             };
 
-            viewModel.EditorPost.CopiaValores(post);
-            
             return View(viewModel);
         }
         
@@ -116,13 +88,16 @@ namespace Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditPostViewModel viewModel)
+        public async Task<ActionResult> Edit(string boton, EditPostViewModel viewModel)
         {
+            if (boton.ToLower().Contains("modificar publicación"))
+                return RedirectToAction("Publicar", new {id = viewModel.EditorPost.Id});
+
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
-              
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Details", new { id = viewModel.EditorPost.Id });
             }
             return View(viewModel);
         }
@@ -133,8 +108,80 @@ namespace Blog.Web.Controllers
             if (ModelState.IsValid)
             {
                 await ActualizarPost(viewModel.EditorPost);
+                return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
             }
-            return Content(string.Empty);
+
+            var sb = new StringBuilder();
+            foreach (ModelState modelState in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in modelState.Errors)
+                {
+                    sb.AppendLine(error.ErrorMessage);
+                }
+            }
+
+            return Json(new { esOk = false, textoRespuesta = sb.ToString() }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public async Task<ActionResult> Publicar(int id)
+        {
+            Post post = await RecuperarPost(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new PublicarPost(post);
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
+        {
+            string accion = boton.ToLower();
+            var post = await _postsServicio.RecuperarPost(viewModel.Id);
+
+            if (accion.Contains("cancelar"))
+            {
+                if (post.EsBorrador)
+                    return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
+
+                return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
+            }
+
+            if (ModelState.IsValid)
+            {
+                var editorPost = new EditorPost(post);
+                TryValidateModel(editorPost);
+                if (!ModelState.IsValid) return View(viewModel);
+                
+                if (accion.Contains("programar"))
+                    await _postsServicio.ProgramarPublicacion(viewModel);
+                else if (accion.Contains("publicar"))
+                    await _postsServicio.PublicarPost(viewModel);
+
+                LimpiarCache();
+                
+
+                if (accion.Contains("programar"))
+                    return RedirectToAction("Index", "Borradores");
+
+                if (accion.Contains("home"))
+                    return RedirectToAction("Index", "Blog");
+
+                return RedirectToRoute(RouteConfig.NombreRutaAmigable, new { urlSlug = viewModel.UrlSlug });
+            }
+            return View(viewModel);
+        }
+
+        private void LimpiarCache()
+        {
+            var cache = new CacheService();
+            cache.Clear();
         }
 
         public async Task<ActionResult> Delete(int? id)
@@ -159,10 +206,7 @@ namespace Blog.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(int pagina, int postsPorPagina)
-        {
-            return await _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(),  pagina, postsPorPagina);
-        }
+    
 
 
         private async Task<Post> RecuperarPost(int id)
@@ -170,10 +214,6 @@ namespace Blog.Web.Controllers
             return await _postsServicio.RecuperarPost(id);
         }
 
-        private async Task CrearPost(EditorPost editorPost)
-        {
-            await _postsServicio.CrearPost(editorPost);
-        }
 
         private async Task ActualizarPost(EditorPost editorPost)
         {

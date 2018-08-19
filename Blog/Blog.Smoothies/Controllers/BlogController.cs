@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
@@ -37,17 +39,14 @@ namespace Blog.Smoothies.Controllers
 
         private const int NumeroItemsPorPagina = 11;
 
-
-
-
-        public ActionResult Index(int? pagina)
+        public async Task<ActionResult> Index(int? pagina)
         {
-            var viewModel = ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
+            var viewModel = await ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
             return View(viewModel);
         }
 
 
-        public ActionResult Buscar(string buscarPor,int? pagina)
+        public async  Task<ActionResult> Buscar(string buscarPor,int? pagina)
         {
             Result<CriteriosBusqueda> criteriosBusquedaOError = CriteriosBusqueda.Crear(buscarPor);
 
@@ -60,14 +59,29 @@ namespace Blog.Smoothies.Controllers
 
             criteriosBusqueda.AñadirTags(tags);
 
-            var viewModel = ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
+            var viewModel = await ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
             return View("ResultadoBusqueda" ,viewModel);
         }
 
 
 
-        public ActionResult Detalles(string dia, string mes, string anyo, string urlSlug)
+        public async Task<ActionResult> Detalles(string dia, string mes, string anyo, string urlSlug)
         {
+            if (string.IsNullOrEmpty(urlSlug))
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var fechaPost = GenerarFecha(dia, mes, anyo);
+
+            if (fechaPost == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var post = await RecuperarPost(fechaPost.Value, urlSlug);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
             return RedirectPermanent(@"/" + urlSlug);
         }
         
@@ -117,8 +131,7 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new EtiquetaViewModel
             {
-                Id =  id,
-              NombreEtiqueta = tag.Nombre,
+                Etiqueta =  tag,
               ListaPosts = tag.Posts.AsQueryable()
                         .SeleccionaLineaResumenPost()
                         .OrderByDescending(m => m.FechaPost)
@@ -147,8 +160,7 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new CategoriaViewModel
             {
-                Id = urlCategoria,
-                NombreCategoria = categoria.Nombre,
+                Categoria = categoria,
                 ListaPosts = categoria.Posts.AsQueryable()
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)
@@ -159,6 +171,8 @@ namespace Blog.Smoothies.Controllers
             return View("Categoria", viewModel);
         }
 
+
+       
 
         public async Task<ActionResult> Archivo(int anyo, int mes)
         {
@@ -198,22 +212,35 @@ namespace Blog.Smoothies.Controllers
                         .FirstOrDefaultAsync(m=>m.Anyo == anyo && m.Mes == mes);
         }
 
-        private ListaPostsBlogCompletosViewModel ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
+        private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
         {
-            return new ListaPostsBlogCompletosViewModel
-            {
-                ListaPosts = _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
-            };
+            //ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
+            //    CacheSetting.PaginaPrincipal.Posts, async () =>
+            //    {
+                    return new ListaPostsBlogCompletosViewModel
+                    {
+                        ListaPosts = await _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
+                    };
+                //},
+                //CacheSetting.PaginaPrincipal.SlidingExpiration);
+
+            //return listaPostViewmodel;
+
+        }
+
+        private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
+        {
+            return await _blogServicio.RecuperarPost(fechaPost, urlSlug);
         }
 
 
-        private ResultadoBusquedaViewModel ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
+        private async Task<ResultadoBusquedaViewModel> ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
         {
 
             return new ResultadoBusquedaViewModel
             {
                 BuscarPor = buscarPor,
-                ListaPosts = _blogServicio.BuscarPostsCompletosPublicados(buscarPor, pagina, numeroItemsPorPagina)
+                ListaPosts = await _blogServicio.BuscarPostsCompletosPublicados(buscarPor, pagina, numeroItemsPorPagina)
             };
         }
 

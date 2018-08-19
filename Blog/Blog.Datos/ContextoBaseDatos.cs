@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using Blog.Datos.MapeosTablas;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
@@ -26,6 +28,19 @@ namespace Blog.Datos
         public static ContextoBaseDatos Create()
         {
             return new ContextoBaseDatos();
+        }
+
+        public async Task GuardarCambios()
+        {
+            try
+            {
+                await SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

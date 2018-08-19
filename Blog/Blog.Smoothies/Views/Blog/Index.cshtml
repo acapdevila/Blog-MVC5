@@ -1,7 +1,12 @@
 ﻿@model Blog.ViewModels.Blog.ListaPostsBlogCompletosViewModel
 
 
-@section metatags {
+@{
+    ViewBag.ImagenPrincipal = "https://bylauragarcía/content/imagenes/logo.png";
+}
+
+
+@section linksnextprev {
     @if (Model.ListaPosts.HasNextPage)
     {
         <link rel="next" href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber + 1})" />
@@ -20,13 +25,11 @@
     }
 }
 
-
-<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
-<br/>
+<br />
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
+        
         <!-- First Blog Post -->
         @Html.Partial("_ListaPostsPrimeraDestacada", Model.ListaPosts)
 
@@ -43,7 +46,7 @@
             @if (Model.ListaPosts.HasPreviousPage)
             {
                 <li class="next">
-                    
+
                     @if (Model.ListaPosts.PageNumber == 2)
                     {
                         <a href="@Url.Action("Index")">Entradas más recientes &rarr;</a>
@@ -52,9 +55,9 @@
                     {
                         <a href="@Url.Action("Index", new {pagina = Model.ListaPosts.PageNumber - 1})">Entradas más recientes &rarr;</a>
                     }
-                    
 
-                   
+
+
                 </li>
             }
         </ul>
@@ -63,7 +66,7 @@
 
     </div>
     @Html.Partial("_SidebarPrincipal")
-   
+
 </div>@*
       LightWidget WIDGET INSTAGRAM
     <hr />

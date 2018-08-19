@@ -28,7 +28,7 @@ namespace Blog.ViewModels.Post
         public string Titulo { get; set; }
         public string UrlSlug { get; set; }
         public DateTime FechaPost { get; set; }
-        public bool EsBorrador { get; set; }
+        
         public bool EsRssAtom { get; set; }
         public DateTime FechaPublicacion { get; set; }
         public string Autor { get; set; }

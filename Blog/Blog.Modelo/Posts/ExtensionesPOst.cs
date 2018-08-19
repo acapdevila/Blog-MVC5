@@ -8,7 +8,12 @@ namespace Blog.Modelo.Posts
 {
    public static class ExtensionesPost
     {
-       public static IQueryable<Post> Publicados(this IQueryable<Post> posts)
+        public static IQueryable<Post> Borradores(this IQueryable<Post> posts)
+        {
+            return posts.Where(m => m.EsBorrador || DateTime.Now  < m.FechaPublicacion );
+        }
+
+        public static IQueryable<Post> Publicados(this IQueryable<Post> posts)
         {
            return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }

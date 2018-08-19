@@ -76,26 +76,26 @@ namespace Blog.Servicios
         public async Task CrearCategoria(CategoriaDto categoriaDto)
         {
             var categoria = new Categoria();
-            categoria.CambiarNombre(categoria.Nombre);
-            categoria.CambiarUrlSlug(categoria.UrlSlug);
+            categoria.CopiarValores(categoriaDto);
             _db.Categorias.Add(categoria);
-            await _db.SaveChangesAsync();
-            categoriaDto.Id = categoriaDto.Id;
+            await _db.GuardarCambios();
+            categoriaDto.Id = categoria.Id;
         }
 
         public async Task ActualizarCategoria(CategoriaDto categoriaDto)
         {
             var categoria = await RecuperarCategoriaPorId(categoriaDto.Id);
-            categoria.CambiarNombre(categoriaDto.Nombre);
-            categoria.CambiarUrlSlug(categoriaDto.UrlSlug);
-            await _db.SaveChangesAsync();
+            categoria.CopiarValores(categoriaDto);
+            await _db.GuardarCambios();
         }
+
+     
 
         public async Task EliminarCategoria(int id)
         {
             var categoria = await RecuperarCategoriaPorId(id);
             _db.Categorias.Remove(categoria);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()

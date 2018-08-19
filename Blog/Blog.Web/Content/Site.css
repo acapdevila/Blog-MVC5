@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 20px;
 }
 
@@ -158,7 +158,7 @@ footer {
     text-transform: uppercase;
 }
 
-.articulo h4 {
+.articulo h3, .articulo h4 {
     margin-top: 35px;
 }
 

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
@@ -32,7 +32,23 @@ namespace Blog.Servicios
 
         private IQueryable<Post> Posts()
         {
-            return _db.Posts.Where(m => m.Blog.Titulo == _tituloBlog);
+            return _db.Posts
+                .Where(m => m.Blog.Titulo == _tituloBlog);
+        }
+
+        
+        private BlogEntidad RecuperarBlog()
+        {
+            return _db.Blogs.First(m => m.Titulo == _tituloBlog);
+        }
+
+
+        public async Task<Post> RecuperarPost(int id)
+        {
+            return await Posts()
+                .Include(m => m.Tags)
+                .Include(m => m.Categorias)
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
@@ -41,6 +57,7 @@ namespace Blog.Servicios
             {
                 BuscarPor = criteriosBusqueda,
                 ListaPosts = await Posts()
+                    .Publicados()
                     .BuscarPor(criteriosBusqueda)
                     .Select(m => new LineaGestionPost
                 {
@@ -48,7 +65,6 @@ namespace Blog.Servicios
                     UrlSlug = m.UrlSlug,
                     Titulo = m.Titulo,
                     FechaPost = m.FechaPost,
-                    EsBorrador = m.EsBorrador,
                     EsRssAtom = m.EsRssAtom,
                     FechaPublicacion = m.FechaPublicacion,
                     Autor = m.Autor,
@@ -60,37 +76,76 @@ namespace Blog.Servicios
             };
         }
 
-        public async Task<Post> RecuperarPost(int id)
+
+        public async Task<List<LineaBorrador>> ObtenerListaBorradores(CriteriosBusqueda criteriosBusqueda)
         {
             return await Posts()
-                        .Include(m => m.Tags)
-                        .Include(m=>m.Categorias)
-                        .FirstOrDefaultAsync(m => m.Id == id);
+                .Borradores()
+                .BuscarPor(criteriosBusqueda)
+                .Select(m => new LineaBorrador
+                {
+                    Id = m.Id,
+                    UrlSlug = m.UrlSlug,
+                    Titulo = m.Titulo,
+                    FechaPost = m.FechaPost,
+                    FechaPublicacion = m.EsBorrador ? (DateTime?) null :  m.FechaPublicacion,
+                    Autor = m.Autor,
+                    ListaTags = m.Tags,
+                    ListaCategorias = m.Categorias
+                })
+                .OrderByDescending(m => m.FechaPost)
+                .ToListAsync();
+            ;
         }
 
-        public async Task CrearPost(EditorPost editorPost)
+
+        public async Task CrearBorrador(EditorBorrador editorBorrador)
         {
-            var post = Post.CrearNuevoPorDefecto(editorPost.Autor, editorPost.BlogId);
-            post.CopiaValores(editorPost, _asignadorTags, _asignadorCategorias);
+            var blog = RecuperarBlog();
+
+            var post = Post.CrearNuevoPorDefecto(editorBorrador.Autor, blog.Id);
+            post.ActualizaBorrador(editorBorrador, _asignadorTags, _asignadorCategorias);
             _db.Posts.Add(post);
-            await _db.SaveChangesAsync();
-            editorPost.Id = post.Id;
+            await _db.GuardarCambios();
+            editorBorrador.Id = post.Id;
         }
 
+        
         public async Task ActualizarPost(EditorPost editorPost)
         {
             var post = await RecuperarPost(editorPost.Id);
-            post.CopiaValores(editorPost, _asignadorTags, _asignadorCategorias);
-            await _db.SaveChangesAsync();
+            post.ActualizaPost(editorPost, _asignadorTags, _asignadorCategorias);
+            await _db.GuardarCambios();
            
            
+        }
+
+        public async Task ActualizarBorrador(EditorBorrador editorBorrador)
+        {
+            var post = await RecuperarPost(editorBorrador.Id);
+            post.ActualizaBorrador(editorBorrador, _asignadorTags, _asignadorCategorias);
+            await _db.GuardarCambios();
+        }
+
+        public async Task PublicarPost(PublicarPost editor)
+        {
+            var post = await RecuperarPost(editor.Id);
+            post.Publicar(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom);
+            await _db.GuardarCambios();
+        }
+
+        public async Task ProgramarPublicacion(PublicarPost editor)
+        {
+            var post = await RecuperarPost(editor.Id);
+            post.ProgramarPublicacion(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom, editor.FechaPublicacion);
+            await _db.GuardarCambios();
         }
 
         public async Task EliminarPost(int id)
         {
             var post = await RecuperarPost(id);
             _db.Posts.Remove(post);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()
@@ -99,19 +154,7 @@ namespace Blog.Servicios
          
         }
 
-        public EditorPost ObtenerNuevoEditorPorDefecto(string autor)
-        {
-            var blog = _db.Blogs.First(m => m.Titulo == _tituloBlog);
 
-            var post = Post.CrearNuevoPorDefecto(autor, blog.Id);
-
-            var editor = new EditorPost();
-            editor.CopiaValores(post);
-
-          
-
-            return editor;
-            
-        }
+       
     }
 }

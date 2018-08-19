@@ -28,7 +28,7 @@ namespace Blog.Smoothies.RssAtom
             /// The feed universally unique identifier. Do not use the URL of your feed as this can change.
             /// A much better ID is to use a GUID which you can generate from Tools->Create GUID in Visual Studio.
             /// </summary>
-            private const string FeedId = @"http://albertcapdevila.net/"; //"[INSERT GUID HERE]";
+            private const string FeedId = @"https://bylauragarcia.net/"; //"[INSERT GUID HERE]";
             private const string PubSubHubbubHubUrl = "https://pubsubhubbub.appspot.com/";
 
             private readonly HttpClient _httpClient;
@@ -70,7 +70,7 @@ namespace Blog.Smoothies.RssAtom
                     Items = this.GetItems(cancellationToken),
                     // subtitle (Recommended) - Contains a human-readable description or subtitle for the feed.
                     Description = SyndicationContent.CreatePlaintextContent(
-                        "Programación en .NET"),
+                        "Maquetadora web, pianista y cocinillas. Mamá de Kai y loca de las plantas. Recetas sin gluten y sin azúcar."),
                     // updated (Optional) - Indicates the last time the feed was modified in a significant way.
                     LastUpdatedTime = DateTimeOffset.Now,
                     // logo (Optional) - Identifies a larger image which provides visual identification for the feed. 
@@ -122,16 +122,19 @@ namespace Blog.Smoothies.RssAtom
 
                 // category (Optional) - Specifies a category that the feed belongs to. A feed may have multiple category 
                 //                       elements.
-                feed.Categories.Add(new SyndicationCategory("Tecnología"));
-                feed.Categories.Add(new SyndicationCategory("Programación"));
+                feed.Categories.Add(new SyndicationCategory("Recetas"));
+                feed.Categories.Add(new SyndicationCategory("Salud"));
+                feed.Categories.Add(new SyndicationCategory("Libros"));
+                feed.Categories.Add(new SyndicationCategory("Plantas"));
+                feed.Categories.Add(new SyndicationCategory("Cosmética ecológica"));
 
-                // contributor (Optional) - Names one contributor to the feed. An feed may have multiple contributor 
-                //                          elements.
-                // feed.Contributors.Add(this.GetPerson());
+            // contributor (Optional) - Names one contributor to the feed. An feed may have multiple contributor 
+            //                          elements.
+            // feed.Contributors.Add(this.GetPerson());
 
-                // icon (Optional) - Identifies a small image which provides iconic visual identification for the feed. 
-                //                   Icons should be square.
-                feed.SetIcon(this._urlHelper.Content("~/favicon.ico"));
+            // icon (Optional) - Identifies a small image which provides iconic visual identification for the feed. 
+            //                   Icons should be square.
+            feed.SetIcon(this._urlHelper.Content("~/favicon.ico"));
 
                 // Add the Yahoo Media namespace (xmlns:media="http://search.yahoo.com/mrss/") to the Atom feed. 
                 // This gives us extra abilities, like the ability to give thumbnail images to entries. 
@@ -175,9 +178,9 @@ namespace Blog.Smoothies.RssAtom
                 return new SyndicationPerson
                 {
                     // name (Required) - conveys a human-readable name for the person.
-                    Name = "Albert Capdevila",
+                    Name = "Laura García",
                     // uri (Optional) - contains a home page for the person.
-                    Uri =  "http://albertcapdevila.net",
+                    Uri =  "https://bylauragarcia.com/",
                     // email (Optional) - contains an email address for the person.
                     //Email = WebConfigParametro.EmailContactoBlog
                 };

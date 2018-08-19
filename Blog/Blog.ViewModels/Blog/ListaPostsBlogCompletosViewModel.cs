@@ -10,6 +10,7 @@ namespace Blog.ViewModels.Blog
             
         }
         public IPagedList<LineaPostCompleto> ListaPosts { get; set; }
+
     }
 
  

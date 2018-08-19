@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Cache;
 using Blog.ViewModels.Sidebar;
 
 namespace Blog.Smoothies.Controllers
@@ -41,17 +42,24 @@ namespace Blog.Smoothies.Controllers
         [ChildActionOnly]
         public ActionResult ArchivoEtiquetas()
         {
-            var etiquetasArchivo = _blogServicio
-                                    .ConsultaDeArchivoBlog()
-                                    .ToList()
-                                    .Select(m => new ArchivoItemViewModel(m))
-                                    .OrderByDescending(m => m.Anyo)
-                                    .ThenByDescending(m => m.Mes)
-                                    .ToList();
 
-            var nubeEtiquetasViewModel = new ArchivoEtiquetasViewModel(etiquetasArchivo);
+            //ArchivoEtiquetasViewModel viewModel = _cache.GetOrAdd(
+            //    CacheSetting.PaginaPrincipal.Etiquetas, () =>
+            //    {
+                    var etiquetasArchivo = _blogServicio
+                        .ConsultaDeArchivoBlog()
+                        .ToList()
+                        .Select(m => new ArchivoItemViewModel(m))
+                        .OrderByDescending(m => m.Anyo)
+                        .ThenByDescending(m => m.Mes)
+                        .ToList();
 
-            return View(nubeEtiquetasViewModel);
+            var  viewModel = new ArchivoEtiquetasViewModel(etiquetasArchivo);
+                //},
+                //CacheSetting.PaginaPrincipal.SlidingExpiration);
+
+
+            return View(viewModel);
         }
 
         protected override void Dispose(bool disposing)

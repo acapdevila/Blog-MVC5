@@ -5,20 +5,30 @@ using System.Linq;
 using System.Web.Mvc;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Tags;
+using Omu.ValueInjecter;
 
 namespace Blog.ViewModels.Post
 {
     public class EditorPost
     {
-        private string _urlSlug;
-
         public EditorPost()
         {
           
         }
-        public int Id { get; set; }
-        public int BlogId { get; set; }
 
+        public EditorPost(Modelo.Posts.Post post): this()
+        {
+           this.InjectFrom(post);
+           Tags = post.Tags.TagsSeparadosPorComma();
+           Categorias = post.Categorias.CategoriasSeparadasPorComma();
+        }
+
+        public EditorPost(EditorBorrador viewModel)
+        {
+            this.InjectFrom(viewModel);
+        }
+
+        public int Id { get; set; }
         [AllowHtml]
         [Display(Name = "Imagen")]
         [Required(ErrorMessage = "Escribe un subtítulo")]
@@ -29,13 +39,26 @@ namespace Blog.ViewModels.Post
         [StringLength(128, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         public string Titulo { get; set; }
 
+
+        [Display(Name = "Descripción - 110 palabras máx")]
+        [Required(ErrorMessage = "Escribe una descripción")]
+        [StringLength(512, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        public string Descripcion { get; set; }
+
+        [Display(Name = "Palabras clave")]
+        [Required(ErrorMessage = "Escribe las palabras clave del post")]
+        [StringLength(256, ErrorMessage = "La longitud máxima es de {1} dígitos")]
+        public string PalabrasClave { get; set; }
+
+        [Display(Name = "Url imagen principal de la página")]
+        [Required(ErrorMessage = "Escribe la url de la imagen principal")]
+        public string UrlImagenPrincipal { get; set; }
+
         [Display(Name = "Url del post")]
-        [Required(ErrorMessage = "Escribe una url")]
-        [StringLength(50, ErrorMessage = "La longitud máxima es de {1} dígitos")]
         public string UrlSlug
         {
-            get { return _urlSlug; }
-            set { _urlSlug = string.IsNullOrEmpty(value) ? value : value.Replace(" ", "-") ; }
+            get; 
+        set;
         }
 
         [Display(Name = @"Fecha")]
@@ -47,29 +70,24 @@ namespace Blog.ViewModels.Post
         [Required(ErrorMessage = "Escribe un contenido")]
         public string ContenidoHtml { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "Eliminado")]
-        public string PostContenidoHtml { get; set; }
-
-        [Display(Name = "Borrador")]
-        public bool EsBorrador { get; set; }
 
         [Display(Name = "Rss Atom")]
         public bool EsRssAtom { get; set; }
 
         [Display(Name = "Fecha de publicación")]
-        [Required(ErrorMessage = "Escribe una fecha")]
         public DateTime FechaPublicacion { get; set; }
-
+        
         [Required]
         public string Autor { get; set; }
-        
+
+
+        [Display(Name = "Etiquetas")]
         public string Tags { get; set; }
 
         public string Categorias { get; set; }
 
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
 
-        public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(ExtensionesCategoria.SeparadorCategorias).ToList();
+        public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(new[] { ExtensionesCategoria.SeparadorCategorias }, StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 }

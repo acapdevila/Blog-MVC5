@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.ViewModels.Etiqueta;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -38,7 +39,7 @@ namespace Blog.Smoothies.Controllers
         // GET: Tags/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new EditarEtiquetaViewModel(new Tag()));
         }
 
         // POST: Tags/Create
@@ -46,11 +47,11 @@ namespace Blog.Smoothies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Nombre,UrlSlug")] Tag tag)
+        public async Task<ActionResult> Create(EditarEtiquetaViewModel tag)
         {
             if (ModelState.IsValid)
             {
-                await _tagsServicio.CrearTag(tag);
+                await _tagsServicio.CrearTag(tag.ToDto());
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +70,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return HttpNotFound();
             }
-            return View(tag);
+            return View(new EditarEtiquetaViewModel(tag));
         }
 
         // POST: Tags/Edit/5
@@ -77,11 +78,11 @@ namespace Blog.Smoothies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Nombre,UrlSlug")] Tag tag)
+        public async Task<ActionResult> Edit(EditarEtiquetaViewModel tag)
         {
             if (ModelState.IsValid)
             {
-                await _tagsServicio.ActualizarTag(tag);
+                await _tagsServicio.ActualizarTag(tag.ToDto());
                 return RedirectToAction("Index");
             }
             return View(tag);

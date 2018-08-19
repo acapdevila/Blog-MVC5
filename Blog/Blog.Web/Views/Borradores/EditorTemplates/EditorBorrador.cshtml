@@ -1,0 +1,184 @@
+﻿@model Blog.ViewModels.Post.EditorBorrador
+
+@Html.HiddenFor(model => model.Id)
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UrlSlug, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.UrlSlug, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UrlSlug, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UrlImagenPrincipal, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.UrlImagenPrincipal, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UrlImagenPrincipal, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FechaPost, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-xs-2">
+        @Html.EditorFor(model => model.FechaPost, "DatePicker", new { htmlAttributes = new { @class = "form-control col-xs-2" } })
+        @Html.ValidationMessageFor(model => model.FechaPost, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Autor, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Autor, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Autor, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+        * Nota: Separar por ";"
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PalabrasClave, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.PalabrasClave, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.PalabrasClave, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+<hr />
+<div class="form-group">
+    @Html.LabelFor(model => model.Subtitulo, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Subtitulo, "HtmlEditorMediano", new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Subtitulo, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ContenidoHtml, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.ContenidoHtml, "HtmlEditor", new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ContenidoHtml, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Volver a la lista", "Index")
+            </li>
+            <li>
+
+                <input id="btnPublicar" name="boton" type="submit" value="Guardar y publicar" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                @if (Model.Id > 0)
+                {
+                    <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
+                }
+                else
+                {
+                    <input id="btnGuardar" name="boton" type="submit" value="Guardar" class="btn btn-primary navbar-btn" />
+                }
+            </li>
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menuBackOffice").hide();
+        });
+    </script>
+
+    @if (Model.Id > 0)
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                jQuery.validator.setDefaults({ ignore: [] });
+
+                $("#btnGuardar").click(function(event) {
+
+                    $(this).val('Guardando...')
+                        .prop('disabled', true);;
+
+                    event.preventDefault();
+
+                    for (instance in CKEDITOR.instances) {
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+
+                    Guardar();
+                });
+
+            });
+
+            function Guardar() {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Guardar", "Borradores")",
+                    data: $("form").serialize(),
+                    dataType: "html"
+                }).done(function (data) {
+                    var obj = JSON.parse(data);
+                    if (!obj.esOk) {
+                        alert(obj.textoRespuesta);
+                    }
+
+                    $("#btnGuardar")
+                        .val("Guardado")
+                        .prop('disabled', false)
+                        .removeClass("btn-primary").addClass("btn-success");
+
+                    setTimeout(function() {
+
+                        $("#btnGuardar")
+                            .val("Guardar")
+                            .removeClass("btn-success").addClass("btn-primary");
+
+                    }, 1000);
+
+
+                }).fail(function() {
+                        alert("Se ha producido un error inesperado.");
+                        return false;
+                    }
+                );
+            }
+
+        </script>
+
+    }
+
+</nav>

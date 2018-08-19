@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
@@ -52,23 +52,27 @@ namespace Blog.Servicios
             return await Tags().FirstAsync(m => m.Id == id);
         }
 
-        public async Task CrearTag(Tag tag)
+        public async Task CrearTag(EtiquetaDto etiquetaDto)
         {
-            _db.Tags.Add(tag);
-            await _db.SaveChangesAsync();
-            }
+            var etiqueta = new Tag();
+            etiqueta.CopiarValores(etiquetaDto);
+            _db.Tags.Add(etiqueta);
+            await _db.GuardarCambios();
+            etiquetaDto.Id = etiqueta.Id;
+         }
 
-        public async Task ActualizarTag(Tag tag)
+        public async Task ActualizarTag(EtiquetaDto etiquetaDto)
         {
-            _db.Entry(tag).State = EntityState.Modified;
-            await _db.SaveChangesAsync();
-        }
+            var tag = await RecuperarTag(etiquetaDto.Id);
+            tag.CopiarValores(etiquetaDto);
+            await _db.GuardarCambios();
+         }
 
         public async Task EliminarTag(int id)
         {
             var tag = await RecuperarTag(id);
             _db.Tags.Remove(tag);
-            await _db.SaveChangesAsync();
+            await _db.GuardarCambios();
         }
 
         public void Dispose()

@@ -1,30 +1,89 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog sobre desarrollo en .Net y buenas prácticas de programación" />
-    <meta name="keywords" content=".net,c#,patrones de diseño,principios de programación,programación">
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @if (Request != null && Request.Url != null && (Request.Url.AbsoluteUri.Contains("azurewebsites.net")
+                                                    || Request.Url.AbsoluteUri.Contains("pagina=")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/archivo/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/posts/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/borradores/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/categorias/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/blogs/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/account/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/manage/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/tags/")
+        ))
+    {
+        <meta name="robots" content="noindex,follow" />
+    }
+
+    @RenderSection("linksnextprev", false)
+
+    @* seo *@
+
+    @{
+        var titulo = ViewBag.Title ?? "albertcapdevila.net";
+        var descripcion = ViewBag.MetaDescripcion ?? "Artículos sobre desarrollo en c#.net y buenas prácticas de programación.";
+        var urlcanonica = $"https://albertcapdevila.net{HttpContext.Current.Request.Url.AbsolutePath}";
+        var palabrasclave = ViewBag.MetaPalabrasClave ?? "c#, c#.net, asp.net,asp.net mvc,.net,patrones de diseño,azure,desarrollo,programación,software,asp.net core, .net core";
+        var imagenPrincipal = ViewBag.ImagenPrincipal;
+    }
+
+    <title>@titulo</title>
+
+    <link rel="canonical" href="@urlcanonica" />
+    <meta name="description" content="@descripcion" />
+    <meta name="keywords" content="@palabrasclave">
     <meta name="author" content="Albert Capdevila">
-    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "albertcapdevila.net" : ViewBag.Title)</title>
-    <link rel="canonical" href="http://albertcapdevila.net" />
 
+    <meta property="og: site_name" content="albertcapdevila.net" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@titulo" />
+    <meta property="og:description" content="@descripcion" />
+    <meta property="og:url" content="@urlcanonica" />
+    @if (!string.IsNullOrEmpty(imagenPrincipal))
+    {
+        <meta property="og:image" content="@imagenPrincipal">
 
-    @RenderSection("metatags", required: false)
+        <meta name="twitter:image" content="@imagenPrincipal" />
+    }
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content="@descripcion" />
+    <meta name="twitter:title" content="@titulo" />
 
+    @* seo *@
+
+    @Html.Partial("_GoogleAnalytics")
+
+    <style type="text/css">
+        #mc_embed_signup {
+            background: #fff;
+            clear: left;
+            font: 14px Helvetica, Arial, sans-serif;
+        }
+        /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
 
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-    
-    @Html.Partial("_GoogleAnalytics")
-    
-    @Html.Partial("_AceptarCookies")
+
+    <!-- Begin MailChimp Signup Form -->
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+
+
+    @RenderSection("head", required: false)
 
 </head>
 
 <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse">
 
             <div class="container">
                 <div class="navbar-header">
@@ -40,7 +99,24 @@
                     @*<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;albertcapdevila.net</a>*@
                 </div>
                 <div class="navbar-collapse collapse">
-                    @Html.Partial("_MenuPrincipal")
+                    
+                    @{
+                        var currentController = (string)ViewContext.RouteData.Values["Controller"];
+                        const string activeClass = "active";
+                    }
+
+                    <ul class="nav navbar-nav tipo">
+                        <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Hola", "Index", "Hola")
+                        </li>
+                        <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Contacto", "Index", "Contacto")
+                        </li>
+                        <li class="@(currentController == "Rss" ? activeClass : string.Empty)">
+                            @Html.ActionLink("RSS", "Feed", "Rss")
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -54,8 +130,16 @@
             </div>
         </div>
 
+    
+        @Html.Partial("_MenuBackOffice")
+
+        @Html.Partial("_AceptarCookies")
+    
+        @Scripts.Render("~/bundles/modernizr")
 
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+
+     
 </body>
 </html>
