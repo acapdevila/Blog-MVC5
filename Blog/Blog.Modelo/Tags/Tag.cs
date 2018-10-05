@@ -25,8 +25,8 @@ namespace Blog.Modelo.Tags
         public string UrlImagenPrincipal { get; set; }
         public string ContenidoHtml { get; set; }
 
-
-        public DateTime? FechaPublicacion { get; set; }
+        public bool EsPublico { get; set; }
+        public DateTime? FechaPublicacion { get; set; } // Info para datos estructurados
 
         public bool EsMostrarDatosEstructurados
         {
@@ -69,6 +69,9 @@ namespace Blog.Modelo.Tags
             CambiarPalabrasClave(etiquetaDto.PalabrasClave);
             CambiarUrlImagenPrincipal(etiquetaDto.UrlImagenPrincipal);
             ContenidoHtml = etiquetaDto.ContenidoHtml;
+            FechaPublicacion = etiquetaDto.FechaPublicacion;
+            EsPublico = etiquetaDto.EsPublico;
+
         }
     }
 

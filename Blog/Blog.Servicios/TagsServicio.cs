@@ -42,10 +42,6 @@ namespace Blog.Servicios
             return await Tags().OrderBy(m=>m.Nombre).ToListAsync();
         }
 
-        public List<Tag> TagsConPostsPublicados()
-        {
-            return Tags().ConPostsPublicados().OrderBy(m=>m.Nombre).ToList();
-        }
 
         public async Task<Tag> RecuperarTag(int id)
         {

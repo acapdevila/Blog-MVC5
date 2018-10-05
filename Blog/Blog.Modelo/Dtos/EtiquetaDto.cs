@@ -1,4 +1,5 @@
-﻿using Blog.Modelo.Tags;
+﻿using System;
+using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Dtos
 {
@@ -18,6 +19,8 @@ namespace Blog.Modelo.Dtos
             PalabrasClave = tag.PalabrasClave;
             UrlImagenPrincipal = tag.UrlImagenPrincipal;
             ContenidoHtml = tag.ContenidoHtml;
+            FechaPublicacion = tag.FechaPublicacion;
+            EsPublico = tag.EsPublico;
         }
 
         public int Id { get; set; }
@@ -32,7 +35,7 @@ namespace Blog.Modelo.Dtos
         public string UrlImagenPrincipal { get; set; }
 
         public string ContenidoHtml { get; set; }
-
-        
+        public DateTime? FechaPublicacion { get; set; }
+        public bool EsPublico { get; set; }
     }
 }

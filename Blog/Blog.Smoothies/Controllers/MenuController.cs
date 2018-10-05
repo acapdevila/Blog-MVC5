@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Servicios;
 using Blog.ViewModels.Menu;
@@ -33,7 +34,7 @@ namespace Blog.Smoothies.Controllers
             //MenuCategoriasViewModel viewModel = _cache.GetOrAdd(
             //    CacheSetting.PaginaPrincipal.Categorias, () =>
             //    {
-                    var categorias = _categoriasServicio.CategoriasConPostsPublicados();
+                    var categorias = _categoriasServicio.Categorias().OrderBy(m=>m.Nombre).ToList();
 
                     var viewModel = new MenuCategoriasViewModel(categorias);
                 //},

@@ -74,7 +74,7 @@ namespace Blog.Servicios.Rutas
         {
             return
                 Categorias()
-                    .ConPostsPublicados()
+                    //.ConPostsPublicados()
                     .Where(m=>m.UrlSlug != null && m.UrlSlug != "")
                     .OrderBy(m=>m.UrlSlug)
                     .Select(m => new RutaDto
@@ -88,7 +88,8 @@ namespace Blog.Servicios.Rutas
         public List<RutaDto> BuscarRutasDeEtiquetas()
         {
             return
-                Etiquetas().ConPostsPublicados()
+                Etiquetas()
+                    //.ConPostsPublicados()
                     .Where(m => m.UrlSlug != null && m.UrlSlug != "")
                     .OrderBy(m => m.UrlSlug)
                     .Select(m => new RutaDto

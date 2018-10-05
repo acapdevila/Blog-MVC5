@@ -122,14 +122,14 @@ namespace Blog.Servicios
         public async Task<Tag> RecuperarTagConPostsRelacionados(string urlSlug)
         {
             return await Tags()
-                .ConPostsPublicados()
+              //  .ConPostsPublicados()
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }
 
         public async Task<Categoria> RecuperarCategoriaConPostsRelacionados(string urlSlug)
         {
             return await Categorias()
-                .ConPostsPublicados()
+              //  .ConPostsPublicados()
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }
 

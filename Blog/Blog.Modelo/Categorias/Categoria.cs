@@ -76,10 +76,10 @@ namespace Blog.Modelo.Categorias
     {
         public static readonly char SeparadorCategorias = ';';
 
-        public static IQueryable<Categoria> ConPostsPublicados(this IQueryable<Categoria> categorias)
-        {
-            return categorias.Where(m => m.Posts.Any(p => !p.EsBorrador && p.FechaPublicacion <= DateTime.Now));
-        }
+        //public static IQueryable<Categoria> ConPostsPublicados(this IQueryable<Categoria> categorias)
+        //{
+        //    return categorias.Where(m => m.Posts.Any(p => !p.EsBorrador && p.FechaPublicacion <= DateTime.Now));
+        //}
 
         public static string CategoriasSeparadasPorComma(this ICollection<Categoria> categorias)
         {

@@ -33,7 +33,7 @@ namespace Blog.Smoothies.Controllers
         [ChildActionOnly]
         public ActionResult NubeEtiquetas()
         {
-            var etiquetas = _tagsServicio.TagsConPostsPublicados();
+            var etiquetas = _tagsServicio.Tags().OrderBy(m => m.Nombre).ToList(); 
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
 
             return View(nubeEtiquetasViewModel);

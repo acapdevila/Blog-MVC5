@@ -61,12 +61,7 @@ namespace Blog.Servicios
             return lineas;
         }
 
-        public List<Categoria> CategoriasConPostsPublicados()
-        {
-            return Categorias().ConPostsPublicados().OrderBy(m => m.Nombre).ToList();
-        }
-        
-
+     
         public async Task<Categoria> RecuperarCategoriaPorId(int id)
         {
             return await Categorias()
