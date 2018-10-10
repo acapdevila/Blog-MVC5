@@ -102,6 +102,7 @@ namespace Blog.Web.Controllers
             {
                 Etiqueta = etiqueta,
                 ListaPosts = etiqueta.Posts.AsQueryable()
+                    .Publicados()
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)
                     .ToPagedList(pagina, NumeroItemsPorPagina)

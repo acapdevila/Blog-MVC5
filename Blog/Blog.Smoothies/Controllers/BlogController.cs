@@ -162,6 +162,7 @@ namespace Blog.Smoothies.Controllers
             {
                 Categoria = categoria,
                 ListaPosts = categoria.Posts.AsQueryable()
+                    .Publicados()
                     .SeleccionaLineaResumenPost()
                     .OrderByDescending(m => m.FechaPost)
                     .ToPagedList(pagina, NumeroItemsPorPagina)
