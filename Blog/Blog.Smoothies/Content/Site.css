@@ -164,13 +164,22 @@ letter-spacing: 1px;
     color: #64c699;
     }
     
- /*Graella de llibres, utensilis, etc*/
+ /*Graella llibres */
+.bookgrid {
+    min-height: 490px;
+}
+
+    .bookgrid img:hover {
+    opacity:0.8}
+
+/*Graella utensilis */
 .productgrid {
-    min-height: 550px;
+    min-height: 300px;
 }
 
     .productgrid img:hover {
-    opacity:0.8}
+        opacity: 0.8
+    }
 
 /*Footer*/
 
