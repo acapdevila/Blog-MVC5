@@ -76,6 +76,10 @@
     <Compile Include="Posts\LineaResumenPost.cs" />
     <Compile Include="Posts\ExtensionesPost.cs" />
     <Compile Include="Posts\BlogEntidad.cs" />
+    <Compile Include="Imagenes\Imagen.cs" />
+    <Compile Include="Recetas\IngrecienteReceta.cs" />
+    <Compile Include="Recetas\Ingrediente.cs" />
+    <Compile Include="Recetas\Receta.cs" />
     <Compile Include="Tags\AsignadorTags.cs" />
     <Compile Include="Tags\GeneradorUrlSlug.cs" />
     <Compile Include="Tags\IEntidadConTags.cs" />
@@ -90,6 +94,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
