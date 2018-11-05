@@ -1,0 +1,38 @@
+﻿@model Blog.ViewModels.Libros.LibrosProgramacionViewmodel
+
+@{
+    ViewBag.Title = "Libros para programadores de c# .net";
+    ViewBag.MetaDescripcion  = "Libros para programadores de c# .net";
+    ViewBag.MetaPalabrasClave = "libros programación c#,libros programación c#, libros programación .net, libros patrones de diseño";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            Aquí tienes una selección de mis libros favoritos de programación, buenas prácticas, c#, ASP.Net. Una especie de paseo virtual por mi biblioteca. :)
+        </p>
+        <p>
+            Haciendo clic en cada imagen podrás ver el libro en Amazon.
+            Algunos no han sido traducidos aun al castellano, en ese caso enlazo la versión en inglés.
+        </p>
+        
+        @foreach (var categoriaLibro in Model.Categorias)
+        {
+            <h2>@categoriaLibro.Nombre</h2>
+
+            foreach (var libro in categoriaLibro.Libros)
+            {
+                <div class="col-md-3 col-sm-6 productgrid">
+                    <a href="@libro.LinkHref" target="_blank" rel="nofollow">
+                        <img src="@libro.ImagenSrc" alt="@libro.Titulo" />
+                    </a>
+                    <a href="@libro.LinkHref" target="_blank" rel="nofollow">
+                        <h4>@libro.Titulo</h4>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+
+</div>

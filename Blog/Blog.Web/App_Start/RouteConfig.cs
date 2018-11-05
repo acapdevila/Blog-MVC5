@@ -18,6 +18,7 @@ namespace Blog.Web
 
         public const string NombreRutaAmigable = "RutaAmigable";
         public const string NombreRutaEtiquetaAmigable = "RutaEtiquetaAmigable";
+        public const string NombreRutaLibros = "RutaLibros";
 
         public const string NombreRutaSitemap = "RutaSitemapXml";
 
@@ -54,12 +55,15 @@ namespace Blog.Web
                  name: NombreRutaArchivoPosts,
                  url: "Blog/Archivo/{anyo}/{mes}",
                  defaults: new { controller = "Blog", action = "Archivo" }//,
-                 //constraints: new
-                 //{
-                 //    mes = @"\d{1,2}",
-                 //    anyo = @"\d{4}"
-                 //}
-             );
+            );
+
+            routes.MapRoute(
+                name: NombreRutaLibros,
+                url: "libros-para-programadores-csharp",
+                defaults: new { controller = "Libros", action = "Index" }
+                );
+
+
 
             var servicioCahce = new CacheService();
 
