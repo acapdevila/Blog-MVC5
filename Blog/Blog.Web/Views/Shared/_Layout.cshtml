@@ -112,6 +112,10 @@
                         <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
                             @Html.ActionLink("Contacto", "Index", "Contacto")
                         </li>
+
+                        <li class="@(currentController == "Libros" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Libros", "Index", "Libros")
+                        </li>
                         <li class="@(currentController == "Rss" ? activeClass : string.Empty)">
                             @Html.ActionLink("RSS", "Feed", "Rss")
                         </li>
