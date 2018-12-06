@@ -19,6 +19,8 @@ namespace Blog.Web
         public const string NombreRutaAmigable = "RutaAmigable";
         public const string NombreRutaEtiquetaAmigable = "RutaEtiquetaAmigable";
         public const string NombreRutaLibros = "RutaLibros";
+        public const string NombreRutaContratame = "RutaContratame";
+
 
         public const string NombreRutaSitemap = "RutaSitemapXml";
 
@@ -63,6 +65,12 @@ namespace Blog.Web
                 defaults: new { controller = "Libros", action = "Index" }
                 );
 
+
+            routes.MapRoute(
+                name: NombreRutaContratame,
+                url: "contrata-un-progrmador-net-freelance-en-barcelona",
+                defaults: new { controller = "Contratame", action = "Index" }
+            );
 
 
             var servicioCahce = new CacheService();
