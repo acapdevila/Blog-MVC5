@@ -112,16 +112,26 @@ namespace Blog.Web.Sitemap
             }
 
             nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Libros"))
+                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Hola"))
                 {
                     Priority = 0.5
                 });
 
             nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Hola"))
+                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contratame"))
                 {
                     Priority = 0.5
                 });
+            nodes.Add(
+                    new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Libros"))
+                    {
+                        Priority = 0.5
+                    });
+
+
+           
+         
+            
             nodes.Add(
                 new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contacto"))
                 {

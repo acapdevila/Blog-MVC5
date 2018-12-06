@@ -87,7 +87,7 @@ namespace Blog.Web
                 defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                 {
-                    controller = "Account|Blog|Blogs|Borradores|Contacto|Error|Hola|Imagenes|Manage|Posts|Principal|Rss|Sidebar|Tags"
+                    controller = "Account|Blog|Blogs|Borradores|Contacto|Contratame|Error|Hola|Imagenes|Manage|Posts|Principal|Rss|Sidebar|Tags"
                 }
             );
 

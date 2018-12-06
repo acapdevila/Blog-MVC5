@@ -199,6 +199,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
+    <Compile Include="Controllers\ContratameController.cs" />
     <Compile Include="Controllers\LibrosController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
@@ -310,6 +311,7 @@
     <Content Include="images\handle-rotate.png" />
     <Content Include="images\handle-secondary.png" />
     <Content Include="images\handle-terminal.png" />
+    <Content Include="images\lecutrasnoviembre18.jpg" />
     <Content Include="images\refresh.png" />
     <Content Include="images\round-drop.png" />
     <Content Include="images\triangle-down.png" />
@@ -828,6 +830,7 @@
     <Content Include="Views\Posts\Publicar.cshtml" />
     <Content Include="Views\Shared\_MenuBackOffice.cshtml" />
     <Content Include="Views\Libros\Index.cshtml" />
+    <Content Include="Views\Contratame\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
