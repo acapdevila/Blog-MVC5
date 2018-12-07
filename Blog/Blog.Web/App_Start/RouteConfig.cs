@@ -92,10 +92,10 @@ namespace Blog.Web
             routes.MapRoute(
                 name: NombreRutaPorDefecto,
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Hola", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Portada", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                 {
-                    controller = "Account|Blog|Blogs|Borradores|Contacto|Contratame|Error|Hola|Imagenes|Manage|Posts|Principal|Rss|Sidebar|Tags"
+                    controller = "Account|Blog|Blogs|Borradores|Contacto|Contratame|Error|Imagenes|Manage|Portada|Posts|Principal|Rss|Sidebar|Tags"
                 }
             );
 
