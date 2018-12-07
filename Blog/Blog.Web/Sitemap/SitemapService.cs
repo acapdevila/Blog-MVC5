@@ -77,10 +77,27 @@ namespace Blog.Web.Sitemap
         {
             List<SitemapNode> nodes = new List<SitemapNode>();
 
+
+            // Portada
             nodes.Add(
                 new SitemapNode(this._urlHelper.AbsoluteAction("", ""))
                 {
-                    Frequency = SitemapFrequency.Weekly,
+                    Priority = 1
+                });
+
+         
+
+            // Blog
+            nodes.Add(
+                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Blog"))
+                {
+                    Frequency = SitemapFrequency.Monthly,
+                    Priority = 1
+                });
+
+            nodes.Add(
+                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contratame"))
+                {
                     Priority = 1
                 });
 
@@ -110,26 +127,13 @@ namespace Blog.Web.Sitemap
                        Priority = 0.9
                    });
             }
-
-            nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Hola"))
-                {
-                    Priority = 0.5
-                });
-
-            nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contratame"))
-                {
-                    Priority = 0.5
-                });
+            
             nodes.Add(
                     new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Libros"))
                     {
                         Priority = 0.5
                     });
-
-
-           
+            
          
             
             nodes.Add(
