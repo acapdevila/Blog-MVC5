@@ -68,7 +68,7 @@ namespace Blog.Web
 
             routes.MapRoute(
                 name: NombreRutaContratame,
-                url: "contrata-un-progrmador-net-freelance-en-barcelona",
+                url: "programador-net-freelance-en-barcelona",
                 defaults: new { controller = "Contratame", action = "Index" }
             );
 

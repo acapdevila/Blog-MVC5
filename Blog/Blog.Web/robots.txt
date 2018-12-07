@@ -6,3 +6,4 @@ Disallow: /Imagenes/*
 Disallow: /Manage/*
 Disallow: /Posts/*
 Disallow: /Tags/*
+Disallow: /contrata-un-progrmador-net-freelance-en-barcelona/
