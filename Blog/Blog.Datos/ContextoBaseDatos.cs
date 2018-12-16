@@ -3,7 +3,9 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using Blog.Datos.MapeosTablas;
 using Blog.Modelo.Categorias;
+using Blog.Modelo.Imagenes;
 using Blog.Modelo.Posts;
+using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 using Blog.Modelo.Usuarios;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -24,6 +26,14 @@ namespace Blog.Datos
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<BlogEntidad> Blogs { get; set; }
+
+   
+        public DbSet<Ingrediente> Ingredientes { get; set; }
+        
+        public DbSet<Imagen> Imagenes { get; set; }
+
+        public DbSet<Receta> Recetas { get; set; }
+
 
         public static ContextoBaseDatos Create()
         {
@@ -54,6 +64,19 @@ namespace Blog.Datos
             modelBuilder.Configurations.Add(new MapeoPost());
 
             modelBuilder.Configurations.Add(new MapeoBlogEntidad());
+
+
+            modelBuilder.Configurations.Add(new MapeoIngrediente());
+
+            modelBuilder.Configurations.Add(new MapeoImagen());
+
+            modelBuilder.Configurations.Add(new MapeoInstruccion());
+
+            modelBuilder.Configurations.Add(new MapeoReceta());
+
+
+            modelBuilder.Configurations.Add(new MapeoIngredienteReceta());
+
 
             base.OnModelCreating(modelBuilder);
         }

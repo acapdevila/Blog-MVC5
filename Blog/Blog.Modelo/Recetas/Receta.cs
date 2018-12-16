@@ -9,13 +9,20 @@ namespace Blog.Modelo.Recetas
         public Receta()
         {
             Imagenes = new List<Imagen>();
+            Ingredientes = new List<IngredienteReceta>();
+            Instrucciones = new List<Instruccion>();
         }
 
-        public int Id { get; set; }
-        
-        public ICollection<Imagen> Imagenes { get; set; }
+        #region Propiedades obligatorias
 
-        public string Nombre { get; set; }
+            public int Id { get; set; }
+
+            public ICollection<Imagen> Imagenes { get; set; }
+
+            public string Nombre { get; set; }
+
+
+        #endregion
 
         public string Autor { get; set; }
 
@@ -36,6 +43,10 @@ namespace Blog.Modelo.Recetas
 
 
         public TimeSpan TiempoTotal => TiempoPreparacion + TiempoCoccion;
+
+        public ICollection<IngredienteReceta> Ingredientes { get; set; }
+
+        public ICollection<Instruccion> Instrucciones { get; set; }
 
     }
 }

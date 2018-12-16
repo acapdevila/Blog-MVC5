@@ -1,6 +1,6 @@
 ﻿namespace Blog.Modelo.Recetas
 {
-    public class IngrecienteReceta
+    public class IngredienteReceta
     {
         public int Id { get; set; }
 
