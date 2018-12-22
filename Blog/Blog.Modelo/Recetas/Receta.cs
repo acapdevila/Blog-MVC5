@@ -11,6 +11,7 @@ namespace Blog.Modelo.Recetas
             Imagenes = new List<Imagen>();
             Ingredientes = new List<IngredienteReceta>();
             Instrucciones = new List<Instruccion>();
+            FechaPublicacion = DateTime.Today;
         }
 
         #region Propiedades obligatorias
