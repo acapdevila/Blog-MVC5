@@ -1,0 +1,82 @@
+﻿@using Blog.Smoothies.Helpers
+@using PagedList.Mvc
+@model Blog.Smoothies.Views.Recetas.ViewModels.ListaGestionRecetasViewModel
+@{
+    ViewBag.Title = "Lista recetas";
+}
+
+
+<h2>Recetas (@Model.Recetas.TotalItemCount)</h2>
+
+<p>
+    @using (Html.BeginForm())
+    { 
+        @Html.EditorFor(m => m.BuscarPor, "AutocompleteMultipleBuscador", new
+        {
+            ajaxCallbackUrlAction = "QuickMultipleSearch",
+            ajaxCallbackUrlController = "Recetas"
+        })
+
+        <input id="btnBuscar" name="boton" type="submit" value="Buscar" class="btn btn-default navbar-btn"/>
+
+        @Html.ActionLink("Crear nueva", "Crear")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th style="width: 150px"></th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Categoría
+        </th>
+        <th>
+            Fecha publicación
+        </th>
+
+    </tr>
+
+@foreach (var item in Model.Recetas) {
+    <tr>
+        <td>
+            <div class="btn-group">
+               
+                @Html.ActionLink("Vista previa", "VistaPrevia", new {id = item.Id}, new {@class = "btn btn-default"})
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Acciones</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.Id })
+                    </li>
+                    @*<li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>*@
+                    <li role="separator" class="divider"> b bv</li>
+                    <li>
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+        <td>
+            @item.Categoria
+        </td>
+        <td>
+            @item.FechaPublicacion.ToShortDateString()
+        </td>
+     </tr>
+}
+    <tr>
+        <td colspan="9">
+            @Html.TotalesListaPaginada(Model.Recetas, " {0} - {1} recetas mostrados de {2}")
+            @Html.PagedListPager(Model.Recetas, pagina => Url.Action("Index", new { pagina }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+        </td>
+
+    </tr>
+
+</table>

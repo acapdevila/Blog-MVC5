@@ -149,8 +149,16 @@
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\CacheSetting.cs" />
     <Compile Include="Cache\ICacheService.cs" />
+    <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
+    <Compile Include="Recetas\BuscadorDeRecetas.cs" />
+    <Compile Include="Recetas\Comandos\ComandoCrearReceta.cs" />
+    <Compile Include="Recetas\Comandos\ComandoEditarReceta.cs" />
+    <Compile Include="Recetas\Comandos\ComandoEliminarReceta.cs" />
+    <Compile Include="Recetas\CriteriosBusquedaReceta.cs" />
+    <Compile Include="Recetas\Dtos\LineaGestionReceta.cs" />
+    <Compile Include="Recetas\EditorDeRecetas.cs" />
     <Compile Include="Rutas\BuscadorRutas.cs" />
     <Compile Include="Rutas\RutaPostConstraint.cs" />
     <Compile Include="Rutas\RutaEtiquetaConstraint.cs" />

@@ -1,0 +1,54 @@
+﻿@model Blog.Smoothies.Views.Recetas.ViewModels.EliminarRecetaViewModel
+
+@{
+    ViewBag.Title = "Eliminar receta";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estás segura de eliminar esta receta?</h3>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Nombre)
+        @Html.HiddenFor(m => m.Descripcion)
+        @Html.HiddenFor(m => m.CategoriaReceta)
+
+
+      
+        <dl class="dl-horizontal">
+            <dt>
+                Nombre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                Categoría
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoriaReceta)
+            </dd>
+
+            <dt>
+                Descripción
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+
+        </dl>
+        <div class="form-actions no-color">
+            <input type="submit" value="Sí quiero eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

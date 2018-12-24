@@ -1,0 +1,85 @@
+﻿@model Blog.Smoothies.Views.Recetas.ViewModels.DatosEstructuradosRecetaViewModel
+
+
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org/",
+    "@@type": "Recipe",
+    "name": "Party Coffee Cake",
+    "image": [
+        @foreach (var imagen in Model.Imagenes)
+        {
+        @:"@imagen",
+        }
+    ],
+    "author": {
+    "@@type": "Person",
+    "name": "@Model.Autor"
+    },
+    "datePublished": "@Model.FechaPublicacion.ToShortDateString()",
+    "description": "@Model.Descripcion",
+    "prepTime": "@Model.TiempoPreparacion",
+    "cookTime": "@Model.TiempoCoccion",
+    "totalTime": "@Model.TiempoTotal",
+    "keywords": "@Model.Keywords",
+    "recipeYield": "@Model.Raciones",
+    "recipeCategory": "@Model.CategoriaReceta",
+    @*"recipeCuisine": "American",*@
+    @*"nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "270 calories"
+    },*@
+    "recipeIngredient": [
+      @foreach (var ingrediente in Model.Ingredientes)
+      {
+          @:"@ingrediente",
+      }
+    ],
+    "recipeInstructions": [
+     @foreach (var instruccion in Model.Instrucciones)
+     {
+         @:{
+             @:"@@type": "HowToStep",
+             @:"text": "@instruccion"
+         @:},
+     }
+    ],
+    @*"review": {
+    "@type": "Review",
+    "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4",
+    "bestRating": "5"
+    },
+    "author": {
+    "@type": "Person",
+    "name": "Julia Benson"
+    },
+    "datePublished": "2018-05-01",
+    "reviewBody": "This cake is delicious!",
+    "publisher": "The cake makery"
+    },
+    "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "ratingCount": "18"
+    },*@
+    @*"video": [
+    {
+    "name": "How to make a Party Coffee Cake",
+    "description": "This is how you make a Party Coffee Cake.",
+    "thumbnailUrl": [
+    "https://example.com/photos/1x1/photo.jpg",
+    "https://example.com/photos/4x3/photo.jpg",
+    "https://example.com/photos/16x9/photo.jpg"
+    ],
+    "contentUrl": "http://www.example.com/video123.mp4",
+    "embedUrl": "http://www.example.com/videoplayer?video=123",
+    "uploadDate": "2018-02-05T08:00:00+08:00",
+    "duration": "PT1M33S",
+    "interactionCount": "2347",
+    "expires": "2019-02-05T08:00:00+08:00"
+    }
+    ]*@
+    }
+</script>

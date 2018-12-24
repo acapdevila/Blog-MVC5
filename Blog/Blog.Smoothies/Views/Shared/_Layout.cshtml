@@ -14,6 +14,7 @@
                                                     || Request.Url.AbsoluteUri.Contains(@"/account/")
                                                     || Request.Url.AbsoluteUri.Contains(@"/manage/")
                                                     || Request.Url.AbsoluteUri.Contains(@"/tags/")
+                                                    || Request.Url.AbsoluteUri.Contains(@"/recetas/")
                 ))
     {
         <meta name="robots" content="noindex,follow" />
@@ -72,19 +73,45 @@
 
     @Html.Partial("_AceptarCookies")
 
-    <!--  Styles MailChimp Signup Form -->
-        <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+
+    @* MailChimp*@
+
+    <script id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/5ee18a52106457acb5c8717af/42f55e331b94e13b128393937.js");</script>
+
+    <!-- Begin Mailchimp Signup Form -->
+    @* <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
         <style type="text/css">
             #mc_embed_signup {
                 background: none;
                 clear: left;
                 font: 14px Helvetica,Arial,sans-serif;
             }
-            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+            /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
             We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
         </style>
-    <!--  Estyles MailChimp Signup Form -->
-  
+        <style type="text/css">
+            #mc-embedded-subscribe-form input[type=checkbox] {
+                display: inline;
+                width: auto;
+                margin-right: 10px;
+            }
+
+            #mergeRow-gdpr {
+                margin-top: 20px;
+            }
+
+                #mergeRow-gdpr fieldset label {
+                    font-weight: normal;
+                }
+
+            #mc-embedded-subscribe-form .mc_fieldset {
+                border: none;
+                min-height: 0px;
+                padding-bottom: 0px;
+            }
+        </style>
+    *@
+    @* MailChimp*@
 
     @RenderSection("head", required: false)
 

@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Blog.ViewModels.Libros
 {
     public class LibrosProgramacionViewmodel
     {
+        public List<CategoriaLibroViewmodel> Categorias { get; set; }
+    }
 
+    public class CategoriaLibroViewmodel
+    {
+        public string Nombre { get; set; }
         public List<LibroViewmodel> Libros { get; set; }
-        //public List<LibroViewmodel> LibrosCSharp { get; set; }
-
-        //public List<LibroViewmodel> LibrosArquitectura { get; set; }
-
-        //public List<LibroViewmodel> LibrosDesarroladores { get; set; }
-
-        //public List<LibroViewmodel> LibrosAptitudes { get; set; }
     }
 }

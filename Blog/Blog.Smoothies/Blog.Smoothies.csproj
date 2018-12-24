@@ -94,6 +94,9 @@
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList.EntityFramework, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.EntityFramework.1.0.1\lib\net45\PagedList.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
@@ -170,6 +173,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
+    <Compile Include="Controllers\RecetasController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HolaController.cs" />
@@ -201,6 +205,13 @@
     <Compile Include="Sitemap\UrlHelperExtensions.cs" />
     <Compile Include="Sitemap\XDocumentExtensions.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Recetas\ViewModels\CrearRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\DatosEstructuradosRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\EditorRecetaPartialModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\VistaPreviaRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\EditarRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\EliminarRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\ListaGestionRecetasViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -919,6 +930,14 @@
     <Content Include="Views\Utensilios\Index.cshtml" />
     <Content Include="Views\Tags\EditorTemplates\EditorTag.cshtml" />
     <Content Include="Views\Posts\Publicar.cshtml" />
+    <Content Include="Views\Recetas\Index.cshtml" />
+    <Content Include="Views\Recetas\Eliminar.cshtml" />
+    <Content Include="Views\Recetas\Editar.cshtml" />
+    <Content Include="Views\Recetas\EditorTemplates\EditorReceta.cshtml" />
+    <Content Include="Views\Recetas\Crear.cshtml" />
+    <Content Include="Views\Recetas\VistaPrevia.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TimePicker.cshtml" />
+    <Content Include="Views\Shared\_DatosEstructuradosReceta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

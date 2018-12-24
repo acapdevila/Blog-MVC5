@@ -1,0 +1,110 @@
+﻿@model Blog.ViewModels.Libros.LibrosProgramacionViewmodel
+
+@{
+    ViewBag.Title = "Libros para aprender programación c# .net";
+    ViewBag.MetaDescripcion  = "Lista de los mejores libros para aprender a programar en c# .net";
+    ViewBag.MetaPalabrasClave = "mejores libros programación c#, libros programación c#,libros programación c#, libros para aprender c#, libros programación .net, libros patrones de diseño";
+}
+
+@section head
+{
+    <style>
+
+        .portfolio-item {
+            margin-bottom: 30px;
+        }
+
+        .h-100 {
+            height: 100% !important;
+        }
+
+
+        .card-img-top {
+            width: 100%;
+            -ms-border-top-left-radius: calc(.25rem - 1px);
+            border-top-left-radius: calc(.25rem - 1px);
+            -ms-border-top-right-radius: calc(.25rem - 1px);
+            border-top-right-radius: calc(.25rem - 1px);
+        }
+
+        
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            -ms-background-clip: border-box;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            -ms-border-radius: .25rem;
+            border-radius: .25rem;
+        }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
+            -o-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+        }
+
+        .card-title {
+            margin-bottom: .75rem;
+        }
+        .card-text:last-child {
+            margin-bottom: 0;
+        }
+
+
+    </style>
+    
+}
+
+    <h1>
+        Lista de los mejores libros para aprender a programar en c# .net
+    </h1>
+
+<p>
+    Haciendo clic en cada imagen podrás ver el libro en Amazon.
+    Algunos no han sido traducidos aun al castellano, en ese caso enlazo la versión en inglés.
+</p>
+
+
+
+
+@foreach (var categoriaLibro in Model.Categorias)
+{
+  @:  <div class="row">
+    <h2>@categoriaLibro.Nombre</h2>
+    var i = 0;
+    foreach (var libro in categoriaLibro.Libros)
+    {
+        if (i % 4 == 0)
+        {
+            <div class="clearfix"></div>
+        }
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@libro.LinkHref" target="_blank" rel="nofollow">
+                    <img class="img-responsive card-img-top" src="@libro.ImagenSrc" alt="@libro.Titulo">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="@libro.LinkHref" target="_blank" rel="nofollow">
+                            @libro.Titulo
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+       
+        i++;
+    }
+    <div class="clearfix"></div>
+@: </div> 
+}
+

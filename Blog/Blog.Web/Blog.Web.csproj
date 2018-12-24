@@ -194,12 +194,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HolaController.cs" />
+    <Compile Include="Controllers\PortadaController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
-    <Compile Include="Controllers\LibrosProgramacionController.cs" />
+    <Compile Include="Controllers\ContratameController.cs" />
+    <Compile Include="Controllers\LibrosController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\RssController.cs" />
@@ -241,6 +242,33 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imagenes\libros\AgilePrinciplesPatternsPracticesCSharp.jpg" />
+    <Content Include="Content\imagenes\libros\ArquitecturaLimpia.jpg" />
+    <Content Include="Content\imagenes\libros\BuildingMicroservices.jpg" />
+    <Content Include="Content\imagenes\libros\CodigoLimpio.jpg" />
+    <Content Include="Content\imagenes\libros\CrackingInterview.jpg" />
+    <Content Include="Content\imagenes\libros\CSharp7AndNetCore.jpg" />
+    <Content Include="Content\imagenes\libros\CSharp7InANutshell.jpg" />
+    <Content Include="Content\imagenes\libros\CSharpInDepth.jpg" />
+    <Content Include="Content\imagenes\libros\DomainDrivenDesign.jpg" />
+    <Content Include="Content\imagenes\libros\EmpieceAProgramarUnEnfoqueMultiparadigmaConCSharp.jpg" />
+    <Content Include="Content\imagenes\libros\EnterpriseIntegrationPatterns.jpg" />
+    <Content Include="Content\imagenes\libros\GetThingsDone.jpg" />
+    <Content Include="Content\imagenes\libros\HeadFirsDessignPatterns.jpg" />
+    <Content Include="Content\imagenes\libros\ImplementingDomainDrivenDesign.jpg" />
+    <Content Include="Content\imagenes\libros\IntroduccionACSharp.jpg" />
+    <Content Include="Content\imagenes\libros\JoelOnSoftware.jpg" />
+    <Content Include="Content\imagenes\libros\NoMeHagasPensar.jpg" />
+    <Content Include="Content\imagenes\libros\PatronesDiseno.jpg" />
+    <Content Include="Content\imagenes\libros\PatternsPrinciplesAndPracticesDDD.jpg" />
+    <Content Include="Content\imagenes\libros\ProCsharp7.jpg" />
+    <Content Include="Content\imagenes\libros\ProgramacionAsincronaConCsharp.jpg" />
+    <Content Include="Content\imagenes\libros\ProgrammingPerls.jpg" />
+    <Content Include="Content\imagenes\libros\RefactoringImprovingDesign.jpg" />
+    <Content Include="Content\imagenes\libros\RefactoringToPatterns.jpg" />
+    <Content Include="Content\imagenes\libros\SoftSkills.jpg" />
+    <Content Include="Content\imagenes\libros\TheCleanCoder.jpg" />
+    <Content Include="Content\imagenes\libros\WorkingWithLegacyCode.jpg" />
     <Content Include="Content\syntaxhighlighter.css" />
     <Content Include="Content\imagenes\asp.png" />
     <Content Include="Content\imagenes\logo.png" />
@@ -283,6 +311,7 @@
     <Content Include="images\handle-rotate.png" />
     <Content Include="images\handle-secondary.png" />
     <Content Include="images\handle-terminal.png" />
+    <Content Include="images\lecutrasnoviembre18.jpg" />
     <Content Include="images\refresh.png" />
     <Content Include="images\round-drop.png" />
     <Content Include="images\triangle-down.png" />
@@ -733,7 +762,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Hola\Index.cshtml" />
+    <Content Include="Views\Portada\Index.cshtml" />
     <Content Include="Views\Contacto\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -800,11 +829,11 @@
     <Content Include="Views\Borradores\Lista.cshtml" />
     <Content Include="Views\Posts\Publicar.cshtml" />
     <Content Include="Views\Shared\_MenuBackOffice.cshtml" />
-    <Content Include="Views\LibrosProgramacion\Index.cshtml" />
+    <Content Include="Views\Libros\Index.cshtml" />
+    <Content Include="Views\Contratame\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Libros\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

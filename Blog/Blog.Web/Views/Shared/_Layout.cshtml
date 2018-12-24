@@ -27,7 +27,7 @@
     @* seo *@
 
     @{
-        var titulo = ViewBag.Title ?? "albertcapdevila.net";
+        var titulo = ViewBag.Title ?? "Programador .NET - albertcapdevila.net";
         var descripcion = ViewBag.MetaDescripcion ?? "Artículos sobre desarrollo en c#.net y buenas prácticas de programación.";
         var urlcanonica = $"https://albertcapdevila.net{HttpContext.Current.Request.Url.AbsolutePath}";
         var palabrasclave = ViewBag.MetaPalabrasClave ?? "c#, c#.net, asp.net,asp.net mvc,.net,patrones de diseño,azure,desarrollo,programación,software,asp.net core, .net core";
@@ -106,12 +106,22 @@
                     }
 
                     <ul class="nav navbar-nav tipo">
-                        <li class="@(currentController == "Hola" ? activeClass : string.Empty)">
-                            @Html.ActionLink("Hola", "Index", "Hola")
+                        <li class="@(currentController == "Blog" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Blog", "Index", "Blog")
                         </li>
-                        <li class="@(currentController == "Escribeme" ? activeClass : string.Empty)">
+                        
+                        <li class="@(currentController == "Contratame" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Contrátame", "Index", "Contratame")
+                        </li>
+                        <li class="@(currentController == "Libros" ? activeClass : string.Empty)">
+                            @Html.ActionLink("Libros", "Index", "Libros")
+                        </li>
+                       
+
+                        <li class="@(currentController == "Contacto" ? activeClass : string.Empty)">
                             @Html.ActionLink("Contacto", "Index", "Contacto")
                         </li>
+
                         <li class="@(currentController == "Rss" ? activeClass : string.Empty)">
                             @Html.ActionLink("RSS", "Feed", "Rss")
                         </li>

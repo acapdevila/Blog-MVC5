@@ -18,6 +18,9 @@ namespace Blog.Web
 
         public const string NombreRutaAmigable = "RutaAmigable";
         public const string NombreRutaEtiquetaAmigable = "RutaEtiquetaAmigable";
+        public const string NombreRutaLibros = "RutaLibros";
+        public const string NombreRutaContratame = "RutaContratame";
+
 
         public const string NombreRutaSitemap = "RutaSitemapXml";
 
@@ -54,12 +57,21 @@ namespace Blog.Web
                  name: NombreRutaArchivoPosts,
                  url: "Blog/Archivo/{anyo}/{mes}",
                  defaults: new { controller = "Blog", action = "Archivo" }//,
-                 //constraints: new
-                 //{
-                 //    mes = @"\d{1,2}",
-                 //    anyo = @"\d{4}"
-                 //}
-             );
+            );
+
+            routes.MapRoute(
+                name: NombreRutaLibros,
+                url: "libros-para-aprender-programacion-csharp",
+                defaults: new { controller = "Libros", action = "Index" }
+                );
+
+
+            routes.MapRoute(
+                name: NombreRutaContratame,
+                url: "programador-net-freelance-en-barcelona",
+                defaults: new { controller = "Contratame", action = "Index" }
+            );
+
 
             var servicioCahce = new CacheService();
 
@@ -80,10 +92,10 @@ namespace Blog.Web
             routes.MapRoute(
                 name: NombreRutaPorDefecto,
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Portada", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                 {
-                    controller = "Account|Blog|Blogs|Borradores|Contacto|Error|Hola|Imagenes|Manage|Posts|Principal|Rss|Sidebar|Tags"
+                    controller = "Account|Blog|Blogs|Borradores|Contacto|Contratame|Error|Imagenes|Manage|Portada|Posts|Principal|Rss|Sidebar|Tags"
                 }
             );
 

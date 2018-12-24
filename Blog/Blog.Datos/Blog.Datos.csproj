@@ -58,8 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MapeosTablas\MapeoBlogEntidad.cs" />
+    <Compile Include="MapeosTablas\MapeoIngredienteReceta.cs" />
+    <Compile Include="MapeosTablas\MapeoInstruccion.cs" />
+    <Compile Include="MapeosTablas\MapeoIngrediente.cs" />
+    <Compile Include="MapeosTablas\MapeoReceta.cs" />
     <Compile Include="MapeosTablas\MapeoPost.cs" />
     <Compile Include="MapeosTablas\MapeoCategoria.cs" />
+    <Compile Include="MapeosTablas\MapeoImagen.cs" />
     <Compile Include="MapeosTablas\MapeoTag.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.Designer.cs">
@@ -92,6 +97,10 @@
     <Compile Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.cs" />
     <Compile Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.Designer.cs">
       <DependentUpon>201712281920215_MigracionCategoriasQuitarBlogId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812161630025_Recetas.cs" />
+    <Compile Include="Migrations\201812161630025_Recetas.Designer.cs">
+      <DependentUpon>201812161630025_Recetas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
@@ -127,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712281920215_MigracionCategoriasQuitarBlogId.resx">
       <DependentUpon>201712281920215_MigracionCategoriasQuitarBlogId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812161630025_Recetas.resx">
+      <DependentUpon>201812161630025_Recetas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
