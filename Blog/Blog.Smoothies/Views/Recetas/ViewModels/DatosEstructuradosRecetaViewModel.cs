@@ -5,9 +5,15 @@ using Blog.Modelo.Recetas;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels
 {
-    public  class VistaPreviaRecetaViewModel
+    public class DatosEstructuradosRecetaViewModel
     {
-        public VistaPreviaRecetaViewModel(Receta receta)
+
+        public DatosEstructuradosRecetaViewModel()
+        {
+
+        }
+
+        public DatosEstructuradosRecetaViewModel(Receta receta) : this()
         {
             Id = receta.Id;
             Nombre = receta.Nombre;

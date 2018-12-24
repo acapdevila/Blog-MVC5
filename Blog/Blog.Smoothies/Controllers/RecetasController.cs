@@ -62,18 +62,34 @@ namespace Blog.Smoothies.Controllers
 
         public ActionResult Crear()
         {
-            var crearRecetaViewModel = new CrearRecetaViewModel();
-            crearRecetaViewModel.EditorReceta.Autor = "Laura García";
+            var crearRecetaViewModel = new CrearRecetaViewModel
+            {
+                EditorReceta = new EditorRecetaPartialModel { Autor = "Laura García" }
+            };
             return View(crearRecetaViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Crear(CrearRecetaViewModel crearRecetaViewModel)
+        public async Task<ActionResult> Crear(CrearRecetaViewModel viewModel)
         {
-            if (!ModelState.IsValid) return View(crearRecetaViewModel);
+            if (!ModelState.IsValid) return View(viewModel);
 
-            var comando = new ComandoCrearReceta();
+            var editor = viewModel.EditorReceta;
+
+            var comando = new ComandoCrearReceta
+            {
+                Autor = editor.Autor,
+                Nombre = editor.Nombre,
+                CategoriaReceta = editor.CategoriaReceta,
+                Descripcion = editor.Descripcion,
+                FechaPublicacion = editor.FechaPublicacion,
+                Keywords = editor.Keywords,
+                Raciones = editor.Raciones,
+                TiempoCoccion = editor.TiempoCoccion,
+                TiempoPreparacion = editor.TiempoPreparacion
+            };
+
            await  _editor.CrearReceta(comando);
 
             return RedirectToAction("Index");
@@ -122,9 +138,21 @@ namespace Blog.Smoothies.Controllers
 
         }
 
-        private async Task EditarReceta(EditorRecetaPartialModel viewModelEditorReceta)
+        private async Task EditarReceta(EditorRecetaPartialModel editor)
         {
-            var comando = new ComandoEditarReceta();
+            var comando = new ComandoEditarReceta
+            {
+                Id = editor.Id,
+                Autor = editor.Autor,
+                Nombre = editor.Nombre,
+                CategoriaReceta = editor.CategoriaReceta,
+                Descripcion = editor.Descripcion,
+                FechaPublicacion = editor.FechaPublicacion,
+                Keywords = editor.Keywords,
+                Raciones = editor.Raciones,
+                TiempoCoccion = editor.TiempoCoccion,
+                TiempoPreparacion = editor.TiempoPreparacion
+            };
             await _editor.EditarReceta(comando);
         }
 
@@ -154,7 +182,7 @@ namespace Blog.Smoothies.Controllers
         [AllowAnonymous]
         public async  Task<ActionResult> QuickMultipleSearch(string term)
         {
-            var search = (await _buscador.ElementosDeRecetas(term , 10))
+            var search = (await _buscador.ElementosDeRecetas(term))
                             .Select(m => new { value = m.Descripcion, id = m.Valor })
                             .ToList();
             ;

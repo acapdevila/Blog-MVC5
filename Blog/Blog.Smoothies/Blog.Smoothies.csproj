@@ -206,6 +206,7 @@
     <Compile Include="Sitemap\XDocumentExtensions.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\Recetas\ViewModels\CrearRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\DatosEstructuradosRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EditorRecetaPartialModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\VistaPreviaRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EditarRecetaViewModel.cs" />
@@ -930,6 +931,7 @@
     <Content Include="Views\Recetas\Crear.cshtml" />
     <Content Include="Views\Recetas\VistaPrevia.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TimePicker.cshtml" />
+    <Content Include="Views\Shared\_DatosEstructuradosReceta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

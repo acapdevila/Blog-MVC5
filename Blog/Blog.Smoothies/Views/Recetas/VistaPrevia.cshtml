@@ -1,8 +1,75 @@
 ﻿@model Blog.Smoothies.Views.Recetas.ViewModels.VistaPreviaRecetaViewModel
 
 @{
-    ViewBag.Title = "Vista prévia";
+    ViewBag.Title = "Vista previa";
 }
 
-<h2>Vista prévia</h2>
-<p>@Model.Nombre</p>
+<h2>Vista previa</h2>
+
+
+<dl class="dl-horizontal">
+    <dt>Nombre:</dt>
+    <dd>@Model.Nombre</dd>
+    
+    @foreach (var imagen in Model.Imagenes)
+    {
+        <dt>Imagen:</dt>
+        <dd>@imagen</dd>
+    }
+
+    <dt>Fecha publicación:</dt>
+    <dd>@Model.FechaPublicacion</dd>
+
+    <dt>Descripción:</dt>
+    <dd>@Model.Descripcion</dd>
+            
+    <dt>Tiempo de preparación:</dt> 
+    <dd>
+        @Model.TiempoPreparacion
+    </dd>
+            
+            
+    <dt>Tiempo de coción:</dt>
+    <dd>@Model.TiempoCoccion</dd>
+          
+    <dt>Tiempo total:</dt>
+    <dd>@Model.TiempoTotal</dd>
+         
+    <dt>Palabras clave:</dt> 
+    <dd>@Model.Keywords</dd>
+           
+    <dt> Raciones:</dt>
+    <dd>
+        @Model.Raciones
+    </dd>
+    
+    <dt> Categoría:</dt>
+    <dd>
+        @Model.CategoriaReceta
+    </dd>
+    
+    @foreach (var ingrediente in Model.Ingredientes)
+    {
+        <dt> Ingrediente:</dt>
+        <dd>
+            @ingrediente
+        </dd>
+    }
+    
+    <dt> Autor:</dt>
+    <dd>
+        @Model.Autor
+    </dd>
+    
+    
+    @foreach (var instruccion in Model.Instrucciones)
+    {
+        <dt> Instrucción:</dt>
+        <dd>
+            @instruccion
+        </dd>
+    }
+    
+
+
+</dl>

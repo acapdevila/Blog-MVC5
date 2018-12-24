@@ -24,7 +24,7 @@
 </p>
 <table class="table">
     <tr>
-        <th style="width: 110px"></th>
+        <th style="width: 150px"></th>
         <th>
             Nombre
         </th>
@@ -42,7 +42,7 @@
         <td>
             <div class="btn-group">
                
-                @Html.ActionLink("Vista prévia", "VistaPrevia", new {id = item.Id}, new {@class = "btn btn-default"})
+                @Html.ActionLink("Vista previa", "VistaPrevia", new {id = item.Id}, new {@class = "btn btn-default"})
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Acciones</span>
@@ -61,13 +61,13 @@
             </div>
         </td>
         <td>
-            item.Nombre
+            @item.Nombre
         </td>
         <td>
             @item.Categoria
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaPublicacion)
+            @item.FechaPublicacion.ToShortDateString()
         </td>
      </tr>
 }

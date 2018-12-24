@@ -30,11 +30,17 @@ namespace Blog.Servicios.Recetas
 
         public async Task<IPagedList<LineaGestionReceta>> BuscarPaginaAsync(CriteriosBusquedaReceta criterios, int indicePagina, int tamañoPagina)
         {
-            return await Recetas()
-                    .ProyectarALineaDeReceta()
-                    .Where(m=> criterios.BuscarPor.Contains(m.Nombre))
-                    .OrderBy(m=>m.Nombre)
-                    .ToPagedListAsync(indicePagina, tamañoPagina);
+            var consulta = Recetas()
+                .ProyectarALineaDeReceta();
+
+            if (!string.IsNullOrEmpty(criterios.BuscarPor))
+            {
+                consulta = consulta.Where(m => criterios.BuscarPor.Contains(m.Nombre));
+            }
+
+            return await consulta
+                        .OrderBy(m=>m.Nombre)
+                        .ToPagedListAsync(indicePagina, tamañoPagina);
 
         }
 

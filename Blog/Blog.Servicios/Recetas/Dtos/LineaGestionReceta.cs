@@ -24,7 +24,8 @@ namespace Blog.Servicios.Recetas.Dtos
             {
                 Id = m.Id,
                 Nombre = m.Nombre,
-                Categoria = m.CategoriaReceta
+                Categoria = m.CategoriaReceta,
+                FechaPublicacion = m.FechaPublicacion
             });
         }
     }

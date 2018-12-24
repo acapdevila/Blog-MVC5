@@ -4,8 +4,6 @@ namespace Blog.Servicios.Recetas.Comandos
 {
     public class ComandoCrearReceta
     {
-        public int Id { get; set; }
-
         public string Nombre { get; set; }
 
         public string Autor { get; set; }
