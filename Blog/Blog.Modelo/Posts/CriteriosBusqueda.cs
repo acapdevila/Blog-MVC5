@@ -1,37 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blog.Modelo.Tags;
 using CSharpFunctionalExtensions;
 
 namespace Blog.Modelo.Posts
 {
-    public class CriteriosBusqueda : ValueObject<CriteriosBusqueda>
+    public class CriteriosBusqueda : ValueObject
     {
-        private List<Tag> _tags;
-        private List<string> _palabras;
+        private readonly List<string> _palabras;
 
         public static CriteriosBusqueda Vacio()
         {
             return new CriteriosBusqueda(string.Empty);
         }
 
-        public static Result<CriteriosBusqueda> Crear(string buscarPor)
+        public static CriteriosBusqueda Crear(string buscarPor)
         {
             if (string.IsNullOrEmpty(buscarPor))
-                return Result.Ok(Vacio());
+                return Vacio();
 
             if (150 < buscarPor.Length)
                 buscarPor = buscarPor.Substring(0, 150);
             
-            return Result.Ok(new CriteriosBusqueda(buscarPor));
+            return new CriteriosBusqueda(buscarPor);
         }
-
-        public IReadOnlyCollection<Tag> Tags
-        {
-            get { return _tags; }
-        }
-
+        
         public IReadOnlyList<string> PalabrasBuscadas
         {
             get { return _palabras; }
@@ -42,19 +35,18 @@ namespace Blog.Modelo.Posts
         private CriteriosBusqueda(string buscarPor)
         {
             BuscarPor = buscarPor.Trim().Trim(',');
-            _palabras = BuscarPor.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            _tags = new List<Tag>();
+            _palabras = BuscarPor
+                        .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                        .ToList()
+                        .Select(m=>m.Trim())
+                        .Distinct()
+                        .ToList();
         }
 
-
-        protected override bool EqualsCore(CriteriosBusqueda other)
+        
+        protected override IEnumerable<object> GetEqualityComponents()
         {
-            return BuscarPor.Equals(other.BuscarPor, StringComparison.InvariantCultureIgnoreCase);
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            return BuscarPor.GetHashCode()*312;
+            return new List<object> {BuscarPor};
         }
 
         public static implicit operator string(CriteriosBusqueda criteriosBusqueda)
@@ -64,21 +56,11 @@ namespace Blog.Modelo.Posts
 
         public static explicit operator CriteriosBusqueda(string buscarPor)
         {
-            return Crear(buscarPor).Value;
+            return Crear(buscarPor);
         }
 
-        public void AñadirTags(List<Tag> tags)
-        {
-            foreach (var tag in tags)
-            {
-                AñadirTag(tag);
-            }
-        }
 
-        private void AñadirTag(Tag tag)
-        {
-            _tags.Add(tag);
-            _palabras.Remove(tag.Nombre);
-        }
+
+      
     }
 }

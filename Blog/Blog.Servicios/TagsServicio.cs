@@ -28,7 +28,7 @@ namespace Blog.Servicios
 
         public List<Tag> BuscarTags(CriteriosBusqueda criteriosBusqueda)
         {
-            if (criteriosBusqueda == CriteriosBusqueda.Vacio())
+            if (string.IsNullOrEmpty(criteriosBusqueda.BuscarPor))
                 return new List<Tag>();
 
             return Tags()

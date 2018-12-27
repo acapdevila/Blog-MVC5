@@ -48,17 +48,8 @@ namespace Blog.Smoothies.Controllers
 
         public async  Task<ActionResult> Buscar(string buscarPor,int? pagina)
         {
-            Result<CriteriosBusqueda> criteriosBusquedaOError = CriteriosBusqueda.Crear(buscarPor);
-
-            if (criteriosBusquedaOError.IsFailure)
-                return RedirectToAction("Index");
-
-            CriteriosBusqueda criteriosBusqueda = criteriosBusquedaOError.Value;
-
-            List<Tag> tags = _tagsServicio.BuscarTags(criteriosBusqueda);
-
-            criteriosBusqueda.AñadirTags(tags);
-
+            CriteriosBusqueda criteriosBusqueda = CriteriosBusqueda.Crear(buscarPor);
+            
             var viewModel = await ObtenerResultadosBusquedaViewModel(criteriosBusqueda, pagina ?? 1, NumeroItemsPorPagina);
             return View("ResultadoBusqueda" ,viewModel);
         }
@@ -235,7 +226,7 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        private async Task<ResultadoBusquedaViewModel> ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor,int pagina, int numeroItemsPorPagina)
+        private async Task<ResultadoBusquedaViewModel> ObtenerResultadosBusquedaViewModel(CriteriosBusqueda buscarPor, int pagina, int numeroItemsPorPagina)
         {
 
             return new ResultadoBusquedaViewModel

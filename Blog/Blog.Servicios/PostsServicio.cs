@@ -10,6 +10,7 @@ using Blog.Modelo.Tags;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 using PagedList.EntityFramework;
+using CSharpFunctionalExtensions;
 
 
 namespace Blog.Servicios
@@ -53,12 +54,15 @@ namespace Blog.Servicios
 
         public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
         {
+            var tags = await _db.Tags.Where(t => criteriosBusqueda.PalabrasBuscadas.Contains(t.Nombre)).ToListAsync();
+            var categorias = await _db.Categorias.Where(c => criteriosBusqueda.PalabrasBuscadas.Any(p => p.Contains(c.Nombre) || c.Nombre.Contains(p))).ToListAsync();
+            
             return new ListaGestionPostsViewModel
             {
-                BuscarPor = criteriosBusqueda,
+                BuscarPor = criteriosBusqueda.BuscarPor,
                 ListaPosts = await Posts()
                     .Publicados()
-                    .BuscarPor(criteriosBusqueda)
+                    .BuscarPor(criteriosBusqueda, tags, categorias)
                     .Select(m => new LineaGestionPost
                 {
                     Id = m.Id,

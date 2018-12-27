@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
@@ -88,11 +89,17 @@ namespace Blog.Servicios
             }), postsProyectados.PageNumber, postsProyectados.PageSize, postsProyectados.TotalItemCount);
         }
 
-        public async Task<IPagedList<LineaPostCompleto>> BuscarPostsCompletosPublicados(CriteriosBusqueda criteriosBusqueda, int pagina, int nummeroItemsPorPagina)
+        public async Task<IPagedList<LineaPostCompleto>> BuscarPostsCompletosPublicados(
+            CriteriosBusqueda criteriosBusqueda, 
+            int pagina, 
+            int nummeroItemsPorPagina)
         {
+            var tags = await Tags().Where(t=>criteriosBusqueda.PalabrasBuscadas.Contains(t.Nombre)).ToListAsync();
+            var categorias = await Categorias().Where(c => criteriosBusqueda.PalabrasBuscadas.Any(p => p.Contains(c.Nombre) || c.Nombre.Contains(p))).ToListAsync();
+            
             var postsProyectados = await Posts()
                 .Publicados()
-                .BuscarPor(criteriosBusqueda)
+                .BuscarPor(criteriosBusqueda, tags, categorias)
                 .OrderByDescending(m => m.FechaPost)
                 .Select(m => new
                 {

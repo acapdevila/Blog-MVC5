@@ -38,9 +38,11 @@ namespace Blog.Smoothies.Controllers
             _postsServicio = postsServicio;
         }
 
-        public async Task<ActionResult> Index(int pagina = 1)
+        public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
         {
-            var viewModel = await _postsServicio.ObtenerListaPostViewModel(CriteriosBusqueda.Vacio(), pagina, 100);
+            var criteriosBusqueda = CriteriosBusqueda.Crear(buscarPor);
+
+            var viewModel = await _postsServicio.ObtenerListaPostViewModel(criteriosBusqueda, pagina, 100);
             return View(viewModel);
         }
 
