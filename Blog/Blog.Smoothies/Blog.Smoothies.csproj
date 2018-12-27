@@ -231,6 +231,7 @@
     <Content Include="Content\imagenes\facebook.png" />
     <Content Include="Content\imagenes\facebook_white.png" />
     <Content Include="Content\imagenes\fermentedvegetables.jpg" />
+    <Content Include="Content\imagenes\flavorflours.jpg" />
     <Content Include="Content\imagenes\geniusfoods.jpg" />
     <Content Include="Content\imagenes\gettheglow.jpg" />
     <Content Include="Content\imagenes\glutenfreeartisanbread.jpg" />
@@ -239,6 +240,7 @@
     <Content Include="Content\imagenes\healingmushrooms.jpg" />
     <Content Include="Content\imagenes\instagram.png" />
     <Content Include="Content\imagenes\instagram_white.png" />
+    <Content Include="Content\imagenes\kale.jpg" />
     <Content Include="Content\imagenes\kalecaramel.jpg" />
     <Content Include="Content\imagenes\ketodiet.jpg" />
     <Content Include="Content\imagenes\lacrianzafeliz.jpg" />
@@ -247,6 +249,7 @@
     <Content Include="Content\imagenes\lamaternidadyelencuentro.jpg" />
     <Content Include="Content\imagenes\laura.jpg" />
     <Content Include="Content\imagenes\logo.png" />
+    <Content Include="Content\imagenes\microgreens.jpg" />
     <Content Include="Content\imagenes\mightysalads.jpg" />
     <Content Include="Content\imagenes\migraña.jpg" />
     <Content Include="Content\imagenes\moveyourdna.jpg" />
@@ -254,15 +257,18 @@
     <Content Include="Content\imagenes\nicecream.jpg" />
     <Content Include="Content\imagenes\niñossanosadultossanos.jpg" />
     <Content Include="Content\imagenes\nourish.jpg" />
+    <Content Include="Content\imagenes\onepandone.jpg" />
     <Content Include="Content\imagenes\perfecthealthdiet.jpg" />
     <Content Include="Content\imagenes\plenty.jpg" />
     <Content Include="Content\imagenes\primalmoms.jpg" />
     <Content Include="Content\imagenes\renegadebeauty.jpg" />
     <Content Include="Content\imagenes\slowcooker.jpg" />
     <Content Include="Content\imagenes\somoslaleche.jpg" />
+    <Content Include="Content\imagenes\superfuel.jpg" />
     <Content Include="Content\imagenes\thealchemyofherbs.jpg" />
     <Content Include="Content\imagenes\thedentaldiet.jpg" />
     <Content Include="Content\imagenes\thenondairyevolution.jpg" />
+    <Content Include="Content\imagenes\TheOnePotKetogenic.jpg" />
     <Content Include="Content\imagenes\thepaleoaproach.jpg" />
     <Content Include="Content\imagenes\thesavvycook.jpg" />
     <Content Include="Content\imagenes\transformatusalud.jpg" />
