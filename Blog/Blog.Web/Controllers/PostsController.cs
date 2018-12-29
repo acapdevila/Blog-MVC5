@@ -11,6 +11,7 @@ using Blog.Servicios;
 using Blog.Servicios.Cache;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
+using CSharpFunctionalExtensions;
 
 namespace Blog.Web.Controllers
 {

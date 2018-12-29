@@ -10,6 +10,7 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.ViewModels.Post;
+using CSharpFunctionalExtensions;
 
 namespace Blog.Web.Controllers
 {
