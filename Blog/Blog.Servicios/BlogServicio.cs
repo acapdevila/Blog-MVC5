@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
@@ -17,10 +16,21 @@ namespace Blog.Servicios
     public class BlogServicio
     {
         private readonly ContextoBaseDatos _db;
+        private readonly TagsServicio _tagsServicio;
+        private readonly CategoriasServicio _categoriasServicio;
         private readonly string _tituloBlog;
-        public BlogServicio(ContextoBaseDatos db, string tituloBlog)
+
+        public BlogServicio(ContextoBaseDatos db, string tituloBlog) : this(db, new TagsServicio(db, tituloBlog), new CategoriasServicio(db, tituloBlog), tituloBlog)
+        {
+            
+        }
+
+
+        public BlogServicio(ContextoBaseDatos db, TagsServicio tagsServicio, CategoriasServicio categoriasServicio, string tituloBlog)
         {
             _db = db;
+            _tagsServicio = tagsServicio;
+            _categoriasServicio = categoriasServicio;
             _tituloBlog = tituloBlog;
         }
 
@@ -32,18 +42,8 @@ namespace Blog.Servicios
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
-        private IQueryable<Tag> Tags()
-        {
-            return _db.Tags
-                .Include(m => m.Posts)
-                .Where(m => m.Posts.Any(p=>p.Blog.Titulo == _tituloBlog));
-        }
-        private IQueryable<Categoria> Categorias()
-        {
-            return _db.Categorias
-                .Include(m => m.Posts)
-                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
-        }
+      
+      
 
 
         public async Task<IPagedList<LineaResumenPost>> ObtenerListaResumenPostsPublicados(int pagina, int nummeroItemsPorPagina)
@@ -94,8 +94,8 @@ namespace Blog.Servicios
             int pagina, 
             int nummeroItemsPorPagina)
         {
-            var tags = await Tags().Where(t=>criteriosBusqueda.PalabrasBuscadas.Contains(t.Nombre)).ToListAsync();
-            var categorias = await Categorias().Where(c => criteriosBusqueda.PalabrasBuscadas.Any(p => p.Contains(c.Nombre) || c.Nombre.Contains(p))).ToListAsync();
+            var tags = await _tagsServicio.BuscarTags(criteriosBusqueda.PalabrasBuscadas);
+            var categorias = await _categoriasServicio.BuscarCategoriasAsync(criteriosBusqueda.PalabrasBuscadas); 
             
             var postsProyectados = await Posts()
                 .Publicados()
@@ -126,18 +126,18 @@ namespace Blog.Servicios
 
         }
 
+
+
         public async Task<Tag> RecuperarTagConPostsRelacionados(string urlSlug)
         {
-            return await Tags()
-              //  .ConPostsPublicados()
-                .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
+            return await _tagsServicio.RecuperarTagIncluyendoPostsPorUrlAsync(urlSlug);
         }
 
-        public async Task<Categoria> RecuperarCategoriaConPostsRelacionados(string urlSlug)
+   
+
+        public async Task<Categoria> RecuperarCategoriaConPostsRelacionados(string urlCategoria)
         {
-            return await Categorias()
-              //  .ConPostsPublicados()
-                .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
+            return await _categoriasServicio.RecuperarCategoriaIncluyendoPostsPorUrlCategoriaAsync(urlCategoria);
         }
 
         public async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
@@ -193,10 +193,16 @@ namespace Blog.Servicios
 
         public void Dispose()
         {
+            _tagsServicio.Dispose();
             _db.Dispose();
         }
 
 
-       
+        public async Task<List<Tag>> RecuperarListaTagsAsync()
+        {
+            return await _tagsServicio.RecuperarListaTagsAsync();
+        }
+
+      
     }
 }

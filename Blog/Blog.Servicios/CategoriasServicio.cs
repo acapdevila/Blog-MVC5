@@ -28,6 +28,20 @@ namespace Blog.Servicios
                 .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
         }
 
+
+        private IQueryable<Categoria> CategoriasIncluyendoPosts()
+        {
+            return _db.Categorias
+                .Include(m => m.Posts)
+                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+        }
+
+        public Task<Categoria> RecuperarCategoriaIncluyendoPostsPorUrlCategoriaAsync(string urlCategoria)
+        {
+            return CategoriasIncluyendoPosts()
+                .FirstOrDefaultAsync(m => m.UrlSlug == urlCategoria);
+        }
+
         public async Task<IPagedList<LineaCategoriaDto>> ObtenerListaGestionCategorias(int numeroPagina, int categoriasPorPagina)
         {
 
@@ -43,6 +57,11 @@ namespace Blog.Servicios
                 .ToPagedListAsync(numeroPagina, categoriasPorPagina);
 
             return lineas;
+        }
+
+        public Task<List<Categoria>> BuscarCategoriasAsync(IReadOnlyList<string> palabrasBuscadas)
+        {
+            return Categorias().Where(c => palabrasBuscadas.Any(p => p.Contains(c.NombreSinAcentos) || c.NombreSinAcentos.Contains(p))).ToListAsync();
         }
 
         public async Task<List<CategoriaDto>> ObtenerListaCategorias()
@@ -98,7 +117,7 @@ namespace Blog.Servicios
             _db.Dispose();
          
         }
-
+        
     
     }
 }

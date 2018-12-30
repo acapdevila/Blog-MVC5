@@ -5,19 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.UI;
 using Blog.Datos;
-using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
 using PagedList;
-using CSharpFunctionalExtensions;
 using Blog.ViewModels.Categoria;
 
 namespace Blog.Smoothies.Controllers
@@ -27,13 +22,12 @@ namespace Blog.Smoothies.Controllers
         public static string TituloBlog = "by Laura García";
 
         private readonly BlogServicio _blogServicio;
-        private readonly TagsServicio _tagsServicio;
         
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
             _blogServicio = new BlogServicio(contexto, TituloBlog);
-            _tagsServicio = new TagsServicio(contexto, TituloBlog);
+           
 
         }
 
@@ -116,7 +110,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Etiqueta(string id, int pagina = 1)
         {
-            var tag = await RecuperarTag(id);
+            var tag = await _blogServicio.RecuperarTagConPostsRelacionados(id);
 
             if (tag == null) return HttpNotFound();
 
@@ -145,7 +139,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> CategoriaAmigable(string urlCategoria, int pagina = 1)
         {
-            var categoria = await RecuperarCategoria(urlCategoria);
+            var categoria = await _blogServicio.RecuperarCategoriaConPostsRelacionados(urlCategoria);
 
             if (categoria == null) return HttpNotFound();
 
@@ -188,15 +182,7 @@ namespace Blog.Smoothies.Controllers
             return View(viewModel);
         }
 
-        private async Task<Tag> RecuperarTag(string urlSlug)
-        {
-            return await _blogServicio.RecuperarTagConPostsRelacionados(urlSlug);
-        }
-        private async Task<Categoria> RecuperarCategoria(string urlSlug)
-        {
-            return await _blogServicio.RecuperarCategoriaConPostsRelacionados(urlSlug);
-        }
-
+        
         private async Task<ArchivoItemDto> RecuperarArchivoBlog(int anyo, int mes)
         {
             return await _blogServicio

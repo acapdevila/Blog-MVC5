@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Blog.Modelo.Extensiones;
 using CSharpFunctionalExtensions;
 
 namespace Blog.Modelo.Posts
@@ -28,6 +29,11 @@ namespace Blog.Modelo.Posts
         public IReadOnlyList<string> PalabrasBuscadas
         {
             get { return _palabras; }
+        }
+
+        public IReadOnlyList<string> PalabrasBuscadasSinAcento
+        {
+            get { return _palabras.Select(m=>m.RemoveDiacritics()).ToList(); }
         }
 
         public string BuscarPor { get;  }

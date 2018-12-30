@@ -17,8 +17,8 @@ namespace Blog.Smoothies.Controllers
         // GET: Tags
         public async Task<ActionResult> Index()
         {
-            var viewModel = await _tagsServicio.ObtenerListaTagsViewModel();
-            return View(viewModel);
+            var tags = await _tagsServicio.RecuperarListaTagsAsync();
+            return View(tags);
         }
 
         // GET: Tags/Details/5

@@ -71,6 +71,7 @@
     <Compile Include="Dtos\LineaArchivoDto.cs" />
     <Compile Include="Dtos\LineaCategoriaDto.cs" />
     <Compile Include="Dtos\CategoriaDto.cs" />
+    <Compile Include="Extensiones\ExtensionesString.cs" />
     <Compile Include="Posts\CriteriosBusqueda.cs" />
     <Compile Include="Posts\LineaPostCompleto.cs" />
     <Compile Include="Posts\LineaResumenPost.cs" />

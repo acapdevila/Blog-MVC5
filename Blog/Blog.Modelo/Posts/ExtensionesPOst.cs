@@ -55,7 +55,9 @@ namespace Blog.Modelo.Posts
             if(criterios == CriteriosBusqueda.Vacio())
                     return posts;
 
-            var consulta = posts.Where(m => criterios.PalabrasBuscadas.Any(p => p.Contains(m.Titulo) || m.Titulo.Contains(p)));
+            var palabrasaSinAcento = criterios.PalabrasBuscadasSinAcento;
+            
+            var consulta = posts.Where(m => palabrasaSinAcento.Any(p => p.Contains(m.TituloSinAcentos) || m.TituloSinAcentos.Contains(p)));
             
             if (tags.Any())
             {

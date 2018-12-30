@@ -18,6 +18,8 @@ namespace Blog.Servicios
     public class PostsServicio
     {
         private readonly ContextoBaseDatos _db;
+        private readonly TagsServicio _tagsServicio;
+        private readonly CategoriasServicio _categoriasServicio;
         private readonly AsignadorTags _asignadorTags;
         private readonly AsignadorCategorias _asignadorCategorias;
         private readonly string _tituloBlog;
@@ -25,6 +27,8 @@ namespace Blog.Servicios
         public PostsServicio(ContextoBaseDatos db, AsignadorTags asignadorTags, AsignadorCategorias asignadorCategorias, string tituloBlog)
         {
             _db = db;
+            _tagsServicio = new TagsServicio(db, tituloBlog);
+            _categoriasServicio = new CategoriasServicio(db, tituloBlog);
             _asignadorTags = asignadorTags;
             _asignadorCategorias = asignadorCategorias;
             _tituloBlog = tituloBlog;
@@ -54,9 +58,9 @@ namespace Blog.Servicios
 
         public async Task<ListaGestionPostsViewModel> ObtenerListaPostViewModel(CriteriosBusqueda criteriosBusqueda, int numeroPagina, int postsPorPagina)
         {
-            var tags = await _db.Tags.Where(t => criteriosBusqueda.PalabrasBuscadas.Contains(t.Nombre)).ToListAsync();
-            var categorias = await _db.Categorias.Where(c => criteriosBusqueda.PalabrasBuscadas.Any(p => p.Contains(c.Nombre) || c.Nombre.Contains(p))).ToListAsync();
-            
+            var tags = await _tagsServicio.BuscarTags(criteriosBusqueda.PalabrasBuscadas);
+            var categorias = await _categoriasServicio.BuscarCategoriasAsync(criteriosBusqueda.PalabrasBuscadas);
+  
             return new ListaGestionPostsViewModel
             {
                 BuscarPor = criteriosBusqueda.BuscarPor,
@@ -159,6 +163,28 @@ namespace Blog.Servicios
         }
 
 
-       
+        public async Task ActualizarNombresSinAcentos()
+        {
+            var posts = await _db.Posts.ToListAsync();
+            var tags = await _db.Tags.ToListAsync();
+            var categorias = await _db.Categorias.ToListAsync();
+
+            foreach (var post in posts)
+            {
+                post.ModificarTitulo(post.Titulo);
+            }
+
+            foreach (var categoria in categorias)
+            {
+                categoria.CambiarNombre(categoria.Nombre);
+            }
+
+            foreach (var tag in tags)
+            {
+                tag.CambiarNombre(tag.Nombre);
+            }
+
+           await _db.SaveChangesAsync();
+        }
     }
 }

@@ -46,9 +46,9 @@ namespace Blog.Modelo.Categorias
             {
                 categoria = new Categoria
                 {
-                    Nombre = categoriaPorAñadir,
                     UrlSlug = GeneradorUrlSlug.GenerateSlug(categoriaPorAñadir)
                 };
+                categoria.CambiarNombre(categoriaPorAñadir);
             }
 
             return categoria;

@@ -23,8 +23,14 @@ namespace Blog.Web.Controllers
     {
         public static string TituloBlog = "albertcapdevila.net";
 
-        private readonly BlogServicio _blogServicio = new BlogServicio(new ContextoBaseDatos(), TituloBlog);
+        private readonly BlogServicio _blogServicio;
         private const int NumeroItemsPorPagina = 10;
+
+        public BlogController()
+        {
+            var contexto = new ContextoBaseDatos();
+            _blogServicio = new BlogServicio(contexto, TituloBlog);
+        }
 
         [OutputCache(Duration = 3600,  Location = OutputCacheLocation.Client, VaryByParam = "pagina", NoStore = true)]
         public async Task<ActionResult> Index(int? pagina)
@@ -94,7 +100,7 @@ namespace Blog.Web.Controllers
 
         public async Task<ActionResult> EtiquetaAmigable(string urlEtiqueta, int pagina = 1)
         {
-            var etiqueta = await RecuperarTag(urlEtiqueta);
+            var etiqueta = await  _blogServicio.RecuperarTagConPostsRelacionados(urlEtiqueta);
 
             if (etiqueta == null) return HttpNotFound();
 
@@ -135,12 +141,7 @@ namespace Blog.Web.Controllers
 
             return View(viewModel);
         }
-
-        private async Task<Tag> RecuperarTag(string urlSlug)
-        {
-            return await _blogServicio.RecuperarTagConPostsRelacionados(urlSlug);
-        }
-
+        
         private async Task<ArchivoItemDto> RecuperarArchivoBlog(int anyo, int mes)
         {
             return await _blogServicio

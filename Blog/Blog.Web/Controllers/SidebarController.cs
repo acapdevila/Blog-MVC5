@@ -14,31 +14,22 @@ namespace Blog.Web.Controllers
 {
     public class SidebarController : Controller
     {
-        private readonly TagsServicio _tagsServicio;
         private readonly BlogServicio _blogServicio;
         private readonly CacheService _cache = new CacheService();
 
 
-        public SidebarController(): this(new ContextoBaseDatos())
+        public SidebarController()
         {
-                
+            var contexto = new ContextoBaseDatos();
+            _blogServicio = new BlogServicio(contexto, BlogController.TituloBlog);
         }
 
-        public SidebarController(ContextoBaseDatos bd) : this(new TagsServicio(bd, BlogController.TituloBlog), new BlogServicio(bd, BlogController.TituloBlog))
-        {
-
-        }
-
-        public SidebarController(TagsServicio tagsServicio, BlogServicio blogServicio)
-        {
-            _tagsServicio = tagsServicio;
-            _blogServicio = blogServicio;
-        }
+       
 
         [ChildActionOnly]
-        public ActionResult NubeEtiquetas()
+        public async Task<ActionResult> NubeEtiquetas()
         {
-            var etiquetas = _tagsServicio.Tags().OrderBy(m => m.Nombre).ToList();
+            var etiquetas = await _blogServicio.RecuperarListaTagsAsync();
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
 
             return View(nubeEtiquetasViewModel);
@@ -115,7 +106,7 @@ namespace Blog.Web.Controllers
         {
             if (disposing)
             {
-                _tagsServicio.Dispose();
+                _blogServicio.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Dtos;
+using Blog.Modelo.Extensiones;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
@@ -16,7 +17,9 @@ namespace Blog.Modelo.Categorias
         
         public int Id { get; set; }
 
-        public string Nombre { get; set; }
+        public string Nombre { get;private set; }
+
+        public string NombreSinAcentos { get; set; }
         public string UrlSlug { get; set; }
 
         public string ContenidoHtml { get; set; }
@@ -40,6 +43,7 @@ namespace Blog.Modelo.Categorias
         public void CambiarNombre(string nombre)
         {
             Nombre = nombre;
+            NombreSinAcentos = Nombre.RemoveDiacritics();
         }
 
         public void CambiarUrlSlug(string urlSlug)

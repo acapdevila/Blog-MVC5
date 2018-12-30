@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using Blog.Modelo.Categorias;
+using Blog.Modelo.Extensiones;
 using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Posts
@@ -30,7 +34,7 @@ namespace Blog.Modelo.Posts
         public int BlogId { get; set; }
         
         public string Subtitulo { get; set; }
-        public string Titulo { get; set; }
+        public string Titulo { get; private set; }
 
         public string Descripcion { get; set; }
 
@@ -55,6 +59,9 @@ namespace Blog.Modelo.Posts
         public ICollection<Tag> Tags { get; set; }
 
         public ICollection<Categoria> Categorias { get; set; }
+
+
+        public string TituloSinAcentos { get; private set; }
 
         public bool EsPublico
         {
@@ -86,5 +93,13 @@ namespace Blog.Modelo.Posts
             Publicar(fechaPost, urlSlug, esRssAtom);
             FechaPublicacion = fechaPublicacion;
         }
+
+        public void ModificarTitulo(string titulo)
+        {
+            Titulo = titulo;
+            TituloSinAcentos = titulo.RemoveDiacritics();
+        }
+
+      
     }
 }
