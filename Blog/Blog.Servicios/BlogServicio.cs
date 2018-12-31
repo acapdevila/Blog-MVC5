@@ -203,6 +203,11 @@ namespace Blog.Servicios
             return await _tagsServicio.RecuperarListaTagsAsync();
         }
 
-      
+        public List<Tag> RecuperarListaTags()
+        {
+            return _tagsServicio.RecuperarListaTags();
+        }
+
+
     }
 }

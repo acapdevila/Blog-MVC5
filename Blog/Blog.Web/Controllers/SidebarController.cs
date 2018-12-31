@@ -27,9 +27,9 @@ namespace Blog.Web.Controllers
        
 
         [ChildActionOnly]
-        public async Task<ActionResult> NubeEtiquetas()
+        public ActionResult NubeEtiquetas()
         {
-            var etiquetas = await _blogServicio.RecuperarListaTagsAsync();
+            var etiquetas = _blogServicio.RecuperarListaTags();
             var nubeEtiquetasViewModel = new NubeEtiquetasViewModel(etiquetas);
 
             return View(nubeEtiquetasViewModel);

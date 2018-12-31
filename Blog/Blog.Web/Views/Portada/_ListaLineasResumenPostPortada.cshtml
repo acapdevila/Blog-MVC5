@@ -1,0 +1,21 @@
+﻿@using Blog.Web.Helpers
+
+@model IList<Blog.Modelo.Posts.LineaResumenPost>
+
+
+        @foreach (var item in Model)
+        {
+
+            <h2>
+                <a href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">@item.Titulo</a>
+            </h2>
+         
+            @Html.Raw(item.Subtitulo)
+            <br />
+            <a class="leermas" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
+                leer más
+            </a>
+            <hr>
+        }
+
+  

@@ -833,6 +833,7 @@
     <Content Include="Views\Shared\_MenuBackOffice.cshtml" />
     <Content Include="Views\Libros\Index.cshtml" />
     <Content Include="Views\Contratame\Index.cshtml" />
+    <Content Include="Views\Portada\_ListaLineasResumenPostPortada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
