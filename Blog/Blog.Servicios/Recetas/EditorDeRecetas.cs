@@ -32,6 +32,11 @@ namespace Blog.Servicios.Recetas
                 TiempoPreparacion = comando.TiempoPreparacion
             };
 
+            foreach (var instruccion in comando.Instrucciones)
+            {
+                receta.AñadirInstruccion(instruccion.Nombre);
+            }
+
             _db.Recetas.Add(receta);
 
             await _db.SaveChangesAsync();

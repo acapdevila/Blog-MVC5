@@ -153,8 +153,11 @@
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
     <Compile Include="Recetas\BuscadorDeRecetas.cs" />
+    <Compile Include="Recetas\Comandos\ComandoEditarInstruccion.cs" />
+    <Compile Include="Recetas\Comandos\ComandoCrearInstruccion.cs" />
     <Compile Include="Recetas\Comandos\ComandoCrearReceta.cs" />
     <Compile Include="Recetas\Comandos\ComandoEditarReceta.cs" />
+    <Compile Include="Recetas\Comandos\ComandoEliminarInstruccion.cs" />
     <Compile Include="Recetas\Comandos\ComandoEliminarReceta.cs" />
     <Compile Include="Recetas\CriteriosBusquedaReceta.cs" />
     <Compile Include="Recetas\Dtos\LineaGestionReceta.cs" />

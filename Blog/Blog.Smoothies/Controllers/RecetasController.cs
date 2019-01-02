@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -38,11 +37,9 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Index(string buscarPor = null, int pagina = 1)
         {
-            var lineas = await _buscador.BuscarPaginaAsync(new CriteriosBusquedaReceta{ BuscarPor = buscarPor }, pagina, 20);
-
             var listaRecetasViewModel = new ListaGestionRecetasViewModel
             {
-                Recetas = lineas
+                Recetas = await _buscador.BuscarPaginaAsync(new CriteriosBusquedaReceta { BuscarPor = buscarPor }, pagina, 20)
             };
 
             return View(listaRecetasViewModel);
@@ -87,7 +84,8 @@ namespace Blog.Smoothies.Controllers
                 Keywords = editor.Keywords,
                 Raciones = editor.Raciones,
                 TiempoCoccion = editor.TiempoCoccion,
-                TiempoPreparacion = editor.TiempoPreparacion
+                TiempoPreparacion = editor.TiempoPreparacion,
+                Instrucciones = editor.Instrucciones.Select(m=>new ComandoCrearInstruccion(m.Nombre))
             };
 
            await  _editor.CrearReceta(comando);
@@ -157,11 +155,9 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        public async Task<ActionResult> Eliminar(int? id)
+        public async Task<ActionResult> Eliminar(int id)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
-            var receta =  await _buscador.BuscarRecetaPorId(id.Value);
+            var receta =  await _buscador.BuscarRecetaPorId(id);
 
             if (receta == null) return HttpNotFound();
 

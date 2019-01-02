@@ -191,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ListEditorHelper.cs" />
     <Compile Include="Helpers\TotalesListaHelper.cs" />
     <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Views\Recetas\ViewModels\CrearRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\DatosEstructuradosRecetaViewModel.cs" />
+    <Compile Include="Views\Recetas\ViewModels\EditorInstruccionPartialModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EditorRecetaPartialModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\VistaPreviaRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EditarRecetaViewModel.cs" />
@@ -826,6 +828,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery.validate.validarfechachrome.js" />
+    <Content Include="Scripts\listEditor\listeditor.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -938,6 +941,7 @@
     <Content Include="Views\Recetas\VistaPrevia.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TimePicker.cshtml" />
     <Content Include="Views\Shared\_DatosEstructuradosReceta.cshtml" />
+    <Content Include="Views\Recetas\EditorTemplates\EditorInstruccion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

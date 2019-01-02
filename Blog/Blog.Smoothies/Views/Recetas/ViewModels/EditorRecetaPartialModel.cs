@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Blog.Modelo.Recetas;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels
@@ -7,7 +8,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
     {
         public EditorRecetaPartialModel() : this(new Receta())
         {
-            
+            Instrucciones = new List<EditorInstruccionPartialModel>();
         }
 
         public EditorRecetaPartialModel(Receta receta) 
@@ -22,6 +23,12 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
             Raciones = receta.Raciones;
             TiempoCoccion = receta.TiempoCoccion;
             TiempoPreparacion = receta.TiempoPreparacion;
+
+            foreach (var instruccion in receta.Instrucciones)
+            {
+                Instrucciones.Add(new EditorInstruccionPartialModel(instruccion));
+            }
+
         }
 
         public int Id { get; set; }
@@ -43,6 +50,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
         public string CategoriaReceta { get; set; }
 
         public string Raciones { get; set; }
+
+        public  List<EditorInstruccionPartialModel> Instrucciones { get; set; }
         
     }
 }

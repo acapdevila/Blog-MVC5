@@ -35,7 +35,8 @@ namespace Blog.Servicios.Recetas
 
             if (!string.IsNullOrEmpty(criterios.BuscarPor))
             {
-                consulta = consulta.Where(m => criterios.BuscarPor.Contains(m.Nombre));
+                consulta = consulta.Where(m => criterios.BuscarPor.Contains(m.Nombre) || m.Nombre.Contains(criterios.BuscarPor) ||
+                                               criterios.BuscarPor.Contains(m.Categoria) || m.Categoria.Contains(criterios.BuscarPor) );
             }
 
             return await consulta

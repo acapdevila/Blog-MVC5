@@ -37,7 +37,8 @@ namespace Blog.Smoothies
             bundles.Add(new ScriptBundle("~/bundles/controlesedicion").Include(
                         //"~/Scripts/ckeditor/ckeditor.js",
                         //"~/Scripts/ckeditor/config.js",
-                        "~/Scripts/jquery.datetimepicker.js"));
+                        "~/Scripts/jquery.datetimepicker.js",
+                        "~/Scripts/listEditor/listeditor.js"));
 
             bundles.Add(new StyleBundle("~/bundles/controlesedicioncss").Include(
                     "~/Content/jquery.datetimepicker.css"));

@@ -49,5 +49,12 @@ namespace Blog.Modelo.Recetas
 
         public ICollection<Instruccion> Instrucciones { get; set; }
 
+        public void AñadirInstruccion(string nombre)
+        {
+            Instrucciones.Add(new Instruccion
+            {
+                Nombre = Nombre
+            });
+        }
     }
 }

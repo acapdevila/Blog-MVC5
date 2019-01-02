@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Blog.Servicios.Recetas.Comandos
 {
     public class ComandoCrearReceta
     {
+        public ComandoCrearReceta()
+        {
+            Instrucciones = new List<ComandoCrearInstruccion>();
+        }
+
         public string Nombre { get; set; }
 
         public string Autor { get; set; }
@@ -21,5 +27,7 @@ namespace Blog.Servicios.Recetas.Comandos
         public string CategoriaReceta { get; set; }
 
         public string Raciones { get; set; }
+
+        public IEnumerable<ComandoCrearInstruccion> Instrucciones { get; set; }
     }
 }
