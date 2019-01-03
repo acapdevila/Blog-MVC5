@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blog.Modelo.Imagenes;
 
 namespace Blog.Modelo.Recetas
@@ -49,12 +50,40 @@ namespace Blog.Modelo.Recetas
 
         public ICollection<Instruccion> Instrucciones { get; set; }
 
-        public void AñadirInstruccion(string nombre)
+        public Instruccion BuscarInstruccionPorId(int instruccionId)
         {
-            Instrucciones.Add(new Instruccion
-            {
-                Nombre = Nombre
-            });
+            return Instrucciones.FirstOrDefault(m => m.Id == instruccionId);
         }
+
+        public void AñadirInstruccion(Instruccion instruccion)
+        {
+            Instrucciones.Add(instruccion);
+        }
+
+        public void QuitarInstruccion(Instruccion instruccion)
+        {
+            Instrucciones.Remove(instruccion);
+        }
+
+        public IngredienteReceta BuscarIngredienteRecetaPorId(int idIngredienteReceta)
+        {
+            return Ingredientes.FirstOrDefault(m => m.Id == idIngredienteReceta);
+        }
+
+        public void AñadirIngrediente(Ingrediente ingrediete)
+        {
+           Ingredientes.Add(new IngredienteReceta
+           {
+               Receta = this,
+               Ingrediente = ingrediete
+           });
+        }
+
+        public void QuitarIngrediente(IngredienteReceta ingredienteReceta)
+        {
+            Ingredientes.Remove(ingredienteReceta);
+        }
+
+       
     }
 }

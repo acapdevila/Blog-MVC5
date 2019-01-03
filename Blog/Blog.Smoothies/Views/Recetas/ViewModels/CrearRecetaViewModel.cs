@@ -1,5 +1,6 @@
 ﻿using System;
 using Blog.Modelo.Recetas;
+using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels
 {
@@ -12,8 +13,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
 
         public CrearRecetaViewModel(Receta receta) 
         {
-            EditorReceta = new EditorRecetaPartialModel(receta);
+            EditorReceta = new EditorReceta(receta);
         }
-        public EditorRecetaPartialModel EditorReceta { get; set; }
+        public EditorReceta EditorReceta { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
+using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
 
 namespace Blog.Servicios.Recetas.Comandos
 {
@@ -7,7 +9,7 @@ namespace Blog.Servicios.Recetas.Comandos
     {
         public ComandoCrearReceta()
         {
-            Instrucciones = new List<ComandoCrearInstruccion>();
+            Instrucciones = new List<ComandoAñadirInstruccion>();
         }
 
         public string Nombre { get; set; }
@@ -28,6 +30,10 @@ namespace Blog.Servicios.Recetas.Comandos
 
         public string Raciones { get; set; }
 
-        public IEnumerable<ComandoCrearInstruccion> Instrucciones { get; set; }
+        public IEnumerable<ComandoAñadirIngrediente> Ingredientes { get; set; }
+
+        public IEnumerable<ComandoAñadirInstruccion> Instrucciones { get; set; }
+
+        
     }
 }

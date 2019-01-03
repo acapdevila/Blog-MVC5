@@ -1,15 +1,15 @@
 ﻿using Blog.Modelo.Recetas;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels
+namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 {
-    public class EditorInstruccionPartialModel
+    public class EditorInstruccion
     {
-        public EditorInstruccionPartialModel()
+        public EditorInstruccion()
         {
             
         }
 
-        public EditorInstruccionPartialModel(Instruccion instruccion)
+        public EditorInstruccion(Instruccion instruccion)
         {
             Id = instruccion.Id;
             Nombre = instruccion.Nombre;

@@ -1,4 +1,4 @@
-﻿@model Blog.Smoothies.Views.Recetas.ViewModels.EditorRecetaPartialModel
+﻿@model Blog.Smoothies.Views.Recetas.ViewModels.Editores.EditorReceta
 
 @Html.HiddenFor(model => model.Id)
 
@@ -81,22 +81,40 @@
 </div>
 
 <div class="form-group">
+    @Html.LabelFor(model => model.Ingredientes, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+     
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <tbody id="lineasIngrediente">       
+                @Html.EditorFor(m => m.Ingredientes)      
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2">
+                        @Html.LinkToAddNestedForm(m => m.Ingredientes, "Añadir", "#lineasIngrediente", ".editorIngrediente", "NombreIngrediente")
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<hr/>
+<div class="form-group">
     @Html.LabelFor(model => model.Instrucciones, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
      
         <div class="table-responsive">
             <table class="table table-condensed">
-                <thead>
-                <tr>
-                    <td><strong>Instrucción</strong></td>
-                </tr>
-                </thead>
-                <tbody id="lineasInstruccion">                                                           
-                    @Html.EditorFor(m => m.Instrucciones)                                
-                </tbody>
+              <tbody id="lineasInstruccion">       
+                        @Html.EditorFor(m => m.Instrucciones)      
+                    </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="2">
                         @Html.LinkToAddNestedForm(m => m.Instrucciones, "Añadir", "#lineasInstruccion", ".editorInstruccion", "Nombre")
                     </td>
                 </tr>

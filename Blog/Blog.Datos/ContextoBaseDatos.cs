@@ -29,10 +29,14 @@ namespace Blog.Datos
 
    
         public DbSet<Ingrediente> Ingredientes { get; set; }
-        
+
+      
+
         public DbSet<Imagen> Imagenes { get; set; }
 
         public DbSet<Receta> Recetas { get; set; }
+
+        public DbSet<Instruccion> InstruccionesDeRecetas { get; set; }
 
 
         public static ContextoBaseDatos Create()
