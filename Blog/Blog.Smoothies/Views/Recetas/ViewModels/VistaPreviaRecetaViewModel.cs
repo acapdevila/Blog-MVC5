@@ -21,7 +21,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
             TiempoPreparacion = receta.TiempoPreparacion;
 
             Imagenes = receta.Imagenes.Select(m => m.Url);
-            Ingredientes = receta.Ingredientes.Select(m => m.Ingrediente.Nombre);
+            Ingredientes = receta.Ingredientes.Select(m => m.Nombre);
             Instrucciones = receta.Instrucciones.Select(m => m.Nombre);
         }
 

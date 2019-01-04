@@ -7,12 +7,12 @@
             
         }
 
-        public ComandoEditarInstruccion(int id, string nombre)
+        public ComandoEditarInstruccion(int posicion, string nombre)
         {
-            Id = id;
+            Posicion = posicion;
             Nombre = nombre;
         }
-        public int Id { get; set; }
+        public int Posicion { get; set; }
         public string Nombre { get; set; }
     }
 }

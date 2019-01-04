@@ -7,10 +7,10 @@
             
         }
 
-        public ComandoQuitarIngrediente(int id)
+        public ComandoQuitarIngrediente(int posicion)
         {
-            Id = id;
+            Posicion = posicion;
         }
-        public int Id { get; set; }
+        public int Posicion { get; set; }
     }
 }

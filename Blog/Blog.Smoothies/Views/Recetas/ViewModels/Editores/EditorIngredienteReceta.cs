@@ -9,12 +9,12 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
             
         }
 
-        public EditorIngredienteReceta(IngredienteReceta ingredienteReceta)
+        public EditorIngredienteReceta(int posicion, IngredienteReceta ingredienteReceta)
         {
-            IdIngredienteReceta = ingredienteReceta.Id;
-            NombreIngrediente = ingredienteReceta.Ingrediente.Nombre;
+            Posicion = posicion;
+            NombreIngrediente = ingredienteReceta.Nombre;
         }
-        public int IdIngredienteReceta { get; set; }
+        public int Posicion { get; set; }
         public string NombreIngrediente { get; set; }
 
         public bool EstaMarcadoParaEliminar { get; set; }

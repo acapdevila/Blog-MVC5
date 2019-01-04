@@ -50,9 +50,9 @@ namespace Blog.Modelo.Recetas
 
         public ICollection<Instruccion> Instrucciones { get; set; }
 
-        public Instruccion BuscarInstruccionPorId(int instruccionId)
+        public Instruccion ObtenerInstruccion(int posicion)
         {
-            return Instrucciones.FirstOrDefault(m => m.Id == instruccionId);
+            return Instrucciones.ElementAt(posicion - 1);
         }
 
         public void AñadirInstruccion(Instruccion instruccion)
@@ -65,9 +65,9 @@ namespace Blog.Modelo.Recetas
             Instrucciones.Remove(instruccion);
         }
 
-        public IngredienteReceta BuscarIngredienteRecetaPorId(int idIngredienteReceta)
+        public IngredienteReceta ObtenerIngredienteReceta(int posicion)
         {
-            return Ingredientes.FirstOrDefault(m => m.Id == idIngredienteReceta);
+            return Ingredientes.ElementAt(posicion - 1);
         }
 
         public void AñadirIngrediente(Ingrediente ingrediete)
@@ -79,11 +79,17 @@ namespace Blog.Modelo.Recetas
            });
         }
 
+        public void CambiarIngrediente(int posicion, Ingrediente ingrediente)
+        {
+            ObtenerIngredienteReceta(posicion).Ingrediente = ingrediente;
+        }
+
         public void QuitarIngrediente(IngredienteReceta ingredienteReceta)
         {
             Ingredientes.Remove(ingredienteReceta);
         }
 
-       
+
+      
     }
 }

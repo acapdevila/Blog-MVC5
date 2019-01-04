@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace Blog.Servicios.Recetas
                 TiempoPreparacion = comando.TiempoPreparacion
             };
 
-            AñadirIngredientes(receta, comando.Ingredientes);
+            await AñadirIngredientes(receta, comando.Ingredientes);
 
             AñadirInstrucciones(receta, comando.Instrucciones);
 
@@ -63,15 +64,18 @@ namespace Blog.Servicios.Recetas
             receta.TiempoCoccion = comando.TiempoCoccion;
             receta.TiempoPreparacion = comando.TiempoPreparacion;
 
-            AñadirIngredientes(receta, comando.IngredientesAñadidos);
-            EditarIngredientes(receta, comando.IngredientesEditados);
+            await AñadirIngredientes(receta, comando.IngredientesAñadidos);
+            await EditarIngredientes(receta, comando.IngredientesEditados);
             QuitarIngredientes(receta, comando.IngredientesQuitados);
             
             AñadirInstrucciones(receta, comando.InstruccionesAñadidas);
             EditarInstrucciones(receta, comando.InstruccionesEditadas);
             EliminarInstrucciones(receta, comando.InstruccionesEliminadas);
 
-            await _db.SaveChangesAsync();
+           await _db.SaveChangesAsync();
+          
+          
+            
         }
         
 
@@ -91,64 +95,64 @@ namespace Blog.Servicios.Recetas
 
             await _db.SaveChangesAsync();
         }
-
-
+        
 
         #region Ingredientes
 
-        private void AñadirIngredientes(Receta receta, IEnumerable<ComandoAñadirIngrediente> comandosCrear)
+        private async Task<Ingrediente> BuscarIngredientePorNombreAsync(string nombreIngrediente)
+        {
+            return await _db.Ingredientes.FirstOrDefaultAsync(m => m.Nombre == nombreIngrediente);
+        }
+
+        private Ingrediente CrearIngredientePorNombre(string nombreIngrediente)
+        {
+            var ingrediente = new Ingrediente(nombreIngrediente);
+            _db.Ingredientes.Add(ingrediente);
+            return ingrediente;
+        }
+
+        private async  Task AñadirIngredientes(Receta receta, IEnumerable<ComandoAñadirIngrediente> comandosCrear)
         {
             foreach (var comandoCrear in comandosCrear)
             {
-                var ingrediente = _db.Ingredientes.FirstOrDefault(m => m.Nombre == comandoCrear.Nombre);
-
-                if(ingrediente == null)
-                {
-                    ingrediente = new Ingrediente(comandoCrear.Nombre);
-                    _db.Ingredientes.Add(ingrediente);
-                }
+                var ingrediente = await BuscarIngredientePorNombreAsync(comandoCrear.Nombre) ??
+                                        CrearIngredientePorNombre(comandoCrear.Nombre);
 
                 receta.AñadirIngrediente(ingrediente);
             }
         }
 
-        private void EditarIngredientes(Receta receta, IEnumerable<ComandoEditarIngrediente> comandoIngredientesEditados)
+        private async Task EditarIngredientes(Receta receta, IEnumerable<ComandoEditarIngrediente> comandoIngredientesEditados)
         {
             foreach (var comandoEditar in comandoIngredientesEditados)
             {
-                var ingredienteReceta = receta.BuscarIngredienteRecetaPorId(comandoEditar.IdIngredienteReceta);
-
-                if(ingredienteReceta == null) continue;
-
+                var ingredienteReceta = receta.ObtenerIngredienteReceta(comandoEditar.Posicion);
+                
                 // no hay cambios
-                if (ingredienteReceta.Ingrediente.Nombre == comandoEditar.Nombre) continue;
+                if (ingredienteReceta.Nombre == comandoEditar.Nombre) continue;
 
-                var ingrediente = _db.Ingredientes.FirstOrDefault(m => m.Nombre == comandoEditar.Nombre);
+                var ingrediente = await BuscarIngredientePorNombreAsync(comandoEditar.Nombre) ??
+                                        CrearIngredientePorNombre(comandoEditar.Nombre);
 
-                if (ingrediente == null)
-                {
-                    ingrediente = new Ingrediente(comandoEditar.Nombre);
-                    _db.Ingredientes.Add(ingrediente);
-                }
-
-                ingredienteReceta.Ingrediente = ingrediente;
+                receta.CambiarIngrediente(comandoEditar.Posicion, ingrediente);
              }
         }
-
+        
 
         private void QuitarIngredientes(Receta receta, IEnumerable<ComandoQuitarIngrediente> comandosQuitar)
         {
-            foreach (var comandoQuitar in comandosQuitar)
+            var ingredientesAEliminar = comandosQuitar
+                .Select(comando => receta.ObtenerIngredienteReceta(comando.Posicion))
+                .ToList();
+
+            while (ingredientesAEliminar.Any())
             {
-                var ingrediente = receta.BuscarIngredienteRecetaPorId(comandoQuitar.Id);
-
-                if(ingrediente == null) continue;
-
-                receta.QuitarIngrediente(ingrediente);
-
+                var primero = ingredientesAEliminar.First();
+                receta.QuitarIngrediente(primero);
+                _db.IngredientesDeRecetas.Remove(primero);
+                ingredientesAEliminar.Remove(primero);
             }
         }
-
 
 
         #endregion
@@ -169,9 +173,9 @@ namespace Blog.Servicios.Recetas
         {
             foreach (var comandoEditarInstruccion in comandoInstruccionesEditadas)
             {
-                var instruccion = receta.BuscarInstruccionPorId(comandoEditarInstruccion.Id);
+                var instruccion = receta.ObtenerInstruccion(comandoEditarInstruccion.Posicion);
                 
-                if (instruccion == null) continue;
+                if (instruccion.Nombre == comandoEditarInstruccion.Nombre) continue;
 
                 instruccion.Nombre = comandoEditarInstruccion.Nombre;
             }
@@ -179,11 +183,16 @@ namespace Blog.Servicios.Recetas
 
         private void EliminarInstrucciones(Receta receta, IEnumerable<ComandoEliminarInstruccion> comandoInstruccionesEliminadas)
         {
-            foreach (var comandoEliminarInstruccion in comandoInstruccionesEliminadas)
+            var instruccionesAEliminar = comandoInstruccionesEliminadas
+                        .Select(comando => receta.ObtenerInstruccion(comando.Posicion))
+                        .ToList();
+
+            while (instruccionesAEliminar.Any())
             {
-                var instruccion = receta.BuscarInstruccionPorId(comandoEliminarInstruccion.Id);
-                receta.QuitarInstruccion(instruccion);
-                _db.InstruccionesDeRecetas.Remove(instruccion);
+                var primeraInstruccion = instruccionesAEliminar.First();
+                receta.QuitarInstruccion(primeraInstruccion);
+                _db.InstruccionesDeRecetas.Remove(primeraInstruccion);
+                instruccionesAEliminar.Remove(primeraInstruccion);
             }
         }
 

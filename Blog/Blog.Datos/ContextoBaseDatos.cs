@@ -38,6 +38,8 @@ namespace Blog.Datos
 
         public DbSet<Instruccion> InstruccionesDeRecetas { get; set; }
 
+        public DbSet<IngredienteReceta> IngredientesDeRecetas { get; set; }
+
 
         public static ContextoBaseDatos Create()
         {

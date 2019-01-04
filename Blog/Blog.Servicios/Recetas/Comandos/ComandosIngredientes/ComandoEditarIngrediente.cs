@@ -7,12 +7,12 @@
             
         }
 
-        public ComandoEditarIngrediente(int id, string nombre)
+        public ComandoEditarIngrediente(int posicion, string nombre)
         {
-            IdIngredienteReceta = id;
+            Posicion = posicion;
             Nombre = nombre;
         }
-        public int IdIngredienteReceta { get; set; }
+        public int Posicion { get; set; }
         public string Nombre { get; set; }
     }
 }

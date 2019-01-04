@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using WebGrease.Css.Extensions;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 {
@@ -28,27 +30,12 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
             TiempoCoccion = receta.TiempoCoccion;
             TiempoPreparacion = receta.TiempoPreparacion;
 
-            Instrucciones = new List<EditorInstruccion>();
+            AñadirInstrucciones(receta);
 
-            foreach (var instruccion in receta.Instrucciones)
-            {
-                Instrucciones.Add(new EditorInstruccion(instruccion));
-            }
-
-            if(!Instrucciones.Any()) Instrucciones.Add(new EditorInstruccion());
-
-
-            Ingredientes = new List<EditorIngredienteReceta>();
-
-            foreach (var ingredienteReceta in receta.Ingredientes)
-            {
-                Ingredientes.Add(new EditorIngredienteReceta(ingredienteReceta));
-            }
-
-            if (!Ingredientes.Any()) Ingredientes.Add(new EditorIngredienteReceta());
-
-
+            AñadirIngredientes(receta);
         }
+
+
 
         public int Id { get; set; }
 
@@ -56,16 +43,25 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 
         public string Autor { get; set; }
 
+        [Display(Name = "Tiempo de cocción")]
         public TimeSpan TiempoCoccion { get; set; }
 
+
+        [Display(Name = "Tiempo de preparación")]
+        public TimeSpan TiempoPreparacion { get; set; }
+
+        [Display(Name = "Publicación")]
         public DateTime FechaPublicacion { get; set; }
 
+
+        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
+
 
         public string Keywords { get; set; }
 
-        public TimeSpan TiempoPreparacion { get; set; }
 
+        [Display(Name = "Categoria")]
         public string CategoriaReceta { get; set; }
 
         public string Raciones { get; set; }
@@ -74,7 +70,27 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 
         public List<EditorIngredienteReceta> Ingredientes { get; set; }
 
-       
+
+        private void AñadirIngredientes(Receta receta)
+        {
+            Ingredientes = new List<EditorIngredienteReceta>();
+
+            receta.Ingredientes.ForEach((ingrediente, indice)
+                => Ingredientes.Add(new EditorIngredienteReceta(indice + 1, ingrediente)));
+
+            if (!Ingredientes.Any()) Ingredientes.Add(new EditorIngredienteReceta());
+        }
+
+        private void AñadirInstrucciones(Receta receta)
+        {
+            Instrucciones = new List<EditorInstruccion>();
+
+            receta.Instrucciones.ForEach((instruccion, indice)
+                => Instrucciones.Add(new EditorInstruccion(indice + 1, instruccion)));
+
+            if (!Instrucciones.Any()) Instrucciones.Add(new EditorInstruccion());
+        }
+
         public ComandoEditarReceta GenerarComandoEditarReceta()
         {
             return new ComandoEditarReceta
@@ -89,12 +105,12 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
                 Raciones = Raciones,
                 TiempoCoccion = TiempoCoccion,
                 TiempoPreparacion = TiempoPreparacion,
-                IngredientesAñadidos = ObtenerIngredientesAñadidos().Select(m => new ComandoAñadirIngrediente(m.NombreIngrediente)),
-                IngredientesEditados = ObtenerIngredientesEditados().Select(m=> new ComandoEditarIngrediente(m.IdIngredienteReceta, m.NombreIngrediente)),
-                IngredientesQuitados = ObtenerIngredientesEliminados().Select(m => new ComandoQuitarIngrediente(m.IdIngredienteReceta)),
-                InstruccionesAñadidas = ObtenerInstruccionesAñadidas().Select(m => new ComandoAñadirInstruccion(m.Nombre)),
-                InstruccionesEditadas = ObtenerInstruccionesEditadas().Select(m => new ComandoEditarInstruccion(m.Id, m.Nombre)),
-                InstruccionesEliminadas = ObtenerInstruccionesEliminadas().Select(m => new ComandoEliminarInstruccion(m.Id))
+                IngredientesAñadidos = ObtenerComandosAñadirIngredientes(),
+                IngredientesEditados = ObtenerComandosEditarIngredientes(),
+                IngredientesQuitados = ObtenerComandosEliminarIngredientes(),
+                InstruccionesAñadidas = ObtenerComandosAñadirInstrucciones(),
+                InstruccionesEditadas = ObtenerComandosEditarInstrucciones(),
+                InstruccionesEliminadas = ObtenerComandosEliminarInstrucciones()
             };
         }
 
@@ -111,33 +127,42 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
                 Raciones = Raciones,
                 TiempoCoccion = TiempoCoccion,
                 TiempoPreparacion = TiempoPreparacion,
-                Instrucciones = ObtenerInstruccionesAñadidas().Select(m => new ComandoAñadirInstruccion(m.Nombre))
+                Ingredientes = ObtenerComandosAñadirIngredientes(),
+                Instrucciones = ObtenerComandosAñadirInstrucciones()
             };
         }
 
 
-        private IEnumerable<EditorIngredienteReceta> ObtenerIngredientesAñadidos()
-        { return Ingredientes.Where(m => m.IdIngredienteReceta <= 0).ToList(); }
+        private IEnumerable<ComandoAñadirIngrediente> ObtenerComandosAñadirIngredientes()
+        { return Ingredientes.Where(m => m.Posicion <= 0).ToList()
+            .Select(i => new ComandoAñadirIngrediente(i.NombreIngrediente)); }
 
-        private IEnumerable<EditorIngredienteReceta> ObtenerIngredientesEditados()
-        { return Ingredientes.Where(m => !m.EstaMarcadoParaEliminar && 0 < m.IdIngredienteReceta).ToList(); }
-
-
-        private IEnumerable<EditorIngredienteReceta> ObtenerIngredientesEliminados()
-        { return Ingredientes.Where(m => m.EstaMarcadoParaEliminar && 0 < m.IdIngredienteReceta).ToList(); }
+        private IEnumerable<ComandoEditarIngrediente> ObtenerComandosEditarIngredientes()
+        { return Ingredientes.Where(m => !m.EstaMarcadoParaEliminar && 0 < m.Posicion).ToList()
+                .Select(m => new ComandoEditarIngrediente(m.Posicion, m.NombreIngrediente)); }
 
 
+        private IEnumerable<ComandoQuitarIngrediente> ObtenerComandosEliminarIngredientes()
+        { return Ingredientes.Where(m => m.EstaMarcadoParaEliminar && 0 < m.Posicion).ToList()
+            .Select(m => new ComandoQuitarIngrediente(m.Posicion)); }
 
 
 
-        private IEnumerable<EditorInstruccion> ObtenerInstruccionesAñadidas()
-        { return Instrucciones.Where(m => m.Id <= 0).ToList(); }
 
-        private IEnumerable<EditorInstruccion> ObtenerInstruccionesEditadas()
-        { return Instrucciones.Where(m => !m.EstaMarcadoParaEliminar && 0 < m.Id).ToList(); }
 
-        private IEnumerable<EditorInstruccion> ObtenerInstruccionesEliminadas()
-        { return Instrucciones.Where(m => m.EstaMarcadoParaEliminar && 0 < m.Id).ToList(); }
+        private IEnumerable<ComandoAñadirInstruccion> ObtenerComandosAñadirInstrucciones()
+        { return Instrucciones.Where(m => m.Posicion <= 0).ToList()
+            .Select(m => new ComandoAñadirInstruccion(m.Nombre)); }
+
+        private IEnumerable<ComandoEditarInstruccion> ObtenerComandosEditarInstrucciones()
+        { return Instrucciones.Where(m => !m.EstaMarcadoParaEliminar && 0 < m.Posicion).ToList()
+                    .Select(m => new ComandoEditarInstruccion(m.Posicion, m.Nombre)); }
+
+        private IEnumerable<ComandoEliminarInstruccion> ObtenerComandosEliminarInstrucciones()
+        {
+            return Instrucciones.Where(m => m.EstaMarcadoParaEliminar && 0 < m.Posicion).ToList()
+                .Select(m => new ComandoEliminarInstruccion(m.Posicion));
+        }
 
       
       

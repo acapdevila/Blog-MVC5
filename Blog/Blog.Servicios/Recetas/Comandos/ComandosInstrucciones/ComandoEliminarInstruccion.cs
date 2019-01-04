@@ -9,8 +9,8 @@
 
         public ComandoEliminarInstruccion(int id)
         {
-            Id = id;
+            Posicion = id;
         }
-        public int Id { get; set; }
+        public int Posicion { get; set; }
     }
 }
