@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFunctionalExtensions, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSharpFunctionalExtensions.1.10.0\lib\net461\CSharpFunctionalExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -64,7 +67,6 @@
     <Compile Include="MapeosTablas\MapeoReceta.cs" />
     <Compile Include="MapeosTablas\MapeoPost.cs" />
     <Compile Include="MapeosTablas\MapeoCategoria.cs" />
-    <Compile Include="MapeosTablas\MapeoImagen.cs" />
     <Compile Include="MapeosTablas\MapeoTag.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.cs" />
     <Compile Include="Migrations\201601101031239_Inicial.Designer.cs">

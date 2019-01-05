@@ -23,7 +23,6 @@ namespace Blog.Servicios.Recetas
         private IQueryable<Receta> Recetas()
         {
             return _db.Recetas
-                .Include(m => m.Imagenes)
                 .Include(m => m.Ingredientes.Select(i => i.Ingrediente))
                 .Include(m => m.Instrucciones);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using Blog.Servicios.Recetas.Comandos.Imagenes;
 
 namespace Blog.Servicios.Recetas.Comandos
 {
@@ -29,6 +30,8 @@ namespace Blog.Servicios.Recetas.Comandos
         public string CategoriaReceta { get; set; }
 
         public string Raciones { get; set; }
+
+        public ComandoAsignarImagen AñadirImagen { get; set; }
 
         public IEnumerable<ComandoAñadirIngrediente> Ingredientes { get; set; }
 

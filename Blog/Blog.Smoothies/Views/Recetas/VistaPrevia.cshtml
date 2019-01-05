@@ -11,11 +11,12 @@
     <dt>Nombre:</dt>
     <dd>@Model.Nombre</dd>
     
-    @foreach (var imagen in Model.Imagenes)
-    {
-        <dt>Imagen:</dt>
-        <dd>@imagen</dd>
-    }
+    <dt>Imagen:</dt>
+    <dd>@if (!string.IsNullOrEmpty(Model.Imagen))
+        {
+            <img src="@Model.Imagen" alt="Imagen receta"/>
+        } </dd>
+    
 
     <dt>Fecha publicación:</dt>
     <dd>@Model.FechaPublicacion</dd>

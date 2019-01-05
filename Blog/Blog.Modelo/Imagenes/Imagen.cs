@@ -1,15 +1,28 @@
 ﻿using System.Collections.Generic;
-using Blog.Modelo.Recetas;
+using CSharpFunctionalExtensions;
 
 namespace Blog.Modelo.Imagenes
 {
-    public class Imagen
+    public class Imagen : ValueObject
     {
-        public int  Id { get; set; }
-        public string Url { get; set; }
-        public string Alt { get; set; }
+        public Imagen(string url, string alt)
+        {
+            Url = url;
+            Alt = alt;
+        }
 
-        public ICollection<Receta> Recetas { get; set; }
+        public string Url { get;  }
+        public string Alt { get; }
 
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Url;
+            yield return Alt;
+        }
+
+        public static implicit operator string(Imagen imagen)
+        {
+            return imagen.Url;
+        }
     }
 }

@@ -6,15 +6,17 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using Blog.Servicios.Recetas.Comandos.Imagenes;
 using WebGrease.Css.Extensions;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 {
     public  class EditorReceta
     {
+       
+
         public EditorReceta() : this(new Receta())
         {
-         
         }
 
         public EditorReceta(Receta receta) 
@@ -30,6 +32,9 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
             TiempoCoccion = receta.TiempoCoccion;
             TiempoPreparacion = receta.TiempoPreparacion;
 
+            AltImagen =receta.Imagen.Alt;
+            UrlImagen = receta.Imagen.Url;
+
             AñadirInstrucciones(receta);
 
             AñadirIngredientes(receta);
@@ -42,6 +47,13 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
         public string Nombre { get; set; }
 
         public string Autor { get; set; }
+
+        public string AltImagen { get; set; }
+
+        public string UrlImagen { get; set; }
+
+        [Display(Name = "Quitar imagen")]
+        public bool QuitarImagen { get; set; }
 
         [Display(Name = "Tiempo de cocción")]
         public TimeSpan TiempoCoccion { get; set; }
@@ -91,7 +103,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
             if (!Instrucciones.Any()) Instrucciones.Add(new EditorInstruccion());
         }
 
-        public ComandoEditarReceta GenerarComandoEditarReceta()
+        public ComandoEditarReceta GenerarComandoEditarReceta(string nuevaUrlImagenPublica)
         {
             return new ComandoEditarReceta
             {
@@ -110,13 +122,17 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
                 IngredientesQuitados = ObtenerComandosEliminarIngredientes(),
                 InstruccionesAñadidas = ObtenerComandosAñadirInstrucciones(),
                 InstruccionesEditadas = ObtenerComandosEditarInstrucciones(),
-                InstruccionesEliminadas = ObtenerComandosEliminarInstrucciones()
+                InstruccionesEliminadas = ObtenerComandosEliminarInstrucciones(),
+                AsignarImagen = ObtenerComandoAsigarImagen(nuevaUrlImagenPublica),
+                QuitarImagen = ObtenerComandoQuitarImagen()
             };
         }
 
-        public ComandoCrearReceta GenerarComandoCrearReceta()
+     
+
+        public ComandoCrearReceta GenerarComandoCrearReceta(string urlImagenPublica)
         {
-            return new ComandoCrearReceta
+            var comando= new ComandoCrearReceta
             {
                 Autor = Autor,
                 Nombre = Nombre,
@@ -128,10 +144,26 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
                 TiempoCoccion = TiempoCoccion,
                 TiempoPreparacion = TiempoPreparacion,
                 Ingredientes = ObtenerComandosAñadirIngredientes(),
-                Instrucciones = ObtenerComandosAñadirInstrucciones()
+                Instrucciones = ObtenerComandosAñadirInstrucciones(),
+                AñadirImagen = ObtenerComandoAsigarImagen(urlImagenPublica)
             };
+
+                
+
+            return comando;
         }
 
+        private ComandoAsignarImagen ObtenerComandoAsigarImagen(string urlImagenPublica)
+        {
+            return string.IsNullOrEmpty(urlImagenPublica)
+                ? null
+                : new ComandoAsignarImagen(urlImagenPublica, AltImagen ?? Nombre);
+        }
+
+        private ComandoQuitarImagen ObtenerComandoQuitarImagen()
+        {
+            return QuitarImagen ? new ComandoQuitarImagen() : null;
+        }
 
         private IEnumerable<ComandoAñadirIngrediente> ObtenerComandosAñadirIngredientes()
         { return Ingredientes.Where(m => m.Posicion <= 0).ToList()

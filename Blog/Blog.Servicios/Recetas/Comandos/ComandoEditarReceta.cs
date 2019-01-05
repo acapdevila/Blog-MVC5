@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using Blog.Servicios.Recetas.Comandos.Imagenes;
 
 namespace Blog.Servicios.Recetas.Comandos
 {
@@ -39,7 +40,10 @@ namespace Blog.Servicios.Recetas.Comandos
 
        public string Raciones { get; set; }
 
-       public IEnumerable<ComandoAñadirIngrediente> IngredientesAñadidos { get; set; }
+       public ComandoAsignarImagen AsignarImagen { get; set; }
+       public ComandoQuitarImagen QuitarImagen { get; set; }
+
+        public IEnumerable<ComandoAñadirIngrediente> IngredientesAñadidos { get; set; }
 
        public IEnumerable<ComandoEditarIngrediente> IngredientesEditados { get; set; }
 

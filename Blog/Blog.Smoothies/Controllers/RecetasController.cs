@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Blog.Datos;
+using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Smoothies.Views.Recetas.ViewModels;
@@ -15,6 +17,7 @@ namespace Blog.Smoothies.Controllers
     {
         private  readonly BuscadorDeRecetas _buscador;
         private readonly EditorDeRecetas _editor;
+        private readonly SubirArchivoImagenServicio _imagenServicio;
 
         public RecetasController() : this(new ContextoBaseDatos())
         {
@@ -23,15 +26,17 @@ namespace Blog.Smoothies.Controllers
 
         public RecetasController(ContextoBaseDatos contexto) : this(
                 new BuscadorDeRecetas(contexto), 
-                new EditorDeRecetas(contexto))
+                new EditorDeRecetas(contexto),
+                new SubirArchivoImagenServicio())
         {
             
         }
 
-        public RecetasController(BuscadorDeRecetas buscador, EditorDeRecetas editor)
+        public RecetasController(BuscadorDeRecetas buscador, EditorDeRecetas editor, SubirArchivoImagenServicio imagenServicio)
         {
             _buscador = buscador;
             _editor = editor;
+            _imagenServicio = imagenServicio;
         }
 
 
@@ -67,17 +72,21 @@ namespace Blog.Smoothies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Crear(CrearRecetaViewModel viewModel)
+        public async Task<ActionResult> Crear(HttpPostedFileBase archivoImagen, CrearRecetaViewModel viewModel)
         {
             if (!ModelState.IsValid) return View(viewModel);
 
-            var comando = viewModel.EditorReceta.GenerarComandoCrearReceta();
+            var urlImagenPublica = PublicarImagen(archivoImagen);
 
-           await  _editor.CrearReceta(comando);
+            var comando = viewModel.EditorReceta.GenerarComandoCrearReceta(urlImagenPublica);
+            
+            await  _editor.CrearReceta(comando);
 
             return RedirectToAction("Index");
 
         }
+
+       
 
         public async Task<ActionResult> Editar(int id)
         {
@@ -90,25 +99,30 @@ namespace Blog.Smoothies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar(EditarRecetaViewModel viewModel)
+        public async Task<ActionResult> Editar(HttpPostedFileBase archivoImagen, EditarRecetaViewModel viewModel)
         {
             if (!ModelState.IsValid) return View(viewModel);
 
-            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta();
+            var urlImagen = PublicarImagen(archivoImagen);
+            
+            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta(urlImagen);
+
             await _editor.EditarReceta(comando);
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<ActionResult> Guardar(EditarRecetaViewModel viewModel)
+        public async Task<ActionResult> Guardar(HttpPostedFileBase archivoImagen, EditarRecetaViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 return Json(new { esOk = false, textoRespuesta = ErroresDelModelState() }, JsonRequestBehavior.AllowGet);
             }
 
-            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta();
+            var urlImagen = PublicarImagen(archivoImagen);
+
+            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta(urlImagen);
             await _editor.EditarReceta(comando);
             return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
          }
@@ -161,6 +175,13 @@ namespace Blog.Smoothies.Controllers
             return sb.ToString();
         }
 
+
+        private string PublicarImagen(HttpPostedFileBase archivoImagen)
+        {
+            if (archivoImagen == null) return null;
+            var webImage = archivoImagen.ToWebImage();
+            return _imagenServicio.SubirImagen(webImage, dimensionMaxima: 700);
+        }
 
     }
 }

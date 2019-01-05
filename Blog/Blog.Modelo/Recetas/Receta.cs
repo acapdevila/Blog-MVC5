@@ -9,7 +9,6 @@ namespace Blog.Modelo.Recetas
     {
         public Receta()
         {
-            Imagenes = new List<Imagen>();
             Ingredientes = new List<IngredienteReceta>();
             Instrucciones = new List<Instruccion>();
             FechaPublicacion = DateTime.Today;
@@ -19,10 +18,11 @@ namespace Blog.Modelo.Recetas
 
             public int Id { get; set; }
 
-            public ICollection<Imagen> Imagenes { get; set; }
+            public Imagen Imagen { get; private set; }
 
             public string Nombre { get; set; }
-
+        
+            public bool TieneImagen => Imagen != null && Imagen.Url != null;
 
         #endregion
 
@@ -54,6 +54,8 @@ namespace Blog.Modelo.Recetas
         {
             return Instrucciones.ElementAt(posicion - 1);
         }
+
+        
 
         public void AñadirInstruccion(Instruccion instruccion)
         {
@@ -90,6 +92,16 @@ namespace Blog.Modelo.Recetas
         }
 
 
+        public void AsignarImagen(Imagen imagen)
+        {
+            Imagen = imagen;
+        }
+
+        public void QuitarImagen()
+        {
+            Imagen = null;
+        }
+        
       
     }
 }

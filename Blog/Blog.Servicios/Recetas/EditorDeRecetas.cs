@@ -4,10 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
+using Blog.Modelo.Imagenes;
 using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using Blog.Servicios.Recetas.Comandos.Imagenes;
 
 namespace Blog.Servicios.Recetas
 {
@@ -40,16 +42,24 @@ namespace Blog.Servicios.Recetas
 
             AñadirInstrucciones(receta, comando.Instrucciones);
 
+            if (comando.AñadirImagen != null) 
+                AñadirImagen(receta, comando.AñadirImagen);
+
             _db.Recetas.Add(receta);
 
             await _db.SaveChangesAsync();
         }
 
-      
+        private void AñadirImagen(Receta receta, ComandoAsignarImagen comandoAñadirImagen)
+        {
+            var imagen = new Imagen(comandoAñadirImagen.Url, comandoAñadirImagen.Alt);
+            receta.AsignarImagen(imagen);
+        }
+
+
         public async Task EditarReceta(ComandoEditarReceta comando)
         {
             var receta = await _db.Recetas
-                .Include(m => m.Imagenes)
                 .Include(m => m.Ingredientes.Select(i => i.Ingrediente))
                 .Include(m => m.Instrucciones)
                 .FirstAsync(m=>m.Id == comando.Id);
@@ -71,18 +81,20 @@ namespace Blog.Servicios.Recetas
             AñadirInstrucciones(receta, comando.InstruccionesAñadidas);
             EditarInstrucciones(receta, comando.InstruccionesEditadas);
             EliminarInstrucciones(receta, comando.InstruccionesEliminadas);
-
-           await _db.SaveChangesAsync();
-          
-          
             
+            if (comando.AsignarImagen != null)
+                AñadirImagen(receta, comando.AsignarImagen);
+            
+            if(comando.QuitarImagen != null)
+                receta.QuitarImagen();
+
+            await _db.SaveChangesAsync();
         }
         
 
         public async Task EliminarReceta(ComandoEliminarReceta comando)
         {
             var receta = await _db.Recetas
-                .Include(m => m.Imagenes)
                 .Include(m => m.Ingredientes.Select(i => i.Ingrediente))
                 .Include(m => m.Instrucciones)
                 .FirstAsync(m => m.Id == comando.IdReceta);

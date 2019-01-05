@@ -16,6 +16,6 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
         }
 
         public EditorReceta EditorReceta { get; set; }
-
+        
     }
 }
