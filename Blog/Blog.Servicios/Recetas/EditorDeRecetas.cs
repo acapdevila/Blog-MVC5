@@ -9,7 +9,6 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
-using Blog.Servicios.Recetas.Comandos.Imagenes;
 
 namespace Blog.Servicios.Recetas
 {
