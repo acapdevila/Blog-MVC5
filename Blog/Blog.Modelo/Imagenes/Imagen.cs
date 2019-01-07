@@ -5,14 +5,22 @@ namespace Blog.Modelo.Imagenes
 {
     public class Imagen : ValueObject
     {
+        public static Imagen Vacia = new Imagen(null, null); 
+
+        protected Imagen()
+        {
+
+        }
         public Imagen(string url, string alt)
         {
+            if(string.IsNullOrEmpty(url)) return;
+
             Url = url;
             Alt = alt;
         }
 
-        public string Url { get;  }
-        public string Alt { get; }
+        public string Url { get; private set; }
+        public string Alt { get; private set; }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

@@ -12,13 +12,14 @@ namespace Blog.Modelo.Recetas
             Ingredientes = new List<IngredienteReceta>();
             Instrucciones = new List<Instruccion>();
             FechaPublicacion = DateTime.Today;
+            Imagen = Imagen.Vacia;
         }
 
         #region Propiedades obligatorias
 
             public int Id { get; set; }
 
-            public Imagen Imagen { get; private set; }
+            public Imagen Imagen { get; set; }
 
             public string Nombre { get; set; }
         
@@ -91,16 +92,6 @@ namespace Blog.Modelo.Recetas
             Ingredientes.Remove(ingredienteReceta);
         }
 
-
-        public void AsignarImagen(Imagen imagen)
-        {
-            Imagen = imagen;
-        }
-
-        public void QuitarImagen()
-        {
-            Imagen = null;
-        }
         
       
     }

@@ -17,5 +17,12 @@ namespace Blog.Smoothies
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error()
+        {
+            var ex = Server.GetLastError();
+            //log the error!
+            var error = ex.ToString();
+        }
     }
 }

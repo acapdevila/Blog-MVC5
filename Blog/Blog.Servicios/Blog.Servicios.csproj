@@ -162,8 +162,6 @@
     <Compile Include="Recetas\Comandos\ComandoEditarReceta.cs" />
     <Compile Include="Recetas\Comandos\ComandosInstrucciones\ComandoEliminarInstruccion.cs" />
     <Compile Include="Recetas\Comandos\ComandoEliminarReceta.cs" />
-    <Compile Include="Recetas\Comandos\Imagenes\ComandoAsignarImagen.cs" />
-    <Compile Include="Recetas\Comandos\Imagenes\ComandoQuitarImagen.cs" />
     <Compile Include="Recetas\CriteriosBusquedaReceta.cs" />
     <Compile Include="Recetas\Dtos\LineaGestionReceta.cs" />
     <Compile Include="Recetas\EditorDeRecetas.cs" />

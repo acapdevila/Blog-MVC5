@@ -72,13 +72,22 @@ namespace Blog.Smoothies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Crear(HttpPostedFileBase archivoImagen, CrearRecetaViewModel viewModel)
+        public async Task<ActionResult> Crear(string boton, CrearRecetaViewModel viewModel)
         {
+            if (boton == EditorReceta.AccionSubirImagen)
+            {
+                RellenarUrlImagen(viewModel.EditorReceta);
+                return View(viewModel);
+            }
+
+            if (boton == EditorReceta.AccionQuitarImagen)
+            {
+                return View(viewModel);
+            }
+
             if (!ModelState.IsValid) return View(viewModel);
 
-            var urlImagenPublica = PublicarImagen(archivoImagen);
-
-            var comando = viewModel.EditorReceta.GenerarComandoCrearReceta(urlImagenPublica);
+            var comando = viewModel.EditorReceta.GenerarComandoCrearReceta();
             
             await  _editor.CrearReceta(comando);
 
@@ -99,30 +108,39 @@ namespace Blog.Smoothies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar(HttpPostedFileBase archivoImagen, EditarRecetaViewModel viewModel)
+        public async Task<ActionResult> Editar(string boton, EditarRecetaViewModel viewModel)
         {
-            if (!ModelState.IsValid) return View(viewModel);
+            if (boton == EditorReceta.AccionSubirImagen)
+            {
+                RellenarUrlImagen(viewModel.EditorReceta);
+                return View(viewModel);
+            }
 
-            var urlImagen = PublicarImagen(archivoImagen);
+            if (boton == EditorReceta.AccionQuitarImagen)
+            {
+                return View(viewModel);
+            }
+
+            if (!ModelState.IsValid) return View(viewModel);
             
-            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta(urlImagen);
+            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta();
 
             await _editor.EditarReceta(comando);
 
             return RedirectToAction("Index");
         }
 
+       
+
         [HttpPost]
-        public async Task<ActionResult> Guardar(HttpPostedFileBase archivoImagen, EditarRecetaViewModel viewModel)
+        public async Task<ActionResult> Guardar(EditarRecetaViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 return Json(new { esOk = false, textoRespuesta = ErroresDelModelState() }, JsonRequestBehavior.AllowGet);
             }
 
-            var urlImagen = PublicarImagen(archivoImagen);
-
-            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta(urlImagen);
+            var comando = viewModel.EditorReceta.GenerarComandoEditarReceta();
             await _editor.EditarReceta(comando);
             return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
          }
@@ -176,12 +194,22 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        private string PublicarImagen(HttpPostedFileBase archivoImagen)
+        private void RellenarUrlImagen(EditorReceta editorReceta)
         {
-            if (archivoImagen == null) return null;
-            var webImage = archivoImagen.ToWebImage();
-            return _imagenServicio.SubirImagen(webImage, dimensionMaxima: 700);
+            var imagenSubida = ObtenerArchivoImagenDelHttpPost();
+
+            var nombreImgenGuardada = _imagenServicio.SubirImagen(imagenSubida.ToWebImage(), 1000);
+
+            ModelState.Clear();
+
+            editorReceta.UrlImagen = nombreImgenGuardada.GenerarUrlImagen();
         }
 
+        private HttpPostedFileBase ObtenerArchivoImagenDelHttpPost()
+        {
+            return Request.Files.Count == 0 ? null : Request.Files.Get(0);
+        }
+
+        
     }
 }

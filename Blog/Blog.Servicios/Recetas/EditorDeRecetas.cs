@@ -41,21 +41,12 @@ namespace Blog.Servicios.Recetas
             await AñadirIngredientes(receta, comando.Ingredientes);
 
             AñadirInstrucciones(receta, comando.Instrucciones);
-
-            if (comando.AñadirImagen != null) 
-                AñadirImagen(receta, comando.AñadirImagen);
-
+            
             _db.Recetas.Add(receta);
 
             await _db.SaveChangesAsync();
         }
-
-        private void AñadirImagen(Receta receta, ComandoAsignarImagen comandoAñadirImagen)
-        {
-            var imagen = new Imagen(comandoAñadirImagen.Url, comandoAñadirImagen.Alt);
-            receta.AsignarImagen(imagen);
-        }
-
+        
 
         public async Task EditarReceta(ComandoEditarReceta comando)
         {
@@ -81,12 +72,8 @@ namespace Blog.Servicios.Recetas
             AñadirInstrucciones(receta, comando.InstruccionesAñadidas);
             EditarInstrucciones(receta, comando.InstruccionesEditadas);
             EliminarInstrucciones(receta, comando.InstruccionesEliminadas);
-            
-            if (comando.AsignarImagen != null)
-                AñadirImagen(receta, comando.AsignarImagen);
-            
-            if(comando.QuitarImagen != null)
-                receta.QuitarImagen();
+
+            receta.Imagen = comando.Imagen;
 
             await _db.SaveChangesAsync();
         }
