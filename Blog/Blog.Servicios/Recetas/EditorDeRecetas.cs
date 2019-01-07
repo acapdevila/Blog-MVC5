@@ -44,6 +44,8 @@ namespace Blog.Servicios.Recetas
             _db.Recetas.Add(receta);
 
             await _db.SaveChangesAsync();
+
+            comando.Id = receta.Id;
         }
         
 

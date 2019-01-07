@@ -192,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ListEditorHelper.cs" />
+    <Compile Include="Helpers\AccionSeleccionadaPorBotonAttribute.cs" />
     <Compile Include="Helpers\TotalesListaHelper.cs" />
     <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

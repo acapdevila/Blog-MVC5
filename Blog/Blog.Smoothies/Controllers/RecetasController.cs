@@ -7,6 +7,7 @@ using Blog.Datos;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
+using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
 
@@ -63,39 +64,45 @@ namespace Blog.Smoothies.Controllers
 
         public ActionResult Crear()
         {
-            var crearRecetaViewModel = new CrearRecetaViewModel
-            {
-                EditorReceta = new EditorReceta { Autor = "Laura García" }
-            };
+            var crearRecetaViewModel = new CrearRecetaViewModel(autor: "Laura García");
+
             return View(crearRecetaViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Crear(string boton, CrearRecetaViewModel viewModel)
+        [AccionSeleccionadaPorBoton]
+        public async Task<ActionResult> CrearReceta(CrearRecetaViewModel viewModel)
         {
-            if (boton == EditorReceta.AccionSubirImagen)
-            {
-                RellenarUrlImagen(viewModel.EditorReceta);
-                return View(viewModel);
-            }
-
-            if (boton == EditorReceta.AccionQuitarImagen)
-            {
-                return View(viewModel);
-            }
-
-            if (!ModelState.IsValid) return View(viewModel);
+            if (!ModelState.IsValid) return View("Crear", viewModel);
 
             var comando = viewModel.EditorReceta.GenerarComandoCrearReceta();
             
             await  _editor.CrearReceta(comando);
 
-            return RedirectToAction("Index");
-
+            return RedirectToAction("VistaPrevia", new{id = comando.Id });
         }
 
-       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AccionSeleccionadaPorBoton]
+        public ActionResult CrearSubirImagen(CrearRecetaViewModel viewModel)
+        {
+            RellenarUrlImagen(viewModel.EditorReceta);
+            return View("Crear", viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AccionSeleccionadaPorBoton]
+        public ActionResult CrearQuitarImagen(CrearRecetaViewModel viewModel)
+        {
+            VaciarUrlImagen(viewModel.EditorReceta);
+            return View("Crear", viewModel);
+        }
+
+
 
         public async Task<ActionResult> Editar(int id)
         {
@@ -108,29 +115,39 @@ namespace Blog.Smoothies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar(string boton, EditarRecetaViewModel viewModel)
+        [AccionSeleccionadaPorBoton]
+        public async Task<ActionResult> EditarReceta(EditarRecetaViewModel viewModel)
         {
-            if (boton == EditorReceta.AccionSubirImagen)
-            {
-                RellenarUrlImagen(viewModel.EditorReceta);
-                return View(viewModel);
-            }
-
-            if (boton == EditorReceta.AccionQuitarImagen)
-            {
-                return View(viewModel);
-            }
-
-            if (!ModelState.IsValid) return View(viewModel);
+            if (!ModelState.IsValid) return View("Editar", viewModel);
             
             var comando = viewModel.EditorReceta.GenerarComandoEditarReceta();
 
             await _editor.EditarReceta(comando);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("VistaPrevia", new { id = comando.Id });
         }
 
-       
+        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AccionSeleccionadaPorBoton]
+        public ActionResult EditarSubirImagen(EditarRecetaViewModel viewModel)
+        {
+            RellenarUrlImagen(viewModel.EditorReceta);
+            return View("Editar", viewModel);
+         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AccionSeleccionadaPorBoton]
+        public ActionResult EditarQuitarImagen(EditarRecetaViewModel viewModel)
+        {
+            VaciarUrlImagen(viewModel.EditorReceta);
+            return View("Editar", viewModel);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> Guardar(EditarRecetaViewModel viewModel)
@@ -203,6 +220,13 @@ namespace Blog.Smoothies.Controllers
             ModelState.Clear();
 
             editorReceta.UrlImagen = nombreImgenGuardada.GenerarUrlImagen();
+        }
+
+        private void VaciarUrlImagen(EditorReceta editorReceta)
+        {
+            ModelState.Clear();
+
+            editorReceta.UrlImagen = null;
         }
 
         private HttpPostedFileBase ObtenerArchivoImagenDelHttpPost()

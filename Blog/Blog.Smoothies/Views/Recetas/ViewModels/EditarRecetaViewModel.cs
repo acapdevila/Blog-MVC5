@@ -12,7 +12,12 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
 
         public EditarRecetaViewModel(Receta receta)
         {
-            EditorReceta = new EditorReceta(receta);
+            EditorReceta = new EditorReceta(receta)
+            {
+                AccionPost = "EditarReceta",
+                AccionQuitarImagen = "EditarQuitarImagen",
+                AccionSubirImagen = "EditarSubirImagen"
+            };
         }
 
         public EditorReceta EditorReceta { get; set; }

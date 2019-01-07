@@ -13,9 +13,6 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 {
     public  class EditorReceta
     {
-
-        public static readonly string AccionSubirImagen = "SubirImagen";
-        public static readonly string AccionQuitarImagen = "QuitarImagen";
         public EditorReceta() : this(new Receta())
         {
         }
@@ -81,7 +78,15 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 
         public List<EditorIngredienteReceta> Ingredientes { get; set; }
         public bool TieneImagen => !string.IsNullOrEmpty(UrlImagen);
-        
+
+        public string AccionPost { get; set; }
+        public string AccionQuitarImagen { get; set; }
+        public string AccionSubirImagen { get; set; }
+
+
+        #region Métodos privados
+
+
         private void AñadirIngredientes(Receta receta)
         {
             Ingredientes = new List<EditorIngredienteReceta>();
@@ -190,6 +195,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
         }
 
 
-      
+
+        #endregion
+
     }
 }

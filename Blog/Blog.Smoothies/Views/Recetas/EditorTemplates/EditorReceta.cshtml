@@ -1,6 +1,5 @@
-﻿@using Blog.Datos.Migrations
-@using Blog.Smoothies.Views.Recetas.ViewModels.Editores
-@model Blog.Smoothies.Views.Recetas.ViewModels.Editores.EditorReceta
+﻿@using Blog.Smoothies.Views.Recetas.ViewModels.Editores
+@model EditorReceta
 
 @Html.HiddenFor(model => model.Id)
 
@@ -38,18 +37,9 @@
         <div class="col-md-10">
             <img id="imagenReceta" src="@Model.UrlImagen" alt="@Model.AltImagen" class="img-responsive" />
            <br/>
-            <button type="button" 
-                    class="btn btn-danger"
-                    onclick="(function() { $('#EditorReceta_UrlImagen').val('');$('#botonQuitarImagen').click(); })();">
-                Qitar imagen
-            </button>
-            
-            <input type="submit" id="botonQuitarImagen" name="boton" value="@EditorReceta.AccionQuitarImagen" style="display: none" />
-        </div>
+            <input type="submit" class="btn btn-danger" name="@Model.AccionQuitarImagen" value="Quitar imagen"/>
+         </div>
     </div>
-
-
-   
 }
 else
 {
@@ -63,12 +53,9 @@ else
                    onchange="(function () { $('#botonSubirImagen').click(); })();"
             />
 
-            <input type="submit" id="botonSubirImagen" name="boton" value="@EditorReceta.AccionSubirImagen" style="display: none" />
+            <input type="submit" id="botonSubirImagen" name="@Model.AccionSubirImagen" style="display: none" />
         </div>
     </div>
-
-
-   
 }
 
 
@@ -197,7 +184,7 @@ else
                <input id="btnModificarPublicacion" name="boton" type="submit" value="Modificar publicación" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
             </li>*@
             <li>
-                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                <input id="btnGuardarYSalir" name="@Model.AccionPost" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
 
                 <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
             </li>

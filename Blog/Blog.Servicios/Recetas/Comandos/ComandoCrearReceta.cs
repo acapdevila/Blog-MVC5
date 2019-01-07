@@ -12,6 +12,7 @@ namespace Blog.Servicios.Recetas.Comandos
         {
             Instrucciones = new List<ComandoAñadirInstruccion>();
         }
+        public int Id { get; set; }
 
         public string Nombre { get; set; }
 
@@ -36,7 +37,6 @@ namespace Blog.Servicios.Recetas.Comandos
         public IEnumerable<ComandoAñadirIngrediente> Ingredientes { get; set; }
 
         public IEnumerable<ComandoAñadirInstruccion> Instrucciones { get; set; }
-
         
     }
 }
