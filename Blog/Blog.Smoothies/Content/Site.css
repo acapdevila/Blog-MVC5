@@ -45,6 +45,10 @@ a {
 }
 .styledtypo {font-family: 'chasing_embers_demo_versionRg';}
 
+.bold {
+    font-family: 'open_sansbold';
+}
+
 .smaller {
     font-size:90%}
 .smallest {
@@ -94,9 +98,23 @@ letter-spacing: 1px;
     background:transparent;
 }
 
-/*Posts*/
 
-.postcontent {}
+/*Portada*/
+
+.subscripcionhome {
+    text-align: center;
+    background: #5F9494;
+    margin: 50px 0 30px 0;
+    padding:25px;
+    color: #ffffff;
+}
+
+
+
+
+/*Posts*/
+.postcontent {
+}
 
     .postcontent p {
     line-height:25px;}
