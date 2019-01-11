@@ -7,5 +7,7 @@
         public Receta Receta { get; set; }
 
         public Ingrediente Ingrediente { get; set; }
+
+        public string Nombre => Ingrediente?.Nombre;
     }
 }

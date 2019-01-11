@@ -12,7 +12,7 @@ namespace Blog.ViewModels.Post.Conversores
             AsignadorTags asignadorTags,
             AsignadorCategorias asignadorCategorias)
         {
-            post.Titulo = editorPost.Titulo;
+            post.ModificarTitulo(editorPost.Titulo);
             post.Subtitulo = editorPost.Subtitulo;
             post.Descripcion = editorPost.Descripcion;
             post.Autor = editorPost.Autor;
@@ -23,6 +23,7 @@ namespace Blog.ViewModels.Post.Conversores
             asignadorTags.AsignarTags(post, editorPost.ListaTags);
             asignadorCategorias.AsignarCategorias(post, editorPost.ListaCategorias);
             post.FechaModificacion = DateTime.Now;
+
         }
 
 
@@ -33,6 +34,9 @@ namespace Blog.ViewModels.Post.Conversores
             AsignadorCategorias asignadorCategorias)
         {
             post.InjectFrom(editorBorrador);
+
+            post.ModificarTitulo(editorBorrador.Titulo);
+
             asignadorTags.AsignarTags(post, editorBorrador.ListaTags);
             asignadorCategorias.AsignarCategorias(post, editorBorrador.ListaCategorias);
             post.FechaModificacion = DateTime.Now;

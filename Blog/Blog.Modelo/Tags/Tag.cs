@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Blog.Modelo.Categorias;
 using Blog.Modelo.Dtos;
+using Blog.Modelo.Extensiones;
 using Blog.Modelo.Posts;
 
 namespace Blog.Modelo.Tags
@@ -28,6 +27,8 @@ namespace Blog.Modelo.Tags
         public bool EsPublico { get; set; }
         public DateTime? FechaPublicacion { get; set; } // Info para datos estructurados
 
+        public string NombreSinAcentos { get; private set; }
+
         public bool EsMostrarDatosEstructurados
         {
             get { return FechaPublicacion.HasValue && !string.IsNullOrEmpty(Descripcion) && !string.IsNullOrEmpty(UrlImagenPrincipal); }
@@ -40,6 +41,7 @@ namespace Blog.Modelo.Tags
         public void CambiarNombre(string nombre)
         {
             Nombre = nombre;
+            NombreSinAcentos = nombre.RemoveDiacritics();
         }
 
         public void CambiarUrlSlug(string urlSlug)
@@ -72,7 +74,9 @@ namespace Blog.Modelo.Tags
             FechaPublicacion = etiquetaDto.FechaPublicacion;
             EsPublico = etiquetaDto.EsPublico;
 
+
         }
+
     }
 
    

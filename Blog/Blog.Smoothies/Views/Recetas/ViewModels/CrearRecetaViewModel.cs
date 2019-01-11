@@ -1,19 +1,25 @@
 ﻿using System;
-using Blog.Modelo.Recetas;
+using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
 
 namespace Blog.Smoothies.Views.Recetas.ViewModels
 {
     public  class CrearRecetaViewModel
     {
-        public CrearRecetaViewModel() 
+        public CrearRecetaViewModel()
         {
-
+            
+        }
+        public CrearRecetaViewModel(string autor) 
+        {
+            EditorReceta = new EditorReceta
+            {
+                Autor = autor,
+                AccionPost = "CrearReceta",
+                AccionQuitarImagen = "CrearQuitarImagen",
+                AccionSubirImagen = "CrearSubirImagen"
+            };
         }
 
-        public CrearRecetaViewModel(Receta receta) 
-        {
-            EditorReceta = new EditorRecetaPartialModel(receta);
-        }
-        public EditorRecetaPartialModel EditorReceta { get; set; }
+        public EditorReceta EditorReceta { get; set; }
     }
 }

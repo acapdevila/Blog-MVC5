@@ -1,4 +1,5 @@
-﻿@model Blog.Smoothies.Views.Recetas.ViewModels.EditorRecetaPartialModel
+﻿@using Blog.Smoothies.Views.Recetas.ViewModels.Editores
+@model EditorReceta
 
 @Html.HiddenFor(model => model.Id)
 
@@ -10,6 +11,56 @@
         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
     </div>
 </div>
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.AltImagen, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.AltImagen, htmlAttributes: new { @class = "form-control" } )
+        @Html.ValidationMessageFor(model => model.AltImagen, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UrlImagen, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.UrlImagen, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UrlImagen, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+@if (Model.TieneImagen)
+{
+    <div class="form-group">
+        @Html.Label("Imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <img id="imagenReceta" src="@Model.UrlImagen" alt="@Model.AltImagen" class="img-responsive" />
+           <br/>
+            <input type="submit" class="btn btn-danger" name="@Model.AccionQuitarImagen" value="Quitar imagen"/>
+         </div>
+    </div>
+}
+else
+{
+    <div class="form-group">
+        @Html.Label("Subir nueva imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" 
+                   id="seleccionarArchivo" 
+                   name="archivoImagen" 
+                   class = "form-control" 
+                   onchange="(function () { $('#botonSubirImagen').click(); })();"
+            />
+
+            <input type="submit" id="botonSubirImagen" name="@Model.AccionSubirImagen" style="display: none" />
+        </div>
+    </div>
+}
+
+
+
+
 
 <div class="form-group">
     @Html.LabelFor(model => model.Autor, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,8 +131,49 @@
     </div>
 </div>
 
+<div class="form-group">
+    @Html.LabelFor(model => model.Ingredientes, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+     
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <tbody id="lineasIngrediente">       
+                @Html.EditorFor(m => m.Ingredientes)      
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2">
+                        @Html.LinkToAddNestedForm(m => m.Ingredientes, "Añadir", "#lineasIngrediente", ".editorIngrediente", "NombreIngrediente")
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
 
+<hr/>
+<div class="form-group">
+    @Html.LabelFor(model => model.Instrucciones, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+     
+        <div class="table-responsive">
+            <table class="table table-condensed">
+              <tbody id="lineasInstruccion">       
+                        @Html.EditorFor(m => m.Instrucciones)      
+                    </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2">
+                        @Html.LinkToAddNestedForm(m => m.Instrucciones, "Añadir", "#lineasInstruccion", ".editorInstruccion", "Nombre")
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
 <hr />
 
@@ -92,7 +184,7 @@
                <input id="btnModificarPublicacion" name="boton" type="submit" value="Modificar publicación" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
             </li>*@
             <li>
-                <input id="btnGuardarYSalir" name="boton" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                <input id="btnGuardarYSalir" name="@Model.AccionPost" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
 
                 <input id="btnGuardar" name="boton" type="button" value="Guardar" class="btn btn-primary navbar-btn" />
             </li>

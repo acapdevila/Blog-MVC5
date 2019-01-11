@@ -29,10 +29,12 @@ namespace Blog.Datos
 
    
         public DbSet<Ingrediente> Ingredientes { get; set; }
-        
-        public DbSet<Imagen> Imagenes { get; set; }
 
         public DbSet<Receta> Recetas { get; set; }
+
+        public DbSet<Instruccion> InstruccionesDeRecetas { get; set; }
+
+        public DbSet<IngredienteReceta> IngredientesDeRecetas { get; set; }
 
 
         public static ContextoBaseDatos Create()
@@ -57,6 +59,8 @@ namespace Blog.Datos
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextoBaseDatos, Migrations.Configuration>());
 
+            modelBuilder.ComplexType<Imagen>();
+            
             modelBuilder.Configurations.Add(new MapeoTag());
 
             modelBuilder.Configurations.Add(new MapeoCategoria());
@@ -67,9 +71,7 @@ namespace Blog.Datos
 
 
             modelBuilder.Configurations.Add(new MapeoIngrediente());
-
-            modelBuilder.Configurations.Add(new MapeoImagen());
-
+            
             modelBuilder.Configurations.Add(new MapeoInstruccion());
 
             modelBuilder.Configurations.Add(new MapeoReceta());

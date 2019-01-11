@@ -41,19 +41,19 @@
     <tr>
         <td>
             <div class="btn-group">
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default" })
                
-                @Html.ActionLink("Vista previa", "VistaPrevia", new {id = item.Id}, new {@class = "btn btn-default"})
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Acciones</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li>
-                        @Html.ActionLink("Editar", "Editar", new { id = item.Id })
-                    </li>
-                    @*<li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>*@
-                    <li role="separator" class="divider"> b bv</li>
+                    @* <li>
+                    @Html.ActionLink("Vista previa", "VistaPrevia", new { id = item.Id })
+                 </li>
+               <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"> b bv</li>*@
                     <li>
                         @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
                     </li>
@@ -61,7 +61,8 @@
             </div>
         </td>
         <td>
-            @item.Nombre
+            
+            @Html.ActionLink(item.Nombre, "VistaPrevia", new { id = item.Id })
         </td>
         <td>
             @item.Categoria

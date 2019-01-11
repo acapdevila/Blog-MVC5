@@ -1,30 +1,41 @@
-﻿@{
+﻿@model Blog.Web.Controllers.PortadaController.PortadaViewModel
+@{
     ViewBag.Title = "Programador .Net freelance · albertcapdevila.net";
 }
 
-
+<style type="text/css">
+.jumbotron { 
+    margin-bottom: 0px; 
+     background-image: url("https://storagequedat.blob.core.windows.net/contenedorblog/da1827a2-8bf3-4ea6-a1d6-fd1b08bde038_banner.jpg");        
+    -ms-background-position: 0% 25%; 
+    background-position: 0% 25%; 
+    -ms-background-size: cover; 
+    background-size: cover; 
+    -ms-background-repeat: no-repeat; 
+    background-repeat: no-repeat; 
+    color: gainsboro; 
+    text-shadow: black 0.1em 0.1em 0.1em;
+}
+ </style>
 <div class="jumbotron">
+  <br/><br /><br /><br /><br />
 
-    <h2>¡Hola! ¿Necesitas un programador?</h2>
+    <h2>¿Necesitas un programador?</h2>
     <p>
-        Soy Albert Capdevila un programador .Net freelance que trabaja remotamente desde El Masnou, Barcelona
+        Soy Albert Capdevila, programador .Net freelance que trabaja remotamente desde El Masnou, Barcelona
 
     </p>
-    <p>
+    @*<p>
         <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Contratame")" role="button">Contrátame</a>
         <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Blog")" role="button">Blog</a>
-    </p>
+    </p>*@
 
 
 </div>
-
+<br/>
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-
- 
-
-
 
 
         <h2>¿Qué hago?</h2>
@@ -129,4 +140,14 @@
     </div>
 </div>
 
+<br/>
+<div class="row">
+   
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+        <h2>Últimas entradas del <a class="color2" href="@Url.Action("Index", "Blog")">BLOG</a></h2>
+        <!-- First Blog Post -->
+        @Html.Partial("_ListaLineasResumenPostPortada", Model.UltimosTresPosts.ToList())
 
+    </div>
+</div>

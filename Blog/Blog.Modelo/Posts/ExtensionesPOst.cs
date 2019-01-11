@@ -47,17 +47,36 @@ namespace Blog.Modelo.Posts
 
         public static IQueryable<Post> BuscarPor(this IQueryable<Post> posts, CriteriosBusqueda criterios)
         {
+            return posts.BuscarPor(criterios, new List<Tag>(), new List<Categoria>());
+        }
+
+        public static IQueryable<Post> BuscarPor(this IQueryable<Post> posts, CriteriosBusqueda criterios, List<Tag> tags, List<Categoria> categorias)
+        {
             if(criterios == CriteriosBusqueda.Vacio())
                     return posts;
 
-            var consulta = posts;
-
-            foreach (var palabraBuscada in criterios.PalabrasBuscadas.Distinct())
+            var palabrasaSinAcento = criterios.PalabrasBuscadasSinAcento;
+            
+            var consulta = posts.Where(m => palabrasaSinAcento.Any(p => p.Contains(m.TituloSinAcentos) || m.TituloSinAcentos.Contains(p)));
+            
+            if (tags.Any())
             {
-                consulta = consulta.Where(m => m.Titulo.Contains(palabraBuscada) || palabraBuscada.Contains(m.Titulo));
+                var idsTags = tags.Select(m => m.Id).ToList();
+                consulta = consulta.Union(posts.Where(m => m.Tags.Any(t => idsTags.Contains(t.Id))));
             }
 
-            foreach (var tag in criterios.Tags.Distinct())
+            if (categorias.Any())
+            {
+                var idsCategorias = categorias.Select(m => m.Id).ToList();
+                consulta = consulta.Union(posts.Where(m => m.Categorias.Any(t => idsCategorias.Contains(t.Id))));
+            }
+
+            return consulta;
+        }
+
+        public static IQueryable<Post> BuscarPorTags(this IQueryable<Post> consulta, List<Tag> tags)
+        {
+            foreach (var tag in tags.Distinct())
             {
                 consulta = consulta.Where(m => m.Tags.Any(t => t.Nombre == tag.Nombre));
             }

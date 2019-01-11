@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Dtos;
+using Blog.Modelo.Extensiones;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
@@ -26,20 +27,36 @@ namespace Blog.Servicios
                 .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
         }
 
-        public List<Tag> BuscarTags(CriteriosBusqueda criteriosBusqueda)
+        private IQueryable<Tag> TagsIncluyendoPosts()
         {
-            if (criteriosBusqueda == CriteriosBusqueda.Vacio())
+            return _db.Tags
+                .Include(m => m.Posts)
+                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+        }
+
+
+        public async Task<List<Tag>> BuscarTags(IReadOnlyCollection<string> palabrasBuscadas)
+        {
+            if (!palabrasBuscadas.Any())
                 return new List<Tag>();
 
-            return Tags()
-                .Where(m => criteriosBusqueda.PalabrasBuscadas.Contains(m.Nombre))
-                .ToList();
+            var palabrasSinAcentos = palabrasBuscadas.Select(m => m.RemoveDiacritics()).ToList();
+
+            return await Tags()
+                .Where(m => palabrasSinAcentos.Contains(m.NombreSinAcentos))
+                .ToListAsync();
 
         }
 
-        public async Task<List<Tag>> ObtenerListaTagsViewModel()
+
+        public async Task<List<Tag>> RecuperarListaTagsAsync()
         {
             return await Tags().OrderBy(m=>m.Nombre).ToListAsync();
+        }
+
+        public List<Tag> RecuperarListaTags()
+        {
+            return Tags().OrderBy(m => m.Nombre).ToList();
         }
 
 
@@ -76,6 +93,12 @@ namespace Blog.Servicios
             _db.Dispose();
         }
 
-        
+
+        public async Task<Tag> RecuperarTagIncluyendoPostsPorUrlAsync(string urlSlug)
+        {
+           return  await TagsIncluyendoPosts()
+                //  .ConPostsPublicados()
+                .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
+        }
     }
 }

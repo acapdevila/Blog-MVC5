@@ -34,9 +34,6 @@ namespace Blog.Datos.MapeosTablas
                 .HasMaxLength(128)
                 .HasColumnType("varchar");
 
-            HasMany(m => m.Imagenes)
-                .WithMany(m => m.Recetas)
-                .Map(m => m.ToTable("RecetasImagenes"));
 
         }
     }

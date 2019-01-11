@@ -50,8 +50,12 @@ namespace Blog.Smoothies.Controllers
 
             return View("Lista", viewModel);
         }
-        
 
+        public async Task<ActionResult> ActualizarNombresSinAcentos()
+        {
+           await  _postsServicio.ActualizarNombresSinAcentos();
+            return RedirectToAction("Index");
+        }
 
         public async Task<ActionResult> Detalles(int? id)
         {

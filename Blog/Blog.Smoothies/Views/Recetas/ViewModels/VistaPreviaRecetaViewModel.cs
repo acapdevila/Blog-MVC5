@@ -20,8 +20,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
             TiempoCoccion = receta.TiempoCoccion;
             TiempoPreparacion = receta.TiempoPreparacion;
 
-            Imagenes = receta.Imagenes.Select(m => m.Url);
-            Ingredientes = receta.Ingredientes.Select(m => m.Ingrediente.Nombre);
+            Imagen = receta.Imagen;
+            Ingredientes = receta.Ingredientes.Select(m => m.Nombre);
             Instrucciones = receta.Instrucciones.Select(m => m.Nombre);
         }
 
@@ -46,7 +46,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
 
         public string Raciones { get; set; }
 
-        public IEnumerable<string> Imagenes { get; }
+        public string Imagen { get; }
+
         public IEnumerable<string> Instrucciones { get; }
 
         public IEnumerable<string> Ingredientes { get; }

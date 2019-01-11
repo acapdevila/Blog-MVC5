@@ -1,9 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using Blog.Modelo.Imagenes;
+using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
+using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
 
 namespace Blog.Servicios.Recetas.Comandos
 {
     public class ComandoCrearReceta
     {
+        public ComandoCrearReceta()
+        {
+            Instrucciones = new List<ComandoAñadirInstruccion>();
+        }
+        public int Id { get; set; }
+
         public string Nombre { get; set; }
 
         public string Autor { get; set; }
@@ -21,5 +31,12 @@ namespace Blog.Servicios.Recetas.Comandos
         public string CategoriaReceta { get; set; }
 
         public string Raciones { get; set; }
+
+        public Imagen Imagen { get; set; }
+
+        public IEnumerable<ComandoAñadirIngrediente> Ingredientes { get; set; }
+
+        public IEnumerable<ComandoAñadirInstruccion> Instrucciones { get; set; }
+        
     }
 }
