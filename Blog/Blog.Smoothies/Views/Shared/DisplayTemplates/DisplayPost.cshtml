@@ -17,9 +17,11 @@
     @if (User.Identity.IsAuthenticated)
     {
         <span class="pull-right">
-            @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
-            @Html.ActionLink("Eliminar", "Delete", "Posts", new { id = Model.Id }, null) |
-            @Html.ActionLink("Volver al listado", "Index", "Posts")
+            @* ReSharper disable Mvc.ActionNotResolved *@
+            @Html.ActionLink("Editar", "Edit", new {id = Model.Id}) |
+            @Html.ActionLink("Eliminar", "Delete", new {id = Model.Id}) |
+            @Html.ActionLink("Volver al listado", "Index")
+            @* ReSharper restore Mvc.ActionNotResolved *@
         </span>
     }
 </p>
@@ -38,11 +40,13 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <p class="small text-uppercase">
-        @Html.ActionLink("Editar", "Edit", "Posts", new { id = Model.Id }, null) |
-        @Html.ActionLink("Eliminar", "Delete", "Posts", new { id = Model.Id }, null) |
-        @Html.ActionLink("Volver al listado", "Index", "Posts")
-    </p>
+    <span class="pull-right">
+        @* ReSharper disable Mvc.ActionNotResolved *@
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Eliminar", "Delete",  new { id = Model.Id }) |
+        @Html.ActionLink("Volver al listado", "Index")
+        @* ReSharper restore Mvc.ActionNotResolved *@
+    </span>
 }
 <br />
 

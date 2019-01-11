@@ -174,7 +174,11 @@
                 url: "@Url.Action("Guardar", "Posts")",
                 data: $("form").serialize(),
                 dataType: "html"
-            }).done(function() {
+            }).done(function (data) {
+                var obj = JSON.parse(data);
+                if (!obj.esOk) {
+                    alert(obj.textoRespuesta);
+                }
 
                 $("#btnGuardar")
                     .val("Guardado")
