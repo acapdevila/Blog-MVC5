@@ -1,6 +1,7 @@
 ﻿body {
     padding: 20px 0;
     font-family: 'open_sansregular';
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -37,8 +38,11 @@ a {
 .logo {
        margin-bottom:5px;       
 }
-  
-.typo {font-family: 'open_sansbold'; text-transform: uppercase;}
+
+.typo {
+    font-family: 'open_sansregular';
+    text-transform: uppercase;
+}
 .styledtypo {font-family: 'chasing_embers_demo_versionRg';}
 
 .smaller {
@@ -48,10 +52,15 @@ a {
 .adjust {
     margin:0; padding:0;}
 
-h1,h2,h3,
-h4,h5,h6,
-.h1,.h2,.h3,
-.h4,.h5,.h6 {font-family: 'open_sansbold'; text-transform: uppercase; letter-spacing: -1px; margin: 30px 0;}
+h1, h2, h3,
+h4, h5, h6,
+.h1, .h2, .h3,
+.h4, .h5, .h6 {
+    font-family: 'open_sansregular';
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 20px 0;
+}
 
 
 /*Menú superior*/
@@ -72,7 +81,7 @@ letter-spacing: 1px;
 
 .stylish-input-group .input-group-addon{
     background: white !important; 
-    width: 30%;
+    width: 50%;
     
 }
 .stylish-input-group .form-control{
@@ -97,19 +106,37 @@ letter-spacing: 1px;
     line-height:25px;}
 
     .postcontent a {
-    border-bottom: 2px solid #91e1bc}
+        border-bottom: 2px solid #5F9494
+    }
 
-.postsmall {
-    min-height: 580px;
+
+
+/*Sidebar subscripció*/
+
+.btn-dark {
+    color: #fff;
+    background-color: #537B7B;
+    border-color: #537B7B;
 }
+    .btn-dark:hover {
+        color: #B69D88;
+        
+    }
+
+    .btn-dark a {
+    color: #ffffff;}
+
+        .btn-dark a:hover {
+            color: #B69D88;
+        }
+
 
 /*Sidebar etiquetas*/
-
 .linketiqueta {
-    background: #222; 
+    background: #222;
     color: #fff;
     padding: 5px 8px;
-    font-size:90%;
+    font-size: 90%;
     margin-bottom: 4px;
 }
 
@@ -184,19 +211,35 @@ letter-spacing: 1px;
 /*Footer*/
 
 footer {
-    background: #64c699;
-    padding: 20px 0;
-     text-transform: uppercase;
+    background: #516363;
+    padding: 35px 5px;
+    text-transform: uppercase;
 }
     footer ul {
         margin: 10px 0 0 0;
+        padding-left: 0;
     }
 
     footer li {
-    list-style:none}
+        list-style: none;
+        
+    }
 
-    footer li a:hover {
-    color: #ffffff;}
+        footer li a {
+            color: #ffffff;
+        }
+
+            footer li a:hover {
+                color: #B69D88;
+            }
+
+.social {
+    margin-top: 10px;
+}
+.social img:hover{
+   opacity:0.7;
+}
+
 
 /*Colors*/
 
@@ -286,6 +329,8 @@ footer {
 
     .postsmall {
         min-height: unset;}
+
+ 
 .normal-underline-text,
 .normal-underline-text:hover{
   color: #444;

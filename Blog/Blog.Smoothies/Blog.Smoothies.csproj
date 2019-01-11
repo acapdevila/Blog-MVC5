@@ -173,6 +173,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
+    <Compile Include="Controllers\PortadaController.cs" />
     <Compile Include="Controllers\RecetasController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Content\imagenes\lamaternidadyelencuentro.jpg" />
     <Content Include="Content\imagenes\laura.jpg" />
     <Content Include="Content\imagenes\logo.png" />
+    <Content Include="Content\imagenes\Logowhite.png" />
     <Content Include="Content\imagenes\microgreens.jpg" />
     <Content Include="Content\imagenes\mightysalads.jpg" />
     <Content Include="Content\imagenes\migraña.jpg" />
@@ -945,6 +947,7 @@
     <Content Include="Views\Shared\_DatosEstructuradosReceta.cshtml" />
     <Content Include="Views\Recetas\EditorTemplates\EditorInstruccion.cshtml" />
     <Content Include="Views\Recetas\EditorTemplates\EditorIngredienteReceta.cshtml" />
+    <Content Include="Views\Portada\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

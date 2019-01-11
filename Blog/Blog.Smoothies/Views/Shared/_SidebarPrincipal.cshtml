@@ -2,34 +2,48 @@
  <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
     <!-- Side Widget Well -->
-    @*<div class="well">
-            <h3>¡Hola!</h3>
-
-            <p>Mi nombre es Laura y vivo en El Masnou, un pueblo de playa cerca de Barcelona.<br /><a class="smaller" href="Hola/Index">Seguir leyendo...</a></p>
-            <img class="img-circle center-block" src="~/Content/imagenes/laura.jpg" alt="by Laura García" style="max-width:80%; padding: 5px;" />
-
-        </div>*@
 
 
-    <div class="buscador-menu">
+    <div class="well">
+        <div class="buscador-menu">
+            <h4>Buscador</h4>
 
-        @Html.Partial("_InputBuscador")
+            @Html.Partial("_InputBuscador")
 
 
+        </div>
     </div>
 
-    <h4> INSTAGRAM @@bylauragarcia</h4>
+        <h4> <a href="https://www.instagram.com/bylauragarcia/" target="_blank">Últimas publicaciones en Instagram</a></h4>
 
-    <!-- LightWidget WIDGET -->
-    <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/e175568f86365fbbb24411895a5dcc60.html" id="lightwidget_e175568f86" name="lightwidget_e175568f86" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+        <!-- LightWidget WIDGET -->
+        <script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/e175568f86365fbbb24411895a5dcc60.html" id="lightwidget_e175568f86" name="lightwidget_e175568f86" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+
+        <div class="well">
+            <h4>Subscríbete a la newsletter</h4>
+
+            <button type="button" class="btn btn-dark"><a href="http://eepurl.com/dtbNnD" target="_blank">Pues claro, faltaría más</a></button>
 
 
-    <!-- Nube de etiquetas -->
-    @*@Html.Action("NubeEtiquetas", "Sidebar")*@
+
+        </div>
+
+
+        <div class="well">
+            <h3>¡Hola!</h3>
+
+            <p>Mi nombre es Laura y vivo en El Masnou, un pueblo de playa cerca de Barcelona.<br /><a class="smaller" href="@Url.Action("Index", "Hola")">Seguir leyendo...</a></p>
+            <img class="img-circle center-block" src="~/Content/imagenes/laura.jpg" alt="by Laura García" style="max-width:80%; padding: 5px;" />
+
+        </div>
+
+
+        <!-- Nube de etiquetas -->
+        @*@Html.Action("NubeEtiquetas", "Sidebar")*@
 
 
 
-    @* <div class="well">
+        @* <div class="well">
 
 
             <!--  Styles MailChimp Signup Form -->
@@ -66,6 +80,6 @@
 
 
 
-    <!-- Nube de etiquetas -->
-    @*@Html.Action("ArchivoEtiquetas", "Sidebar")*@
-</div>
+        <!-- Nube de etiquetas -->
+        @*@Html.Action("ArchivoEtiquetas", "Sidebar")*@
+    </div>

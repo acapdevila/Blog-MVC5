@@ -24,6 +24,7 @@
             @* ReSharper restore Mvc.ActionNotResolved *@
         </span>
     }
+    <br />
 </p>
 @Html.Raw(Model.Subtitulo)
 <!-- Preview Image
@@ -37,18 +38,20 @@
 
 
 <hr>
+<p class="small text-uppercase">
 
-@if (User.Identity.IsAuthenticated)
-{
-    <span class="pull-right">
-        @* ReSharper disable Mvc.ActionNotResolved *@
-        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Eliminar", "Delete",  new { id = Model.Id }) |
-        @Html.ActionLink("Volver al listado", "Index")
-        @* ReSharper restore Mvc.ActionNotResolved *@
-    </span>
-}
-<br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <span class="pull-right">
+            @* ReSharper disable Mvc.ActionNotResolved *@
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = Model.Id }) |
+            @Html.ActionLink("Volver al listado", "Index")
+            @* ReSharper restore Mvc.ActionNotResolved *@
+        </span>
+    }
+</p>
+    <br />
 
 
 
