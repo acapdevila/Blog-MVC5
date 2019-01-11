@@ -182,7 +182,17 @@ namespace Blog.Smoothies.Controllers
             return View(viewModel);
         }
 
-        
+        public ActionResult Edit(int id)
+        {
+            return RedirectToAction("Edit", "Posts", new {id}); 
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return RedirectToAction("Delete", "Posts", new { id });
+        }
+
+
         private async Task<ArchivoItemDto> RecuperarArchivoBlog(int anyo, int mes)
         {
             return await _blogServicio
@@ -277,7 +287,7 @@ namespace Blog.Smoothies.Controllers
 
             return postsSugeridos;
         }
-
+        
 
     }
 
