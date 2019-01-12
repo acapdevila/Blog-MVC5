@@ -266,6 +266,10 @@
     <Content Include="Content\imagenes\onepandone.jpg" />
     <Content Include="Content\imagenes\perfecthealthdiet.jpg" />
     <Content Include="Content\imagenes\plenty.jpg" />
+    <Content Include="Content\imagenes\Portada\Foto1.jpg" />
+    <Content Include="Content\imagenes\Portada\Foto2.jpg" />
+    <Content Include="Content\imagenes\Portada\Foto3.jpg" />
+    <Content Include="Content\imagenes\Portada\Foto4.jpg" />
     <Content Include="Content\imagenes\primalmoms.jpg" />
     <Content Include="Content\imagenes\renegadebeauty.jpg" />
     <Content Include="Content\imagenes\slowcooker.jpg" />
@@ -951,7 +955,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\imagenes\Portada\" />
     <Folder Include="Views\Sitemap\" />
   </ItemGroup>
   <ItemGroup>
