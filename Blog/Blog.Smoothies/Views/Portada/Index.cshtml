@@ -28,18 +28,25 @@
 
 <div class="subscripcionhome">
     <h2 class="bold">No te pierdas nada de <br />lo que se cuece por aquí</h2>
-    <a class="btn btn-dark" href="http://eepurl.com/dtbNnD" target="_blank">Subscríbete a la newsletter</a>
+    <a class="btn btn-custom" href="http://eepurl.com/dtbNnD" target="_blank">Subscríbete a la newsletter</a>
+    
+    <p>Envío una al mes. Y es interesantísima, claro.</p>
 </div>
 <div class="clearfix"></div>
+<div class="col-md-3">
+    <hr />
+    <h3 class="bold">Últimas publicaciones <br>en el blog</h3>
+    <hr />
+</div>
 
-<h3>Últimas publicaciones</h3>
 
+    @foreach (var item in Model.UltimosPosts)
+    {
+        <div class="col-md-3">
+            <h4 class="typo"><a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)">@item.Titulo</a></h4>
 
-@foreach (var item in Model.UltimosPosts)
-{
-    <div class="col-md-3">
-        <a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)"> <img src="@item.UrlImagen" alt="@item.Titulo"/></a>
-    </div>
-}
-<div class="clearfix"></div>
+            <a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)"> <img src="@item.UrlImagen" alt="@item.Titulo" /></a>
+        </div>
+    }
+    <div class="clearfix"></div>
 

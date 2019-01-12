@@ -41,7 +41,7 @@ namespace Blog.Smoothies.Controllers
                 .Publicados()
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .Take(4)
+                .Take(3)
                 .ToListAsync();
         }
 
