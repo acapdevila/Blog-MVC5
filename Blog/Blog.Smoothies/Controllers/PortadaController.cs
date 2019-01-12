@@ -13,7 +13,7 @@ namespace Blog.Smoothies.Controllers
     {
         public class PortadaViewModel
         {
-            public List<LineaResumenPost> UltimosTresPosts
+            public List<LineaResumenPost> UltimosPosts
             {
                 get; set;
             }
@@ -30,7 +30,7 @@ namespace Blog.Smoothies.Controllers
         {
             var viewModel = new PortadaViewModel
             {
-                UltimosTresPosts = await RecuperarPostPortada()
+                UltimosPosts = await RecuperarPostPortada()
             };
             return View(viewModel);
         }
@@ -39,10 +39,9 @@ namespace Blog.Smoothies.Controllers
         {
             return await Posts()
                 .Publicados()
-                .Where(m => !m.Titulo.Contains("lecturas recomendadas"))
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .Take(5)
+                .Take(4)
                 .ToListAsync();
         }
 

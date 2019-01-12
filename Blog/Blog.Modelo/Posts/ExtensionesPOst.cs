@@ -102,6 +102,7 @@ namespace Blog.Modelo.Posts
                Id = m.Id,
                UrlSlug = m.UrlSlug,
                Titulo = m.Titulo,
+               UrlImagen = m.UrlImagenPrincipal,
                Subtitulo = m.Subtitulo,
                FechaPost = m.FechaPost,
                Autor = m.Autor

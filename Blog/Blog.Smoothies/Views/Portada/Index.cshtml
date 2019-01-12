@@ -1,10 +1,10 @@
-﻿
+﻿@using Blog.Smoothies.Helpers
 @{
     ViewBag.Title = "By Laura Garcia";
 }
 
 <div class="col-md-5">
-    <img src="~/Content/imagenes/Portada/foto1.jpg" />
+    <img src="~/Content/imagenes/Portada/foto1.jpg" alt="Crema de calabaza" />
 </div>
 
 
@@ -14,43 +14,32 @@
     <h1>"If it wasn't for people sharing recipes, mankind would not have survived"</h1>
     <p>Laurie Colwin</p>
     <hr />
-    <img src="~/Content/imagenes/Portada/foto3.jpg" />
+    <img src="~/Content/imagenes/Portada/foto3.jpg" alt="Esparragos" />
 
 </div>
 <div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" />
+    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Te matcha" />
     <hr />
 
-    <img src="~/Content/imagenes/Portada/foto4.jpg" />
+    <img src="~/Content/imagenes/Portada/foto4.jpg" alt="Bebé comiendo pan de trigo sarraceno" />
 </div>
 
 <div class="clearfix"></div>
 
 <div class="subscripcionhome">
     <h2 class="bold">No te pierdas nada de <br />lo que se cuece por aquí</h2>
-    <button type="button" class="btn btn-dark"><a href="http://eepurl.com/dtbNnD" target="_blank">Subscríbete a la newsletter</a></button>
-
+    <a class="btn btn-dark" href="http://eepurl.com/dtbNnD" target="_blank">Subscríbete a la newsletter</a>
 </div>
 <div class="clearfix"></div>
 
 <h3>Últimas publicaciones</h3>
 
 
-<div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Alternate Text" />
-
-</div>
-<div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Alternate Text" />
-
-</div>
-<div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Alternate Text" />
-
-</div>
-<div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Alternate Text" />
-
-</div>
+@foreach (var item in Model.UltimosPosts)
+{
+    <div class="col-md-3">
+        <a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)"> <img src="@item.UrlImagen" alt="@item.Titulo"/></a>
+    </div>
+}
 <div class="clearfix"></div>
 
