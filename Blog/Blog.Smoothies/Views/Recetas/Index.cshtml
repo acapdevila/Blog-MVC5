@@ -48,12 +48,14 @@
                     <span class="sr-only">Acciones</span>
                 </button>
                 <ul class="dropdown-menu">
-                    @* <li>
-                    @Html.ActionLink("Vista previa", "VistaPrevia", new { id = item.Id })
-                 </li>
-               <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"> b bv</li>*@
+                    <li>
+                        @Html.ActionLink("Imprimir", "Imprimir", new { item.Id })
+                    </li>
+                    @*
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    *@
+                    <li role="separator" class="divider"> b bv</li>
                     <li>
                         @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
                     </li>

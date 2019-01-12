@@ -87,6 +87,9 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftReportViewerWebForms_v10.1.0.0\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -169,6 +172,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\informes\Datasets\DataSetRecetas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetRecetas.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
@@ -192,6 +200,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ReportPdfResult.cs" />
     <Compile Include="Helpers\ListEditorHelper.cs" />
     <Compile Include="Helpers\AccionSeleccionadaPorBotonAttribute.cs" />
     <Compile Include="Helpers\TotalesListaHelper.cs" />
@@ -404,6 +413,17 @@
     </Content>
     <Content Include="fonts\OpenSans-Bold-webfont.eot" />
     <Content Include="fonts\OpenSans-Bold-webfont.ttf" />
+    <Content Include="Content\informes\Datasets\DataSetRecetas.xsc">
+      <DependentUpon>DataSetRecetas.xsd</DependentUpon>
+    </Content>
+    <None Include="Content\informes\Datasets\DataSetRecetas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetRecetas.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\informes\Datasets\DataSetRecetas.xss">
+      <DependentUpon>DataSetRecetas.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SmoothiesDeCuchara.pubxml" />
     <Content Include="google69a10687168cf33a.html" />
@@ -978,6 +998,11 @@
       <Project>{1739ca45-9637-4b80-a054-c7a9b13c9657}</Project>
       <Name>Blog.ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\informes\InformeReceta.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

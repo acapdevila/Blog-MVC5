@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetReceta" targetNamespace="http://tempuri.org/DataSetReceta.xsd" xmlns:mstns="http://tempuri.org/DataSetReceta.xsd" xmlns="http://tempuri.org/DataSetReceta.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetReceta" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetReceta" msprop:Generator_UserDSName="DataSetReceta">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DtReceta" msprop:Generator_TableClassName="DtRecetaDataTable" msprop:Generator_TableVarName="tableDtReceta" msprop:Generator_TablePropName="DtReceta" msprop:Generator_RowDeletingName="DtRecetaRowDeleting" msprop:Generator_RowChangingName="DtRecetaRowChanging" msprop:Generator_RowEvHandlerName="DtRecetaRowChangeEventHandler" msprop:Generator_RowDeletedName="DtRecetaRowDeleted" msprop:Generator_UserTableName="DtReceta" msprop:Generator_RowChangedName="DtRecetaRowChanged" msprop:Generator_RowEvArgName="DtRecetaRowChangeEvent" msprop:Generator_RowClassName="DtRecetaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Autor" msprop:Generator_ColumnVarNameInTable="columnAutor" msprop:Generator_ColumnPropNameInRow="Autor" msprop:Generator_ColumnPropNameInTable="AutorColumn" msprop:Generator_UserColumnName="Autor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TiempoCoccion" msprop:Generator_ColumnVarNameInTable="columnTiempoCoccion" msprop:Generator_ColumnPropNameInRow="TiempoCoccion" msprop:Generator_ColumnPropNameInTable="TiempoCoccionColumn" msprop:Generator_UserColumnName="TiempoCoccion" type="xs:duration" />
+              <xs:element name="FechaPublicacion" msprop:Generator_ColumnVarNameInTable="columnFechaPublicacion" msprop:Generator_ColumnPropNameInRow="FechaPublicacion" msprop:Generator_ColumnPropNameInTable="FechaPublicacionColumn" msprop:Generator_UserColumnName="FechaPublicacion" type="xs:dateTime" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Keywords" msprop:Generator_ColumnVarNameInTable="columnKeywords" msprop:Generator_ColumnPropNameInRow="Keywords" msprop:Generator_ColumnPropNameInTable="KeywordsColumn" msprop:Generator_UserColumnName="Keywords" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TiempoPreparacion" msprop:Generator_ColumnVarNameInTable="columnTiempoPreparacion" msprop:Generator_ColumnPropNameInRow="TiempoPreparacion" msprop:Generator_ColumnPropNameInTable="TiempoPreparacionColumn" msprop:Generator_UserColumnName="TiempoPreparacion" type="xs:duration" />
+              <xs:element name="CategoriaReceta" msprop:Generator_ColumnVarNameInTable="columnCategoriaReceta" msprop:Generator_ColumnPropNameInRow="CategoriaReceta" msprop:Generator_ColumnPropNameInTable="CategoriaRecetaColumn" msprop:Generator_UserColumnName="CategoriaReceta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Raciones" msprop:Generator_ColumnVarNameInTable="columnRaciones" msprop:Generator_ColumnPropNameInRow="Raciones" msprop:Generator_ColumnPropNameInTable="RacionesColumn" msprop:Generator_UserColumnName="Raciones" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Imagen_Url" msprop:Generator_ColumnVarNameInTable="columnImagen_Url" msprop:Generator_ColumnPropNameInRow="Imagen_Url" msprop:Generator_ColumnPropNameInTable="Imagen_UrlColumn" msprop:Generator_UserColumnName="Imagen_Url" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Imagen_Alt" msprop:Generator_ColumnVarNameInTable="columnImagen_Alt" msprop:Generator_ColumnPropNameInRow="Imagen_Alt" msprop:Generator_ColumnPropNameInTable="Imagen_AltColumn" msprop:Generator_UserColumnName="Imagen_Alt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DtInstruccion" msprop:Generator_TableClassName="DtInstruccionDataTable" msprop:Generator_TableVarName="tableDtInstruccion" msprop:Generator_TablePropName="DtInstruccion" msprop:Generator_RowDeletingName="DtInstruccionRowDeleting" msprop:Generator_RowChangingName="DtInstruccionRowChanging" msprop:Generator_RowEvHandlerName="DtInstruccionRowChangeEventHandler" msprop:Generator_RowDeletedName="DtInstruccionRowDeleted" msprop:Generator_UserTableName="DtInstruccion" msprop:Generator_RowChangedName="DtInstruccionRowChanged" msprop:Generator_RowEvArgName="DtInstruccionRowChangeEvent" msprop:Generator_RowClassName="DtInstruccionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DtIngrediente" msprop:Generator_TableClassName="DtIngredienteDataTable" msprop:Generator_TableVarName="tableDtIngrediente" msprop:Generator_TablePropName="DtIngrediente" msprop:Generator_RowDeletingName="DtIngredienteRowDeleting" msprop:Generator_RowChangingName="DtIngredienteRowChanging" msprop:Generator_RowEvHandlerName="DtIngredienteRowChangeEventHandler" msprop:Generator_RowDeletedName="DtIngredienteRowDeleted" msprop:Generator_UserTableName="DtIngrediente" msprop:Generator_RowChangedName="DtIngredienteRowChanged" msprop:Generator_RowEvArgName="DtIngredienteRowChangeEvent" msprop:Generator_RowClassName="DtIngredienteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DtReceta" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DtInstruccion_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DtInstruccion" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DtIngrediente_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DtIngrediente" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
