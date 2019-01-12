@@ -79,7 +79,7 @@ namespace Blog.Smoothies
             routes.MapRoute(
                 name: NombreRutaMvc,
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Portada", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                     {
                         controller = "Account|Blog|Blogs|Borradores|Categorias|Contacto|Error|Hola|Imagenes|Libros|Manage|Menu|Portada|Posts|Principal|Recetas|Rss|Sidebar|Tags|Utensilios"
