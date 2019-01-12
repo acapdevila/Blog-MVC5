@@ -1,15 +1,18 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Blog.Datos;
+using Blog.Modelo.Recetas;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
+using Microsoft.Reporting.WebForms;
 
 namespace Blog.Smoothies.Controllers
 {
@@ -185,6 +188,20 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public async Task<ActionResult> Imprimir(int id)
+        {
+            var receta = await _buscador.BuscarRecetaPorId(id);
+
+            if (receta == null) return HttpNotFound();
+
+            var localReport = CrearInformeDeReceta(receta);
+
+            return new ReportPdfResult(localReport);
+        }
+
+       
+
         [AllowAnonymous]
         public async  Task<ActionResult> QuickMultipleSearch(string term)
         {
@@ -233,7 +250,33 @@ namespace Blog.Smoothies.Controllers
         {
             return Request.Files.Count == 0 ? null : Request.Files.Get(0);
         }
-
         
+        private LocalReport CrearInformeDeReceta(Receta receta)
+        {
+            //Referencia a la plantilla del informe
+            var localReport = new LocalReport
+            {
+                ReportPath = Server.MapPath("~/Content/informes/InformeReceta.rdlc"),
+                EnableExternalImages = true,
+                DisplayName = receta.Nombre
+            };
+            
+            var rds1 = new ReportDataSource("Instrucciones",  receta.Instrucciones);
+            var rds2 = new ReportDataSource("Ingredientes", receta.Ingredientes);
+            var rds3 = new ReportDataSource("Receta", new List<Receta> { receta });
+           
+            localReport.DataSources.Add(rds1);
+            localReport.DataSources.Add(rds2);
+            localReport.DataSources.Add(rds3);
+
+            //localReport.SetParameters(new[]
+            //{
+            //    new ReportParameter("ParameterDateFrom", valorParam1),
+            //    new ReportParameter("ParameterDateTo", valorParam2)
+            //});
+
+            return localReport;
+        }
+
     }
 }
