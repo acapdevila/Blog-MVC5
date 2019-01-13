@@ -109,6 +109,8 @@ letter-spacing: 1px;
     color: #ffffff;
 }
 
+    .subscripcionhome p {
+    margin-top:15px;}
 
 
 
@@ -127,9 +129,30 @@ letter-spacing: 1px;
         border-bottom: 2px solid #5F9494
     }
 
+/*Botó custom*/
+
+.btn-custom {
+    color: #fff;
+    background-color: #5F9494;
+    border-color: #ffffff;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+    .btn-custom:hover {
+        background-color: #537B7B;
+        color: #FFFFFF;
+    }
 
 
 /*Sidebar subscripció*/
+
+
+.subscripcionsidebar {
+    background: #5F9494;
+    
+    color: #ffffff;
+}
 
 .btn-dark {
     color: #fff;
@@ -248,7 +271,7 @@ footer {
         }
 
             footer li a:hover {
-                color: #B69D88;
+                color: #5F9494;
             }
 
 .social {
