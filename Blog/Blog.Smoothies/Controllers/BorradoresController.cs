@@ -9,33 +9,66 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Blog;
+using Blog.Servicios.Blog.Borradores;
+using Blog.Servicios.Recetas;
 using Blog.ViewModels.Post;
+using EditorBorrador = Blog.ViewModels.Post.EditorBorrador;
 
 namespace Blog.Smoothies.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
     {
-        private readonly PostsServicio _postsServicio;
+        private readonly BuscadorBorrador _buscadorBorrador;
+        private readonly BuscadorBorradores _buscadorBorradores;
+        private readonly BuscadorDeReceta _buscadorDeReceta;
+        private readonly EditorBorradorPost _editorBorrador;
 
         public BorradoresController() : this(new ContextoBaseDatos())
         {
             
         }
 
-        public BorradoresController(ContextoBaseDatos contexto): 
-            this(new PostsServicio(contexto, 
-                    new AsignadorTags(new TagRepositorio(contexto)),
-                    new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
-                    BlogController.TituloBlog))
+        public BorradoresController(ContextoBaseDatos contexto) :
+            this(contexto,
+                new BuscadorBorrador(contexto, BlogController.TituloBlog),
+                new AsignadorTags(new TagRepositorio(contexto)),
+                new AsignadorCategorias(new CategoriaRepositorio(contexto)))
+
         {
 
         }
 
 
-        public BorradoresController(PostsServicio postsServicio)
+        public BorradoresController(
+            ContextoBaseDatos contexto,
+            BuscadorBorrador buscadorBorrador,
+            AsignadorTags asignadorTags,
+            AsignadorCategorias asignadorCategorias) :
+            this(buscadorBorrador,
+                new BuscadorBorradores(contexto, BlogController.TituloBlog), 
+                new EditorBorradorPost(contexto, 
+                                        new BuscadorBlog(contexto, BlogController.TituloBlog), 
+                                        buscadorBorrador, 
+                                        asignadorTags, 
+                                        asignadorCategorias),
+                new BuscadorDeReceta(contexto))
         {
-            _postsServicio = postsServicio;
+
+        }
+
+
+        public BorradoresController(
+            BuscadorBorrador buscadorBorrador,
+            BuscadorBorradores buscadorBorradores,
+            EditorBorradorPost creadorBorrador, 
+            BuscadorDeReceta buscadorDeReceta )
+        {
+            _buscadorDeReceta = buscadorDeReceta;
+            _editorBorrador = creadorBorrador;
+            _buscadorBorradores = buscadorBorradores;
+            _buscadorBorrador = buscadorBorrador;
         }
 
         public async Task<ActionResult> Index()
@@ -44,7 +77,7 @@ namespace Blog.Smoothies.Controllers
             var viewModel = new ListaBorradoresViewModel
             {
                 BuscarPor = criteriosBusqueda,
-                ListaPosts = await _postsServicio.ObtenerListaBorradores(criteriosBusqueda)
+                ListaPosts = await _buscadorBorradores.ObtenerListaBorradoresAsync(criteriosBusqueda)
             };
 
 
@@ -53,7 +86,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> ActualizarNombresSinAcentos()
         {
-           await  _postsServicio.ActualizarNombresSinAcentos();
+           await  _editorBorrador.ActualizarNombresSinAcentos();
             return RedirectToAction("Index");
         }
 
@@ -63,7 +96,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = await RecuperarPost(id.Value);
+            var post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -75,16 +108,29 @@ namespace Blog.Smoothies.Controllers
 
         public ActionResult Crear()
         {
-            var viewModel = new EditorBorrador
+            if (!(TempData["TempEditorBorrador"] is EditorBorrador viewModel))
             {
-                Autor = "Laura García",
-                FechaPost = DateTime.Today
-            };
+                viewModel = new EditorBorrador
+                {
+                    Autor = "Laura García",
+                    FechaPost = DateTime.Today
+                };
+            }
 
             return View(viewModel);
         }
 
-       
+        public async Task<ActionResult> CrearDeReceta(int id)
+        {
+            var receta = await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);
+            var post = _editorBorrador.GenerarNuevoBorradorPorReceta(receta);
+
+            TempData["TempEditorBorrador"] = new EditorBorrador(post);
+
+            return RedirectToAction("Crear");
+        }
+
+
 
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -104,7 +150,8 @@ namespace Blog.Smoothies.Controllers
 
             if (!ModelState.IsValid) return View(viewModel);
 
-            await _postsServicio.CrearBorrador(viewModel);
+            var receta =  await _buscadorDeReceta.BuscarRecetaPorNombreAsync(viewModel.Receta);
+            await _editorBorrador.CrearBorrador(viewModel, receta);
 
             if (boton.ToLower().Contains(@"salir"))
                 return RedirectToAction("Index");
@@ -127,7 +174,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await RecuperarPost(id.Value);
+            Post post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -144,7 +191,7 @@ namespace Blog.Smoothies.Controllers
         {
             if (!ModelState.IsValid) return View(viewModel);
 
-            await ActualizarPost(viewModel);
+            await ActualizarBorrador(viewModel);
 
             if (boton.ToLower().Contains(@"publicar"))
             {
@@ -168,7 +215,7 @@ namespace Blog.Smoothies.Controllers
         {
             if (ModelState.IsValid)
             {
-                await ActualizarPost(viewModel);
+                await ActualizarBorrador(viewModel);
                 return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
             }
 
@@ -193,7 +240,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = await RecuperarPost(id.Value);
+            var post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -205,34 +252,28 @@ namespace Blog.Smoothies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await EliminarPost(id);
+            await EliminarBorrador(id);
             return RedirectToAction("Index");
         }
 
         
-        private async Task<Post> RecuperarPost(int id)
+        private async Task<Post> RecuperarBorrador(int id)
         {
-            return await _postsServicio.RecuperarPost(id);
+            return await _buscadorBorrador.BuscarBorradorPorIdAsync(id);
         }
 
        
-        private async Task ActualizarPost(EditorBorrador editorBorrador)
+        private async Task ActualizarBorrador(EditorBorrador editorBorrador)
         {
-            await _postsServicio.ActualizarBorrador(editorBorrador);
+            var receta = await _buscadorDeReceta.BuscarRecetaPorNombreAsync(editorBorrador.Receta);
+            await _editorBorrador.ActualizarBorrador(editorBorrador, receta);
         }
 
-        private async Task EliminarPost(int id)
+        private async Task EliminarBorrador(int id)
         {
-            await _postsServicio.EliminarPost(id);
+            var borrador = await RecuperarBorrador(id);
+            await _editorBorrador.EliminarBorrador(borrador);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _postsServicio.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

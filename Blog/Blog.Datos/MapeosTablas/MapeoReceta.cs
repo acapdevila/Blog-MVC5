@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.Data.Entity.ModelConfiguration;
 using Blog.Modelo.Recetas;
 
 namespace Blog.Datos.MapeosTablas
@@ -12,7 +14,10 @@ namespace Blog.Datos.MapeosTablas
             Property(m => m.Nombre)
                 .IsRequired()
                 .HasMaxLength(256)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar")
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(new IndexAttribute("IX_NombreReceta", 1) { IsUnique = true }));
 
             Property(m => m.Autor)
                 .HasMaxLength(64)
@@ -35,6 +40,8 @@ namespace Blog.Datos.MapeosTablas
                 .HasColumnType("varchar");
 
 
+            HasOptional(m => m.Post)
+                .WithOptionalPrincipal(m=>m.Receta);
         }
     }
 }

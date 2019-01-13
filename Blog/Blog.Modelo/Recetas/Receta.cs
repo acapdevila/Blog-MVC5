@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Imagenes;
+using Blog.Modelo.Posts;
 
 namespace Blog.Modelo.Recetas
 {
@@ -50,6 +51,8 @@ namespace Blog.Modelo.Recetas
         public ICollection<IngredienteReceta> Ingredientes { get; set; }
 
         public ICollection<Instruccion> Instrucciones { get; set; }
+
+        public Post Post { get; set; }
 
         public Instruccion ObtenerInstruccion(int posicion)
         {

@@ -20,6 +20,7 @@ namespace Blog.Smoothies.Controllers
     public class RecetasController : Controller
     {
         private  readonly BuscadorDeRecetas _buscador;
+        private readonly BuscadorDeReceta _buscadorDeReceta;
         private readonly EditorDeRecetas _editor;
         private readonly SubirArchivoImagenServicio _imagenServicio;
 
@@ -30,17 +31,19 @@ namespace Blog.Smoothies.Controllers
 
         public RecetasController(ContextoBaseDatos contexto) : this(
                 new BuscadorDeRecetas(contexto), 
+                new BuscadorDeReceta(contexto), 
                 new EditorDeRecetas(contexto),
                 new SubirArchivoImagenServicio())
         {
             
         }
 
-        public RecetasController(BuscadorDeRecetas buscador, EditorDeRecetas editor, SubirArchivoImagenServicio imagenServicio)
+        public RecetasController(BuscadorDeRecetas buscador,BuscadorDeReceta buscadorDeReceta, EditorDeRecetas editor, SubirArchivoImagenServicio imagenServicio)
         {
             _buscador = buscador;
             _editor = editor;
             _imagenServicio = imagenServicio;
+            _buscadorDeReceta = buscadorDeReceta;
         }
 
 
@@ -56,7 +59,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> VistaPrevia(int id)
         {
-            var receta = await _buscador.BuscarRecetaPorId(id);
+            var receta = await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);
 
             if (receta == null) return HttpNotFound();
 
@@ -109,7 +112,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Editar(int id)
         {
-            var receta = await _buscador.BuscarRecetaPorId(id);
+            var receta = await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);
 
             if (receta == null) return HttpNotFound();
 
@@ -170,7 +173,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Eliminar(int id)
         {
-            var receta =  await _buscador.BuscarRecetaPorId(id);
+            var receta =  await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);
 
             if (receta == null) return HttpNotFound();
 
@@ -191,7 +194,7 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Imprimir(int id)
         {
-            var receta = await _buscador.BuscarRecetaPorId(id);
+            var receta = await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);
 
             if (receta == null) return HttpNotFound();
 
@@ -203,7 +206,7 @@ namespace Blog.Smoothies.Controllers
        
 
         [AllowAnonymous]
-        public async  Task<ActionResult> QuickMultipleSearch(string term)
+        public async  Task<ActionResult> AutocompleteSearch(string term)
         {
             var search = (await _buscador.ElementosDeRecetas(term))
                             .Select(m => new { value = m.Descripcion, id = m.Valor })

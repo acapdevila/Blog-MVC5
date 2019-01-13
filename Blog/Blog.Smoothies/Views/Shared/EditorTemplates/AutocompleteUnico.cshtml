@@ -1,0 +1,26 @@
+﻿@model string
+
+@{
+    string name = ViewData.TemplateInfo.HtmlFieldPrefix;
+    string id = name.Replace(".", "_");
+}
+
+
+@Html.TextBox("",Model, htmlAttributes : new { @class = "form-control" } )
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#@(id)").autocomplete({
+            source: '@(Url.Action(ViewData["ajaxActionName"].ToString(), ViewData["ajaxControllerName"].ToString()))',
+            type: "GET",
+            dataType: "json",
+            minLength: 3,
+            select: function(event,ui) {
+                $("#@(id)").val(ui.item.value);
+                return false;
+            }
+        });
+    });
+</script>
+

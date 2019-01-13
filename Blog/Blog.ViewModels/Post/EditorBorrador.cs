@@ -23,6 +23,7 @@ namespace Blog.ViewModels.Post
             this.InjectFrom(post);
             Tags = post.Tags.TagsSeparadosPorComma();
             Categorias = post.Categorias.CategoriasSeparadasPorComma();
+            Receta = post.Receta?.Nombre;
         }
 
       
@@ -69,6 +70,8 @@ namespace Blog.ViewModels.Post
 
         [Required]
         public string Autor { get; set; }
+
+        public string Receta { get; set; }
 
 
         [Display(Name = "Etiquetas")]

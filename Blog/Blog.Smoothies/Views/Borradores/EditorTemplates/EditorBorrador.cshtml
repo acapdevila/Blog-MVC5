@@ -53,6 +53,19 @@
 </div>
 
 <div class="form-group">
+    @Html.LabelFor(model => model.Receta, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Receta, "AutocompleteUnico", new
+       {
+           ajaxActionName = "AutocompleteSearch",
+           ajaxControllerName = "Recetas"
+       })
+        @Html.ValidationMessageFor(model => model.Autor, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+<div class="form-group">
     @Html.LabelFor(model => model.Categorias, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
 

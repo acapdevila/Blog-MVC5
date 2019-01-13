@@ -1,21 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Extensiones;
+using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Posts
 {
     public class Post : IEntidadConTags
     {
-        public static Post CrearNuevoPorDefecto(string autor, int blogId)
+        public static Post CrearNuevoPorDefecto(string autor,BlogEntidad blog)
         {
             return new Post
             {
-                BlogId = blogId,
+                BlogId = blog.Id,
                 Autor = autor,
                 EsBorrador = true,
                 EsRssAtom = false,
@@ -60,6 +59,7 @@ namespace Blog.Modelo.Posts
 
         public ICollection<Categoria> Categorias { get; set; }
 
+        public Receta Receta { get;private set; }
 
         public string TituloSinAcentos { get; private set; }
 
@@ -100,6 +100,66 @@ namespace Blog.Modelo.Posts
             TituloSinAcentos = titulo.RemoveDiacritics();
         }
 
-      
+
+        public void AsignarReceta(Receta receta)
+        {
+            Receta = receta;
+            
+            if (string.IsNullOrEmpty(Titulo))
+                Titulo = receta.Nombre;
+
+            if (string.IsNullOrEmpty(PalabrasClave))
+                PalabrasClave = receta.Keywords;
+
+            if (string.IsNullOrEmpty(Descripcion))
+                Descripcion = receta.Descripcion;
+
+
+            if (string.IsNullOrEmpty(UrlImagenPrincipal))
+                UrlImagenPrincipal = receta.Imagen.Url;
+
+            if (string.IsNullOrEmpty(Subtitulo))
+            {
+                Subtitulo =
+                    $"<p><img alt='{receta.Imagen.Alt}' class='img-responsive' src='{receta.Imagen.Url}' /></p>";
+            }
+
+            if (string.IsNullOrEmpty(ContenidoHtml))
+            {
+                var sb = new StringBuilder();
+
+                sb.Append($"<p> Reciones: {receta.Raciones} </p>");
+
+                sb.Append($"<p> Tiempo de preparación: {receta.TiempoPreparacion.TotalMinutes}  </br>");
+                sb.Append($"Tiempo de cocción: {receta.TiempoCoccion.TotalMinutes}  </br>");
+                sb.Append($"Tiempo total: {receta.TiempoTotal.TotalMinutes}  </p>");
+
+                sb.Append("<h3>Ingredientes</h3>");
+                sb.Append("<ul>");
+
+                foreach (var recetaIngrediente in receta.Ingredientes)
+                {
+                    sb.Append($"<li>{recetaIngrediente.Nombre}</li>");
+                }
+                sb.Append("</ul>");
+
+                sb.Append("<h3>Instrucciones</h3>");
+                sb.Append("<ol>");
+
+                foreach (var instruccion in receta.Instrucciones)
+                {
+                    sb.Append($"<li>{instruccion.Nombre}</li>");
+                }
+
+                sb.Append("</ol>");
+
+                ContenidoHtml = sb.ToString();
+            }
+
+         
+
+        }
+
+
     }
 }

@@ -11,6 +11,8 @@ namespace Blog.Datos.MapeosTablas
         {
             ToTable("Post");
 
+            HasKey(m => m.Id);
+
             Property(m => m.BlogId)
                 .HasColumnAnnotation(
                     IndexAnnotation.AnnotationName,
@@ -72,6 +74,8 @@ namespace Blog.Datos.MapeosTablas
                     m.MapRightKey("IdCategoria");
                     
                 });
+
+            HasOptional(m => m.Receta);
         }
     }
 }
