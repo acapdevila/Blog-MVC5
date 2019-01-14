@@ -56,6 +56,10 @@ h2 a:focus, h3 a:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
+
+li {
+line-height: 25px }
+
 /*Menu*/
 
 .navbar-brand {
@@ -105,6 +109,16 @@ h2 a:focus, h3 a:focus {
         text-decoration: none;
     }
 
+/*Subscripción home*/
+
+.subscripcionhome {
+    text-align: center;
+    background: #d7d2cc;
+    margin: 30px 0 30px 0;
+    padding: 25px;    
+}
+
+
 /*Footer*/
 
 footer {
@@ -137,12 +151,14 @@ footer {
 
 .well {
     background-color: #8aa596;
+    padding:15px 30px;
 }
 
     .well a {
         color: #ffffff;
     }
-
+    .well ul {
+    padding-left:15px}
 
 .panel-default > .panel-heading-arbol {
     background: #8aa596;

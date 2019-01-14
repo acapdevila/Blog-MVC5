@@ -271,6 +271,9 @@
     <Content Include="Content\imagenes\libros\SoftSkills.jpg" />
     <Content Include="Content\imagenes\libros\TheCleanCoder.jpg" />
     <Content Include="Content\imagenes\libros\WorkingWithLegacyCode.jpg" />
+    <Content Include="Content\imagenes\Portada\foto1.jpg" />
+    <Content Include="Content\imagenes\Portada\foto2.jpg" />
+    <Content Include="Content\imagenes\Portada\foto3.jpg" />
     <Content Include="Content\syntaxhighlighter.css" />
     <Content Include="Content\imagenes\asp.png" />
     <Content Include="Content\imagenes\logo.png" />

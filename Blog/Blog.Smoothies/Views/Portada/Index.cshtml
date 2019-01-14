@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "By Laura Garcia";
 }
-
+>
 <div class="col-md-5">
-    <img src="~/Content/imagenes/Portada/foto1.jpg" alt="Crema de calabaza" />
+    <img class="hidden-xs" src="~/Content/imagenes/Portada/foto1.jpg" alt="Crema de calabaza" />
 </div>
 
 
@@ -18,10 +18,10 @@
 
 </div>
 <div class="col-md-3">
-    <img src="~/Content/imagenes/Portada/foto2.jpg" alt="Te matcha" />
+    <img class="hidden-xs" src="~/Content/imagenes/Portada/foto2.jpg" alt="Te matcha" />
     <hr />
 
-    <img src="~/Content/imagenes/Portada/foto4.jpg" alt="Bebé comiendo pan de trigo sarraceno" />
+    <img class="hidden-xs" src="~/Content/imagenes/Portada/foto4.jpg" alt="Bebé comiendo pan de trigo sarraceno" />
 </div>
 
 <div class="clearfix"></div>
@@ -29,7 +29,7 @@
 <div class="subscripcionhome">
     <h2 class="bold">No te pierdas nada de <br />lo que se cuece por aquí</h2>
     <a class="btn btn-custom" href="http://eepurl.com/dtbNnD" target="_blank">Subscríbete a la newsletter</a>
-    
+
     <p>Envío una al mes. Y es interesantísima, claro.</p>
 </div>
 <div class="clearfix"></div>
@@ -40,13 +40,15 @@
 </div>
 
 
-    @foreach (var item in Model.UltimosPosts)
-    {
-        <div class="col-md-3">
-            <h4 class="typo"><a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)">@item.Titulo</a></h4>
+@foreach (var item in Model.UltimosPosts)
+{
+    <div class="col-md-3">
+        <h4 class="typo"><a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)">@item.Titulo</a></h4>
 
-            <a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)"> <img src="@item.UrlImagen" alt="@item.Titulo" /></a>
-        </div>
-    }
-    <div class="clearfix"></div>
+        <a href="@UrlHelperExtension.RutaAmigable(Url, item.UrlSlug)"> <img src="@item.UrlImagen" alt="@item.Titulo" /></a>
+    </div>
+}
+<div class="clearfix"></div>
+
+
 

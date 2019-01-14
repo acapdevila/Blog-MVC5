@@ -243,7 +243,6 @@
     <Content Include="Content\imagenes\eatdirt.jpg" />
     <Content Include="Content\imagenes\elbebeesunmamifero.jpg" />
     <Content Include="Content\imagenes\facebook.png" />
-    <Content Include="Content\imagenes\facebook_white.png" />
     <Content Include="Content\imagenes\fermentedvegetables.jpg" />
     <Content Include="Content\imagenes\flavorflours.jpg" />
     <Content Include="Content\imagenes\geniusfoods.jpg" />
@@ -253,7 +252,6 @@
     <Content Include="Content\imagenes\growallyoucaneat.jpg" />
     <Content Include="Content\imagenes\healingmushrooms.jpg" />
     <Content Include="Content\imagenes\instagram.png" />
-    <Content Include="Content\imagenes\instagram_white.png" />
     <Content Include="Content\imagenes\kale.jpg" />
     <Content Include="Content\imagenes\kalecaramel.jpg" />
     <Content Include="Content\imagenes\ketodiet.jpg" />
@@ -296,6 +294,7 @@
     <Content Include="Content\imagenes\urbanjungle.jpg" />
     <Content Include="Content\imagenes\whole30.jpg" />
     <Content Include="Content\imagenes\younger.jpg" />
+    <Content Include="Content\imagenes\youtube.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
