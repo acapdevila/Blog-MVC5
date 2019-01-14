@@ -109,7 +109,7 @@ line-height: 25px }
         text-decoration: none;
     }
 
-/*Subscripción home*/
+/*Home*/
 
 .subscripcionhome {
     text-align: center;
@@ -119,8 +119,13 @@ line-height: 25px }
 }
 
 
-/*Footer*/
+.fraseHome {
+    color: #ffffff;
+    background: #8aa596;
+    margin-top: 15px;
+}
 
+/*Footer*/
 footer {
     background: #d7d2cc;
     padding: 30px;

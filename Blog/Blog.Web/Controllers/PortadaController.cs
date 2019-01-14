@@ -39,7 +39,7 @@ namespace Blog.Web.Controllers
                 .Where(m => !m.Titulo.Contains("lecturas recomendadas"))
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .Take(4)
+                .Take(3)
                 .ToListAsync();
         }
 
