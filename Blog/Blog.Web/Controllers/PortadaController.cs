@@ -13,7 +13,7 @@ namespace Blog.Web.Controllers
     {
         public class PortadaViewModel
         {
-            public List<LineaResumenPost> UltimosTresPosts { get; set; } 
+            public List<LineaResumenPost> UltimosPosts { get; set; } 
         }
 
         private readonly ContextoBaseDatos _db;
@@ -27,7 +27,7 @@ namespace Blog.Web.Controllers
         {
             var viewModel = new PortadaViewModel
             {
-                UltimosTresPosts = await RecuperarPostPortada()
+                UltimosPosts = await RecuperarPostPortada()
             };
             return View(viewModel);
         }
@@ -39,7 +39,7 @@ namespace Blog.Web.Controllers
                 .Where(m => !m.Titulo.Contains("lecturas recomendadas"))
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .Take(5)
+                .Take(4)
                 .ToListAsync();
         }
 

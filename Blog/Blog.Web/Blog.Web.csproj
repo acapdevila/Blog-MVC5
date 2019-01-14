@@ -837,6 +837,7 @@
     <Content Include="Views\Libros\Index.cshtml" />
     <Content Include="Views\Contratame\Index.cshtml" />
     <Content Include="Views\Portada\_ListaLineasResumenPostPortada.cshtml" />
+    <Content Include="Views\Shared\_StackTecnologico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
