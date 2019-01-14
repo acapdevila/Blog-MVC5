@@ -63,10 +63,9 @@ namespace Blog.Modelo.Posts
 
         public string TituloSinAcentos { get; private set; }
 
-        public bool EsPublico
-        {
-            get { return !EsBorrador && FechaPublicacion <= DateTime.Now;}
-        }
+        public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;
+
+        public bool EsReceta => Receta != null;
 
         public bool EsMostrarDatosEstructurados
         {

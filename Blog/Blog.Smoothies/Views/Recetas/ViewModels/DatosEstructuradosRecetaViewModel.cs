@@ -15,6 +15,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
 
         public DatosEstructuradosRecetaViewModel(Receta receta) : this()
         {
+            if(receta == null) return;
+
             Id = receta.Id;
             Nombre = receta.Nombre;
             Autor = receta.Autor;

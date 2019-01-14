@@ -37,6 +37,8 @@ namespace Blog.Servicios
         public IQueryable<Post> Posts()
         {
             return _db.Posts
+                    .Include(m=>m.Receta.Ingredientes.Select(i => i.Ingrediente))
+                .Include(m=>m.Receta.Instrucciones)
                 .Include(m => m.Tags)
                 .Include(m=>m.Categorias)
                 .Where(m => m.Blog.Titulo == _tituloBlog);

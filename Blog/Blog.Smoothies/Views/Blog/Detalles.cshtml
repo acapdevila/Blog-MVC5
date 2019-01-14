@@ -1,7 +1,4 @@
-﻿
-@using Blog.Servicios.Configuracion
-@using Blog.Smoothies.Helpers
-@model Blog.ViewModels.Blog.DetallesPostBlogViewModel
+﻿@model Blog.Smoothies.Views.Blog.ViewModels.DetallesPostBlogViewModel
 
 @{
     ViewBag.Title = Model.Post.Titulo;
@@ -14,19 +11,9 @@
 {
     @section head
     {
-        <script type="application/ld+json">
-            {
-            "@@context": "http://schema.org",
-            "@@type": "Article",
-            "headline": "@Model.Post.Titulo",
-            "image": ["@Model.Post.UrlImagenPrincipal"],
-            "datePublished": "@Model.Post.FechaPublicacion.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
-            "author": { "@@type": "Person", "name": "@(Model.Post.Autor ?? "Laura García")" },
-            "publisher": { "@@type": "Organization", "name": "by Laura García",
-            "logo": { "@@type": "ImageObject", "url": "https://bylauragarcia.com/content/imagenes/logo.png"}},
-            "description": "@Model.Post.Descripcion"
-            }
-        </script>
+        @(Model.Post.EsReceta ? 
+              Html.Partial("_DatosEstructuradosReceta", Model.DatosEstructuradosReceta) : 
+              Html.Partial("_DatosEstructuradosArticulo", Model))
     }
 }
 

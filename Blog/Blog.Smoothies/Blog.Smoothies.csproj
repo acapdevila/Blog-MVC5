@@ -217,6 +217,7 @@
     <Compile Include="Sitemap\UrlHelperExtensions.cs" />
     <Compile Include="Sitemap\XDocumentExtensions.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Blog\ViewModels\DetallesPostBlogViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\CrearRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\DatosEstructuradosRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\Editores\EditorIngredienteReceta.cs" />
@@ -897,9 +898,9 @@
     <Content Include="Views\Contacto\MensajeEnviado.cshtml" />
     <Content Include="Views\Contacto\MensajeNoEnviado.cshtml" />
     <Content Include="Views\Hola\Index.cshtml" />
-    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Eliminar.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
-    <Content Include="Views\Posts\Edit.cshtml" />
+    <Content Include="Views\Posts\Editar.cshtml" />
     <Content Include="Views\Posts\EditorTemplates\EditorPost.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
@@ -972,6 +973,7 @@
     <Content Include="Views\Recetas\EditorTemplates\EditorIngredienteReceta.cshtml" />
     <Content Include="Views\Portada\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutocompleteUnico.cshtml" />
+    <Content Include="Views\Shared\_DatosEstructuradosArticulo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

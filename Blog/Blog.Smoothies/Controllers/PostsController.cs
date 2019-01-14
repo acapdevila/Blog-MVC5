@@ -65,7 +65,7 @@ namespace Blog.Smoothies.Controllers
         }
 
 
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Editar(int? id)
         {
             if (id == null)
             {
@@ -89,7 +89,7 @@ namespace Blog.Smoothies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string boton, EditPostViewModel viewModel)
+        public async Task<ActionResult> Editar(string boton, EditPostViewModel viewModel)
         {
             if (boton.ToLower().Contains("modificar publicación"))
                 return RedirectToAction("Publicar", new { id = viewModel.EditorPost.Id });
@@ -152,7 +152,7 @@ namespace Blog.Smoothies.Controllers
                 if (post.EsBorrador)
                     return RedirectToAction("Editar", "Borradores", new { id = viewModel.Id });
 
-                return RedirectToAction("Edit", "Posts", new { id = viewModel.Id });
+                return RedirectToAction("Editar", "Posts", new { id = viewModel.Id });
             }
 
             if (ModelState.IsValid)
@@ -185,7 +185,7 @@ namespace Blog.Smoothies.Controllers
             cache.Clear();
         }
 
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Eliminar(int? id)
         {
             if (id == null)
             {
@@ -199,7 +199,7 @@ namespace Blog.Smoothies.Controllers
             return View(post);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Eliminar")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

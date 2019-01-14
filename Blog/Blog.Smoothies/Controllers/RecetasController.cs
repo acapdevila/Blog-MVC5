@@ -191,7 +191,7 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [AllowAnonymous]
         public async Task<ActionResult> Imprimir(int id)
         {
             var receta = await _buscadorDeReceta.BuscarRecetaPorIdAsync(id);

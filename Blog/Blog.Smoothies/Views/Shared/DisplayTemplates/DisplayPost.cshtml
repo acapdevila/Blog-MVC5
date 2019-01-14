@@ -13,17 +13,22 @@
 <hr>
 <!-- Date/Time -->
 <p class="small text-uppercase">
-
+    @* ReSharper disable Mvc.ActionNotResolved *@
+    @if (Model.EsReceta)
+    {
+        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new{ @class="btn btn-dark", target="_blank"})
+    }
     @if (User.Identity.IsAuthenticated)
     {
         <span class="pull-right">
-            @* ReSharper disable Mvc.ActionNotResolved *@
-            @Html.ActionLink("Editar", "Edit", new {id = Model.Id}) |
-            @Html.ActionLink("Eliminar", "Delete", new {id = Model.Id}) |
+
+            @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.Id }) |
             @Html.ActionLink("Volver al listado", "Index")
-            @* ReSharper restore Mvc.ActionNotResolved *@
+
         </span>
     }
+    @* ReSharper restore Mvc.ActionNotResolved *@
     <br />
 </p>
 @Html.Raw(Model.Subtitulo)
@@ -39,17 +44,23 @@
 
 <hr>
 <p class="small text-uppercase">
-
+    @* ReSharper disable Mvc.ActionNotResolved *@
+    @if (Model.EsReceta)
+    {
+        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new{ @class="btn btn-dark", target="_blank"})
+    }
+   
     @if (User.Identity.IsAuthenticated)
     {
         <span class="pull-right">
-            @* ReSharper disable Mvc.ActionNotResolved *@
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = Model.Id }) |
+
+            @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.Id }) |
             @Html.ActionLink("Volver al listado", "Index")
-            @* ReSharper restore Mvc.ActionNotResolved *@
+
         </span>
     }
+    @* ReSharper restore Mvc.ActionNotResolved *@
 </p>
     <br />
 

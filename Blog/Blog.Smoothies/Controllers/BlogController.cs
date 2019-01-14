@@ -9,6 +9,7 @@ using Blog.Datos;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Servicios;
+using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
@@ -83,10 +84,11 @@ namespace Blog.Smoothies.Controllers
             var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
 
 
-            var viewModel = new DetallesPostBlogViewModel
+            var viewModel = new Views.Blog.ViewModels.DetallesPostBlogViewModel
             {
                 Post = post,
-                PostsSugeridos = postsSugeridos
+                PostsSugeridos = postsSugeridos,
+                DatosEstructuradosReceta = new DatosEstructuradosRecetaViewModel(post.Receta) 
             };
 
             return View("Detalles",viewModel);
@@ -182,14 +184,14 @@ namespace Blog.Smoothies.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
-            return RedirectToAction("Edit", "Posts", new {id}); 
+            return RedirectToAction("Editar", "Posts", new {id}); 
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Eliminar(int id)
         {
-            return RedirectToAction("Delete", "Posts", new { id });
+            return RedirectToAction("Eliminar", "Posts", new { id });
         }
 
 
