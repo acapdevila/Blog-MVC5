@@ -9,6 +9,7 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.Servicios.Cache;
+using Blog.Servicios.Recetas;
 using Blog.ViewModels.Post;
 
 namespace Blog.Smoothies.Controllers
@@ -26,7 +27,7 @@ namespace Blog.Smoothies.Controllers
         public PostsController(ContextoBaseDatos contexto) :
             this(new PostsServicio(contexto,
                     new AsignadorTags(new TagRepositorio(contexto)),
-                    new AsignadorCategorias(new CategoriaRepositorio(contexto)),
+                    new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
                     BlogController.TituloBlog))
         {
 

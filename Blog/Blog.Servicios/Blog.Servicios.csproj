@@ -146,12 +146,17 @@
   <ItemGroup>
     <Compile Include="AzureStorageService.cs" />
     <Compile Include="BlogServicio.cs" />
+    <Compile Include="Blog\Borradores\BuscadorBorrador.cs" />
+    <Compile Include="Blog\Borradores\BuscadorBorradores.cs" />
+    <Compile Include="Blog\Borradores\EditorBorradorPost.cs" />
+    <Compile Include="Blog\BuscadorBlog.cs" />
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\CacheSetting.cs" />
     <Compile Include="Cache\ICacheService.cs" />
     <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
+    <Compile Include="Recetas\BuscadorDeReceta.cs" />
     <Compile Include="Recetas\BuscadorDeRecetas.cs" />
     <Compile Include="Recetas\Comandos\ComandosIngredientes\ComandoAñadirIngrediente.cs" />
     <Compile Include="Recetas\Comandos\ComandosIngredientes\ComandoEditarIngrediente.cs" />

@@ -971,6 +971,7 @@
     <Content Include="Views\Recetas\EditorTemplates\EditorInstruccion.cshtml" />
     <Content Include="Views\Recetas\EditorTemplates\EditorIngredienteReceta.cshtml" />
     <Content Include="Views\Portada\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AutocompleteUnico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

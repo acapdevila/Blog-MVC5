@@ -8,16 +8,18 @@ using Blog.Datos.Repositorios;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
-using Blog.Servicios;
+using Blog.Servicios.Blog;
+using Blog.Servicios.Blog.Borradores;
 using Blog.ViewModels.Post;
-using CSharpFunctionalExtensions;
 
 namespace Blog.Web.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
     {
-        private readonly PostsServicio _postsServicio;
+        private readonly BuscadorBorrador _buscadorBorrador;
+        private readonly BuscadorBorradores _buscadorBorradores;
+        private readonly EditorBorradorPost _editorBorrador;
 
         public BorradoresController() : this(new ContextoBaseDatos())
         {
@@ -25,18 +27,41 @@ namespace Blog.Web.Controllers
         }
 
         public BorradoresController(ContextoBaseDatos contexto): 
-            this(new PostsServicio(contexto, 
-                    new AsignadorTags(new TagRepositorio(contexto)),
-                    new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
-                    BlogController.TituloBlog))
+            this(contexto, 
+                new BuscadorBorrador(contexto, BlogController.TituloBlog), 
+                new AsignadorTags(new TagRepositorio(contexto)),
+                new AsignadorCategorias(new CategoriaRepositorio(contexto)))
+                
         {
 
         }
 
 
-        public BorradoresController(PostsServicio postsServicio)
+        public BorradoresController(
+            ContextoBaseDatos contexto,
+            BuscadorBorrador buscadorBorrador,
+            AsignadorTags asignadorTags, 
+            AsignadorCategorias asignadorCategorias
+            ) : 
+            this(new BuscadorBorrador(contexto, BlogController.TituloBlog), 
+                new BuscadorBorradores(contexto, BlogController.TituloBlog), 
+                new EditorBorradorPost(contexto, 
+                                        new BuscadorBlog(contexto, BlogController.TituloBlog), 
+                                        buscadorBorrador, 
+                                        asignadorTags, 
+                                        asignadorCategorias))
         {
-            _postsServicio = postsServicio;
+          
+        }
+
+        public BorradoresController(
+            BuscadorBorrador buscadorBorrador,
+            BuscadorBorradores buscadorBorradores, 
+            EditorBorradorPost creadorBorrador)
+        {
+            _buscadorBorrador = buscadorBorrador;
+            _editorBorrador = creadorBorrador;
+            _buscadorBorradores = buscadorBorradores;
         }
 
         public async Task<ActionResult> Index()
@@ -45,7 +70,7 @@ namespace Blog.Web.Controllers
             var viewModel = new ListaBorradoresViewModel
             {
                 BuscarPor = criteriosBusqueda,
-                ListaPosts = await _postsServicio.ObtenerListaBorradores(criteriosBusqueda)
+                ListaPosts = await _buscadorBorradores.ObtenerListaBorradoresAsync(criteriosBusqueda)
             };
 
 
@@ -60,7 +85,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = await RecuperarPost(id.Value);
+            var post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -96,7 +121,7 @@ namespace Blog.Web.Controllers
 
             if (!ModelState.IsValid) return View(viewModel);
 
-            await _postsServicio.CrearBorrador(viewModel);
+            await _editorBorrador.CrearBorrador(viewModel);
                 
             if(boton.ToLower().Contains(@"salir"))
               return RedirectToAction("Index");
@@ -119,7 +144,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = await RecuperarPost(id.Value);
+            Post post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -136,7 +161,7 @@ namespace Blog.Web.Controllers
         {
             if (!ModelState.IsValid) return View(viewModel);
 
-            await ActualizarPost(viewModel);
+            await ActualizarBorrador(viewModel);
 
             if (boton.ToLower().Contains(@"publicar"))
             {
@@ -158,7 +183,7 @@ namespace Blog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await ActualizarPost(viewModel);
+                await ActualizarBorrador(viewModel);
                 return Json(new { esOk = true }, JsonRequestBehavior.AllowGet);
             }
 
@@ -183,7 +208,7 @@ namespace Blog.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var post = await RecuperarPost(id.Value);
+            var post = await RecuperarBorrador(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
@@ -195,34 +220,27 @@ namespace Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await EliminarPost(id);
+            await EliminarBorrador(id);
             return RedirectToAction("Index");
         }
 
         
-        private async Task<Post> RecuperarPost(int id)
+        private async Task<Post> RecuperarBorrador(int id)
         {
-            return await _postsServicio.RecuperarPost(id);
+            return await _buscadorBorrador.BuscarBorradorPorIdAsync(id);
         }
 
        
-        private async Task ActualizarPost(EditorBorrador editorBorrador)
+        private async Task ActualizarBorrador(EditorBorrador editorBorrador)
         {
-            await _postsServicio.ActualizarBorrador(editorBorrador);
+            await _editorBorrador.ActualizarBorrador(editorBorrador);
         }
 
-        private async Task EliminarPost(int id)
+        private async Task EliminarBorrador(int id)
         {
-            await _postsServicio.EliminarPost(id);
+            var borrador = await RecuperarBorrador(id);
+            await _editorBorrador.EliminarBorrador(borrador);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _postsServicio.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

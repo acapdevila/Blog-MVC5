@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201901071009030_EliminarTablaImagenes.Designer.cs">
       <DependentUpon>201901071009030_EliminarTablaImagenes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901131642571_RelacionarRecetasConPosts.cs" />
+    <Compile Include="Migrations\201901131642571_RelacionarRecetasConPosts.Designer.cs">
+      <DependentUpon>201901131642571_RelacionarRecetasConPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901071009030_EliminarTablaImagenes.resx">
       <DependentUpon>201901071009030_EliminarTablaImagenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131642571_RelacionarRecetasConPosts.resx">
+      <DependentUpon>201901131642571_RelacionarRecetasConPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
