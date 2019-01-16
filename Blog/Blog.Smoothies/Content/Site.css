@@ -112,6 +112,14 @@ letter-spacing: 1px;
     .subscripcionhome p {
     margin-top:15px;}
 
+.buscadorhome {
+    text-align: center; 
+    background: #5F9494;
+    margin: 50px 0 30px 0;
+    padding: 25px;
+    color: #ffffff;
+}
+
 
 
 /*Posts*/
@@ -128,6 +136,24 @@ letter-spacing: 1px;
     .postcontent a {
         border-bottom: 2px solid #5F9494
     }
+
+/*Recetas (visualización en el post*/
+
+.recipetime {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.yield {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 /*Botó custom*/
 
@@ -160,8 +186,7 @@ letter-spacing: 1px;
     border-color: #537B7B;
 }
     .btn-dark:hover {
-        color: #B69D88;
-        
+        color: #5F9494;
     }
 
     .btn-dark a {

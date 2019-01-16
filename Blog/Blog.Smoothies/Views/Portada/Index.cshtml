@@ -41,7 +41,6 @@
     <hr />
 </div>
 
-
 @foreach (var item in Model.UltimosPosts)
 {
     <div class="col-md-3">
@@ -52,5 +51,29 @@
 }
 <div class="clearfix"></div>
 
+
+
+<div class="buscadorhome">
+    
+    <h2 class="bold">Quizá estás buscando otra cosa...</h2>
+    
+   
+        <div class="input-group col-md-4 center-block">
+            @Html.Editor("buscarPor", "AutocompleteMultipleBuscador", new
+            {
+                ajaxCallbackUrlAction = "QuickMultipleSearch",
+                ajaxCallbackUrlController = "Tags"
+            })
+            @*    <input type="text" class="form-control" name="buscarPor" placeholder="Buscar">*@
+
+
+            <span class="input-group-btn center-block">
+                <button class="btn btn-dark" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
 
 
