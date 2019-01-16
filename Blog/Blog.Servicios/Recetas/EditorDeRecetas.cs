@@ -40,7 +40,9 @@ namespace Blog.Servicios.Recetas
             await AñadirIngredientes(receta, comando.Ingredientes);
 
             AñadirInstrucciones(receta, comando.Instrucciones);
-            
+
+            receta.Imagen = comando.Imagen;
+
             _db.Recetas.Add(receta);
 
             await _db.SaveChangesAsync();

@@ -78,7 +78,7 @@ namespace Blog.Smoothies.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AccionSeleccionadaPorBoton]
-        public async Task<ActionResult> CrearReceta(CrearRecetaViewModel viewModel)
+        public async Task<ActionResult> CrearReceta(CrearRecetaViewModel viewModel, string crearReceta)
         {
             if (!ModelState.IsValid) return View("Crear", viewModel);
 
@@ -86,7 +86,10 @@ namespace Blog.Smoothies.Controllers
             
             await  _editor.CrearReceta(comando);
 
-            return RedirectToAction("VistaPrevia", new{id = comando.Id });
+            if(crearReceta.Contains("Ver"))
+                return RedirectToAction("VistaPrevia", new{ comando.Id });
+
+            return RedirectToAction("Editar", new { comando.Id});
         }
 
         [HttpPost]
