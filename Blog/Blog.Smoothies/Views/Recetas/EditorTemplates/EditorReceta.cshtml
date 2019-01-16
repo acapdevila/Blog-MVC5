@@ -2,6 +2,9 @@
 @model EditorReceta
 
 @Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.AccionPost)
+@Html.HiddenFor(model => model.AccionQuitarImagen)
+@Html.HiddenFor(model => model.AccionSubirImagen)
 
 
 <div class="form-group">
@@ -16,7 +19,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.AltImagen, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.TextBoxFor(model => model.AltImagen, htmlAttributes: new { @class = "form-control" } )
+        @Html.TextBoxFor(model => model.AltImagen, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.AltImagen, "", new { @class = "text-danger" })
     </div>
 </div>
@@ -36,9 +39,9 @@
         @Html.Label("Imagen", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <img id="imagenReceta" src="@Model.UrlImagen" alt="@Model.AltImagen" class="img-responsive" />
-           <br/>
-            <input type="submit" class="btn btn-danger" name="@Model.AccionQuitarImagen" value="Quitar imagen"/>
-         </div>
+            <br />
+            <input type="submit" class="btn btn-danger" name="@Model.AccionQuitarImagen" value="Quitar imagen" />
+        </div>
     </div>
 }
 else
@@ -46,12 +49,11 @@ else
     <div class="form-group">
         @Html.Label("Subir nueva imagen", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="file" 
-                   id="seleccionarArchivo" 
-                   name="archivoImagen" 
-                   class = "form-control" 
-                   onchange="(function () { $('#botonSubirImagen').click(); })();"
-            />
+            <input type="file"
+                   id="seleccionarArchivo"
+                   name="archivoImagen"
+                   class="form-control"
+                   onchange="(function () { $('#botonSubirImagen').click(); })();" />
 
             <input type="submit" id="botonSubirImagen" name="@Model.AccionSubirImagen" style="display: none" />
         </div>
@@ -72,7 +74,7 @@ else
 <div class="form-group">
     @Html.LabelFor(model => model.CategoriaReceta, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.TextBoxFor(model => model.CategoriaReceta, htmlAttributes : new { @class = "form-control" } )
+        @Html.TextBoxFor(model => model.CategoriaReceta, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.CategoriaReceta, "", new { @class = "text-danger" })
     </div>
 </div>
@@ -99,7 +101,7 @@ else
     @Html.LabelFor(model => model.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
 
-        @Html.TextBoxFor(model => model.Keywords,  htmlAttributes : new { @class = "form-control"  })
+        @Html.TextBoxFor(model => model.Keywords, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
 
     </div>
@@ -109,7 +111,7 @@ else
     @Html.LabelFor(model => model.Raciones, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
 
-        @Html.TextBoxFor(model => model.Raciones, htmlAttributes :new { @class = "form-control" } )
+        @Html.TextBoxFor(model => model.Raciones, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Raciones, "", new { @class = "text-danger" })
 
     </div>
@@ -134,18 +136,18 @@ else
 <div class="form-group">
     @Html.LabelFor(model => model.Ingredientes, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-     
+
         <div class="table-responsive">
             <table class="table table-condensed">
-                <tbody id="lineasIngrediente">       
-                @Html.EditorFor(m => m.Ingredientes)      
+                <tbody id="lineasIngrediente">
+                    @Html.EditorFor(m => m.Ingredientes)
                 </tbody>
                 <tfoot>
-                <tr>
-                    <td colspan="2">
-                        @Html.LinkToAddNestedForm(m => m.Ingredientes, "Añadir", "#lineasIngrediente", ".editorIngrediente", "NombreIngrediente")
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="2">
+                            @Html.LinkToAddNestedForm(m => m.Ingredientes, "Añadir", "#lineasIngrediente", ".editorIngrediente", "NombreIngrediente")
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -153,22 +155,22 @@ else
 </div>
 
 
-<hr/>
+<hr />
 <div class="form-group">
     @Html.LabelFor(model => model.Instrucciones, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-     
+
         <div class="table-responsive">
             <table class="table table-condensed">
-              <tbody id="lineasInstruccion">       
-                        @Html.EditorFor(m => m.Instrucciones)      
-                    </tbody>
+                <tbody id="lineasInstruccion">
+                    @Html.EditorFor(m => m.Instrucciones)
+                </tbody>
                 <tfoot>
-                <tr>
-                    <td colspan="2">
-                        @Html.LinkToAddNestedForm(m => m.Instrucciones, "Añadir", "#lineasInstruccion", ".editorInstruccion", "Nombre")
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="2">
+                            @Html.LinkToAddNestedForm(m => m.Instrucciones, "Añadir", "#lineasInstruccion", ".editorInstruccion", "Nombre")
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -181,8 +183,8 @@ else
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             @*<li>
-               <input id="btnModificarPublicacion" name="boton" type="submit" value="Modificar publicación" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
-            </li>*@
+                   <input id="btnModificarPublicacion" name="boton" type="submit" value="Modificar publicación" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
+                </li>*@
             <li>
                 <input id="btnGuardarYSalir" name="@Model.AccionPost" type="submit" value="Guardar y ver" class="btn btn-default navbar-btn" />&nbsp;&nbsp;
 
