@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>6.81271cm</Height>
+              <Height>10.41287cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -26,6 +26,7 @@
                                 <TextRun>
                                   <Value>=Fields!Nombre.Value</Value>
                                   <Style>
+                                    <FontFamily>open Sans</FontFamily>
                                     <FontSize>14pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -35,10 +36,10 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Nombre</rd:DefaultName>
-                          <Top>0.17639cm</Top>
-                          <Left>5.34141cm</Left>
-                          <Height>0.9175cm</Height>
-                          <Width>10.72854cm</Width>
+                          <Top>4.33035cm</Top>
+                          <Left>0.60537cm</Left>
+                          <Height>1.49958cm</Height>
+                          <Width>15.46458cm</Width>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -50,10 +51,10 @@
                           </Style>
                         </Textbox>
                         <Line Name="Line1">
-                          <Top>4.01849cm</Top>
+                          <Top>7.81995cm</Top>
                           <Left>0.60537cm</Left>
                           <Height>0cm</Height>
-                          <Width>15.2cm</Width>
+                          <Width>15.46458cm</Width>
                           <ZIndex>1</ZIndex>
                           <Style>
                             <Border>
@@ -61,36 +62,6 @@
                             </Border>
                           </Style>
                         </Line>
-                        <Textbox Name="TiempoCoccion">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!TiempoCoccion.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>TiempoCoccion</rd:DefaultName>
-                          <Top>2.37808cm</Top>
-                          <Left>5.34141cm</Left>
-                          <Height>0.6cm</Height>
-                          <Width>3.82292cm</Width>
-                          <ZIndex>2</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
                         <Textbox Name="Descripcion">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -99,18 +70,20 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Descripcion.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>open Sans</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Descripcion</rd:DefaultName>
-                          <Top>4.99745cm</Top>
+                          <Top>8.79891cm</Top>
                           <Left>0.60537cm</Left>
                           <Height>1.235cm</Height>
                           <Width>15.46458cm</Width>
-                          <ZIndex>3</ZIndex>
+                          <ZIndex>2</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -129,18 +102,20 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!TiempoPreparacion.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>open Sans</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>TiempoPreparacion</rd:DefaultName>
-                          <Top>1.45203cm</Top>
-                          <Left>5.34141cm</Left>
+                          <Top>6.78271cm</Top>
+                          <Left>2.92016cm</Left>
                           <Height>0.6cm</Height>
-                          <Width>3.58479cm</Width>
-                          <ZIndex>4</ZIndex>
+                          <Width>2.63229cm</Width>
+                          <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -159,18 +134,20 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Raciones.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>open Sans</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Raciones</rd:DefaultName>
-                          <Top>2.37808cm</Top>
-                          <Left>12.24703cm</Left>
+                          <Top>6.00632cm</Top>
+                          <Left>2.31162cm</Left>
                           <Height>0.6cm</Height>
-                          <Width>2.76458cm</Width>
-                          <ZIndex>5</ZIndex>
+                          <Width>2.1825cm</Width>
+                          <ZIndex>4</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -185,9 +162,10 @@
                           <Source>Embedded</Source>
                           <Value>logo</Value>
                           <Sizing>FitProportional</Sizing>
+                          <Left>5.97958cm</Left>
                           <Height>3.38667cm</Height>
                           <Width>4.63585cm</Width>
-                          <ZIndex>6</ZIndex>
+                          <ZIndex>5</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -203,6 +181,7 @@
                                 <TextRun>
                                   <Value>Descripción</Value>
                                   <Style>
+                                    <FontFamily>open Sans</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -211,11 +190,195 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
-                          <Top>4.19488cm</Top>
+                          <Top>7.99634cm</Top>
                           <Left>0.60537cm</Left>
                           <Height>0.6cm</Height>
                           <Width>2.5cm</Width>
+                          <ZIndex>6</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Raciones:</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Top>6.00632cm</Top>
+                          <Left>0.60537cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.70625cm</Width>
                           <ZIndex>7</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Preparación:</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Top>6.78271cm</Top>
+                          <Left>0.60537cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.24424cm</Width>
+                          <ZIndex>8</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="TiempoPreparacion2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TiempoCoccion.Value</Value>
+                                  <Style>
+                                    <FontFamily>open Sans</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TiempoPreparacion</rd:DefaultName>
+                          <Top>6.78271cm</Top>
+                          <Left>7.67919cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.63229cm</Width>
+                          <ZIndex>9</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cocción:</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Top>6.78271cm</Top>
+                          <Left>5.97958cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.60924cm</Width>
+                          <ZIndex>10</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="TiempoPreparacion3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TiempoPreparacion.Value</Value>
+                                  <Style>
+                                    <FontFamily>open Sans</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TiempoPreparacion</rd:DefaultName>
+                          <Top>6.78271cm</Top>
+                          <Left>11.956cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>2.63229cm</Width>
+                          <ZIndex>11</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Total:</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Top>6.78271cm</Top>
+                          <Left>10.77891cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.14181cm</Width>
+                          <ZIndex>12</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -234,6 +397,7 @@
                         </Border>
                       </Style>
                     </Rectangle>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -254,7 +418,7 @@
         </TablixRowHierarchy>
         <KeepTogether>true</KeepTogether>
         <DataSetName>Receta</DataSetName>
-        <Height>6.81271cm</Height>
+        <Height>10.41287cm</Height>
         <Width>16.38745cm</Width>
         <Style>
           <Border>
@@ -283,7 +447,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Ingredientes</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>open Sans</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -318,7 +485,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Nombre.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>open Sans</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -358,7 +527,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Ingredientes</DataSetName>
-        <Top>7.3787cm</Top>
+        <Top>10.8712cm</Top>
         <Left>0.60537cm</Left>
         <Height>1.2cm</Height>
         <Width>15.46458cm</Width>
@@ -390,7 +559,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Instrucciones</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>open Sans</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -425,7 +597,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Nombre.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>open Sans</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -465,7 +639,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Instrucciones</DataSetName>
-        <Top>9.26896cm</Top>
+        <Top>12.76146cm</Top>
         <Left>0.60537cm</Left>
         <Height>1.2cm</Height>
         <Width>15.46458cm</Width>
@@ -477,15 +651,48 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.21875in</Height>
+    <Height>5.6875in</Height>
     <Style />
   </Body>
   <Width>6.5in</Width>
   <Page>
     <PageFooter>
-      <Height>1.19062cm</Height>
+      <Height>1.66687cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>¡Muchas gracias por imprimir esta receta! Si tienes alguna duda o quieres compartir conmigo cómo te ha quedado puedes hacerlo a través de Instagram (@bylauragarcia) o enviándome un e-mail a hola@bylauragarcia.com. :)</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.28787cm</Top>
+          <Left>0.60537cm</Left>
+          <Height>1.16734cm</Height>
+          <Width>15.46458cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
       <Style>
         <Border>
           <Style>None</Style>
