@@ -53,26 +53,28 @@
 
 
 
-@*<div class="buscadorhome">
+<div class="buscadorhome">
 
     <h2 class="bold">Quizá estás buscando otra cosa...</h2>
 
+    @using (Html.BeginForm("Buscar", "Blog", FormMethod.Get))
+    {
+        <div class="input-group col-md-4 center-block">
+            @Html.Editor("buscarPor", "AutocompleteMultipleBuscador", new
+            {
+                ajaxCallbackUrlAction = "QuickMultipleSearch",
+                ajaxCallbackUrlController = "Tags"
+            })
 
-    <div class="input-group col-md-4 center-block">
-        @Html.Editor("buscarPor", "AutocompleteMultipleBuscador", new
-        {
-            ajaxCallbackUrlAction = "QuickMultipleSearch",
-            ajaxCallbackUrlController = "Tags"
-        })
 
 
+            <span class="input-group-btn center-block">
+                <button class="btn btn-dark" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
 
-        <span class="input-group-btn center-block">
-            <button class="btn btn-dark" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-        </span>
-
-    </div>
-</div>*@
+        </div>
+    }
+</div>
 
 <div class="clearfix"></div>
 
