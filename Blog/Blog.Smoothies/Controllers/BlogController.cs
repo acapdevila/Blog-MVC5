@@ -9,6 +9,7 @@ using Blog.Datos;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Servicios;
+using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.ViewModels.Blog;
 using Blog.ViewModels.Etiqueta;
@@ -36,7 +37,12 @@ namespace Blog.Smoothies.Controllers
 
         public async Task<ActionResult> Index(int? pagina)
         {
-            var viewModel = await ObtenerListaPostsBlogViewModel(pagina ?? 1 ,NumeroItemsPorPagina);
+            var viewModel = new BlogViewModel
+            {
+                Posts = await _blogServicio.ObtenerListaResumenPostsPublicados(pagina ?? 1, NumeroItemsPorPagina)
+            };
+
+
             return View(viewModel);
         }
 
@@ -202,21 +208,6 @@ namespace Blog.Smoothies.Controllers
                         .FirstOrDefaultAsync(m=>m.Anyo == anyo && m.Mes == mes);
         }
 
-        private async Task<ListaPostsBlogCompletosViewModel> ObtenerListaPostsBlogViewModel(int pagina, int numeroItemsPorPagina)
-        {
-            //ListaPostsBlogCompletosViewModel listaPostViewmodel = await _cache.GetOrAdd(
-            //    CacheSetting.PaginaPrincipal.Posts, async () =>
-            //    {
-                    return new ListaPostsBlogCompletosViewModel
-                    {
-                        ListaPosts = await _blogServicio.ObtenerListaPostsCompletosPublicados(pagina, numeroItemsPorPagina)
-                    };
-                //},
-                //CacheSetting.PaginaPrincipal.SlidingExpiration);
-
-            //return listaPostViewmodel;
-
-        }
 
         private async Task<Post> RecuperarPost(DateTime fechaPost, string urlSlug)
         {
