@@ -667,13 +667,16 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>¡Muchas gracias por imprimir esta receta! Si tienes alguna duda o quieres compartir conmigo cómo te ha quedado puedes hacerlo a través de Instagram (@bylauragarcia) o enviándome un e-mail a hola@bylauragarcia.com. :)</Value>
+                  <Value>www.bylauragarcia.com · hola@bylauragarcia.com · @bylauragarcia</Value>
                   <Style>
-                    <FontSize>8pt</FontSize>
+                    <FontFamily>open Sans</FontFamily>
+                    <FontSize>9pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
