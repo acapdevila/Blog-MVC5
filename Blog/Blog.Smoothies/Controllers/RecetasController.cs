@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
+using Blog.Smoothies.Content.informes.Datasets;
 using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
@@ -269,7 +271,25 @@ namespace Blog.Smoothies.Controllers
             
             var rds1 = new ReportDataSource("Instrucciones",  receta.Instrucciones);
             var rds2 = new ReportDataSource("Ingredientes", receta.Ingredientes);
-            var rds3 = new ReportDataSource("Receta", new List<Receta> { receta });
+
+
+            var dtReceta = new DataSetReceta.DtRecetaDataTable();
+            dtReceta.AddDtRecetaRow(
+                receta.Nombre,
+                receta.Autor,
+                receta.TiempoCoccion.FormatoHorasMinutos(),
+                receta.FechaPublicacion,
+                receta.Descripcion,
+                receta.Keywords,
+                receta.TiempoPreparacion.FormatoHorasMinutos(),
+                receta.CategoriaReceta,
+                receta.Raciones,
+                receta.Imagen.Url,
+                receta.Imagen.Alt,
+                receta.TiempoTotal.FormatoHorasMinutos());
+
+
+            var rds3 = new ReportDataSource("Receta", (DataTable) dtReceta);
            
             localReport.DataSources.Add(rds1);
             localReport.DataSources.Add(rds2);

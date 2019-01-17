@@ -127,11 +127,15 @@ namespace Blog.Modelo.Posts
             {
                 var sb = new StringBuilder();
 
-                sb.Append($"<p> Reciones: {receta.Raciones} </p>");
+                sb.Append($"<h2>{receta.Nombre}</h2>");
 
-                sb.Append($"<p> Tiempo de preparación: {receta.TiempoPreparacion.TotalMinutes}  </br>");
-                sb.Append($"Tiempo de cocción: {receta.TiempoCoccion.TotalMinutes}  </br>");
-                sb.Append($"Tiempo total: {receta.TiempoTotal.TotalMinutes}  </p>");
+                sb.Append($"<p class='yield smaller'><span class='glyphicon glyphicon-cutlery'>&nbsp;</span>Raciones: {receta.Raciones}</p>");
+                
+                sb.Append($"<p class='recipetime smaller'><span class='glyphicon glyphicon-time'>&nbsp;</span>Preparación: {receta.TiempoPreparacion.FormatoHorasMinutos()}</p>");
+
+                sb.Append($"<p class='recipetime smaller'><span class='glyphicon glyphicon-time'>&nbsp;</span>Cocción: {receta.TiempoCoccion.FormatoHorasMinutos()}</p>");
+
+                sb.Append($"<p class='recipetime smaller'><span class='glyphicon glyphicon-time'>&nbsp;</span>Total: {receta.TiempoTotal.FormatoHorasMinutos()}</p>");
 
                 sb.Append("<h3>Ingredientes</h3>");
                 sb.Append("<ul>");

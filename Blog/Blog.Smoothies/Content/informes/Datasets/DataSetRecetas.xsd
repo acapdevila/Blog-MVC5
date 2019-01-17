@@ -14,7 +14,7 @@
   <xs:element name="DataSetReceta" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetReceta" msprop:Generator_UserDSName="DataSetReceta">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DtReceta" msprop:Generator_TableClassName="DtRecetaDataTable" msprop:Generator_TableVarName="tableDtReceta" msprop:Generator_TablePropName="DtReceta" msprop:Generator_RowDeletingName="DtRecetaRowDeleting" msprop:Generator_RowChangingName="DtRecetaRowChanging" msprop:Generator_RowEvHandlerName="DtRecetaRowChangeEventHandler" msprop:Generator_RowDeletedName="DtRecetaRowDeleted" msprop:Generator_UserTableName="DtReceta" msprop:Generator_RowChangedName="DtRecetaRowChanged" msprop:Generator_RowEvArgName="DtRecetaRowChangeEvent" msprop:Generator_RowClassName="DtRecetaRow">
+        <xs:element name="DtReceta" msprop:Generator_TableClassName="DtRecetaDataTable" msprop:Generator_TableVarName="tableDtReceta" msprop:Generator_RowChangedName="DtRecetaRowChanged" msprop:Generator_TablePropName="DtReceta" msprop:Generator_RowDeletingName="DtRecetaRowDeleting" msprop:Generator_RowChangingName="DtRecetaRowChanging" msprop:Generator_RowEvHandlerName="DtRecetaRowChangeEventHandler" msprop:Generator_RowDeletedName="DtRecetaRowDeleted" msprop:Generator_RowClassName="DtRecetaRow" msprop:Generator_UserTableName="DtReceta" msprop:Generator_RowEvArgName="DtRecetaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -32,7 +32,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TiempoCoccion" msprop:Generator_ColumnVarNameInTable="columnTiempoCoccion" msprop:Generator_ColumnPropNameInRow="TiempoCoccion" msprop:Generator_ColumnPropNameInTable="TiempoCoccionColumn" msprop:Generator_UserColumnName="TiempoCoccion" type="xs:duration" />
+              <xs:element name="TiempoCoccion" msprop:Generator_ColumnVarNameInTable="columnTiempoCoccion" msprop:Generator_ColumnPropNameInRow="TiempoCoccion" msprop:Generator_ColumnPropNameInTable="TiempoCoccionColumn" msprop:Generator_UserColumnName="TiempoCoccion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="FechaPublicacion" msprop:Generator_ColumnVarNameInTable="columnFechaPublicacion" msprop:Generator_ColumnPropNameInRow="FechaPublicacion" msprop:Generator_ColumnPropNameInTable="FechaPublicacionColumn" msprop:Generator_UserColumnName="FechaPublicacion" type="xs:dateTime" />
               <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
                 <xs:simpleType>
@@ -48,7 +54,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TiempoPreparacion" msprop:Generator_ColumnVarNameInTable="columnTiempoPreparacion" msprop:Generator_ColumnPropNameInRow="TiempoPreparacion" msprop:Generator_ColumnPropNameInTable="TiempoPreparacionColumn" msprop:Generator_UserColumnName="TiempoPreparacion" type="xs:duration" />
+              <xs:element name="TiempoPreparacion" msprop:Generator_ColumnVarNameInTable="columnTiempoPreparacion" msprop:Generator_ColumnPropNameInRow="TiempoPreparacion" msprop:Generator_ColumnPropNameInTable="TiempoPreparacionColumn" msprop:Generator_UserColumnName="TiempoPreparacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="CategoriaReceta" msprop:Generator_ColumnVarNameInTable="columnCategoriaReceta" msprop:Generator_ColumnPropNameInRow="CategoriaReceta" msprop:Generator_ColumnPropNameInTable="CategoriaRecetaColumn" msprop:Generator_UserColumnName="CategoriaReceta" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -77,10 +89,17 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="TiempoTotal" msprop:Generator_ColumnVarNameInTable="columnTiempoTotal" msprop:Generator_ColumnPropNameInRow="TiempoTotal" msprop:Generator_ColumnPropNameInTable="TiempoTotalColumn" msprop:Generator_UserColumnName="TiempoTotal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DtInstruccion" msprop:Generator_TableClassName="DtInstruccionDataTable" msprop:Generator_TableVarName="tableDtInstruccion" msprop:Generator_TablePropName="DtInstruccion" msprop:Generator_RowDeletingName="DtInstruccionRowDeleting" msprop:Generator_RowChangingName="DtInstruccionRowChanging" msprop:Generator_RowEvHandlerName="DtInstruccionRowChangeEventHandler" msprop:Generator_RowDeletedName="DtInstruccionRowDeleted" msprop:Generator_UserTableName="DtInstruccion" msprop:Generator_RowChangedName="DtInstruccionRowChanged" msprop:Generator_RowEvArgName="DtInstruccionRowChangeEvent" msprop:Generator_RowClassName="DtInstruccionRow">
+        <xs:element name="DtInstruccion" msprop:Generator_TableClassName="DtInstruccionDataTable" msprop:Generator_TableVarName="tableDtInstruccion" msprop:Generator_RowChangedName="DtInstruccionRowChanged" msprop:Generator_TablePropName="DtInstruccion" msprop:Generator_RowDeletingName="DtInstruccionRowDeleting" msprop:Generator_RowChangingName="DtInstruccionRowChanging" msprop:Generator_RowEvHandlerName="DtInstruccionRowChangeEventHandler" msprop:Generator_RowDeletedName="DtInstruccionRowDeleted" msprop:Generator_RowClassName="DtInstruccionRow" msprop:Generator_UserTableName="DtInstruccion" msprop:Generator_RowEvArgName="DtInstruccionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -94,7 +113,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DtIngrediente" msprop:Generator_TableClassName="DtIngredienteDataTable" msprop:Generator_TableVarName="tableDtIngrediente" msprop:Generator_TablePropName="DtIngrediente" msprop:Generator_RowDeletingName="DtIngredienteRowDeleting" msprop:Generator_RowChangingName="DtIngredienteRowChanging" msprop:Generator_RowEvHandlerName="DtIngredienteRowChangeEventHandler" msprop:Generator_RowDeletedName="DtIngredienteRowDeleted" msprop:Generator_UserTableName="DtIngrediente" msprop:Generator_RowChangedName="DtIngredienteRowChanged" msprop:Generator_RowEvArgName="DtIngredienteRowChangeEvent" msprop:Generator_RowClassName="DtIngredienteRow">
+        <xs:element name="DtIngrediente" msprop:Generator_TableClassName="DtIngredienteDataTable" msprop:Generator_TableVarName="tableDtIngrediente" msprop:Generator_RowChangedName="DtIngredienteRowChanged" msprop:Generator_TablePropName="DtIngrediente" msprop:Generator_RowDeletingName="DtIngredienteRowDeleting" msprop:Generator_RowChangingName="DtIngredienteRowChanging" msprop:Generator_RowEvHandlerName="DtIngredienteRowChangeEventHandler" msprop:Generator_RowDeletedName="DtIngredienteRowDeleted" msprop:Generator_RowClassName="DtIngredienteRow" msprop:Generator_UserTableName="DtIngrediente" msprop:Generator_RowEvArgName="DtIngredienteRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />

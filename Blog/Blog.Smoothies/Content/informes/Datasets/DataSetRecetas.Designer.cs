@@ -373,6 +373,8 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             private global::System.Data.DataColumn columnImagen_Alt;
             
+            private global::System.Data.DataColumn columnTiempoTotal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DtRecetaDataTable() {
@@ -504,6 +506,14 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TiempoTotalColumn {
+                get {
+                    return this.columnTiempoTotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -539,7 +549,7 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DtRecetaRow AddDtRecetaRow(string Nombre, string Autor, System.TimeSpan TiempoCoccion, System.DateTime FechaPublicacion, string Descripcion, string Keywords, System.TimeSpan TiempoPreparacion, string CategoriaReceta, string Raciones, string Imagen_Url, string Imagen_Alt) {
+            public DtRecetaRow AddDtRecetaRow(string Nombre, string Autor, string TiempoCoccion, System.DateTime FechaPublicacion, string Descripcion, string Keywords, string TiempoPreparacion, string CategoriaReceta, string Raciones, string Imagen_Url, string Imagen_Alt, string TiempoTotal) {
                 DtRecetaRow rowDtRecetaRow = ((DtRecetaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -553,7 +563,8 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                         CategoriaReceta,
                         Raciones,
                         Imagen_Url,
-                        Imagen_Alt};
+                        Imagen_Alt,
+                        TiempoTotal};
                 rowDtRecetaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDtRecetaRow);
                 return rowDtRecetaRow;
@@ -595,6 +606,7 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                 this.columnRaciones = base.Columns["Raciones"];
                 this.columnImagen_Url = base.Columns["Imagen_Url"];
                 this.columnImagen_Alt = base.Columns["Imagen_Alt"];
+                this.columnTiempoTotal = base.Columns["TiempoTotal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -606,7 +618,7 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                 base.Columns.Add(this.columnNombre);
                 this.columnAutor = new global::System.Data.DataColumn("Autor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAutor);
-                this.columnTiempoCoccion = new global::System.Data.DataColumn("TiempoCoccion", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnTiempoCoccion = new global::System.Data.DataColumn("TiempoCoccion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTiempoCoccion);
                 this.columnFechaPublicacion = new global::System.Data.DataColumn("FechaPublicacion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaPublicacion);
@@ -614,7 +626,7 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                 base.Columns.Add(this.columnDescripcion);
                 this.columnKeywords = new global::System.Data.DataColumn("Keywords", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKeywords);
-                this.columnTiempoPreparacion = new global::System.Data.DataColumn("TiempoPreparacion", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnTiempoPreparacion = new global::System.Data.DataColumn("TiempoPreparacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTiempoPreparacion);
                 this.columnCategoriaReceta = new global::System.Data.DataColumn("CategoriaReceta", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCategoriaReceta);
@@ -624,6 +636,8 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                 base.Columns.Add(this.columnImagen_Url);
                 this.columnImagen_Alt = new global::System.Data.DataColumn("Imagen_Alt", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImagen_Alt);
+                this.columnTiempoTotal = new global::System.Data.DataColumn("TiempoTotal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTiempoTotal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -635,15 +649,16 @@ namespace Blog.Smoothies.Content.informes.Datasets {
                 this.columnNombre.AllowDBNull = false;
                 this.columnNombre.MaxLength = 256;
                 this.columnAutor.MaxLength = 64;
-                this.columnTiempoCoccion.AllowDBNull = false;
+                this.columnTiempoCoccion.MaxLength = 256;
                 this.columnFechaPublicacion.AllowDBNull = false;
                 this.columnDescripcion.MaxLength = 8000;
                 this.columnKeywords.MaxLength = 256;
-                this.columnTiempoPreparacion.AllowDBNull = false;
+                this.columnTiempoPreparacion.MaxLength = 256;
                 this.columnCategoriaReceta.MaxLength = 64;
                 this.columnRaciones.MaxLength = 128;
                 this.columnImagen_Url.MaxLength = 2147483647;
                 this.columnImagen_Alt.MaxLength = 2147483647;
+                this.columnTiempoTotal.MaxLength = 256;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1378,9 +1393,14 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan TiempoCoccion {
+            public string TiempoCoccion {
                 get {
-                    return ((global::System.TimeSpan)(this[this.tableDtReceta.TiempoCoccionColumn]));
+                    try {
+                        return ((string)(this[this.tableDtReceta.TiempoCoccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TiempoCoccion\' in table \'DtReceta\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableDtReceta.TiempoCoccionColumn] = value;
@@ -1432,9 +1452,14 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan TiempoPreparacion {
+            public string TiempoPreparacion {
                 get {
-                    return ((global::System.TimeSpan)(this[this.tableDtReceta.TiempoPreparacionColumn]));
+                    try {
+                        return ((string)(this[this.tableDtReceta.TiempoPreparacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TiempoPreparacion\' in table \'DtReceta\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableDtReceta.TiempoPreparacionColumn] = value;
@@ -1507,6 +1532,22 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TiempoTotal {
+                get {
+                    try {
+                        return ((string)(this[this.tableDtReceta.TiempoTotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TiempoTotal\' in table \'DtReceta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDtReceta.TiempoTotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsAutorNull() {
                 return this.IsNull(this.tableDtReceta.AutorColumn);
             }
@@ -1515,6 +1556,18 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetAutorNull() {
                 this[this.tableDtReceta.AutorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTiempoCoccionNull() {
+                return this.IsNull(this.tableDtReceta.TiempoCoccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTiempoCoccionNull() {
+                this[this.tableDtReceta.TiempoCoccionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1539,6 +1592,18 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetKeywordsNull() {
                 this[this.tableDtReceta.KeywordsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTiempoPreparacionNull() {
+                return this.IsNull(this.tableDtReceta.TiempoPreparacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTiempoPreparacionNull() {
+                this[this.tableDtReceta.TiempoPreparacionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1587,6 +1652,18 @@ namespace Blog.Smoothies.Content.informes.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetImagen_AltNull() {
                 this[this.tableDtReceta.Imagen_AltColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTiempoTotalNull() {
+                return this.IsNull(this.tableDtReceta.TiempoTotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTiempoTotalNull() {
+                this[this.tableDtReceta.TiempoTotalColumn] = global::System.Convert.DBNull;
             }
         }
         

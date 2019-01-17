@@ -334,7 +334,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TiempoPreparacion.Value</Value>
+                                  <Value>=Fields!TiempoTotal.Value</Value>
                                   <Style>
                                     <FontFamily>open Sans</FontFamily>
                                   </Style>
@@ -397,7 +397,6 @@
                         </Border>
                       </Style>
                     </Rectangle>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -460,7 +459,7 @@
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -497,7 +496,7 @@
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -572,7 +571,7 @@
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -609,7 +608,7 @@
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -787,7 +786,7 @@
         </Field>
         <Field Name="TiempoCoccion">
           <DataField>TiempoCoccion</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FechaPublicacion">
           <DataField>FechaPublicacion</DataField>
@@ -803,7 +802,7 @@
         </Field>
         <Field Name="TiempoPreparacion">
           <DataField>TiempoPreparacion</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CategoriaReceta">
           <DataField>CategoriaReceta</DataField>
@@ -819,6 +818,10 @@
         </Field>
         <Field Name="Imagen_Alt">
           <DataField>Imagen_Alt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TiempoTotal">
+          <DataField>TiempoTotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

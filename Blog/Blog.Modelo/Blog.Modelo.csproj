@@ -78,6 +78,7 @@
     <Compile Include="Posts\ExtensionesPost.cs" />
     <Compile Include="Posts\BlogEntidad.cs" />
     <Compile Include="Imagenes\Imagen.cs" />
+    <Compile Include="Recetas\FormatoHorasMinutos.cs" />
     <Compile Include="Recetas\IngredienteReceta.cs" />
     <Compile Include="Recetas\Instruccion.cs" />
     <Compile Include="Recetas\Ingrediente.cs" />
