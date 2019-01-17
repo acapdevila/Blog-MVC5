@@ -103,6 +103,8 @@ namespace Blog.Modelo.Posts
         public void AsignarReceta(Receta receta)
         {
             Receta = receta;
+
+            if(receta == null) return;
             
             if (string.IsNullOrEmpty(Titulo))
                 Titulo = receta.Nombre;
