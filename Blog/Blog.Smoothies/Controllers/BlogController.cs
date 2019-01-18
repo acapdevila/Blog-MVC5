@@ -33,7 +33,7 @@ namespace Blog.Smoothies.Controllers
 
         }
 
-        private const int NumeroItemsPorPagina = 11;
+        private const int NumeroItemsPorPagina = 20;
 
         public async Task<ActionResult> Index(int? pagina)
         {
