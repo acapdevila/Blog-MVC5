@@ -89,9 +89,9 @@ namespace Blog.Servicios.Recetas
                 .Include(m => m.Instrucciones)
                 .FirstAsync(m => m.Id == comando.IdReceta);
             
-            QuitarIngredientes(receta, receta.Ingredientes.Select(m=> new ComandoQuitarIngrediente(m.Id)));
+            QuitarIngredientes(receta, receta.Ingredientes.Select((m, index)=> new ComandoQuitarIngrediente(index + 1)));
             
-            EliminarInstrucciones(receta, receta.Instrucciones.Select(m=> new ComandoEliminarInstruccion(m.Id)));
+            EliminarInstrucciones(receta, receta.Instrucciones.Select((m, index)=> new ComandoEliminarInstruccion(index + 1)));
             
             _db.Recetas.Remove(receta);
 
