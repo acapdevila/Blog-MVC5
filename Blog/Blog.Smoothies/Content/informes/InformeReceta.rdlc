@@ -483,12 +483,20 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Nombre.Value</Value>
+                              <Value>= Fields!Nombre.Value</Value>
+                              <Style>
+                                <FontFamily>open Sans</FontFamily>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontFamily>open Sans</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
+                          <ListStyle>Bulleted</ListStyle>
+                          <ListLevel>1</ListLevel>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
@@ -595,7 +603,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Nombre.Value</Value>
+                              <Value>= RowNumber("Instrucciones") &amp; ".  " &amp; Fields!Nombre.Value</Value>
                               <Style>
                                 <FontFamily>open Sans</FontFamily>
                               </Style>
@@ -616,6 +624,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

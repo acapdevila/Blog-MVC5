@@ -65,7 +65,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
-
+        [Display(Name = "Keywords (,)")]
         public string Keywords { get; set; }
 
 
