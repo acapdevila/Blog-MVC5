@@ -31,7 +31,7 @@ namespace Blog.Servicios.Recetas
             }
 
             return await consulta
-                        .OrderBy(m=>m.Nombre)
+                        .OrderByDescending(m=>m.FechaPublicacion)
                         .ToPagedListAsync(indicePagina, tamañoPagina);
 
         }
