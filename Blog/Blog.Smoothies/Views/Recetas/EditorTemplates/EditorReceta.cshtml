@@ -221,6 +221,9 @@ else
                 dataType: "html"
             }).done(function() {
 
+                resetPosiciones('#lineasInstruccion');
+                resetPosiciones('#lineasIngrediente');
+
                 $("#btnGuardar")
                     .val("Guardado")
                     .prop('disabled', false)
@@ -241,6 +244,14 @@ else
                 }
             );
         }
+
+        function resetPosiciones(idLineas) {
+            jQuery(idLineas +" [id$='Posicion']").each(function( index ) {
+                $(this).val(index + 1);
+            });
+        }
+
+
 
     </script>
 }
