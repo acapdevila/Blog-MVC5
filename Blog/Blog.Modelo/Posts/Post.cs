@@ -129,6 +129,8 @@ namespace Blog.Modelo.Posts
             {
                 var sb = new StringBuilder();
 
+                sb.Append($"<p>{receta.Descripcion}</p>");
+
                 sb.Append($"<h2>{receta.Nombre}</h2>");
 
                 sb.Append($"<p class='yield smaller'><span class='glyphicon glyphicon-cutlery'>&nbsp;</span>Raciones: {receta.Raciones}</p>");
