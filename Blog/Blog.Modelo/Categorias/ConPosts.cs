@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 
 namespace Blog.Modelo.Categorias
 {
@@ -6,7 +7,7 @@ namespace Blog.Modelo.Categorias
     {
         public static IQueryable<Categoria> ConPosts(this IQueryable<Categoria> categorias, string tituloBlog)
         {
-            return categorias.Where(m => m.Posts.Any(p => p.Blog.Titulo == tituloBlog));
+            return categorias.Include(m=>m.Posts).Where(m => m.Posts.Any(p => p.Blog.Titulo == tituloBlog));
         }
     }
 }

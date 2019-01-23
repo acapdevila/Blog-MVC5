@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
+using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
@@ -49,6 +50,7 @@ namespace Blog.Servicios
             return await Posts()
                 .Include(m => m.Tags)
                 .Include(m => m.Categorias)
+                .Include(m=>m.Receta)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -87,10 +89,11 @@ namespace Blog.Servicios
        
 
         
-        public async Task ActualizarPost(EditorPost editorPost)
+        public async Task ActualizarPost(EditorPost editorPost, Receta  receta)
         {
             var post = await RecuperarPost(editorPost.Id);
             post.ActualizaPost(editorPost, _asignadorTags, _asignadorCategorias);
+            post.AsignarReceta(receta);
             await _db.GuardarCambios();
            
            

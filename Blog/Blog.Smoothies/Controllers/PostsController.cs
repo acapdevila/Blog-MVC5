@@ -18,6 +18,7 @@ namespace Blog.Smoothies.Controllers
     public class PostsController : Controller
     {
         private readonly PostsServicio _postsServicio;
+        private readonly BuscadorDeReceta _buscadorDeReceta;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
@@ -28,15 +29,17 @@ namespace Blog.Smoothies.Controllers
             this(new PostsServicio(contexto,
                     new AsignadorTags(new TagRepositorio(contexto)),
                     new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
-                    BlogController.TituloBlog))
+                    BlogController.TituloBlog),
+                new BuscadorDeReceta(contexto))
         {
 
         }
 
 
-        public PostsController(PostsServicio postsServicio)
+        public PostsController(PostsServicio postsServicio, BuscadorDeReceta buscadorDeReceta)
         {
             _postsServicio = postsServicio;
+            _buscadorDeReceta = buscadorDeReceta;
         }
 
         public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
@@ -218,7 +221,8 @@ namespace Blog.Smoothies.Controllers
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            await _postsServicio.ActualizarPost(editorPost);
+            var receta = await _buscadorDeReceta.BuscarRecetaPorNombreAsync(editorPost.Receta);
+            await _postsServicio.ActualizarPost(editorPost, receta);
         }
 
         private async Task EliminarPost(int id)

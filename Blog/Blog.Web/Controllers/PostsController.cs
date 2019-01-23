@@ -218,7 +218,7 @@ namespace Blog.Web.Controllers
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            await _postsServicio.ActualizarPost(editorPost);
+            await _postsServicio.ActualizarPost(editorPost, null);
         }
 
         private async Task EliminarPost(int id)
