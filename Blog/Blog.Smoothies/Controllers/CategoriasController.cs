@@ -12,7 +12,12 @@ namespace Blog.Smoothies.Controllers
     [Authorize]
     public class CategoriasController : Controller
     {
-        private readonly CategoriasServicio _categoriasServicio = new CategoriasServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
+        private readonly CategoriasServicio _categoriasServicio;
+        public CategoriasController()
+        {
+            var db = new ContextoBaseDatos();
+            _categoriasServicio = new CategoriasServicio(db, BlogController.TituloBlog);
+        }
 
         // GET: Categorias
         public async Task<ActionResult> Index()

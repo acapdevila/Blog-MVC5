@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Categorias\AsignadorCategorias.cs" />
     <Compile Include="Categorias\Categoria.cs" />
+    <Compile Include="Categorias\ConPosts.cs" />
     <Compile Include="Categorias\ICategoriaRepositorio.cs" />
     <Compile Include="Dtos\ArchivoItemDto.cs" />
     <Compile Include="Dtos\EtiquetaDto.cs" />

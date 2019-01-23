@@ -112,6 +112,10 @@
     <Compile Include="Migrations\201901131642571_RelacionarRecetasConPosts.Designer.cs">
       <DependentUpon>201901131642571_RelacionarRecetasConPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901232039004_Categorias_QuitarRelacionConBlog.cs" />
+    <Compile Include="Migrations\201901232039004_Categorias_QuitarRelacionConBlog.Designer.cs">
+      <DependentUpon>201901232039004_Categorias_QuitarRelacionConBlog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -155,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901131642571_RelacionarRecetasConPosts.resx">
       <DependentUpon>201901131642571_RelacionarRecetasConPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901232039004_Categorias_QuitarRelacionConBlog.resx">
+      <DependentUpon>201901232039004_Categorias_QuitarRelacionConBlog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

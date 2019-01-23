@@ -24,21 +24,15 @@ namespace Blog.Servicios
 
         public IQueryable<Categoria> Categorias()
         {
-            return _db.Categorias
-                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+            return _db.Categorias;
         }
 
 
-        private IQueryable<Categoria> CategoriasIncluyendoPosts()
-        {
-            return _db.Categorias
-                .Include(m => m.Posts)
-                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
-        }
 
         public Task<Categoria> RecuperarCategoriaIncluyendoPostsPorUrlCategoriaAsync(string urlCategoria)
         {
-            return CategoriasIncluyendoPosts()
+            return Categorias()
+                    .ConPosts(_tituloBlog)
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlCategoria);
         }
 

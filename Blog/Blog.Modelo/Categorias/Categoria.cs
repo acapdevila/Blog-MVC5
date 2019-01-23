@@ -4,7 +4,6 @@ using System.Linq;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Extensiones;
 using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
 
 namespace Blog.Modelo.Categorias
 {
@@ -30,9 +29,7 @@ namespace Blog.Modelo.Categorias
 
 
         public DateTime? FechaPublicacion { get; set; }
-
-        public BlogEntidad Blog { get; set; }
-
+        
         public ICollection<Post> Posts { get; set; }
 
         public bool EsMostrarDatosEstructurados
