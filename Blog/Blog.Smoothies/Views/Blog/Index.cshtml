@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@using Blog.Smoothies.Helpers
 @model Blog.Smoothies.Views.Blog.ViewModels.BlogViewModel
 
 
@@ -30,12 +31,25 @@
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-        
-        <!-- First Blog Post -->
-        @foreach (var item in Model.Posts)
+
+        @for (int i = 0; i < Model.Posts.Count; i=i+2)
         {
-            @Html.Partial("_ItemLineaResumenPost", item)
+            var items = Model.Posts.Skip(i).Take(2); 
+            
+            <div class="row">
+                @foreach (var item in items)
+                {
+                    @Html.Partial("_ItemLineaResumenPost", item)
+                }
+
+            </div>
         }
+
+        @*@foreach (var item in Model.Posts)
+        {
+                @Html.Partial("_ItemLineaResumenPost", item)         
+        }*@
+       
 
         <!-- Pager-->
         <div class="clearfix"></div>

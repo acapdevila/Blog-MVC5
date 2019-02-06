@@ -27,10 +27,25 @@
         </div>
 
         <div>
-            @foreach (var item in Model.PostsSugeridos)
+            
+            @for (int i = 0; i < Model.PostsSugeridos.Count; i=i+2)
+            {
+                var items = Model.PostsSugeridos.Skip(i).Take(2); 
+            
+                <div class="row">
+                    @foreach (var item in items)
+                    {
+                        @Html.Partial("_ItemLineaResumenPost", item)
+                    }
+
+                </div>
+            }
+            
+
+            @*@foreach (var item in Model.PostsSugeridos)
             {
                 @Html.Partial("_ItemLineaResumenPost", item)
-            }
+            }*@
 
         </div>
 

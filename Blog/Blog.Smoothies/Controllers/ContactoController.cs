@@ -26,17 +26,13 @@ namespace Blog.Smoothies.Controllers
         [HttpPost]
         public ActionResult Index(FormularioContactoViewModel viewmodel)
         {
-            if (ModelState.IsValid)
-            {
-               _emailServicio.EnviarFormularioContacto(viewmodel);
-                
-                if(viewmodel.EsCaptchaValido)
-                    return RedirectToAction("MensajeEnviado");
-               
-                return RedirectToAction("MensajeNoEnviado");
-            }
+            if (!ModelState.IsValid) return View(viewmodel);
 
-            return View(viewmodel);
+            if (!viewmodel.EsCaptchaValido)
+                return RedirectToAction("MensajeNoEnviado");
+            
+            _emailServicio.EnviarFormularioContacto(viewmodel);
+            return RedirectToAction("MensajeEnviado");
 
         }
 
