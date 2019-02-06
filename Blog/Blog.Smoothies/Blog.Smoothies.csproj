@@ -201,6 +201,7 @@
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UtensiliosController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -979,6 +980,7 @@
     <Content Include="Views\Portada\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AutocompleteUnico.cshtml" />
     <Content Include="Views\Shared\_DatosEstructuradosArticulo.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
