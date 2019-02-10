@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201902101707235_QuitarTiemposDelTipoTimeSql.Designer.cs">
       <DependentUpon>201902101707235_QuitarTiemposDelTipoTimeSql.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902101731368_InstruccionSinLongitud.cs" />
+    <Compile Include="Migrations\201902101731368_InstruccionSinLongitud.Designer.cs">
+      <DependentUpon>201902101731368_InstruccionSinLongitud.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -176,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902101707235_QuitarTiemposDelTipoTimeSql.resx">
       <DependentUpon>201902101707235_QuitarTiemposDelTipoTimeSql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902101731368_InstruccionSinLongitud.resx">
+      <DependentUpon>201902101731368_InstruccionSinLongitud.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

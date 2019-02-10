@@ -10,8 +10,7 @@ namespace Blog.Datos.MapeosTablas
             ToTable("Instruccion");
 
             Property(m => m.Nombre)
-                .HasMaxLength(512)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar(max)");
 
 
         }
