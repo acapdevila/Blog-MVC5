@@ -30,7 +30,9 @@ namespace Blog.Modelo.Recetas
 
         public string Autor { get; set; }
 
-        public TimeSpan TiempoCoccion { get; set; }
+        public TimeSpan TiempoCoccion => TimeSpan.FromSeconds(TiempoCoccionEnSegundos);
+
+        public int TiempoCoccionEnSegundos { get; set; }
 
         public DateTime FechaPublicacion { get; set; }
         
@@ -38,7 +40,9 @@ namespace Blog.Modelo.Recetas
 
         public string Keywords { get; set; }
 
-        public TimeSpan TiempoPreparacion { get; set; }
+        public TimeSpan TiempoPreparacion => TimeSpan.FromSeconds(TiempoPreparacionEnSegundos);
+
+        public int TiempoPreparacionEnSegundos { get; set; }
 
 
         public string CategoriaReceta { get; set; }

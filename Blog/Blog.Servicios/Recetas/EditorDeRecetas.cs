@@ -33,8 +33,8 @@ namespace Blog.Servicios.Recetas
                 FechaPublicacion = comando.FechaPublicacion,
                 Descripcion = comando.Descripcion,
                 Raciones = comando.Raciones,
-                TiempoCoccion = comando.TiempoCoccion,
-                TiempoPreparacion = comando.TiempoPreparacion
+                TiempoCoccionEnSegundos = Convert.ToInt32(comando.TiempoCoccion.TotalSeconds),
+                TiempoPreparacionEnSegundos = Convert.ToInt32(comando.TiempoPreparacion.TotalSeconds)
             };
 
             await AñadirIngredientes(receta, comando.Ingredientes);
@@ -65,8 +65,8 @@ namespace Blog.Servicios.Recetas
             receta.FechaPublicacion = comando.FechaPublicacion;
             receta.Descripcion = comando.Descripcion;
             receta.Raciones = comando.Raciones;
-            receta.TiempoCoccion = comando.TiempoCoccion;
-            receta.TiempoPreparacion = comando.TiempoPreparacion;
+            receta.TiempoCoccionEnSegundos = Convert.ToInt32(comando.TiempoCoccion.TotalSeconds);
+            receta.TiempoPreparacionEnSegundos = Convert.ToInt32(comando.TiempoPreparacion.TotalSeconds);
 
             await AñadirIngredientes(receta, comando.IngredientesAñadidos);
             await EditarIngredientes(receta, comando.IngredientesEditados);

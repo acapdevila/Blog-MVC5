@@ -116,6 +116,14 @@
     <Compile Include="Migrations\201901232039004_Categorias_QuitarRelacionConBlog.Designer.cs">
       <DependentUpon>201901232039004_Categorias_QuitarRelacionConBlog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902101636224_TiempoCoccionTicks.cs" />
+    <Compile Include="Migrations\201902101636224_TiempoCoccionTicks.Designer.cs">
+      <DependentUpon>201902101636224_TiempoCoccionTicks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902101707235_QuitarTiemposDelTipoTimeSql.cs" />
+    <Compile Include="Migrations\201902101707235_QuitarTiemposDelTipoTimeSql.Designer.cs">
+      <DependentUpon>201902101707235_QuitarTiemposDelTipoTimeSql.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -162,6 +170,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901232039004_Categorias_QuitarRelacionConBlog.resx">
       <DependentUpon>201901232039004_Categorias_QuitarRelacionConBlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902101636224_TiempoCoccionTicks.resx">
+      <DependentUpon>201902101636224_TiempoCoccionTicks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902101707235_QuitarTiemposDelTipoTimeSql.resx">
+      <DependentUpon>201902101707235_QuitarTiemposDelTipoTimeSql.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
