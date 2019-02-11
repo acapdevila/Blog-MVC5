@@ -5,10 +5,16 @@ namespace Blog.Modelo.Recetas
     {
         public static string FormatoHorasMinutos(this TimeSpan tiempo)
         {
-            if (0 < tiempo.Hours)
-                return $"{tiempo.Hours} horas y {tiempo.Minutes} minutos";
+            if (tiempo.Minutes == 0 && tiempo.Hours == 0 && tiempo.Days == 0)
+                return "-";
 
-            return $"{tiempo.Minutes} minutos";
-        }
+            if (tiempo.Minutes == 0)
+                return $"{tiempo.Hours + tiempo.Days * 24} horas";
+
+            if (tiempo.Hours == 0 &&  tiempo.Days == 0)
+                return $"{tiempo.Minutes} minutos";
+
+            return $"{tiempo.Hours + tiempo.Days * 24} horas y {tiempo.Minutes} minutos";
+         }
 }
 }
