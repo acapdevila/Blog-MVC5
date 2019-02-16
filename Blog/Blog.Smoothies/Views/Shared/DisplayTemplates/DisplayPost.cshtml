@@ -1,11 +1,24 @@
 ﻿@model Blog.Modelo.Posts.Post
-
+@using Blog.Smoothies.Helpers
 
 
 
 <!-- Blog Post -->
 <!-- Title -->
 <h1>@Html.DisplayFor(model => model.Titulo)</h1>
+
+@if (Model.Categorias.Any())
+{
+    <ul class="list-inline">
+        @foreach (var categoria in Model.Categorias)
+        {
+            <li>
+                <a href="@Url.RutaCategoria(categoria.UrlSlug)">@categoria.Nombre</a>
+            </li>
+        }
+    </ul>
+}
+
 <!-- Author -->
 @*<p class="lead">
         by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
@@ -16,7 +29,7 @@
     @* ReSharper disable Mvc.ActionNotResolved *@
     @if (Model.EsReceta)
     {
-        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new{ @class="btn btn-dark", target="_blank"})
+        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new { @class = "btn btn-dark", target = "_blank" })
     }
     @if (User.Identity.IsAuthenticated)
     {
@@ -47,9 +60,9 @@
     @* ReSharper disable Mvc.ActionNotResolved *@
     @if (Model.EsReceta)
     {
-        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new{ @class="btn btn-dark", target="_blank"})
+        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.Receta.Id }, new { @class = "btn btn-dark", target = "_blank" })
     }
-   
+
     @if (User.Identity.IsAuthenticated)
     {
         <span class="pull-right">
@@ -62,7 +75,7 @@
     }
     @* ReSharper restore Mvc.ActionNotResolved *@
 </p>
-    <br />
+<br />
 
 
 
