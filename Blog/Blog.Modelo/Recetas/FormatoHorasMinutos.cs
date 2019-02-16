@@ -9,12 +9,12 @@ namespace Blog.Modelo.Recetas
                 return "-";
 
             if (tiempo.Minutes == 0)
-                return $"{tiempo.Hours + tiempo.Days * 24} horas";
+                return $"{tiempo.Hours + tiempo.Days * 24} h";
 
             if (tiempo.Hours == 0 &&  tiempo.Days == 0)
-                return $"{tiempo.Minutes} minutos";
+                return $"{tiempo.Minutes} '";
 
-            return $"{tiempo.Hours + tiempo.Days * 24} horas y {tiempo.Minutes} minutos";
+            return $"{tiempo.Hours + tiempo.Days * 24} h {tiempo.Minutes} '";
          }
 }
 }
