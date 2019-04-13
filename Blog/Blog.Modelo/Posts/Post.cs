@@ -27,6 +27,7 @@ namespace Blog.Modelo.Posts
         {
             Tags = new List<Tag>();
             Categorias = new List<Categoria>();
+            PostRelacionados = new List<Post>();
         }
 
         public int Id { get; set; }
@@ -58,6 +59,8 @@ namespace Blog.Modelo.Posts
         public ICollection<Tag> Tags { get; set; }
 
         public ICollection<Categoria> Categorias { get; set; }
+
+        public ICollection<Post> PostRelacionados { get; set; }
 
         public Receta Receta { get;private set; }
 
@@ -166,6 +169,9 @@ namespace Blog.Modelo.Posts
          
 
         }
+
+
+        
 
 
     }

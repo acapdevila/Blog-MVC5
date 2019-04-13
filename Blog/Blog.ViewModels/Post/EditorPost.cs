@@ -22,6 +22,8 @@ namespace Blog.ViewModels.Post
            Tags = post.Tags.TagsSeparadosPorComma();
            Categorias = post.Categorias.CategoriasSeparadasPorComma();
             Receta = post.Receta?.Nombre;
+           AñadirPostsRelacionados(post);
+            
         }
 
         public EditorPost(EditorBorrador viewModel)
@@ -89,8 +91,23 @@ namespace Blog.ViewModels.Post
 
         public string Categorias { get; set; }
 
+        public List<EditorPostRelacionado> PostsRelacionados { get; set; }
+
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
 
         public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(new[] { ExtensionesCategoria.SeparadorCategorias }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+
+        private void AñadirPostsRelacionados(Modelo.Posts.Post post)
+        {
+            PostsRelacionados = new List<EditorPostRelacionado>();
+
+            for (int i = 0; i < post.PostRelacionados.Count; i++)
+            {
+                PostsRelacionados.Add(new EditorPostRelacionado(i + 1, post.PostRelacionados.ElementAt(i)));
+            }
+
+        }
+
     }
 }

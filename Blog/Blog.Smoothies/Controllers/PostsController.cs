@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -8,6 +9,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
+using Blog.Servicios.Blog;
 using Blog.Servicios.Cache;
 using Blog.Servicios.Recetas;
 using Blog.ViewModels.Post;
@@ -19,6 +21,7 @@ namespace Blog.Smoothies.Controllers
     {
         private readonly PostsServicio _postsServicio;
         private readonly BuscadorDeReceta _buscadorDeReceta;
+        private readonly BuscadorPostsRelacionados _buscadorPostsRelacionados;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
@@ -30,16 +33,18 @@ namespace Blog.Smoothies.Controllers
                     new AsignadorTags(new TagRepositorio(contexto)),
                     new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
                     BlogController.TituloBlog),
-                new BuscadorDeReceta(contexto))
+                new BuscadorDeReceta(contexto),
+                new BuscadorPostsRelacionados(contexto))
         {
 
         }
 
 
-        public PostsController(PostsServicio postsServicio, BuscadorDeReceta buscadorDeReceta)
+        public PostsController(PostsServicio postsServicio, BuscadorDeReceta buscadorDeReceta, BuscadorPostsRelacionados buscadorPostsRelacionados)
         {
             _postsServicio = postsServicio;
             _buscadorDeReceta = buscadorDeReceta;
+            _buscadorPostsRelacionados = buscadorPostsRelacionados;
         }
 
         public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
@@ -222,7 +227,13 @@ namespace Blog.Smoothies.Controllers
         private async Task ActualizarPost(EditorPost editorPost)
         {
             var receta = await _buscadorDeReceta.BuscarRecetaPorNombreAsync(editorPost.Receta);
-            await _postsServicio.ActualizarPost(editorPost, receta);
+
+            var postsRelacionados =
+                await _buscadorPostsRelacionados.BuscarPostsRelacionadosPorTitulosAsync(
+                    editorPost.PostsRelacionados.Where(m=>!m.EstaMarcadoParaEliminar)
+                    .Select(m => m.Nombre).ToList());
+
+            await _postsServicio.ActualizarPost(editorPost, receta, postsRelacionados);
         }
 
         private async Task EliminarPost(int id)

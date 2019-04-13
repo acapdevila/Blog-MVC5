@@ -150,6 +150,7 @@
     <Compile Include="Blog\Borradores\BuscadorBorradores.cs" />
     <Compile Include="Blog\Borradores\EditorBorradorPost.cs" />
     <Compile Include="Blog\BuscadorBlog.cs" />
+    <Compile Include="Blog\BuscadorPostsRelacionados.cs" />
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\CacheSetting.cs" />
     <Compile Include="Cache\ICacheService.cs" />

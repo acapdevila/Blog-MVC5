@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -218,7 +219,7 @@ namespace Blog.Web.Controllers
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            await _postsServicio.ActualizarPost(editorPost, null);
+            await _postsServicio.ActualizarPost(editorPost, null, new List<Post>());
         }
 
         private async Task EliminarPost(int id)

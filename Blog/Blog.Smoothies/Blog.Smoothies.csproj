@@ -983,9 +983,11 @@
     <Content Include="Views\Shared\EditorTemplates\AutocompleteUnico.cshtml" />
     <Content Include="Views\Shared\_DatosEstructuradosArticulo.cshtml" />
     <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditorPostRelacionado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Posts\ViewModels\" />
     <Folder Include="Views\Sitemap\" />
   </ItemGroup>
   <ItemGroup>

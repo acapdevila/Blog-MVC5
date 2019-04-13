@@ -74,6 +74,9 @@ namespace Blog.ViewModels.Post
         public string Receta { get; set; }
 
 
+        public List<EditorPostRelacionado> PostsRelacionados { get; set; }
+
+
         [Display(Name = "Etiquetas")]
         public string Tags { get; set; }
 

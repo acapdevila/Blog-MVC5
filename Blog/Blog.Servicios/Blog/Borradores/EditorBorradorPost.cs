@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
@@ -45,7 +46,7 @@ namespace Blog.Servicios.Blog.Borradores
             return post;
         }
 
-        public async Task CrearBorrador(EditorBorrador editorBorrador, Receta receta = null)
+        public async Task CrearBorrador(EditorBorrador editorBorrador, Receta receta = null, List<Post> postsRelacionados = default(List<Post>))
         {
             var blog = _buscadorBlog.RecuperarBlog();
 
@@ -59,11 +60,12 @@ namespace Blog.Servicios.Blog.Borradores
             editorBorrador.Id = post.Id;
         }
 
-        public async Task ActualizarBorrador(EditorBorrador editorBorrador, Receta receta = null)
+        public async Task ActualizarBorrador(EditorBorrador editorBorrador, Receta receta = null, List<Post> postsRelacionados = default(List<Post>))
         {
             var post = await _buscadorBorrador.BuscarBorradorPorIdAsync(editorBorrador.Id);
             post.ActualizaBorrador(editorBorrador, _asignadorTags, _asignadorCategorias);
             post.AsignarReceta(receta);
+            post.PostRelacionados = postsRelacionados;
             await _db.GuardarCambios();
         }
 

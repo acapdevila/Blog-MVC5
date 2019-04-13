@@ -51,6 +51,7 @@ namespace Blog.Servicios
                 .Include(m => m.Tags)
                 .Include(m => m.Categorias)
                 .Include(m=>m.Receta)
+                .Include(m=>m.PostRelacionados)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -89,11 +90,14 @@ namespace Blog.Servicios
        
 
         
-        public async Task ActualizarPost(EditorPost editorPost, Receta  receta)
+        public async Task ActualizarPost(EditorPost editorPost, Receta  receta, List<Post> postsRelacionados)
         {
             var post = await RecuperarPost(editorPost.Id);
             post.ActualizaPost(editorPost, _asignadorTags, _asignadorCategorias);
             post.AsignarReceta(receta);
+
+            post.PostRelacionados = postsRelacionados;
+
             await _db.GuardarCambios();
            
            
@@ -129,6 +133,6 @@ namespace Blog.Servicios
         }
 
 
-   
+     
     }
 }

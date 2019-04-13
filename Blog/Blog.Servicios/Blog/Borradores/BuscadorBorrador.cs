@@ -23,6 +23,7 @@ namespace Blog.Servicios.Blog.Borradores
                 .Include(m=>m.Receta)
                 .Include(m => m.Tags)
                 .Include(m => m.Categorias)
+                .Include(m=>m.PostRelacionados)
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
