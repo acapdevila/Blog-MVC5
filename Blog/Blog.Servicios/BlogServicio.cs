@@ -44,6 +44,19 @@ namespace Blog.Servicios
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 
+        public IQueryable<Post> PostsYRelacionados()
+        {
+            return _db.Posts
+                    .Include(m => m.Receta.Ingredientes.Select(i => i.Ingrediente))
+                    .Include(m => m.Receta.Instrucciones)
+                    .Include(m => m.Tags)
+                    .Include(m => m.Categorias)
+                    .Include(m => m.PostRelacionados.Select(r => r.Hijo))
+                    .Where(m => m.Blog.Titulo == _tituloBlog);
+            
+            
+        }
+
       
       
 
@@ -152,7 +165,7 @@ namespace Blog.Servicios
 
         public async Task<Post> RecuperarPost(string urlSlug)
         {
-            return await Posts()
+            return await PostsYRelacionados()
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }
 

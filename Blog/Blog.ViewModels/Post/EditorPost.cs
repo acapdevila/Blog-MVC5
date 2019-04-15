@@ -13,7 +13,7 @@ namespace Blog.ViewModels.Post
     {
         public EditorPost()
         {
-          
+          PostsRelacionados = new List<EditorPostRelacionado>();
         }
 
         public EditorPost(Modelo.Posts.Post post): this()
@@ -91,6 +91,8 @@ namespace Blog.ViewModels.Post
 
         public string Categorias { get; set; }
 
+
+        [Display(Name = "Posts relacionados")]
         public List<EditorPostRelacionado> PostsRelacionados { get; set; }
 
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
@@ -100,11 +102,11 @@ namespace Blog.ViewModels.Post
 
         private void AñadirPostsRelacionados(Modelo.Posts.Post post)
         {
-            PostsRelacionados = new List<EditorPostRelacionado>();
+            //PostsRelacionados = new List<EditorPostRelacionado>();
 
-            for (int i = 0; i < post.PostRelacionados.Count; i++)
+            foreach (var postRelacionado in post.PostRelacionados.OrderBy(m => m.Posicion))
             {
-                PostsRelacionados.Add(new EditorPostRelacionado(i + 1, post.PostRelacionados.ElementAt(i)));
+                PostsRelacionados.Add(new EditorPostRelacionado(postRelacionado));
             }
 
         }

@@ -7,18 +7,18 @@ namespace Blog.Datos.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PostsRelacionados : IMigrationMetadata
+    public sealed partial class PostsRelacionadosComoEntidad : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PostsRelacionados));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PostsRelacionadosComoEntidad));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904070944558_PostsRelacionados"; }
+            get { return "201904131054536_PostsRelacionadosComoEntidad"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

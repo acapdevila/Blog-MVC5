@@ -85,8 +85,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return HttpNotFound();
             }
-
-
+            
             var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
 
 
@@ -262,6 +261,11 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<List<LineaResumenPost>> RecuperarPostsSugeridosViewmodel(Post post)
         {
+            if (post.PostRelacionados.Any())
+            {
+                return post.PostRelacionados.OrderBy(m=>m.Posicion).Select(m=> m.Hijo).AsQueryable().SeleccionaLineaResumenPost().ToList();
+            }
+            
             List<LineaResumenPost> postsSugeridosAnteriores = await RecuperarPostsAterioresMismaCategoria(post, 3);
             List<LineaResumenPost> postsSugeridosPosteriores = await RecuperarPostsPosterioresMismaCategoria(post, 3);
 

@@ -2,7 +2,7 @@
 
 @{
     string name = ViewData.TemplateInfo.HtmlFieldPrefix;
-    string id = name.Replace(".", "_");
+    string id = name.Replace(".", "_").Replace("[", "_").Replace("]", "_");
 }
 
 

@@ -162,7 +162,6 @@ namespace Blog.Smoothies.Controllers
 
             var postsRelacionados = await ObtenerPostsRelacionados(viewModel);
                 
-
             await _editorBorrador.CrearBorrador(viewModel, receta, postsRelacionados);
 
             if (boton.ToLower().Contains(@"salir"))
@@ -295,8 +294,10 @@ namespace Blog.Smoothies.Controllers
         private async Task<List<Post>> ObtenerPostsRelacionados(EditorBorrador viewModel)
         {
             return await _buscadorPostsRelacionados.BuscarPostsRelacionadosPorTitulosAsync(
-                viewModel.PostsRelacionados.Where(m => !m.EstaMarcadoParaEliminar)
-                    .Select(m => m.Nombre).ToList());
+                    viewModel.PostsRelacionados
+                        .Where(m => !m.EstaMarcadoParaEliminar)
+                        .Select(m => m.Nombre).ToList()
+                    );
         }
 
     }

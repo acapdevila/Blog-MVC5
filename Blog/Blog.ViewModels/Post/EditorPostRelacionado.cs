@@ -7,10 +7,10 @@
 
         }
 
-        public EditorPostRelacionado(int posicion, Modelo.Posts.Post postRelacionado)
+        public EditorPostRelacionado(Modelo.Posts.PostRelacionado postRelacionado)
         {
-            Posicion = posicion;
-            Nombre = postRelacionado.Titulo;
+            Posicion = postRelacionado.Posicion;
+            Nombre = postRelacionado.Hijo.Titulo;
         }
         public int Posicion { get; set; }
         public string Nombre { get; set; }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Extensiones;
@@ -27,7 +28,7 @@ namespace Blog.Modelo.Posts
         {
             Tags = new List<Tag>();
             Categorias = new List<Categoria>();
-            PostRelacionados = new List<Post>();
+            PostRelacionados = new List<PostRelacionado>();
         }
 
         public int Id { get; set; }
@@ -60,7 +61,7 @@ namespace Blog.Modelo.Posts
 
         public ICollection<Categoria> Categorias { get; set; }
 
-        public ICollection<Post> PostRelacionados { get; set; }
+        public ICollection<PostRelacionado> PostRelacionados { get; set; }
 
         public Receta Receta { get;private set; }
 
@@ -171,8 +172,58 @@ namespace Blog.Modelo.Posts
         }
 
 
-        
+        public List<PostRelacionado> AsignarPostsRelacionados(List<Post> posts)
+        {
+            var listaPostsAsignados = new List<PostRelacionado>();
+            int i = 1;
+            foreach (var post in posts)
+            {
+                var nuevaAsignacion = AsignarPostRelacionado(post, i);
+                i++;
+
+                if(nuevaAsignacion != null)
+                    listaPostsAsignados.Add(nuevaAsignacion);
+            }
+
+            return listaPostsAsignados;
+
+        }
+
+        private PostRelacionado AsignarPostRelacionado(Post post, int posicion)
+        {
+            var postExistente = PostRelacionados.FirstOrDefault(p => p.HijoId == post.Id);
+
+            if (postExistente != null)
+            {
+                postExistente.Posicion = posicion;
+                return null;
+            }
+
+            var postRelacionado = new PostRelacionado
+            {
+                PostId = Id,
+                HijoId = post.Id,
+                Posicion = posicion
+            };
 
 
+            PostRelacionados.Add(postRelacionado);
+
+            return postRelacionado;
+
+
+        }
+
+        public List<PostRelacionado> QuitarPostsDiferentesA(List<Post> posts)
+        {
+            var postsAEliminar = PostRelacionados.Where(m => posts.All(p => m.HijoId != p.Id)).ToList();
+
+            foreach (var postAEliminar in postsAEliminar)
+            {
+                PostRelacionados.Remove(postAEliminar);
+            }
+
+            return postsAEliminar.ToList();
+        }
     }
 }

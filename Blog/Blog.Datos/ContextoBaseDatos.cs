@@ -23,6 +23,8 @@ namespace Blog.Datos
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<PostRelacionado> PostsRelacionados { get; set; }
+
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<BlogEntidad> Blogs { get; set; }
@@ -66,6 +68,8 @@ namespace Blog.Datos
             modelBuilder.Configurations.Add(new MapeoCategoria());
 
             modelBuilder.Configurations.Add(new MapeoPost());
+
+            modelBuilder.Configurations.Add(new MapeoPostsRelacionados());
 
             modelBuilder.Configurations.Add(new MapeoBlogEntidad());
 

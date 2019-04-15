@@ -215,6 +215,15 @@ namespace Blog.Smoothies.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
+        public async Task<ActionResult> AutocompleteSearch(string term)
+        {
+            var search = (await _buscadorPostsRelacionados.TitulosDePosts(term))
+                .Select(m => new { value = m.Descripcion, id = m.Descripcion })
+                .ToList();
+            ;
+            return Json(search, JsonRequestBehavior.AllowGet);
+        }
 
 
 
