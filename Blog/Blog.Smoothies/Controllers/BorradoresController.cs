@@ -293,6 +293,8 @@ namespace Blog.Smoothies.Controllers
 
         private async Task<List<Post>> ObtenerPostsRelacionados(EditorBorrador viewModel)
         {
+            if(!viewModel.PostsRelacionados.Any()) return new List<Post>();
+
             return await _buscadorPostsRelacionados.BuscarPostsRelacionadosPorTitulosAsync(
                     viewModel.PostsRelacionados
                         .Where(m => !m.EstaMarcadoParaEliminar)

@@ -159,7 +159,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
 
         
         private IEnumerable<ComandoAñadirIngrediente> ObtenerComandosAñadirIngredientes()
-        { return Ingredientes.Where(m => m.Posicion <= 0).ToList()
+        { return Ingredientes.Where(m => !m.EstaMarcadoParaEliminar && m.Posicion <= 0).ToList()
             .Select(i => new ComandoAñadirIngrediente(i.NombreIngrediente)); }
 
         private IEnumerable<ComandoEditarIngrediente> ObtenerComandosEditarIngredientes()
@@ -171,12 +171,9 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
         { return Ingredientes.Where(m => m.EstaMarcadoParaEliminar && 0 < m.Posicion).ToList()
             .Select(m => new ComandoQuitarIngrediente(m.Posicion)); }
 
-
-
-
-
+        
         private IEnumerable<ComandoAñadirInstruccion> ObtenerComandosAñadirInstrucciones()
-        { return Instrucciones.Where(m => m.Posicion <= 0).ToList()
+        { return Instrucciones.Where(m => !m.EstaMarcadoParaEliminar && m.Posicion <= 0).ToList()
             .Select(m => new ComandoAñadirInstruccion(m.Nombre)); }
 
         private IEnumerable<ComandoEditarInstruccion> ObtenerComandosEditarInstrucciones()

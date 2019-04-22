@@ -175,6 +175,9 @@ namespace Blog.Modelo.Posts
         public List<PostRelacionado> AsignarPostsRelacionados(List<Post> posts)
         {
             var listaPostsAsignados = new List<PostRelacionado>();
+
+            if (posts == null) return listaPostsAsignados;
+
             int i = 1;
             foreach (var post in posts)
             {
@@ -216,6 +219,8 @@ namespace Blog.Modelo.Posts
 
         public List<PostRelacionado> QuitarPostsDiferentesA(List<Post> posts)
         {
+            if(posts == null) return new List<PostRelacionado>();
+
             var postsAEliminar = PostRelacionados.Where(m => posts.All(p => m.HijoId != p.Id)).ToList();
 
             foreach (var postAEliminar in postsAEliminar)

@@ -11,6 +11,7 @@ namespace Blog.Servicios.Recetas.Comandos
         public ComandoCrearReceta()
         {
             Instrucciones = new List<ComandoAñadirInstruccion>();
+            Ingredientes = new List<ComandoAñadirIngrediente>();
         }
         public int Id { get; set; }
 

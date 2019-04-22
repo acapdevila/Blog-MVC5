@@ -16,7 +16,7 @@ namespace Blog.ViewModels.Post
 
         public EditorBorrador()
         {
-            
+            PostsRelacionados = new List<EditorPostRelacionado>();
         }
         public EditorBorrador(Modelo.Posts.Post post): this()
         {
@@ -93,8 +93,6 @@ namespace Blog.ViewModels.Post
 
         private void AñadirPostsRelacionados(Modelo.Posts.Post post)
         {
-            PostsRelacionados = new List<EditorPostRelacionado>();
-
             foreach (var postRelacionado in post.PostRelacionados.OrderBy(m=>m.Posicion))
             {
                 PostsRelacionados.Add(new EditorPostRelacionado(postRelacionado));
