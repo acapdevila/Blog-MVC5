@@ -8,6 +8,7 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 using Blog.Modelo.Usuarios;
+using Blog.Modelo.Utensilios;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blog.Datos
@@ -37,6 +38,13 @@ namespace Blog.Datos
         public DbSet<Instruccion> InstruccionesDeRecetas { get; set; }
 
         public DbSet<IngredienteReceta> IngredientesDeRecetas { get; set; }
+
+
+        public DbSet<UtensilioCategoria> CategoriasDeUtensilios { get; set; }
+
+
+        public DbSet<Utensilio> Utensilios { get; set; }
+
 
 
         public static ContextoBaseDatos Create()
@@ -82,6 +90,9 @@ namespace Blog.Datos
 
 
             modelBuilder.Configurations.Add(new MapeoIngredienteReceta());
+
+            modelBuilder.Configurations.Add(new MapeoUtensilioCategoria());
+            modelBuilder.Configurations.Add(new MapeoUtensilio());
 
 
             base.OnModelCreating(modelBuilder);

@@ -1,0 +1,32 @@
+﻿@model Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.EditarCategoriaUtensilioViewModel
+
+@{
+    ViewBag.Title = "Editar categoría de utensilio";
+}
+
+
+
+@Scripts.Render("~/bundles/controlesedicion")
+@Styles.Render("~/bundles/controlesedicioncss")
+
+<h2>Editar categoría utensilio</h2>
+
+@using (Html.BeginForm("Editar", "UtensiliosCategorias", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Editar categoría</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.EditorFor(m => m.EditorCategoria, "EditorCategoriaDeUtensilio")
+
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

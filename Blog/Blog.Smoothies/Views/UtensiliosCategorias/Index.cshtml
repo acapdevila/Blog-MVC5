@@ -1,0 +1,60 @@
+﻿@using Blog.Smoothies.Helpers
+@using PagedList.Mvc
+@model Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.ListaGestionCategoriasDeUtensiliosViewModel
+@{
+    ViewBag.Title = "Lista categorías de utensilios";
+}
+
+
+<h2>Categorías (@Model.Categorias.TotalItemCount)</h2>
+
+<p>
+    @using (Html.BeginForm())
+    { 
+        @Html.EditorFor(m => m.BuscarPor)
+
+        <input id="btnBuscar" name="boton" type="submit" value="Buscar" class="btn btn-default navbar-btn"/>
+
+        @Html.ActionLink("Crear nueva", "Crear")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th style="width: 150px"></th>
+        <th>
+            Nombre
+        </th>
+
+    </tr>
+
+@foreach (var item in Model.Categorias) {
+    <tr>
+        <td>
+            <div class="btn-group">
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-default" })
+               
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Acciones</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Eliminar", "Eliminar", new {id = item.Id})
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+       </tr>
+}
+    <tr>
+        <td colspan="9">
+            @Html.TotalesListaPaginada(Model.Categorias, " {0} - {1} categorías mostradas de {2}")
+            @Html.PagedListPager(Model.Categorias, pagina => Url.Action("Index", new { pagina }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+        </td>
+
+    </tr>
+
+</table>

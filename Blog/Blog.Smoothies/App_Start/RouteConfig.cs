@@ -82,7 +82,7 @@ namespace Blog.Smoothies
                 defaults: new { controller = "Portada", action = "Index", id = UrlParameter.Optional },
                 constraints: new
                     {
-                        controller = "Account|Blog|Blogs|Borradores|Categorias|Contacto|Error|Hola|Imagenes|Libros|Manage|Menu|Portada|Posts|Principal|Recetas|Rss|Sidebar|Tags|Utensilios|Videos"
+                        controller = "Account|Blog|Blogs|Borradores|Categorias|Contacto|Error|Hola|Imagenes|Libros|Manage|Menu|Portada|Posts|Principal|Recetas|Rss|Sidebar|Tags|Utensilios|UtensiliosCategorias|Videos"
                 }
             );
 

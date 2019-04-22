@@ -188,6 +188,13 @@
     <Compile Include="RssAtom\SyndicationFeedExtensions.cs" />
     <Compile Include="SubirArchivoImagenServicio.cs" />
     <Compile Include="ImagenHelper.cs" />
+    <Compile Include="Utensilios\BuscadorDeCategoriasDeUtensilios.cs" />
+    <Compile Include="Utensilios\BuscadorDeCategoriaDeUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoEliminarCategoriaUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoEditarCategoriaUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoCrearCategoriaUtensilio.cs" />
+    <Compile Include="Utensilios\Dtos\LineaGestionCategoriaDeUtensilio.cs" />
+    <Compile Include="Utensilios\EditorDeCategoriasDeUtensilios.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -207,6 +214,7 @@
       <Name>Blog.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

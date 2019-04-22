@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
     <Compile Include="Controllers\PortadaController.cs" />
+    <Compile Include="Controllers\UtensiliosCategoriasController.cs" />
     <Compile Include="Controllers\RecetasController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -234,6 +235,11 @@
     <Compile Include="Views\Recetas\ViewModels\EditarRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EliminarRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\ListaGestionRecetasViewModel.cs" />
+    <Compile Include="Views\UtensiliosCategorias\ViewModels\CrearCategoriaUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosCategorias\ViewModels\EditarCategoriaUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosCategorias\ViewModels\Editores\EditorCategoriaDeUtensilio.cs" />
+    <Compile Include="Views\UtensiliosCategorias\ViewModels\EliminarCategoriaUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosCategorias\ViewModels\ListaGestionCategoriasDeUtensiliosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -993,6 +999,11 @@
     <Content Include="Views\Shared\_DatosEstructuradosArticulo.cshtml" />
     <Content Include="Views\Videos\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EditorPostRelacionado.cshtml" />
+    <Content Include="Views\UtensiliosCategorias\Index.cshtml" />
+    <Content Include="Views\UtensiliosCategorias\Crear.cshtml" />
+    <Content Include="Views\UtensiliosCategorias\EditorTemplates\EditorCategoriaDeUtensilio.cshtml" />
+    <Content Include="Views\UtensiliosCategorias\Editar.cshtml" />
+    <Content Include="Views\UtensiliosCategorias\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

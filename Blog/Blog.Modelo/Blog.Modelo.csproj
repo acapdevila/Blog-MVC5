@@ -94,6 +94,8 @@
     <Compile Include="Tags\Tag.cs" />
     <Compile Include="Tags\ExtensionesTag.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
+    <Compile Include="Utensilios\Utensilio.cs" />
+    <Compile Include="Utensilios\UtensilioCategoria.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MapeosTablas\MapeoBlogEntidad.cs" />
+    <Compile Include="MapeosTablas\MapeoUtensilio.cs" />
+    <Compile Include="MapeosTablas\MapeoUtensilioCategoria.cs" />
     <Compile Include="MapeosTablas\MapeoIngredienteReceta.cs" />
     <Compile Include="MapeosTablas\MapeoInstruccion.cs" />
     <Compile Include="MapeosTablas\MapeoIngrediente.cs" />
@@ -133,6 +135,10 @@
     <Compile Include="Migrations\201904131054536_PostsRelacionadosComoEntidad.Designer.cs">
       <DependentUpon>201904131054536_PostsRelacionadosComoEntidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904221438291_Utensilios.cs" />
+    <Compile Include="Migrations\201904221438291_Utensilios.Designer.cs">
+      <DependentUpon>201904221438291_Utensilios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904131054536_PostsRelacionadosComoEntidad.resx">
       <DependentUpon>201904131054536_PostsRelacionadosComoEntidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221438291_Utensilios.resx">
+      <DependentUpon>201904221438291_Utensilios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
