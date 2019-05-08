@@ -32,7 +32,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
                                              new List<string>();
 
             Ingredientes = receta.Ingredientes.Select(m => m.Nombre);
-            Instrucciones = receta.Instrucciones.Select(m => m.Nombre);
+            Instrucciones = receta.Instrucciones.Select(m => m.Nombre).ToList();
         }
 
 
@@ -57,7 +57,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
         public string Raciones { get; set; }
 
         public IEnumerable<string> Imagenes { get; }
-        public IEnumerable<string> Instrucciones { get; }
+        public List<string> Instrucciones { get; }
 
         public IEnumerable<string> Ingredientes { get; }
 
