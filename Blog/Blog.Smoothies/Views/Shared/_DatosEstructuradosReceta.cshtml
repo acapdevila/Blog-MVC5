@@ -15,9 +15,9 @@
     },
     "datePublished": "@Model.FechaPublicacion.ToShortDateString()",
     "description": "@Model.Descripcion",
-    "prepTime": "@Model.TiempoPreparacion",
-    "cookTime": "@Model.TiempoCoccion",
-    "totalTime": "@Model.TiempoTotal",
+    "prepTime": "@System.Xml.XmlConvert.ToString(Model.TiempoPreparacion)",
+    "cookTime": "@System.Xml.XmlConvert.ToString(Model.TiempoCoccion)",
+    "totalTime": "@System.Xml.XmlConvert.ToString(Model.TiempoTotal)",
     "keywords": "@Model.Keywords",
     "recipeYield": "@Model.Raciones",
     "recipeCategory": "@Model.CategoriaReceta",
@@ -30,7 +30,7 @@
     "@Html.Raw(string.Join("\",\"", Model.Ingredientes))"
     ],
     "recipeInstructions": [
-    
+
     @for (int i = 0; i < Model.Instrucciones.Count; i++)
     {
         @:{
