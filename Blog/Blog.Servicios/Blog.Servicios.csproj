@@ -188,12 +188,19 @@
     <Compile Include="RssAtom\SyndicationFeedExtensions.cs" />
     <Compile Include="SubirArchivoImagenServicio.cs" />
     <Compile Include="ImagenHelper.cs" />
+    <Compile Include="Utensilios\BuscadorDeUtensilio.cs" />
+    <Compile Include="Utensilios\BuscadorDeUtensilios.cs" />
     <Compile Include="Utensilios\BuscadorDeCategoriasDeUtensilios.cs" />
     <Compile Include="Utensilios\BuscadorDeCategoriaDeUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoCrearUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoEditarUtensilio.cs" />
+    <Compile Include="Utensilios\Comandos\ComandoEliminarUtensilio.cs" />
     <Compile Include="Utensilios\Comandos\ComandoEliminarCategoriaUtensilio.cs" />
     <Compile Include="Utensilios\Comandos\ComandoEditarCategoriaUtensilio.cs" />
     <Compile Include="Utensilios\Comandos\ComandoCrearCategoriaUtensilio.cs" />
+    <Compile Include="Utensilios\Dtos\LineaGestionDeUtensilio.cs" />
     <Compile Include="Utensilios\Dtos\LineaGestionCategoriaDeUtensilio.cs" />
+    <Compile Include="Utensilios\EditorDeUtensilios.cs" />
     <Compile Include="Utensilios\EditorDeCategoriasDeUtensilios.cs" />
   </ItemGroup>
   <ItemGroup>

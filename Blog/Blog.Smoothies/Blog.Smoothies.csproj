@@ -202,6 +202,7 @@
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UtensiliosController.cs" />
+    <Compile Include="Controllers\UtensiliosGestionController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,11 +236,17 @@
     <Compile Include="Views\Recetas\ViewModels\EditarRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\EliminarRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\ListaGestionRecetasViewModel.cs" />
+    <Compile Include="Views\Shared\ViewModels\EditorImagen.cs" />
     <Compile Include="Views\UtensiliosCategorias\ViewModels\CrearCategoriaUtensilioViewModel.cs" />
     <Compile Include="Views\UtensiliosCategorias\ViewModels\EditarCategoriaUtensilioViewModel.cs" />
     <Compile Include="Views\UtensiliosCategorias\ViewModels\Editores\EditorCategoriaDeUtensilio.cs" />
     <Compile Include="Views\UtensiliosCategorias\ViewModels\EliminarCategoriaUtensilioViewModel.cs" />
     <Compile Include="Views\UtensiliosCategorias\ViewModels\ListaGestionCategoriasDeUtensiliosViewModel.cs" />
+    <Compile Include="Views\UtensiliosGestion\ViewModels\CrearUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosGestion\ViewModels\EditarUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosGestion\ViewModels\Editores\EditorDeUtensilio.cs" />
+    <Compile Include="Views\UtensiliosGestion\ViewModels\EliminarUtensilioViewModel.cs" />
+    <Compile Include="Views\UtensiliosGestion\ViewModels\ListaGestionDeUtensiliosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1004,6 +1011,12 @@
     <Content Include="Views\UtensiliosCategorias\EditorTemplates\EditorCategoriaDeUtensilio.cshtml" />
     <Content Include="Views\UtensiliosCategorias\Editar.cshtml" />
     <Content Include="Views\UtensiliosCategorias\Eliminar.cshtml" />
+    <Content Include="Views\UtensiliosGestion\Index.cshtml" />
+    <Content Include="Views\UtensiliosGestion\Crear.cshtml" />
+    <Content Include="Views\UtensiliosGestion\Editar.cshtml" />
+    <Content Include="Views\UtensiliosGestion\Eliminar.cshtml" />
+    <Content Include="Views\UtensiliosGestion\EditorTemplates\EditorDeUtensilio.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditorImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

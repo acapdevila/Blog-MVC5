@@ -11,19 +11,19 @@ using PagedList.EntityFramework;
 
 namespace Blog.Servicios.Utensilios
 {
-    public  class BuscadorDeCategoriasDeUtensilios
+    public  class BuscadorDeUtensilios
     {
         private readonly ContextoBaseDatos _db;
         
-        public BuscadorDeCategoriasDeUtensilios(ContextoBaseDatos db)
+        public BuscadorDeUtensilios(ContextoBaseDatos db)
         {
             _db = db;
         }
         
-        public async Task<IPagedList<LineaGestionCategoriaDeUtensilio>> BuscarPaginaAsync(CriteriosBusqueda criterios, int indicePagina, int tamañoPagina)
+        public async Task<IPagedList<LineaGestionDeUtensilio>> BuscarPaginaAsync(CriteriosBusqueda criterios, int indicePagina, int tamañoPagina)
         {
-            var consulta = _db.CategoriasDeUtensilios
-                .ProyectarALineaDeCategoria();
+            var consulta = _db.Utensilios
+                .ProyectarALineaDeUtensilio();
 
             if (!string.IsNullOrEmpty(criterios.BuscarPor))
             {
@@ -36,9 +36,9 @@ namespace Blog.Servicios.Utensilios
 
         }
 
-        public async Task<List<ElementoValorDescripcion>> ElementosDeCategorias(string contiene = null, int maximoElementos = 10)
+        public async Task<List<ElementoValorDescripcion>> ElementosDeUtensilios(string contiene = null, int maximoElementos = 10)
         {
-            return await _db.CategoriasDeUtensilios
+            return await _db.Utensilios
                     .Where(m => m.Nombre.Contains(contiene))
                     .OrderBy(m => m.Nombre)
                     .Take(maximoElementos)
