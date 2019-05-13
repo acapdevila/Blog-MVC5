@@ -14,6 +14,7 @@ using Blog.Smoothies.Views.UtensiliosGestion.ViewModels;
 
 namespace Blog.Smoothies.Controllers
 {
+    [Authorize]
     public class UtensiliosGestionController : Controller
     {
         private readonly BuscadorDeUtensilios _buscador;
