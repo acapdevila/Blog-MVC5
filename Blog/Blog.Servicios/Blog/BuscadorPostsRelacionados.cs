@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Posts;
 using Blog.Servicios.Comun;
-using Microsoft.Data.Edm.Csdl;
 
 namespace Blog.Servicios.Blog
 {

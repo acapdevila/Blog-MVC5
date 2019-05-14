@@ -7,6 +7,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
+using Blog.Modelo.Utensilios;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 
@@ -50,7 +51,8 @@ namespace Blog.Servicios.Blog.Borradores
         public async Task CrearBorrador(
             EditorBorrador editorBorrador, 
             Receta receta = null,
-            List<Post> postsRelacionados = default(List<Post>))
+            List<Post> postsRelacionados = default(List<Post>),
+            List<Utensilio> utensilios = default(List<Utensilio>))
         {
             var blog = _buscadorBlog.RecuperarBlog();
 
@@ -60,6 +62,8 @@ namespace Blog.Servicios.Blog.Borradores
             post.AsignarReceta(receta);
 
             post.AsignarPostsRelacionados(postsRelacionados);
+
+            post.AsignarUtensilios(utensilios);
             
             _db.Posts.Add(post);
             await _db.GuardarCambios();
@@ -69,7 +73,8 @@ namespace Blog.Servicios.Blog.Borradores
         public async Task ActualizarBorrador(
             EditorBorrador editorBorrador, 
             Receta receta = null, 
-            List<Post> postsRelacionados = default(List<Post>))
+            List<Post> postsRelacionados = default(List<Post>),
+            List<Utensilio> utensilios = default(List<Utensilio>))
         {
             var post = await _buscadorBorrador.BuscarBorradorPorIdAsync(editorBorrador.Id);
             post.ActualizaBorrador(editorBorrador, _asignadorTags, _asignadorCategorias);
@@ -79,6 +84,11 @@ namespace Blog.Servicios.Blog.Borradores
             _db.PostsRelacionados.RemoveRange(postDesasignados);
             var postAsignadosNuevos = post.AsignarPostsRelacionados(postsRelacionados);
             _db.PostsRelacionados.AddRange(postAsignadosNuevos);
+
+            var utensiliosDesasignados = post.QuitarUtensiliosDiferentesA(utensilios);
+            _db.PostsUtensilios.RemoveRange(utensiliosDesasignados);
+            var utensiliosAsignadosNuevos = post.AsignarUtensilios(utensilios);
+            _db.PostsUtensilios.AddRange(utensiliosAsignadosNuevos);
 
             await _db.GuardarCambios();
         }

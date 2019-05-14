@@ -10,7 +10,7 @@ using Blog.Datos.Repositorios;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
-using Blog.Servicios;
+using Blog.Modelo.Utensilios;
 using Blog.Servicios.Blog;
 using Blog.Servicios.Blog.Borradores;
 using Blog.Servicios.Recetas;
@@ -26,6 +26,7 @@ namespace Blog.Smoothies.Controllers
         private readonly BuscadorBorradores _buscadorBorradores;
         private readonly BuscadorDeReceta _buscadorDeReceta;
         private readonly BuscadorPostsRelacionados _buscadorPostsRelacionados;
+        private readonly BuscadorPostsUtensilios _buscadorPostsUtensilios;
         private readonly EditorBorradorPost _editorBorrador;
 
         public BorradoresController() : this(new ContextoBaseDatos())
@@ -38,7 +39,8 @@ namespace Blog.Smoothies.Controllers
                 new BuscadorBorrador(contexto, BlogController.TituloBlog),
                 new AsignadorTags(new TagRepositorio(contexto)),
                 new AsignadorCategorias(new CategoriaRepositorio(contexto)),
-                new BuscadorPostsRelacionados(contexto))
+                new BuscadorPostsRelacionados(contexto),
+                new BuscadorPostsUtensilios(contexto))
 
         {
 
@@ -50,7 +52,8 @@ namespace Blog.Smoothies.Controllers
             BuscadorBorrador buscadorBorrador,
             AsignadorTags asignadorTags,
             AsignadorCategorias asignadorCategorias,
-            BuscadorPostsRelacionados buscadorPostsRelacionados) :
+            BuscadorPostsRelacionados buscadorPostsRelacionados,
+            BuscadorPostsUtensilios buscadorPostsUtensilios) :
             this(buscadorBorrador,
                 new BuscadorBorradores(contexto, BlogController.TituloBlog), 
                 new EditorBorradorPost(contexto, 
@@ -59,7 +62,8 @@ namespace Blog.Smoothies.Controllers
                                         asignadorTags, 
                                         asignadorCategorias),
                 new BuscadorDeReceta(contexto), 
-                buscadorPostsRelacionados)
+                buscadorPostsRelacionados, 
+                buscadorPostsUtensilios)
         {
 
         }
@@ -70,13 +74,15 @@ namespace Blog.Smoothies.Controllers
             BuscadorBorradores buscadorBorradores,
             EditorBorradorPost creadorBorrador, 
             BuscadorDeReceta buscadorDeReceta, 
-            BuscadorPostsRelacionados buscadorPostsRelacionados)
+            BuscadorPostsRelacionados buscadorPostsRelacionados,
+            BuscadorPostsUtensilios buscadorPostsUtensilios)
         {
             _buscadorDeReceta = buscadorDeReceta;
             _editorBorrador = creadorBorrador;
             _buscadorBorradores = buscadorBorradores;
             _buscadorBorrador = buscadorBorrador;
             _buscadorPostsRelacionados = buscadorPostsRelacionados;
+            _buscadorPostsUtensilios = buscadorPostsUtensilios;
         }
 
         public async Task<ActionResult> Index()
@@ -161,8 +167,9 @@ namespace Blog.Smoothies.Controllers
             var receta =  await _buscadorDeReceta.BuscarRecetaPorNombreAsync(viewModel.Receta);
 
             var postsRelacionados = await ObtenerPostsRelacionados(viewModel);
+            var utensilios = await ObtenerUtensilios(viewModel);
                 
-            await _editorBorrador.CrearBorrador(viewModel, receta, postsRelacionados);
+            await _editorBorrador.CrearBorrador(viewModel, receta, postsRelacionados, utensilios);
 
             if (boton.ToLower().Contains(@"salir"))
                 return RedirectToAction("Index");
@@ -281,8 +288,9 @@ namespace Blog.Smoothies.Controllers
             var receta = await _buscadorDeReceta.BuscarRecetaPorNombreAsync(editorBorrador.Receta);
 
             var postsRelacionados = await ObtenerPostsRelacionados(editorBorrador);
+            var utensilios = await ObtenerUtensilios(editorBorrador);
 
-            await _editorBorrador.ActualizarBorrador(editorBorrador, receta, postsRelacionados);
+            await _editorBorrador.ActualizarBorrador(editorBorrador, receta, postsRelacionados, utensilios);
         }
 
         private async Task EliminarBorrador(int id)
@@ -300,6 +308,17 @@ namespace Blog.Smoothies.Controllers
                         .Where(m => !m.EstaMarcadoParaEliminar)
                         .Select(m => m.Nombre).ToList()
                     );
+        }
+
+        private async Task<List<Utensilio>> ObtenerUtensilios(EditorBorrador viewModel)
+        {
+            if (!viewModel.Utensilios.Any()) return new List<Utensilio>();
+
+            return await _buscadorPostsUtensilios.BuscarPostsUtensiliosPorNombresAsync(
+                viewModel.Utensilios
+                    .Where(m => !m.EstaMarcadoParaEliminar)
+                    .Select(m => m.Nombre).ToList()
+            );
         }
 
     }

@@ -22,6 +22,7 @@ namespace Blog.Smoothies.Controllers
         private readonly PostsServicio _postsServicio;
         private readonly BuscadorDeReceta _buscadorDeReceta;
         private readonly BuscadorPostsRelacionados _buscadorPostsRelacionados;
+        private readonly BuscadorPostsUtensilios _buscadorPostsUtensilios;
 
         public PostsController() : this(new ContextoBaseDatos())
         {
@@ -34,17 +35,23 @@ namespace Blog.Smoothies.Controllers
                     new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
                     BlogController.TituloBlog),
                 new BuscadorDeReceta(contexto),
-                new BuscadorPostsRelacionados(contexto))
+                new BuscadorPostsRelacionados(contexto),
+                new BuscadorPostsUtensilios(contexto))
         {
 
         }
 
 
-        public PostsController(PostsServicio postsServicio, BuscadorDeReceta buscadorDeReceta, BuscadorPostsRelacionados buscadorPostsRelacionados)
+        public PostsController(
+            PostsServicio postsServicio, 
+            BuscadorDeReceta buscadorDeReceta, 
+            BuscadorPostsRelacionados buscadorPostsRelacionados,
+            BuscadorPostsUtensilios buscadorPostsUtensilios)
         {
             _postsServicio = postsServicio;
             _buscadorDeReceta = buscadorDeReceta;
             _buscadorPostsRelacionados = buscadorPostsRelacionados;
+            _buscadorPostsUtensilios = buscadorPostsUtensilios;
         }
 
         public async Task<ActionResult> Index(string buscarPor, int pagina = 1)
@@ -242,7 +249,14 @@ namespace Blog.Smoothies.Controllers
                     editorPost.PostsRelacionados.Where(m=>!m.EstaMarcadoParaEliminar)
                     .Select(m => m.Nombre).ToList());
 
-            await _postsServicio.ActualizarPost(editorPost, receta, postsRelacionados);
+
+            var utensilios =
+                await _buscadorPostsUtensilios.BuscarPostsUtensiliosPorNombresAsync(
+                    editorPost.Utensilios.Where(m => !m.EstaMarcadoParaEliminar)
+                        .Select(m => m.Nombre).ToList());
+
+
+            await _postsServicio.ActualizarPost(editorPost, receta, postsRelacionados, utensilios);
         }
 
         private async Task EliminarPost(int id)

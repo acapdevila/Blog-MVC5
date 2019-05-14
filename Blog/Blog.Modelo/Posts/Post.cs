@@ -6,6 +6,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Extensiones;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
+using Blog.Modelo.Utensilios;
 
 namespace Blog.Modelo.Posts
 {
@@ -29,6 +30,7 @@ namespace Blog.Modelo.Posts
             Tags = new List<Tag>();
             Categorias = new List<Categoria>();
             PostRelacionados = new List<PostRelacionado>();
+            Utensilios = new List<PostUtensilio>();
         }
 
         public int Id { get; set; }
@@ -62,10 +64,14 @@ namespace Blog.Modelo.Posts
         public ICollection<Categoria> Categorias { get; set; }
 
         public ICollection<PostRelacionado> PostRelacionados { get; set; }
+        public ICollection<PostUtensilio> Utensilios { get; set; }
 
         public Receta Receta { get;private set; }
 
         public string TituloSinAcentos { get; private set; }
+
+
+       
 
         public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;
 
@@ -229,6 +235,68 @@ namespace Blog.Modelo.Posts
             }
 
             return postsAEliminar.ToList();
+        }
+
+
+        public List<PostUtensilio> AsignarUtensilios(List<Utensilio> utensilios)
+        {
+            var listaUtensiliosAsignados = new List<PostUtensilio>();
+
+            if (utensilios == null) return listaUtensiliosAsignados;
+
+            int i = 1;
+            foreach (var utensilio in utensilios)
+            {
+                var nuevaAsignacion = AsignarUtensilio(utensilio, i);
+                i++;
+
+                if (nuevaAsignacion != null)
+                    listaUtensiliosAsignados.Add(nuevaAsignacion);
+            }
+
+            return listaUtensiliosAsignados;
+
+        }
+
+
+        private PostUtensilio AsignarUtensilio(Utensilio utensilio, int posicion)
+        {
+            var utensilioExistente = Utensilios.FirstOrDefault(p => p.UtensilioId == utensilio.Id);
+
+            if (utensilioExistente != null)
+            {
+                utensilioExistente.Posicion = posicion;
+                return null;
+            }
+
+            var postUtensilio = new PostUtensilio()
+            {
+                PostId = Id,
+                UtensilioId = utensilio.Id,
+                Posicion = posicion
+            };
+
+
+            Utensilios.Add(postUtensilio);
+
+            return postUtensilio;
+
+
+        }
+
+
+        public List<PostUtensilio> QuitarUtensiliosDiferentesA(List<Utensilio> utensilios)
+        {
+            if (utensilios == null) return new List<PostUtensilio>();
+
+            var aEliminar = Utensilios.Where(m => utensilios.All(p => m.UtensilioId != p.Id)).ToList();
+
+            foreach (var utensilioAEliminar in aEliminar)
+            {
+                Utensilios.Remove(utensilioAEliminar);
+            }
+
+            return aEliminar.ToList();
         }
     }
 }

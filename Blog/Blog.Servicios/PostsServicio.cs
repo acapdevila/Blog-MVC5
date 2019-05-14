@@ -8,6 +8,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
+using Blog.Modelo.Utensilios;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 using PagedList.EntityFramework;
@@ -52,6 +53,7 @@ namespace Blog.Servicios
                 .Include(m => m.Categorias)
                 .Include(m=>m.Receta)
                 .Include(m => m.PostRelacionados.Select(p => p.Hijo))
+                .Include(m => m.Utensilios.Select(p => p.Utensilio))
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -85,7 +87,7 @@ namespace Blog.Servicios
 
         
         
-        public async Task ActualizarPost(EditorPost editorPost, Receta  receta, List<Post> postsRelacionados)
+        public async Task ActualizarPost(EditorPost editorPost, Receta  receta, List<Post> postsRelacionados, List<Utensilio> utensilios)
         {
             var post = await RecuperarPost(editorPost.Id);
             post.ActualizaPost(editorPost, _asignadorTags, _asignadorCategorias);
@@ -95,6 +97,11 @@ namespace Blog.Servicios
             _db.PostsRelacionados.RemoveRange(postDesasignados);
             var postAsignadosNuevos = post.AsignarPostsRelacionados(postsRelacionados);
             _db.PostsRelacionados.AddRange(postAsignadosNuevos);
+
+            var utensiliosDesasignados = post.QuitarUtensiliosDiferentesA(utensilios);
+            _db.PostsUtensilios.RemoveRange(utensiliosDesasignados);
+            var utensiliosAsignadosNuevos = post.AsignarUtensilios(utensilios);
+            _db.PostsUtensilios.AddRange(utensiliosAsignadosNuevos);
 
 
             await _db.GuardarCambios();

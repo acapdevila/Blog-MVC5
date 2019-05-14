@@ -17,6 +17,7 @@ namespace Blog.ViewModels.Post
         public EditorBorrador()
         {
             PostsRelacionados = new List<EditorPostRelacionado>();
+            Utensilios = new List<EditorPostUtensilio>();
         }
         public EditorBorrador(Modelo.Posts.Post post): this()
         {
@@ -25,6 +26,7 @@ namespace Blog.ViewModels.Post
             Categorias = post.Categorias.CategoriasSeparadasPorComma();
             Receta = post.Receta?.Nombre;
             AñadirPostsRelacionados(post);
+            AñadirUtensilios(post);
         }
 
       
@@ -80,6 +82,9 @@ namespace Blog.ViewModels.Post
         [Display(Name = "Posts relacionados")]
         public List<EditorPostRelacionado> PostsRelacionados { get; set; }
 
+        [Display(Name = "Utensilios")]
+        public List<EditorPostUtensilio> Utensilios { get; set; }
+
 
         [Display(Name = "Etiquetas")]
         public string Tags { get; set; }
@@ -96,6 +101,15 @@ namespace Blog.ViewModels.Post
             foreach (var postRelacionado in post.PostRelacionados.OrderBy(m=>m.Posicion))
             {
                 PostsRelacionados.Add(new EditorPostRelacionado(postRelacionado));
+            }
+
+        }
+
+        private void AñadirUtensilios(Modelo.Posts.Post post)
+        {
+            foreach (var utensilio in post.Utensilios.OrderBy(m => m.Posicion))
+            {
+                Utensilios.Add(new EditorPostUtensilio(utensilio));
             }
 
         }

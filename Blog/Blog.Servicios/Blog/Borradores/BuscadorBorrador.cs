@@ -24,6 +24,7 @@ namespace Blog.Servicios.Blog.Borradores
                 .Include(m => m.Tags)
                 .Include(m => m.Categorias)
                 .Include(m=>m.PostRelacionados.Select(p=>p.Hijo))
+                .Include(m => m.Utensilios.Select(p => p.Utensilio))
                 .Where(m => m.Blog.Titulo == _tituloBlog);
         }
 

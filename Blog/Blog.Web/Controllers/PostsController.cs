@@ -8,6 +8,7 @@ using Blog.Datos.Repositorios;
 using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
+using Blog.Modelo.Utensilios;
 using Blog.Servicios;
 using Blog.Servicios.Cache;
 using Blog.ViewModels.Post;
@@ -219,7 +220,7 @@ namespace Blog.Web.Controllers
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            await _postsServicio.ActualizarPost(editorPost, null, new List<Post>());
+            await _postsServicio.ActualizarPost(editorPost, null, new List<Post>(), new List<Utensilio>());
         }
 
         private async Task EliminarPost(int id)

@@ -26,6 +26,8 @@ namespace Blog.Datos
 
         public DbSet<PostRelacionado> PostsRelacionados { get; set; }
 
+        public DbSet<PostUtensilio> PostsUtensilios { get; set; }
+
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<BlogEntidad> Blogs { get; set; }

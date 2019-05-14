@@ -1017,6 +1017,7 @@
     <Content Include="Views\UtensiliosGestion\Eliminar.cshtml" />
     <Content Include="Views\UtensiliosGestion\EditorTemplates\EditorDeUtensilio.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EditorImagen.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditorPostUtensilio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

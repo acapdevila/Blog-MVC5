@@ -14,6 +14,7 @@ namespace Blog.ViewModels.Post
         public EditorPost()
         {
           PostsRelacionados = new List<EditorPostRelacionado>();
+          Utensilios = new List<EditorPostUtensilio>();
         }
 
         public EditorPost(Modelo.Posts.Post post): this()
@@ -23,6 +24,8 @@ namespace Blog.ViewModels.Post
            Categorias = post.Categorias.CategoriasSeparadasPorComma();
             Receta = post.Receta?.Nombre;
            AñadirPostsRelacionados(post);
+           AñadirUtensilios(post);
+
             
         }
 
@@ -95,6 +98,9 @@ namespace Blog.ViewModels.Post
         [Display(Name = "Posts relacionados")]
         public List<EditorPostRelacionado> PostsRelacionados { get; set; }
 
+        [Display(Name = "Utensilios")]
+        public List<EditorPostUtensilio> Utensilios { get; set; }
+
         public List<string> ListaTags => string.IsNullOrEmpty(Tags) ? new List<string>() : Tags.Split(ExtensionesTag.SeparadorTags).ToList();
 
         public List<string> ListaCategorias => string.IsNullOrEmpty(Categorias) ? new List<string>() : Categorias.Split(new[] { ExtensionesCategoria.SeparadorCategorias }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -102,11 +108,20 @@ namespace Blog.ViewModels.Post
 
         private void AñadirPostsRelacionados(Modelo.Posts.Post post)
         {
-            //PostsRelacionados = new List<EditorPostRelacionado>();
-
             foreach (var postRelacionado in post.PostRelacionados.OrderBy(m => m.Posicion))
             {
                 PostsRelacionados.Add(new EditorPostRelacionado(postRelacionado));
+            }
+
+        }
+
+        private void AñadirUtensilios(Modelo.Posts.Post post)
+        {
+            //PostsRelacionados = new List<EditorPostRelacionado>();
+
+            foreach (var postUtensilio in post.Utensilios.OrderBy(m => m.Posicion))
+            {
+                Utensilios.Add(new EditorPostUtensilio(postUtensilio));
             }
 
         }

@@ -126,20 +126,40 @@
         <div class="table-responsive">
             <table class="table table-condensed">
                 <tbody id="lineasPostRelacionados">
-                @Html.EditorFor(m => m.PostsRelacionados)
+                    @Html.EditorFor(m => m.PostsRelacionados)
                 </tbody>
                 <tfoot>
-                <tr>
-                    <td colspan="2">
-                        @Html.LinkToAddNestedForm(m => m.PostsRelacionados, "Añadir", "#lineasPostRelacionados", ".editorPostRelacionado", "Nombre")
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="2">
+                            @Html.LinkToAddNestedForm(m => m.PostsRelacionados, "Añadir", "#lineasPostRelacionados", ".editorPostRelacionado", "Nombre")
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
         </div>
     </div>
 </div>
+<hr />
+<div class="form-group">
+    @Html.LabelFor(model => model.Utensilios, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
 
+        <div class="table-responsive">
+            <table class="table table-condensed">
+                <tbody id="lineasUtensilios">
+                    @Html.EditorFor(m => m.Utensilios)
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            @Html.LinkToAddNestedForm(m => m.Utensilios, "Añadir", "#lineasUtensilios", ".editorPostUtensilio", "Nombre")
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
