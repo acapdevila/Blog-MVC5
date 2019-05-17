@@ -31,7 +31,7 @@ namespace Blog.Datos.MapeosTablas
                 .HasColumnType("varchar");
 
             Property(m => m.CategoriaReceta)
-                .HasMaxLength(64)
+                .HasMaxLength(128)
                 .HasColumnType("varchar");
 
             Property(m => m.CocinaReceta)
