@@ -18,7 +18,7 @@ namespace Blog.Servicios.Utensilios
 
         public async Task CrearCategoria(ComandoCrearCategoriaUtensilio comando)
         {
-            var categoria = new UtensilioCategoria(comando.Nombre, comando.UrlSlug);
+            var categoria = new UtensilioCategoria(comando.Nombre, comando.UrlSlug, comando.Posicion);
             
             _db.CategoriasDeUtensilios.Add(categoria);
 
@@ -35,6 +35,7 @@ namespace Blog.Servicios.Utensilios
 
             categoria.Nombre = comando.Nombre;
             categoria.UrlSlug = comando.UrlSlug;
+            categoria.Posicion = comando.Posicion;
 
             await _db.SaveChangesAsync();
         }

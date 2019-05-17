@@ -11,11 +11,17 @@ namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.Editores
             
         }
 
+        public EditorCategoriaDeUtensilio(int posicion)
+        {
+            Posicion = posicion;
+        }
+
         public EditorCategoriaDeUtensilio(UtensilioCategoria categoria)
         {
             Id = categoria.Id;
             Nombre = categoria.Nombre;
             Url = categoria.UrlSlug;
+            Posicion = categoria.Posicion;
 
         }
 
@@ -28,15 +34,21 @@ namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.Editores
         [Display(Name = "Url")]
         public string Url { get; set; }
 
+        [Required]
+        public int Posicion { get; set; }
+
         public ComandoCrearCategoriaUtensilio GenerarComandoCrearCategoriaUtensilio()
         {
             return new ComandoCrearCategoriaUtensilio
             {
                 Id =  Id,
                 UrlSlug = Url,
-                Nombre = Nombre
+                Nombre = Nombre,
+                Posicion =  Posicion
             };
         }
+
+        
 
         public ComandoEditarCategoriaUtensilio GenerarComandoEditarCategoriaUtensilio()
         {
@@ -44,7 +56,8 @@ namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.Editores
             {
                 Id = Id,
                 UrlSlug = Url,
-                Nombre = Nombre
+                Nombre = Nombre,
+                Posicion = Posicion
             };
         }
     }

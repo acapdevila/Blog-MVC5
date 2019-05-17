@@ -227,6 +227,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Views\Blog\ViewModels\BlogViewModel.cs" />
     <Compile Include="Views\Blog\ViewModels\DetallesPostBlogViewModel.cs" />
+    <Compile Include="Views\Blog\ViewModels\DisplayPostViewModel.cs" />
+    <Compile Include="Views\Blog\ViewModels\PostUtensilioViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\CrearRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\DatosEstructuradosRecetaViewModel.cs" />
     <Compile Include="Views\Recetas\ViewModels\Editores\EditorIngredienteReceta.cs" />
@@ -247,6 +249,7 @@
     <Compile Include="Views\UtensiliosGestion\ViewModels\Editores\EditorDeUtensilio.cs" />
     <Compile Include="Views\UtensiliosGestion\ViewModels\EliminarUtensilioViewModel.cs" />
     <Compile Include="Views\UtensiliosGestion\ViewModels\ListaGestionDeUtensiliosViewModel.cs" />
+    <Compile Include="Views\Utensilios\ViewModels\UtensiliosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -983,6 +986,7 @@
     <Content Include="Views\Borradores\EditorTemplates\EditorBorrador.cshtml" />
     <Content Include="Views\Borradores\Eliminar.cshtml" />
     <Content Include="Views\Borradores\Lista.cshtml" />
+    <Content Include="Views\Blog\_ItemLineaUtensilioPost.cshtml" />
     <None Include="Views\Error\InternalError.cshtml" />
     <None Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayBlog.cshtml" />
@@ -1021,7 +1025,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Posts\ViewModels\" />
     <Folder Include="Views\Sitemap\" />
   </ItemGroup>
   <ItemGroup>

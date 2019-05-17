@@ -51,6 +51,7 @@ namespace Blog.Servicios
                     .Include(m => m.Receta.Instrucciones)
                     .Include(m => m.Tags)
                     .Include(m => m.Categorias)
+                    .Include(m => m.Utensilios.Select(u=>u.Utensilio))
                     .Include(m => m.PostRelacionados.Select(r => r.Hijo))
                     .Where(m => m.Blog.Titulo == _tituloBlog);
             

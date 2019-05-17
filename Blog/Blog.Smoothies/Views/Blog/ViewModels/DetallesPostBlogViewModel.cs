@@ -7,9 +7,10 @@ namespace Blog.Smoothies.Views.Blog.ViewModels
 {
     public  class DetallesPostBlogViewModel
     {
-        public Post Post { get; set; }
+        public DisplayPostViewModel Post { get; set; }
 
         public DatosEstructuradosRecetaViewModel DatosEstructuradosReceta { get; set; }
         public List<LineaResumenPost> PostsSugeridos { get; set; }
+
     }
 }

@@ -9,6 +9,11 @@ namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels
             EditorCategoria = new EditorCategoriaDeUtensilio();
         }
 
+        public CrearCategoriaUtensilioViewModel(int posicion)
+        {
+            EditorCategoria = new EditorCategoriaDeUtensilio(posicion);
+        }
+
         public EditorCategoriaDeUtensilio EditorCategoria { get; set; }
     }
 }

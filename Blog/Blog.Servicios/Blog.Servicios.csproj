@@ -203,6 +203,7 @@
     <Compile Include="Utensilios\Dtos\LineaGestionCategoriaDeUtensilio.cs" />
     <Compile Include="Utensilios\EditorDeUtensilios.cs" />
     <Compile Include="Utensilios\EditorDeCategoriasDeUtensilios.cs" />
+    <Compile Include="Utensilios\GestorPosicionesCategoriasUtensilios.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

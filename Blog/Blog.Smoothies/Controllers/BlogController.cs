@@ -33,7 +33,7 @@ namespace Blog.Smoothies.Controllers
 
         }
 
-        private const int NumeroItemsPorPagina = 20;
+        private const int NumeroItemsPorPagina = 40;
 
         public async Task<ActionResult> Index(int? pagina)
         {
@@ -91,9 +91,9 @@ namespace Blog.Smoothies.Controllers
 
             var viewModel = new Views.Blog.ViewModels.DetallesPostBlogViewModel
             {
-                Post = post,
+                Post = new DisplayPostViewModel(post),
                 PostsSugeridos = postsSugeridos,
-                DatosEstructuradosReceta = new DatosEstructuradosRecetaViewModel(post.Receta) 
+                DatosEstructuradosReceta = new DatosEstructuradosRecetaViewModel(post.Receta)
             };
 
             return View("Detalles",viewModel);

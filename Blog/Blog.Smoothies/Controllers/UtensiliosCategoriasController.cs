@@ -15,6 +15,7 @@ namespace Blog.Smoothies.Controllers
         private  readonly BuscadorDeCategoriasDeUtensilios _buscador;
         private readonly BuscadorDeCategoriaDeUtensilio _buscadorDeCategoria;
         private readonly EditorDeCategoriasDeUtensilios _editor;
+        private readonly GestorPosicionesCategoriasUtensilios _posiciones;
 
         public UtensiliosCategoriasController() : this(new ContextoBaseDatos())
         {
@@ -24,7 +25,8 @@ namespace Blog.Smoothies.Controllers
         public UtensiliosCategoriasController(ContextoBaseDatos contexto) : this(
                 new BuscadorDeCategoriasDeUtensilios(contexto), 
                 new BuscadorDeCategoriaDeUtensilio(contexto), 
-                new EditorDeCategoriasDeUtensilios(contexto))
+                new EditorDeCategoriasDeUtensilios(contexto),
+                new GestorPosicionesCategoriasUtensilios(contexto))
         {
             
         }
@@ -32,11 +34,13 @@ namespace Blog.Smoothies.Controllers
         public UtensiliosCategoriasController(
             BuscadorDeCategoriasDeUtensilios buscador,
             BuscadorDeCategoriaDeUtensilio buscadorDeCategoria, 
-            EditorDeCategoriasDeUtensilios editor)
+            EditorDeCategoriasDeUtensilios editor,
+            GestorPosicionesCategoriasUtensilios posiciones)
         {
             _buscador = buscador;
             _editor = editor;
             _buscadorDeCategoria = buscadorDeCategoria;
+            _posiciones = posiciones;
         }
 
 
@@ -53,8 +57,8 @@ namespace Blog.Smoothies.Controllers
 
         public ActionResult Crear()
         {
-            var crearViewModel = new CrearCategoriaUtensilioViewModel();
-
+            var posicion = _posiciones.ObtenerPosicionParaNuevaCategoria();
+            var crearViewModel = new CrearCategoriaUtensilioViewModel(posicion);
             return View(crearViewModel);
         }
 
