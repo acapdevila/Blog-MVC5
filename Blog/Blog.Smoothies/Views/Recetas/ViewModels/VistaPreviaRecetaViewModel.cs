@@ -13,6 +13,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
             Nombre = receta.Nombre;
             Autor = receta.Autor;
             CategoriaReceta = receta.CategoriaReceta;
+            CocinaReceta = receta.CocinaReceta;
             FechaPublicacion = receta.FechaPublicacion;
             Descripcion = receta.Descripcion;
             Keywords = receta.Keywords;
@@ -43,6 +44,8 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels
         public TimeSpan TiempoPreparacion { get; set; }
 
         public string CategoriaReceta { get; set; }
+
+        public string CocinaReceta { get; set; }
 
         public string Raciones { get; set; }
 

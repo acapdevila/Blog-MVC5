@@ -28,6 +28,7 @@ namespace Blog.Servicios.Recetas
             {
                 Nombre = comando.Nombre,
                 CategoriaReceta = comando.CategoriaReceta,
+                CocinaReceta = comando.CocinaReceta,
                 Autor = comando.Autor,
                 Keywords = comando.Keywords,
                 FechaPublicacion = comando.FechaPublicacion,
@@ -60,6 +61,7 @@ namespace Blog.Servicios.Recetas
 
             receta.Nombre = comando.Nombre;
             receta.CategoriaReceta = comando.CategoriaReceta;
+            receta.CocinaReceta = comando.CocinaReceta;
             receta.Autor = comando.Autor;
             receta.Keywords = comando.Keywords;
             receta.FechaPublicacion = comando.FechaPublicacion;

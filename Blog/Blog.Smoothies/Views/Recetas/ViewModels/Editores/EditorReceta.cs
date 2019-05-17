@@ -72,6 +72,9 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
         [Display(Name = "Categoría")]
         public string CategoriaReceta { get; set; }
 
+        [Display(Name = "Cocina")]
+        public string CocinaReceta { get; set; }
+
         public string Raciones { get; set; }
 
         public  List<EditorInstruccion> Instrucciones { get; set; }
@@ -115,6 +118,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
                 Autor = Autor,
                 Nombre = Nombre,
                 CategoriaReceta = CategoriaReceta,
+                CocinaReceta = CocinaReceta,
                 Descripcion = Descripcion,
                 FechaPublicacion = FechaPublicacion,
                 Keywords = Keywords,

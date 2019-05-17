@@ -38,6 +38,8 @@ namespace Blog.Servicios.Recetas.Comandos
 
        public string CategoriaReceta { get; set; }
 
+       public string CocinaReceta { get; set; }
+
        public string Raciones { get; set; }
 
        public Imagen Imagen { get; set; }

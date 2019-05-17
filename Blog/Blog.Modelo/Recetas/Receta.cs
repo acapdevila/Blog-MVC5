@@ -47,6 +47,8 @@ namespace Blog.Modelo.Recetas
 
         public string CategoriaReceta { get; set; }
 
+        public string CocinaReceta { get; set; }
+
         public string Raciones { get; set; }
 
 

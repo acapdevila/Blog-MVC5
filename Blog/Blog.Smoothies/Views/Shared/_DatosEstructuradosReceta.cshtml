@@ -1,6 +1,5 @@
 ﻿@model Blog.Smoothies.Views.Recetas.ViewModels.DatosEstructuradosRecetaViewModel
 
-
 <script type="application/ld+json">
     {
     "@@context": "http://schema.org/",
@@ -21,7 +20,10 @@
     "keywords": "@Model.Keywords",
     "recipeYield": "@Model.Raciones",
     "recipeCategory": "@Model.CategoriaReceta",
-    @*"recipeCuisine": "American",*@
+    @if (!string.IsNullOrEmpty(Model.CocinaReceta))
+    {
+        @:"recipeCuisine":"@Model.CocinaReceta",
+    }
     @*"nutrition": {
         "@type": "NutritionInformation",
         "calories": "270 calories"
