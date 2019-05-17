@@ -62,6 +62,11 @@ namespace Blog.Smoothies.Views.Blog.ViewModels
 
         public bool EsReceta => RecetaId.HasValue;
 
+        public bool EsMostrarDatosEstructurados
+        {
+            get { return !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion); }
+        }
+
 
     }
 }
