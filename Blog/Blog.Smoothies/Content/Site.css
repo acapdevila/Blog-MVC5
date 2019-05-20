@@ -170,13 +170,19 @@ letter-spacing: 1px;
         color: #FFFFFF;
     }
 
+/*Etiqueta categoria*/
+.category-label {
+    text-transform: uppercase;
+    background: #ccc;
+    padding: 0px 3px;
+    line-height: 22px;
+}
+
+
 
 /*Sidebar subscripció*/
-
-
 .subscripcionsidebar {
     background: #5F9494;
-    
     color: #ffffff;
 }
 
@@ -272,6 +278,23 @@ letter-spacing: 1px;
 
     .productgrid img:hover {
         opacity: 0.8
+    }
+
+/*Video*/
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
 /*Footer*/

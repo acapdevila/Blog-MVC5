@@ -14,7 +14,7 @@
         @foreach (var categoria in Model.Categorias)
         {
             <li>
-                <a href="@Url.RutaCategoria(categoria.UrlSlug)">@categoria.Nombre</a>
+                <a class="category-label" href="@Url.RutaCategoria(categoria.UrlSlug)">@categoria.Nombre</a>
             </li>
         }
     </ul>
