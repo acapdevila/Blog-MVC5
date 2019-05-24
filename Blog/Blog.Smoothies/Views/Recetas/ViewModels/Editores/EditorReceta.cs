@@ -23,6 +23,7 @@ namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
             Nombre = receta.Nombre;
             Autor = receta.Autor;
             CategoriaReceta = receta.CategoriaReceta;
+            CocinaReceta = receta.CocinaReceta;
             FechaPublicacion = receta.FechaPublicacion;
             Descripcion = receta.Descripcion;
             Keywords = receta.Keywords;

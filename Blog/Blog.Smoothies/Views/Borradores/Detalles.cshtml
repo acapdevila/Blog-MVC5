@@ -1,4 +1,4 @@
-﻿@model Blog.Modelo.Posts.Post
+﻿@model Blog.Smoothies.Views.Blog.ViewModels.DisplayPostViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -45,32 +45,7 @@
             @Html.DisplayFor(model => model.FechaPost)
         </dd>
         
-        <dt>
-            @Html.DisplayNameFor(model => model.EsBorrador)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EsBorrador)
-        </dd>
-		
-		<dt>
-            @Html.DisplayNameFor(model => model.EsRssAtom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EsRssAtom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaPublicacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaPublicacion)
-        </dd>
-   
-
-        
+ 
     </dl>
 </div>
 

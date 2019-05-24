@@ -986,7 +986,7 @@
     <Content Include="Views\Borradores\EditorTemplates\EditorBorrador.cshtml" />
     <Content Include="Views\Borradores\Eliminar.cshtml" />
     <Content Include="Views\Borradores\Lista.cshtml" />
-    <Content Include="Views\Blog\_ItemLineaUtensilioPost.cshtml" />
+    <Content Include="Views\Shared\_ItemLineaUtensilioPost.cshtml" />
     <None Include="Views\Error\InternalError.cshtml" />
     <None Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DisplayBlog.cshtml" />

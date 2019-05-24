@@ -14,6 +14,7 @@ using Blog.Modelo.Utensilios;
 using Blog.Servicios.Blog;
 using Blog.Servicios.Blog.Borradores;
 using Blog.Servicios.Recetas;
+using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.ViewModels.Post;
 using EditorBorrador = Blog.ViewModels.Post.EditorBorrador;
 
@@ -115,7 +116,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(new DisplayPostViewModel(post));
         }
 
 

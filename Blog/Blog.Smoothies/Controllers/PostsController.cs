@@ -12,6 +12,7 @@ using Blog.Servicios;
 using Blog.Servicios.Blog;
 using Blog.Servicios.Cache;
 using Blog.Servicios.Recetas;
+using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.ViewModels.Post;
 
 namespace Blog.Smoothies.Controllers
@@ -76,7 +77,7 @@ namespace Blog.Smoothies.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return View(new DisplayPostViewModel(post));
         }
 
 

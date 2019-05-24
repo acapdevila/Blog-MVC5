@@ -45,7 +45,7 @@ namespace Blog.Smoothies.Views.UtensiliosGestion.ViewModels.Editores
 
 
         [Required]
-        [Display(Name = "Categoria")]
+        [Display(Name = "Categoría")]
         public string Categoria { get; set; }
 
         public string AccionPost { get; set; }
