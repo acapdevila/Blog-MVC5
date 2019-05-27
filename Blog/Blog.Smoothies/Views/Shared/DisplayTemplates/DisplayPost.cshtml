@@ -30,7 +30,7 @@
     @* ReSharper disable Mvc.ActionNotResolved *@
     @if (Model.EsReceta)
     {
-        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Model.RecetaId }, new { @class = "btn btn-dark", target = "_blank" })
+        @Html.ActionLink("Imprimir receta", "Imprimir", "Recetas", new { Id = Model.RecetaId }, new { @class = "btn btn-dark", target = "_blank" })
     }
     @if (User.Identity.IsAuthenticated)
     {
@@ -76,25 +76,27 @@
     }
     @* ReSharper restore Mvc.ActionNotResolved *@
 </p>
-<br />
+
+<h3>Utensilios</h3>
 
 @if (Model.Utensilios.Any())
 {
-     for (int i = 0; i < Model.Utensilios.Count; i=i+2)
-     {
-         var items = Model.Utensilios.Skip(i).Take(2); 
-            
-         <div class="row">
-             @foreach (var item in items)
-             {
-                 @Html.Partial("_ItemLineaUtensilioPost", item)
-             }
+    for (int i = 0; i < Model.Utensilios.Count; i = i + 2)
+    {
+        var items = Model.Utensilios.Skip(i).Take(2);
 
-         </div>
-     }
+
+        <div>
+            @foreach (var item in items)
+            {
+                @Html.Partial("_ItemLineaUtensilioPost", item)
+            }
+
+        </div>
+    }
 
 }
 
-         <br />
+<br />
 
 

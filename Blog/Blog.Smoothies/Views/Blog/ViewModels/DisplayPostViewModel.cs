@@ -17,6 +17,7 @@ namespace Blog.Smoothies.Views.Blog.ViewModels
         public DisplayPostViewModel(Post post)
         {
             Id = post.Id;
+            RecetaId = post.Receta?.Id;
             Subtitulo = post.Subtitulo;
             Titulo = post.Titulo;
             Descripcion = post.Descripcion;
