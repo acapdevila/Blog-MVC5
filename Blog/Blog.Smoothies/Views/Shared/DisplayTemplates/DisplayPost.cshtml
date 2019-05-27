@@ -77,24 +77,15 @@
     @* ReSharper restore Mvc.ActionNotResolved *@
 </p>
 
-<h3>Utensilios</h3>
-
 @if (Model.Utensilios.Any())
 {
-    for (int i = 0; i < Model.Utensilios.Count; i = i + 2)
-    {
-        var items = Model.Utensilios.Skip(i).Take(2);
-
-
-        <div>
-            @foreach (var item in items)
-            {
-                @Html.Partial("_ItemLineaUtensilioPost", item)
-            }
-
-        </div>
-    }
-
+    <h3>Utensilios</h3>
+    <div class="row">
+        @foreach (var item in Model.Utensilios)
+        {
+            @Html.Partial("_ItemLineaUtensilioPost", item)
+        }
+    </div>
 }
 
 <br />
