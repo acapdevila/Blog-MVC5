@@ -3,12 +3,12 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using Blog.Datos.MapeosTablas;
 using Blog.Modelo.Categorias;
-using Blog.Modelo.Imagenes;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 using Blog.Modelo.Usuarios;
 using Blog.Modelo.Utensilios;
+using Infra;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Blog.Datos
@@ -100,6 +100,6 @@ namespace Blog.Datos
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<Blog.Modelo.Posts.LineaPostCompleto> LineaPostCompletoes { get; set; }
+      
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CSharpFunctionalExtensions;
 
-namespace Blog.Modelo.Imagenes
+namespace Infra
 {
     public class Imagen : ValueObject
     {

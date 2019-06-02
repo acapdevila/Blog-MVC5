@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blog.Modelo.Imagenes;
 using Blog.Modelo.Posts;
+using Infra;
 
 namespace Blog.Modelo.Recetas
 {

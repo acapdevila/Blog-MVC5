@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{263AF96B-9995-4111-B27E-FD6042E3CFE3}</ProjectGuid>
+    <ProjectGuid>{C897BA21-C79D-4112-A7B8-4B1E8DFB02BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blog.Modelo</RootNamespace>
-    <AssemblyName>Blog.Modelo</AssemblyName>
+    <RootNamespace>Ac.Modelo</RootNamespace>
+    <AssemblyName>Ac.Modelo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,27 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpFunctionalExtensions, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSharpFunctionalExtensions.1.10.0\lib\net461\CSharpFunctionalExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Omu.ValueInjecter, Version=3.1.3.0, Culture=neutral, PublicKeyToken=5692a4ecdffbe736, processorArchitecture=MSIL">
-      <HintPath>..\packages\ValueInjecter.3.1.3\lib\net45\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -63,45 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categorias\AsignadorCategorias.cs" />
-    <Compile Include="Categorias\Categoria.cs" />
-    <Compile Include="Categorias\ConPosts.cs" />
-    <Compile Include="Categorias\ICategoriaRepositorio.cs" />
-    <Compile Include="Dtos\ArchivoItemDto.cs" />
-    <Compile Include="Dtos\EtiquetaDto.cs" />
-    <Compile Include="Dtos\LineaArchivoDto.cs" />
-    <Compile Include="Dtos\LineaCategoriaDto.cs" />
-    <Compile Include="Dtos\CategoriaDto.cs" />
-    <Compile Include="Posts\CriteriosBusqueda.cs" />
-    <Compile Include="Posts\LineaPostCompleto.cs" />
-    <Compile Include="Posts\LineaResumenPost.cs" />
-    <Compile Include="Posts\ExtensionesPost.cs" />
-    <Compile Include="Posts\BlogEntidad.cs" />
-    <Compile Include="Posts\PostUtensilio.cs" />
-    <Compile Include="Posts\PostRelacionado.cs" />
-    <Compile Include="Recetas\FormatoHorasMinutos.cs" />
-    <Compile Include="Recetas\IngredienteReceta.cs" />
-    <Compile Include="Recetas\Instruccion.cs" />
-    <Compile Include="Recetas\Ingrediente.cs" />
-    <Compile Include="Recetas\Receta.cs" />
-    <Compile Include="Tags\AsignadorTags.cs" />
-    <Compile Include="Tags\GeneradorUrlSlug.cs" />
-    <Compile Include="Tags\IEntidadConTags.cs" />
-    <Compile Include="Tags\ITagRepositorio.cs" />
-    <Compile Include="Posts\Post.cs" />
+    <Compile Include="EtiquetaDto.cs" />
+    <Compile Include="IEntidadConTags.cs" />
+    <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tags\Tag.cs" />
-    <Compile Include="Tags\ExtensionesTag.cs" />
-    <Compile Include="Usuarios\Usuario.cs" />
-    <Compile Include="Utensilios\Utensilio.cs" />
-    <Compile Include="Utensilios\UtensilioCategoria.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensiones\" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infra\Infra.csproj">
@@ -109,12 +67,9 @@
       <Name>Infra</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

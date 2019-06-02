@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Dtos;
-using Blog.Modelo.Extensiones;
+using Infra;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 

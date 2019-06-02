@@ -1049,6 +1049,10 @@
       <Project>{1739ca45-9637-4b80-a054-c7a9b13c9657}</Project>
       <Name>Blog.ViewModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infra\Infra.csproj">
+      <Project>{2f0cc383-acb6-46d8-aae3-7bc1865d7219}</Project>
+      <Name>Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\informes\InformeReceta.rdlc">

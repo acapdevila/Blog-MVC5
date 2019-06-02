@@ -1,5 +1,5 @@
-﻿using Blog.Modelo.Imagenes;
-using Blog.Modelo.Posts;
+﻿using Blog.Modelo.Posts;
+using Infra;
 
 namespace Blog.Smoothies.Views.Blog.ViewModels
 {

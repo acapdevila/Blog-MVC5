@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 
-namespace Blog.Modelo.Extensiones
+namespace Infra
 {
     public static class ExtensionesString
     {

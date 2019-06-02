@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Dtos;
-using Blog.Modelo.Extensiones;
+using Infra;
 using Blog.Modelo.Posts;
 
 namespace Blog.Modelo.Categorias

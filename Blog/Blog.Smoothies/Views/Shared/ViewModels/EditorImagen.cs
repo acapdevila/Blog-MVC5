@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Blog.Modelo.Imagenes;
+using Infra;
 
 namespace Blog.Smoothies.Views.Shared.ViewModels
 {

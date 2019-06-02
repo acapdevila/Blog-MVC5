@@ -906,6 +906,10 @@
       <Project>{1739CA45-9637-4B80-A054-C7A9B13C9657}</Project>
       <Name>Blog.ViewModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infra\Infra.csproj">
+      <Project>{2f0cc383-acb6-46d8-aae3-7bc1865d7219}</Project>
+      <Name>Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

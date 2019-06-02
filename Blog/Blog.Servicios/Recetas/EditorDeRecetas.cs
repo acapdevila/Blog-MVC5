@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
-using Blog.Modelo.Imagenes;
 using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;

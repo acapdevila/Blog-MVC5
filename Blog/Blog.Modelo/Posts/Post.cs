@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Blog.Modelo.Categorias;
-using Blog.Modelo.Extensiones;
 using Blog.Modelo.Recetas;
 using Blog.Modelo.Tags;
 using Blog.Modelo.Utensilios;
+using Infra;
 
 namespace Blog.Modelo.Posts
 {

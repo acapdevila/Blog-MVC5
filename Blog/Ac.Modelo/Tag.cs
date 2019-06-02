@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Blog.Modelo.Dtos;
 using Infra;
-using Blog.Modelo.Posts;
 
-namespace Blog.Modelo.Tags
+namespace Ac.Modelo
 {
     public class Tag
     {

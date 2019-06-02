@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blog.Modelo.Extensiones;
+using  Infra;
 using CSharpFunctionalExtensions;
 
 namespace Blog.Modelo.Posts

@@ -1,5 +1,5 @@
 ﻿using System;
-using Blog.Modelo.Imagenes;
+using Infra;
 
 namespace Blog.Modelo.Utensilios
 {
