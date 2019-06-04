@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Blog.ViewModels.Libros;
+﻿using System.Web.Mvc;
 
 namespace Blog.Web.Controllers
 {

@@ -2,7 +2,7 @@
 using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.Servicios.Rutas;
 using Blog.Smoothies.Sitemap;
 

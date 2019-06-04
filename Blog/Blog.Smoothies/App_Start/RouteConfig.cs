@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.Servicios.Rutas;
 using Blog.Smoothies.Controllers;
 

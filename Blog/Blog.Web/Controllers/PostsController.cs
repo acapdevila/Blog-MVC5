@@ -3,16 +3,12 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Datos.Repositorios;
-using Blog.Modelo.Categorias;
-using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
-using Blog.Modelo.Utensilios;
+using Ac.Datos;
+using Ac.Modelo;
+using Ac.Modelo.Posts;
+using Ac.Modelo.Tags;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
-using Blog.ViewModels.Post;
-using Blog.ViewModels.Post.Conversores;
+using Infra.Cache;
 using CSharpFunctionalExtensions;
 
 namespace Blog.Web.Controllers

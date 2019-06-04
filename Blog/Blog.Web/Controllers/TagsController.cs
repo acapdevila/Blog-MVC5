@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Modelo.Tags;
+using Ac.Datos;
+using Ac.Modelo.Tags;
 using Blog.Servicios;
-using Blog.ViewModels.Categoria;
-using Blog.ViewModels.Etiqueta;
+using Ac.ViewModels.Etiqueta;
 
 
 namespace Blog.Web.Controllers
@@ -13,7 +12,7 @@ namespace Blog.Web.Controllers
     [Authorize]
     public class TagsController : Controller
     {
-        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
+        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos());
 
         // GET: Tags
         public async Task<ActionResult> Index()

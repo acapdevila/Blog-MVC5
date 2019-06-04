@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
-using Blog.Datos;
-using Blog.Modelo.Posts;
+using Ac.Datos;
+using Ac.Modelo;
+using Ac.Modelo.Posts;
 
 namespace Blog.Web.Controllers
 {
@@ -45,8 +46,7 @@ namespace Blog.Web.Controllers
 
         public IQueryable<Post> Posts()
         {
-            return _db.Posts
-                .Where(m => m.Blog.Titulo == BlogController.TituloBlog);
+            return _db.Posts;
         }
     }
 }

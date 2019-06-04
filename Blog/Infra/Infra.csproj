@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CacheService.cs" />
+    <Compile Include="Cache\CacheSetting.cs" />
+    <Compile Include="Cache\ICacheService.cs" />
+    <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="ExtensionesString.cs" />
     <Compile Include="Imagen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

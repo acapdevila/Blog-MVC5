@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Posts;
-using Blog.Servicios.Comun;
 using Blog.Servicios.Utensilios.Dtos;
+using Infra.Comun;
 using PagedList;
 using PagedList.EntityFramework;
 

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.ViewModels.Sidebar;
 
 namespace Blog.Smoothies.Controllers

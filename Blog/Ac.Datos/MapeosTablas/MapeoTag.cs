@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Ac.Modelo;
+using Ac.Modelo.Tags;
 
 namespace Ac.Datos.MapeosTablas
 {

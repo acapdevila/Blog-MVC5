@@ -57,6 +57,10 @@
     <Compile Include="AcBaseDatos.cs" />
     <Compile Include="MapeosTablas\MapeoPost.cs" />
     <Compile Include="MapeosTablas\MapeoTag.cs" />
+    <Compile Include="Migrations\201906041611221_Inicial.cs" />
+    <Compile Include="Migrations\201906041611221_Inicial.Designer.cs">
+      <DependentUpon>201906041611221_Inicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +77,11 @@
       <Project>{2F0CC383-ACB6-46D8-AAE3-7BC1865D7219}</Project>
       <Name>Infra</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906041611221_Inicial.resx">
+      <DependentUpon>201906041611221_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

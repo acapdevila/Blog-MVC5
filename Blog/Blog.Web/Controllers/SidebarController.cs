@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
+using Ac.Datos;
+using Ac.Modelo.Posts;
+using Ac.Modelo.Tags;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.ViewModels.Blog;
-using Blog.ViewModels.Sidebar;
+using Ac.ViewModels.Sidebar;
 
 
 namespace Blog.Web.Controllers
@@ -21,7 +21,7 @@ namespace Blog.Web.Controllers
         public SidebarController()
         {
             var contexto = new ContextoBaseDatos();
-            _blogServicio = new BlogServicio(contexto, BlogController.TituloBlog);
+            _blogServicio = new BlogServicio(contexto);
         }
 
        

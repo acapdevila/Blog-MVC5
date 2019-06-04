@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using System.Text;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Servicios.Cache;
+using Ac.Datos;
+using Ac.Servicios.Rutas;
+using Infra.Cache;
 using Blog.Servicios.Rutas;   
 using Blog.Web.Sitemap;
 
@@ -15,7 +16,7 @@ namespace Blog.Web.Controllers
         public SitemapController() : this(
                 new SitemapService(
                     new UrlHelper(System.Web.HttpContext.Current.Request.RequestContext), 
-                    new BuscadorRutas(new ContextoBaseDatos(), BlogController.TituloBlog),
+                    new BuscadorRutas(new ContextoBaseDatos()),
                     new CacheService()))
         {
         }

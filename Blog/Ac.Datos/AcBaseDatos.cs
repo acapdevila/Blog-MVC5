@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using Ac.Datos.MapeosTablas;
 using Ac.Modelo;
+using Ac.Modelo.Tags;
+using Ac.Modelo.Usuarios;
 using Infra;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -14,6 +16,11 @@ namespace Ac.Datos
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Configuration.LazyLoadingEnabled = false;
+        }
+
+        public static ContextoBaseDatos Create()
+        {
+            return new ContextoBaseDatos();
         }
 
         public DbSet<Tag> Tags { get; set; }
@@ -36,7 +43,9 @@ namespace Ac.Datos
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-          //  Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextoBaseDatos, Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ContextoBaseDatos, Migrations.Configuration>());
+
+            modelBuilder.HasDefaultSchema("acapdevila");
 
             modelBuilder.ComplexType<Imagen>();
             

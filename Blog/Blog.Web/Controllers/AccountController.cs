@@ -2,11 +2,9 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Modelo;
-using Blog.Modelo.Usuarios;
-using Blog.Servicios;
-using Blog.ViewModels.Account;
+using Ac.Modelo.Usuarios;
+using Ac.Servicios;
+using Ac.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;

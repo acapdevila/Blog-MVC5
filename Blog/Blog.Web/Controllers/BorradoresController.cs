@@ -3,14 +3,10 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Datos.Repositorios;
-using Blog.Modelo.Categorias;
-using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
-using Blog.Servicios.Blog;
-using Blog.Servicios.Blog.Borradores;
-using Blog.ViewModels.Post;
+using Ac.Datos;
+using Ac.Modelo;
+using Ac.Modelo.Posts;
+using Ac.Modelo.Tags;
 
 namespace Blog.Web.Controllers
 {
@@ -28,7 +24,7 @@ namespace Blog.Web.Controllers
 
         public BorradoresController(ContextoBaseDatos contexto): 
             this(contexto, 
-                new BuscadorBorrador(contexto, BlogController.TituloBlog), 
+                new BuscadorBorrador(contexto), 
                 new AsignadorTags(new TagRepositorio(contexto)),
                 new AsignadorCategorias(new CategoriaRepositorio(contexto)))
                 
@@ -43,10 +39,10 @@ namespace Blog.Web.Controllers
             AsignadorTags asignadorTags, 
             AsignadorCategorias asignadorCategorias
             ) : 
-            this(new BuscadorBorrador(contexto, BlogController.TituloBlog), 
-                new BuscadorBorradores(contexto, BlogController.TituloBlog), 
+            this(new BuscadorBorrador(contexto), 
+                new BuscadorBorradores(contexto), 
                 new EditorBorradorPost(contexto, 
-                                        new BuscadorBlog(contexto, BlogController.TituloBlog), 
+                                        new BuscadorBlog(contexto), 
                                         buscadorBorrador, 
                                         asignadorTags, 
                                         asignadorCategorias))

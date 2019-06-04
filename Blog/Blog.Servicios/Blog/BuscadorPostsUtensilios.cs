@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
 using Blog.Modelo.Utensilios;
-using Blog.Servicios.Comun;
+using Infra.Comun;
 
 namespace Blog.Servicios.Blog
 {

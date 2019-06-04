@@ -6,12 +6,11 @@ using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Blog.Datos;
-using Blog.Modelo.Posts;
+using Ac.Datos;
+using Ac.Modelo;
 using Blog.Servicios.Configuracion;
 using Blog.Servicios.RssAtom;
-using Blog.Web.Controllers;
-using Blog.Web.Helpers;
+using Ac.Web.Helpers;
 
 namespace Blog.Web.RssAtom
 {
@@ -192,7 +191,6 @@ namespace Blog.Web.RssAtom
             private List<SyndicationItem> GetItems(CancellationToken cancellationToken)
             {
                 var posts = _db.Posts
-                    .Where(m => m.Blog.Titulo == BlogController.TituloBlog)
                     .PublicadosRssAtom()
                     .OrderByDescending(m => m.FechaPost)
                     .Take(4)

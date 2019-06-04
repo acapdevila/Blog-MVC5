@@ -6,30 +6,29 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
-using Blog.Datos;
-using Blog.Modelo.Dtos;
-using Blog.Modelo.Posts;
-using Blog.Modelo.Tags;
-using Blog.Servicios;
-using Blog.Servicios.Cache;
-using Blog.ViewModels.Blog;
-using Blog.ViewModels.Etiqueta;
-using Blog.ViewModels.Sidebar;
+using Ac.Datos;
+using Ac.Modelo;
+using Ac.Modelo.Dtos;
+using Ac.Modelo.Posts;
+using Ac.Modelo.Tags;
+using Ac.Servicios;
+using Infra.Cache;
+using Ac.ViewModels.Blog;
+using Ac.ViewModels.Etiqueta;
+using Ac.ViewModels.Sidebar;
 using PagedList;
 
 namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {
-        public static string TituloBlog = "albertcapdevila.net";
-
         private readonly BlogServicio _blogServicio;
         private const int NumeroItemsPorPagina = 10;
 
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
-            _blogServicio = new BlogServicio(contexto, TituloBlog);
+            _blogServicio = new BlogServicio(contexto);
         }
 
         [OutputCache(Duration = 3600,  Location = OutputCacheLocation.Client, VaryByParam = "pagina", NoStore = true)]
