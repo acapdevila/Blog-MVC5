@@ -16,7 +16,7 @@ namespace Blog.Smoothies.Controllers
         public CategoriasController()
         {
             var db = new ContextoBaseDatos();
-            _categoriasServicio = new CategoriasServicio(db, BlogController.TituloBlog);
+            _categoriasServicio = new CategoriasServicio(db);
         }
 
         // GET: Categorias

@@ -5,9 +5,9 @@ namespace Blog.Modelo.Categorias
 {
     public static class ConPostsExtension
     {
-        public static IQueryable<Categoria> ConPosts(this IQueryable<Categoria> categorias, string tituloBlog)
+        public static IQueryable<Categoria> ConPosts(this IQueryable<Categoria> categorias)
         {
-            return categorias.Include(m=>m.Posts).Where(m => m.Posts.Any(p => p.Blog.Titulo == tituloBlog));
+            return categorias.Include(m=>m.Posts).Where(m => m.Posts.Any());
         }
     }
 }

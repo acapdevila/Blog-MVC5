@@ -14,12 +14,10 @@ namespace Blog.Servicios
     public class CategoriasServicio
     {
         private readonly ContextoBaseDatos _db;
-        private readonly string _tituloBlog;
 
-        public CategoriasServicio(ContextoBaseDatos db, string tituloBlog)
+        public CategoriasServicio(ContextoBaseDatos db)
         {
             _db = db;
-            _tituloBlog = tituloBlog;
         }
 
         public IQueryable<Categoria> Categorias()
@@ -32,7 +30,7 @@ namespace Blog.Servicios
         public Task<Categoria> RecuperarCategoriaIncluyendoPostsPorUrlCategoriaAsync(string urlCategoria)
         {
             return Categorias()
-                    .ConPosts(_tituloBlog)
+                    .ConPosts()
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlCategoria);
         }
 

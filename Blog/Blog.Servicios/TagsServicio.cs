@@ -13,25 +13,23 @@ namespace Blog.Servicios
     public class TagsServicio
     {
         private readonly ContextoBaseDatos _db;
-        private readonly string _tituloBlog;
 
-        public TagsServicio(ContextoBaseDatos db, string tituloBlog)
+        public TagsServicio(ContextoBaseDatos db)
         {
             _db = db;
-            _tituloBlog = tituloBlog;
         }
 
         public IQueryable<Tag> Tags()
         {
             return _db.Tags
-                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+                .Where(m => m.Posts.Any());
         }
 
         private IQueryable<Tag> TagsIncluyendoPosts()
         {
             return _db.Tags
                 .Include(m => m.Posts)
-                .Where(m => m.Posts.Any(p => p.Blog.Titulo == _tituloBlog));
+                .Where(m => m.Posts.Any());
         }
 
 

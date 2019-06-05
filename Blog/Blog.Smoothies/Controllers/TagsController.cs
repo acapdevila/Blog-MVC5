@@ -12,7 +12,7 @@ namespace Blog.Smoothies.Controllers
     [Authorize]
     public class TagsController : Controller
     {
-        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos(), BlogController.TituloBlog);
+        private readonly TagsServicio _tagsServicio = new TagsServicio(new ContextoBaseDatos());
 
         // GET: Tags
         public async Task<ActionResult> Index()

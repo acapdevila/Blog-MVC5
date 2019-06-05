@@ -23,26 +23,22 @@ namespace Blog.Servicios
         private readonly CategoriasServicio _categoriasServicio;
         private readonly AsignadorTags _asignadorTags;
         private readonly AsignadorCategorias _asignadorCategorias;
-        private readonly string _tituloBlog;
 
         public PostsServicio(ContextoBaseDatos db, 
             AsignadorTags asignadorTags, 
-            AsignadorCategorias asignadorCategorias,
-            string tituloBlog)
+            AsignadorCategorias asignadorCategorias)
         {
             _db = db;
-            _tagsServicio = new TagsServicio(db, tituloBlog);
-            _categoriasServicio = new CategoriasServicio(db, tituloBlog);
+            _tagsServicio = new TagsServicio(db);
+            _categoriasServicio = new CategoriasServicio(db);
             _asignadorTags = asignadorTags;
             _asignadorCategorias = asignadorCategorias;
-            _tituloBlog = tituloBlog;
             
         }
 
         private IQueryable<Post> Posts()
         {
-            return _db.Posts
-                .Where(m => m.Blog.Titulo == _tituloBlog);
+            return _db.Posts;
         }
 
         

@@ -16,7 +16,7 @@ namespace Blog.Smoothies.Controllers
         public SidebarController()
         {
             var contexto = new ContextoBaseDatos();
-            _blogServicio = new BlogServicio(contexto, BlogController.TituloBlog);
+            _blogServicio = new BlogServicio(contexto);
         }
 
 
