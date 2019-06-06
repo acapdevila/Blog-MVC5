@@ -1,74 +1,53 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
 using Ac.Datos;
 using Ac.Modelo;
-using Ac.Modelo.Posts;
 using Ac.Modelo.Tags;
+using Ac.ViewModels.Post;
+using Omu.ValueInjecter;
 
 namespace Blog.Web.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
     {
-        private readonly BuscadorBorrador _buscadorBorrador;
-        private readonly BuscadorBorradores _buscadorBorradores;
-        private readonly EditorBorradorPost _editorBorrador;
+        private readonly ContextoBaseDatos _db;
 
         public BorradoresController() : this(new ContextoBaseDatos())
         {
             
         }
 
-        public BorradoresController(ContextoBaseDatos contexto): 
-            this(contexto, 
-                new BuscadorBorrador(contexto), 
-                new AsignadorTags(new TagRepositorio(contexto)),
-                new AsignadorCategorias(new CategoriaRepositorio(contexto)))
-                
+        public BorradoresController(ContextoBaseDatos contexto)
         {
-
+            _db = contexto;
         }
 
-
-        public BorradoresController(
-            ContextoBaseDatos contexto,
-            BuscadorBorrador buscadorBorrador,
-            AsignadorTags asignadorTags, 
-            AsignadorCategorias asignadorCategorias
-            ) : 
-            this(new BuscadorBorrador(contexto), 
-                new BuscadorBorradores(contexto), 
-                new EditorBorradorPost(contexto, 
-                                        new BuscadorBlog(contexto), 
-                                        buscadorBorrador, 
-                                        asignadorTags, 
-                                        asignadorCategorias))
-        {
-          
-        }
-
-        public BorradoresController(
-            BuscadorBorrador buscadorBorrador,
-            BuscadorBorradores buscadorBorradores, 
-            EditorBorradorPost creadorBorrador)
-        {
-            _buscadorBorrador = buscadorBorrador;
-            _editorBorrador = creadorBorrador;
-            _buscadorBorradores = buscadorBorradores;
-        }
-
+        
         public async Task<ActionResult> Index()
         {
-            var criteriosBusqueda = CriteriosBusqueda.Vacio();
             var viewModel = new ListaBorradoresViewModel
             {
-                BuscarPor = criteriosBusqueda,
-                ListaPosts = await _buscadorBorradores.ObtenerListaBorradoresAsync(criteriosBusqueda)
-            };
-
+                ListaPosts = await _db.Posts
+                    .Borradores()
+                    .Select(m => new LineaBorrador
+                    {
+                        Id = m.Id,
+                        UrlSlug = m.UrlSlug,
+                        Titulo = m.Titulo,
+                        FechaPost = m.FechaPost,
+                        FechaPublicacion = m.EsBorrador ? (DateTime?)null : m.FechaPublicacion,
+                        Autor = m.Autor,
+                        ListaTags = m.Tags
+                    })
+                    .OrderByDescending(m => m.FechaPost)
+                    .ToListAsync()
+             };
 
             return View("Lista", viewModel);
         }
@@ -117,7 +96,7 @@ namespace Blog.Web.Controllers
 
             if (!ModelState.IsValid) return View(viewModel);
 
-            await _editorBorrador.CrearBorrador(viewModel);
+            await CrearBorrador(viewModel);
                 
             if(boton.ToLower().Contains(@"salir"))
               return RedirectToAction("Index");
@@ -223,19 +202,54 @@ namespace Blog.Web.Controllers
         
         private async Task<Post> RecuperarBorrador(int id)
         {
-            return await _buscadorBorrador.BuscarBorradorPorIdAsync(id);
+            return await Posts()
+                .Borradores()
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-       
+        public async Task CrearBorrador(
+            EditorBorrador editorBorrador)
+        {
+            var post = Post.CrearNuevoPorDefecto(editorBorrador.Autor);
+            ActualizaBorrador(post, editorBorrador, _asignadorTags);
+
+            _db.Posts.Add(post);
+            await _db.GuardarCambios();
+            editorBorrador.Id = post.Id;
+        }
+
+
         private async Task ActualizarBorrador(EditorBorrador editorBorrador)
         {
-            await _editorBorrador.ActualizarBorrador(editorBorrador);
+            var post = await RecuperarBorrador(editorBorrador.Id);
+            ActualizaBorrador(post, editorBorrador, _asignadorTags);
+            await _db.GuardarCambios();
         }
 
         private async Task EliminarBorrador(int id)
         {
             var borrador = await RecuperarBorrador(id);
-            await _editorBorrador.EliminarBorrador(borrador);
+            _db.Posts.Remove(borrador);
+            await _db.GuardarCambios();
+        }
+
+        public static void ActualizaBorrador(Post post,
+            EditorBorrador editorBorrador,
+            AsignadorTags asignadorTags)
+        {
+            post.InjectFrom(editorBorrador);
+
+            post.ModificarTitulo(editorBorrador.Titulo);
+
+            asignadorTags.AsignarTags(post, editorBorrador.ListaTags);
+            post.FechaModificacion = DateTime.Now;
+        }
+
+
+        private IQueryable<Post> Posts()
+        {
+            return _db.Posts
+                .Include(m => m.Tags);
         }
 
     }

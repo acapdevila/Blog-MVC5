@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Text;
@@ -6,6 +8,7 @@ using System.Web.Mvc;
 using Ac.Datos;
 using Ac.Modelo;
 using Ac.Modelo.Posts;
+using Ac.Modelo.Tags;
 using Ac.ViewModels.Post;
 using Infra.Cache;
 using PagedList.EntityFramework;
@@ -154,7 +157,7 @@ namespace Blog.Web.Controllers
         public async Task<ActionResult> Publicar(string boton, PublicarPost viewModel)
         {
             string accion = boton.ToLower();
-            var post = await _db.RecuperarPost(viewModel.Id);
+            var post = await RecuperarPost(viewModel.Id);
 
             if (accion.Contains("cancelar"))
             {
@@ -171,9 +174,9 @@ namespace Blog.Web.Controllers
                 if (!ModelState.IsValid) return View(viewModel);
                 
                 if (accion.Contains("programar"))
-                    await _db.ProgramarPublicacion(viewModel);
+                    await ProgramarPublicacion(viewModel);
                 else if (accion.Contains("publicar"))
-                    await _db.PublicarPost(viewModel);
+                    await PublicarPost(viewModel);
 
                 LimpiarCache();
                 
@@ -222,19 +225,63 @@ namespace Blog.Web.Controllers
 
         private async Task<Post> RecuperarPost(int id)
         {
-            return await _db.RecuperarPost(id);
+            return await Posts()
+                .Include(m => m.Tags)
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
 
 
         private async Task ActualizarPost(EditorPost editorPost)
         {
-            await _db.ActualizarPost(editorPost);
-        }
+            var post = await RecuperarPost(editorPost.Id);
+            ActualizaPost(post, editorPost, _asignadorTags);
+            
+            await _db.GuardarCambios();
+            }
 
         private async Task EliminarPost(int id)
         {
-            await _db.EliminarPost(id);
+            var post = await RecuperarPost(id);
+            _db.Posts.Remove(post);
+            await _db.GuardarCambios();
         }
+
+        public static void ActualizaPost(Post post,
+            EditorPost editorPost,
+            AsignadorTags asignadorTags)
+        {
+            post.ModificarTitulo(editorPost.Titulo);
+            post.Subtitulo = editorPost.Subtitulo;
+            post.Descripcion = editorPost.Descripcion;
+            post.Autor = editorPost.Autor;
+            post.ContenidoHtml = editorPost.ContenidoHtml;
+            post.PalabrasClave = editorPost.PalabrasClave;
+            post.UrlImagenPrincipal = editorPost.UrlImagenPrincipal;
+
+            asignadorTags.AsignarTags(post, editorPost.ListaTags);
+            post.FechaModificacion = DateTime.Now;
+
+        }
+
+        private async Task ProgramarPublicacion(PublicarPost editor)
+        {
+            var post = await RecuperarPost(editor.Id);
+            post.ProgramarPublicacion(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom, editor.FechaPublicacion);
+            await _db.GuardarCambios();
+        }
+
+        private async Task PublicarPost(PublicarPost editor)
+        {
+            var post = await RecuperarPost(editor.Id);
+            post.Publicar(editor.FechaPost, editor.UrlSlug, editor.EsRssAtom);
+            await _db.GuardarCambios();
+        }
+
+        private IQueryable<Post> Posts()
+        {
+            return _db.Posts;
+        }
+
 
         protected override void Dispose(bool disposing)
         {

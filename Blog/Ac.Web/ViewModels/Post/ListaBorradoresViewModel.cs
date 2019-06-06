@@ -11,8 +11,6 @@ namespace Ac.ViewModels.Post
         {
          
         }
-
-        public string BuscarPor { get; set; }
         public IList<LineaBorrador> ListaPosts { get; set; }
     }
 

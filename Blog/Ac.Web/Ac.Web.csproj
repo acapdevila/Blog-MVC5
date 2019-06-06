@@ -260,7 +260,6 @@
     <Compile Include="ViewModels\Etiqueta\EtiquetaViewModel.cs" />
     <Compile Include="ViewModels\Libros\LibrosProgramacionViewmodel.cs" />
     <Compile Include="ViewModels\Libros\LibroViewmodel.cs" />
-    <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
     <Compile Include="ViewModels\Post\EditBlogViewModel.cs" />
     <Compile Include="ViewModels\Post\EditorBlog.cs" />
     <Compile Include="ViewModels\Post\EditorBorrador.cs" />
