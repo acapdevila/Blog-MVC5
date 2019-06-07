@@ -84,5 +84,8 @@
       <DependentUpon>201906041611221_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrations\Scripts\CopiarPostsDeEsquemaDboAAcapdevila.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
