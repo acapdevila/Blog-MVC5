@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Infra.Cache;
 using Blog.Servicios.Rutas;
 using Blog.Smoothies.Controllers;
+using Infra.Cache;
 
-namespace Blog.Smoothies
+namespace LG.Web
 {
     
 

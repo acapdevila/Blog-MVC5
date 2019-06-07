@@ -1,8 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using LG.Web;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Blog.Smoothies.Startup))]
-namespace Blog.Smoothies
+[assembly: OwinStartupAttribute(typeof(Startup))]
+namespace LG.Web
 {
     public partial class Startup
     {

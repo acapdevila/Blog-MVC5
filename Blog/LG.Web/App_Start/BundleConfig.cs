@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Blog.Smoothies
+namespace LG.Web
 {
     public class BundleConfig
     {

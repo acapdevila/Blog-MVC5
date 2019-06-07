@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Blog.Smoothies
+namespace LG.Web
 {
     public class FilterConfig
     {

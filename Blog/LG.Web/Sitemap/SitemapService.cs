@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Web.Mvc;
 using Infra.Cache;
 using Blog.Servicios.Rutas;
+using LG.Web;
 
 namespace Blog.Smoothies.Sitemap
 {

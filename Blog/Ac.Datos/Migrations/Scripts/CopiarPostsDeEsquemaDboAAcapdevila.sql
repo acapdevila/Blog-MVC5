@@ -65,7 +65,7 @@
  -- where Post.BlogId = 1
  --SET IDENTITY_INSERT acapdevila.Tag OFF;
 
- insert into acapdevila.TagPost (IdPost, IdTag)
- select TagPost.IdPost, TagPost.IdTag from TagPost
- inner join Post on TagPost.IdPost = Post.Id
- where Post.BlogId = 1
+ --insert into acapdevila.TagPost (IdPost, IdTag)
+ --select TagPost.IdPost, TagPost.IdTag from TagPost
+ --inner join Post on TagPost.IdPost = Post.Id
+ --where Post.BlogId = 1

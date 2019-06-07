@@ -10,7 +10,7 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
-using Blog.Smoothies.Content.informes.Datasets;
+using LG.Web.Content.informes.Datasets;
 using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;

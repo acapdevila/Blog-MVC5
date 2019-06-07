@@ -1,6 +1,5 @@
 ﻿using System;
 using Blog.Datos;
-using Blog.Modelo;
 using Blog.Modelo.Usuarios;
 using Blog.Servicios;
 using Microsoft.AspNet.Identity;
@@ -9,7 +8,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace Blog.Smoothies
+namespace LG.Web
 {
     public partial class Startup
     {

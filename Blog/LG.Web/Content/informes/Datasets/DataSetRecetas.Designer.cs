@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Blog.Smoothies.Content.informes.Datasets {
+namespace LG.Web.Content.informes.Datasets {
     
     
     /// <summary>

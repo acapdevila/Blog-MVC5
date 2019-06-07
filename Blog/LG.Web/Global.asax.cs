@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Blog.Smoothies
+namespace LG.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
