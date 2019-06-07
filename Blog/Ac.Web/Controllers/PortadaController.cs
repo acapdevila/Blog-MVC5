@@ -8,7 +8,7 @@ using Ac.Datos;
 using Ac.Modelo;
 using Ac.Modelo.Posts;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class PortadaController : Controller
     {

@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using Ac.Servicios.Configuracion;
-using Blog.ViewModels.Principal;
+using Ac.Web.Helpers;
+using Ac.Web.ViewModels.Principal;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class PrincipalController : Controller
     {

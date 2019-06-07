@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Ac.Servicios.Configuracion
+namespace Ac.Web.Helpers
 {
     public static class WebConfigParametro 
     {

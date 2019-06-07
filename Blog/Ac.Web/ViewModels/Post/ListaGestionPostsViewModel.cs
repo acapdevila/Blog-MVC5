@@ -4,7 +4,7 @@ using System.Linq;
 using Ac.Modelo.Tags;
 using PagedList;
 
-namespace Ac.ViewModels.Post
+namespace Ac.Web.ViewModels.Post
 {
     public class ListaGestionPostsViewModel
     {

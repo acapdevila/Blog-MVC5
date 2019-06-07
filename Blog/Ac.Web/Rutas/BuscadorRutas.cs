@@ -4,7 +4,7 @@ using Ac.Datos;
 using Ac.Modelo;
 using Ac.Modelo.Tags;
 
-namespace Ac.Servicios.Rutas
+namespace Ac.Web.Rutas
 {
     public  class BuscadorRutas
     {

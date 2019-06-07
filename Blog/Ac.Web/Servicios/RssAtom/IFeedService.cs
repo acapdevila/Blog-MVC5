@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Blog.Servicios.RssAtom
+namespace Ac.Web.Servicios.RssAtom
 {
     /// <summary>
     /// Builds <see cref="SyndicationFeed"/>'s containing meta data about the feed and the feed entries.

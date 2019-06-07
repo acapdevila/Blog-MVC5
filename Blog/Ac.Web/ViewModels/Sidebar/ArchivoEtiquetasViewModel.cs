@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using Ac.Modelo.Dtos;
-using Ac.Modelo.Tags;
 
-namespace Ac.ViewModels.Sidebar
+namespace Ac.Web.ViewModels.Sidebar
 {
     public class ArchivoEtiquetasViewModel
     {

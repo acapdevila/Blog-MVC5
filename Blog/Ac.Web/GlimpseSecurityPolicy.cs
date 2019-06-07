@@ -4,7 +4,7 @@
 using Glimpse.AspNet.Extensions;
 using Glimpse.Core.Extensibility;
 
-namespace Blog.Web
+namespace Ac.Web
 {
     public class GlimpseSecurityPolicy:IRuntimePolicy
     {

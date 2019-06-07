@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blog.Web</RootNamespace>
-    <AssemblyName>Blog.Web</AssemblyName>
+    <RootNamespace>Ac.Web</RootNamespace>
+    <AssemblyName>Ac.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -204,7 +204,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Helpers\ImagenHelper.cs" />
     <Compile Include="Servicios\AzureStorageService.cs" />
-    <Compile Include="Servicios\Configuracion\WebConfigParametro.cs" />
+    <Compile Include="Helpers\WebConfigParametro.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\PortadaController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />

@@ -1,8 +1,7 @@
 ﻿using System.Net.Mail;
-using Ac.Servicios.Configuracion;
-using Blog.ViewModels.Contacto;
+using Ac.Web.Helpers;
 
-namespace Ac.Servicios
+namespace Ac.Web.Servicios.Contacto
 {
     public interface IEmailServicio
     {

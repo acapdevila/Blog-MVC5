@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Omu.ValueInjecter;
 
-namespace Ac.ViewModels.Post
+namespace Ac.Web.ViewModels.Post
 {
     public class PublicarPost
     {

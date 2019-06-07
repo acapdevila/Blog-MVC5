@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ac.ViewModels.Libros
+namespace Ac.Web.ViewModels.Libros
 {
     public class LibrosProgramacionViewmodel
     {

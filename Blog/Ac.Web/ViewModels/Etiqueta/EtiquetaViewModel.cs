@@ -2,7 +2,7 @@
 using Ac.Modelo.Tags;
 using PagedList;
 
-namespace Ac.ViewModels.Etiqueta
+namespace Ac.Web.ViewModels.Etiqueta
 {
     public class EtiquetaViewModel
     {

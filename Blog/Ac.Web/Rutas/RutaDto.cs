@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ac.Servicios.Rutas
+namespace Ac.Web.Rutas
 {
     public class RutaDto
     {

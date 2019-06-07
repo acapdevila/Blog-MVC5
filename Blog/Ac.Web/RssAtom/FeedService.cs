@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
 using Ac.Modelo;
-using Ac.Servicios.Configuracion;
-using Blog.Servicios.RssAtom;
 using Ac.Web.Helpers;
+using Ac.Web.Servicios.RssAtom;
 
-namespace Blog.Web.RssAtom
+namespace Ac.Web.RssAtom
 {
     /// <summary>
         /// Builds <see cref="SyndicationFeed"/>'s containing meta data about the feed and the feed entries.

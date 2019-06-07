@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Web;
 using System.Xml.Linq;
 
-namespace Blog.Web.Sitemap
+namespace Ac.Web.Sitemap
 {
     public static class XDocumentExtensions
     {

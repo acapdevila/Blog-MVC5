@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Ac.Modelo;
+﻿using System.Collections.Generic;
 using Ac.Modelo.Posts;
 
-namespace Ac.ViewModels.Blog
+namespace Ac.Web.ViewModels.Blog
 {
     public  class DetallesPostBlogViewModel
     {

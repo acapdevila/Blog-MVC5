@@ -4,12 +4,12 @@ using System.Web;
 using System.Web.Mvc;
 using Ac.Modelo.Usuarios;
 using Ac.Servicios;
-using Ac.ViewModels.Account;
+using Ac.Web.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

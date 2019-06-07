@@ -1,7 +1,7 @@
 ﻿using Ac.Modelo.Posts;
 using PagedList;
 
-namespace Ac.ViewModels.Blog
+namespace Ac.Web.ViewModels.Blog
 {
     public class ResultadoBusquedaViewModel
     {

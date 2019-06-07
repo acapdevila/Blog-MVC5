@@ -9,13 +9,13 @@ using Ac.Datos;
 using Ac.Modelo;
 using Ac.Modelo.Dtos;
 using Ac.Modelo.Posts;
-using Ac.ViewModels.Blog;
-using Ac.ViewModels.Etiqueta;
-using Ac.ViewModels.Sidebar;
+using Ac.Web.ViewModels.Blog;
+using Ac.Web.ViewModels.Etiqueta;
+using Ac.Web.ViewModels.Sidebar;
 using PagedList;
 using PagedList.EntityFramework;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class BlogController : Controller
     {

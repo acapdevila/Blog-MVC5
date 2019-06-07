@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Web.Helpers;
-using Ac.Servicios.Configuracion;
+using Ac.Web.Helpers;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 

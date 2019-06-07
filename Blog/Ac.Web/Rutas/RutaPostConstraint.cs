@@ -5,10 +5,9 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Routing;
 using Ac.Datos;
-using Blog.Servicios.Rutas;
 using Infra.Cache;
 
-namespace Ac.Servicios.Rutas
+namespace Ac.Web.Rutas
 {
     public class RutaPostConstraint : IRouteConstraint
     {

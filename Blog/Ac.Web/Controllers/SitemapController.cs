@@ -2,12 +2,11 @@
 using System.Text;
 using System.Web.Mvc;
 using Ac.Datos;
-using Ac.Servicios.Rutas;
+using Ac.Web.Rutas;
+using Ac.Web.Sitemap;
 using Infra.Cache;
-using Blog.Servicios.Rutas;   
-using Blog.Web.Sitemap;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class SitemapController : Controller
     {

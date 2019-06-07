@@ -1,4 +1,4 @@
-﻿namespace Ac.ViewModels.Post
+﻿namespace Ac.Web.ViewModels.Post
 {
     public class EditBlogViewModel
     {

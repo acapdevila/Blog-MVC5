@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ac.Modelo.Tags;
 
-namespace Ac.ViewModels.Post
+namespace Ac.Web.ViewModels.Post
 {
     public class ListaBorradoresViewModel
     {

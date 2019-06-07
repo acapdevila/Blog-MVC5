@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Blog.Web;
-using Blog.Web.Controllers;
 
 namespace Ac.Web.Helpers
 {

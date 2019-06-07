@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Ac.ViewModels.Libros;
+using Ac.Web.ViewModels.Libros;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class LibrosController : Controller
     {

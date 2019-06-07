@@ -1,4 +1,4 @@
-﻿namespace Blog.Web.Sitemap
+﻿namespace Ac.Web.Sitemap
 {
     public enum SitemapFrequency
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class ContratameController : Controller
     {

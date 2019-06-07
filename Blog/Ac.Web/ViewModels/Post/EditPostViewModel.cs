@@ -1,6 +1,4 @@
-﻿using Ac.ViewModels.Post;
-
-namespace Ac.ViewModels.Post
+﻿namespace Ac.Web.ViewModels.Post
 {
     public class EditPostViewModel
     {

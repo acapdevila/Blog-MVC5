@@ -2,11 +2,10 @@
 using System.Web.Mvc;
 using System.Web.UI;
 using Ac.Datos;
-using Blog.Servicios.RssAtom;
-using Blog.Web.RssAtom;
+using Ac.Web.RssAtom;
+using Ac.Web.Servicios.RssAtom;
 
-
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class RssController : Controller
     {

@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.UI;
 using Ac.Servicios;
-using Blog.ViewModels.Contacto;
+using Ac.Web.Servicios.Contacto;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     public class ContactoController : Controller
     {

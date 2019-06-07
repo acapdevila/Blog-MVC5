@@ -1,9 +1,8 @@
 using System;
 using System.Web;
 using System.Web.Helpers;
-using Ac.Servicios.Configuracion;
 
-namespace Ac.Servicios
+namespace Ac.Web.Helpers
 {
     public static class ImagenHelper
     {

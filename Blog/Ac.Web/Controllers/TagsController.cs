@@ -1,14 +1,13 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
 using Ac.Modelo.Tags;
-using Ac.ViewModels.Etiqueta;
+using Ac.Web.ViewModels.Etiqueta;
 
-
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     [Authorize]
     public class TagsController : Controller

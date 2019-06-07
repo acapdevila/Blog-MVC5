@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Ac.Modelo.Posts;
-using Ac.ViewModels.Sidebar;
-using PagedList;
+using Ac.Web.ViewModels.Sidebar;
 
-namespace Ac.ViewModels.Blog
+namespace Ac.Web.ViewModels.Blog
 {
     public class ArchivoViewModel
     {

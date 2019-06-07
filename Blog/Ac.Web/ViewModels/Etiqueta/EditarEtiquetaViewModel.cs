@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 using System.Web.Mvc;
 using Ac.Modelo.Dtos;
 using Ac.Modelo.Tags;
 
-namespace Ac.ViewModels.Etiqueta
+namespace Ac.Web.ViewModels.Etiqueta
 {
     public  class EditarEtiquetaViewModel
     {

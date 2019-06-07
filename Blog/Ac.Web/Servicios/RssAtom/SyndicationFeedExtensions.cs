@@ -4,7 +4,7 @@ using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Blog.Servicios.RssAtom
+namespace Ac.Web.Servicios.RssAtom
 {
     /// <summary>
     /// <see cref="SyndicationFeed"/> extension methods.

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
-using Ac.Servicios.Rutas;
+using Ac.Web.Rutas;
 using Infra.Cache;
-using Blog.Servicios.Rutas;
-namespace Blog.Web.Sitemap
+
+namespace Ac.Web.Sitemap
 {
     /// <summary>
     /// Generates sitemap XML for the current site.

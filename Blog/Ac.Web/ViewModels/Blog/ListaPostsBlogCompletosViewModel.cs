@@ -1,7 +1,7 @@
 ﻿using Ac.Modelo.Posts;
 using PagedList;
 
-namespace Blog.ViewModels.Blog
+namespace Ac.Web.ViewModels.Blog
 {
     public class ListaPostsBlogCompletosViewModel
     {

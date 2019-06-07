@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blog.ViewModels.Contacto
+namespace Ac.Web.Servicios.Contacto
 {
     public class FormularioContactoViewModel
     {

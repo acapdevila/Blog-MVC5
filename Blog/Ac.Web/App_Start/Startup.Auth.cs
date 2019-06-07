@@ -8,7 +8,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace Blog.Web
+namespace Ac.Web
 {
     public partial class Startup
     {

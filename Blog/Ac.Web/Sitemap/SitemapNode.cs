@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Web.Sitemap
+namespace Ac.Web.Sitemap
 {
     public sealed class SitemapNode
     {

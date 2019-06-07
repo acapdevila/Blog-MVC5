@@ -1,7 +1,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace Blog.Web.Sitemap
+namespace Ac.Web.Sitemap
 {
     /// <summary>
     /// Requires that a HTTP request does not contain a trailing slash. If it does, return a 404 Not Found. This is

@@ -1,31 +1,40 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
+using Ac.Datos.Repositorios;
 using Ac.Modelo;
 using Ac.Modelo.Tags;
-using Ac.ViewModels.Post;
+using Ac.Web.ViewModels.Post;
 using Omu.ValueInjecter;
 
-namespace Blog.Web.Controllers
+namespace Ac.Web.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
     {
         private readonly ContextoBaseDatos _db;
+        private readonly AsignadorTags _asignadorTags;
 
         public BorradoresController() : this(new ContextoBaseDatos())
         {
             
         }
+        public BorradoresController(ContextoBaseDatos contexto) : this(contexto,
+            new AsignadorTags(new TagRepositorio(contexto)))
+        {
 
-        public BorradoresController(ContextoBaseDatos contexto)
+        }
+
+
+        public BorradoresController(ContextoBaseDatos contexto, AsignadorTags asignadorTags)
         {
             _db = contexto;
+            _asignadorTags = asignadorTags;
         }
 
         

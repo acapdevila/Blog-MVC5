@@ -2,7 +2,7 @@
 using System.Linq;
 using Ac.Modelo.Tags;
 
-namespace Ac.ViewModels.Sidebar
+namespace Ac.Web.ViewModels.Sidebar
 {
     public class NubeEtiquetasViewModel
     {

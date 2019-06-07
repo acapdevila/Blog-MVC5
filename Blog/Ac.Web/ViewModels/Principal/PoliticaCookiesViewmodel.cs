@@ -1,4 +1,4 @@
-﻿namespace Blog.ViewModels.Principal
+﻿namespace Ac.Web.ViewModels.Principal
 {
     public class PoliticaCookiesViewmodel
     {

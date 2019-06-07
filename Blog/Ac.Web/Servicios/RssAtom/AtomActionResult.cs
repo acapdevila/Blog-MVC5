@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 
-namespace Blog.Servicios.RssAtom
+namespace Ac.Web.Servicios.RssAtom
 {
     /// <summary>
     /// Represents a class that is used to render an Atom 1.0 feed by using an <see cref="SyndicationFeed"/> instance 

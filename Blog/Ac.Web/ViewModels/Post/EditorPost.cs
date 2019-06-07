@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Ac.Modelo.Tags;
 using Omu.ValueInjecter;
 
-namespace Ac.ViewModels.Post
+namespace Ac.Web.ViewModels.Post
 {
     public class EditorPost
     {

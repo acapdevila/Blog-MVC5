@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ac.Modelo;
 
-namespace Ac.ViewModels.Sidebar
+namespace Ac.Web.ViewModels.Sidebar
 {
     public class ArchivoArbolViewModel
     {

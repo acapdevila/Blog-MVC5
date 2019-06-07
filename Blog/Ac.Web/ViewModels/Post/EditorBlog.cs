@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Ac.ViewModels.Post
+namespace Ac.Web.ViewModels.Post
 {
     public class EditorBlog
     {

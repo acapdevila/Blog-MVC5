@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Blog.Web.Sitemap
+namespace Ac.Web.Sitemap
 {
     /// <summary>Represents errors that occur during sitemap creation.</summary>
     [Serializable]
