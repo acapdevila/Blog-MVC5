@@ -15,7 +15,7 @@ using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
 using Microsoft.Reporting.WebForms;
-using Infra;
+using Infra.Comun;
 
 namespace Blog.Smoothies.Controllers
 {

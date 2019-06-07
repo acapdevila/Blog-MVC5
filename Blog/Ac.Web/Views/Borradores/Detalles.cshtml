@@ -1,0 +1,81 @@
+﻿@using Ac.Web.Helpers
+@model Ac.Modelo.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<br />
+<div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8">
+        <!-- Blog Post -->
+        @Html.DisplayFor(m => m, "DisplayPost")
+     </div>
+
+    @Html.Partial("_SidebarPrincipal")
+
+</div>
+<!-- /.row -->
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlSlug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrlSlug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPost)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.EsBorrador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsBorrador)
+        </dd>
+		
+		<dt>
+            @Html.DisplayNameFor(model => model.EsRssAtom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsRssAtom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPublicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPublicacion)
+        </dd>
+   
+
+        
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

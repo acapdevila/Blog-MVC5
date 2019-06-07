@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.ViewModels.Sidebar;
 
 namespace Blog.Smoothies.Controllers
@@ -16,7 +16,7 @@ namespace Blog.Smoothies.Controllers
         public SidebarController()
         {
             var contexto = new ContextoBaseDatos();
-            _blogServicio = new BlogServicio(contexto, BlogController.TituloBlog);
+            _blogServicio = new BlogServicio(contexto);
         }
 
 

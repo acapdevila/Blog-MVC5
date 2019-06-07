@@ -10,7 +10,7 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.Servicios.Blog;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.Servicios.Recetas;
 using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.ViewModels.Post;
@@ -33,8 +33,7 @@ namespace Blog.Smoothies.Controllers
         public PostsController(ContextoBaseDatos contexto) :
             this(new PostsServicio(contexto,
                     new AsignadorTags(new TagRepositorio(contexto)),
-                    new AsignadorCategorias(new CategoriaRepositorio(contexto)), 
-                    BlogController.TituloBlog),
+                    new AsignadorCategorias(new CategoriaRepositorio(contexto))),
                 new BuscadorDeReceta(contexto),
                 new BuscadorPostsRelacionados(contexto),
                 new BuscadorPostsUtensilios(contexto))

@@ -144,7 +144,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureStorageService.cs" />
     <Compile Include="BlogServicio.cs" />
     <Compile Include="Blog\Borradores\BuscadorBorrador.cs" />
     <Compile Include="Blog\Borradores\BuscadorBorradores.cs" />
@@ -152,10 +151,6 @@
     <Compile Include="Blog\BuscadorBlog.cs" />
     <Compile Include="Blog\BuscadorPostsUtensilios.cs" />
     <Compile Include="Blog\BuscadorPostsRelacionados.cs" />
-    <Compile Include="Cache\CacheService.cs" />
-    <Compile Include="Cache\CacheSetting.cs" />
-    <Compile Include="Cache\ICacheService.cs" />
-    <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
     <Compile Include="Recetas\BuscadorDeReceta.cs" />
@@ -172,23 +167,10 @@
     <Compile Include="Recetas\CriteriosBusquedaReceta.cs" />
     <Compile Include="Recetas\Dtos\LineaGestionReceta.cs" />
     <Compile Include="Recetas\EditorDeRecetas.cs" />
-    <Compile Include="Rutas\BuscadorRutas.cs" />
-    <Compile Include="Rutas\RutaPostConstraint.cs" />
-    <Compile Include="Rutas\RutaEtiquetaConstraint.cs" />
-    <Compile Include="Rutas\RutaCategoriaConstraint.cs" />
-    <Compile Include="Rutas\RutaDto.cs" />
     <Compile Include="TagsServicio.cs" />
     <Compile Include="BlogsServicio.cs" />
-    <Compile Include="Configuracion\WebConfigParametro.cs" />
-    <Compile Include="EmailServicio.cs" />
     <Compile Include="PostsServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RssAtom\AtomActionResult.cs" />
-    <Compile Include="RssAtom\ContentType.cs" />
-    <Compile Include="RssAtom\IFeedService.cs" />
-    <Compile Include="RssAtom\SyndicationFeedExtensions.cs" />
-    <Compile Include="SubirArchivoImagenServicio.cs" />
-    <Compile Include="ImagenHelper.cs" />
     <Compile Include="Utensilios\BuscadorDeUtensilio.cs" />
     <Compile Include="Utensilios\BuscadorDeUtensilios.cs" />
     <Compile Include="Utensilios\BuscadorDeCategoriasDeUtensilios.cs" />

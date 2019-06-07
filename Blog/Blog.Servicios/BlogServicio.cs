@@ -18,21 +18,18 @@ namespace Blog.Servicios
         private readonly ContextoBaseDatos _db;
         private readonly TagsServicio _tagsServicio;
         private readonly CategoriasServicio _categoriasServicio;
-        private readonly string _tituloBlog;
-
-        public BlogServicio(ContextoBaseDatos db, string tituloBlog) : this(db, new TagsServicio(db, tituloBlog), new CategoriasServicio(db, tituloBlog), tituloBlog)
+        public BlogServicio(ContextoBaseDatos db) : this(db, new TagsServicio(db), new CategoriasServicio(db))
         {
             
         }
 
 
-        public BlogServicio(ContextoBaseDatos db, TagsServicio tagsServicio, CategoriasServicio categoriasServicio, string tituloBlog)
+        public BlogServicio(ContextoBaseDatos db, TagsServicio tagsServicio, CategoriasServicio categoriasServicio)
         {
             _db = db;
             _tagsServicio = tagsServicio;
             _categoriasServicio = categoriasServicio;
-            _tituloBlog = tituloBlog;
-        }
+         }
 
         public IQueryable<Post> Posts()
         {
@@ -40,8 +37,7 @@ namespace Blog.Servicios
                     .Include(m=>m.Receta.Ingredientes.Select(i => i.Ingrediente))
                 .Include(m=>m.Receta.Instrucciones)
                 .Include(m => m.Tags)
-                .Include(m=>m.Categorias)
-                .Where(m => m.Blog.Titulo == _tituloBlog);
+                .Include(m=>m.Categorias);
         }
 
         public IQueryable<Post> PostsYRelacionados()
@@ -53,7 +49,7 @@ namespace Blog.Servicios
                     .Include(m => m.Categorias)
                     .Include(m => m.Utensilios.Select(u=>u.Utensilio))
                     .Include(m => m.PostRelacionados.Select(r => r.Hijo))
-                    .Where(m => m.Blog.Titulo == _tituloBlog);
+                    ;
             
             
         }
@@ -170,11 +166,6 @@ namespace Blog.Servicios
                 .FirstOrDefaultAsync(m => m.UrlSlug == urlSlug);
         }
 
-        public async Task<BlogEntidad> RecuperarBlog()
-        {
-            return await _db.Blogs
-                .FirstOrDefaultAsync(m => m.Titulo == _tituloBlog);
-        }
 
         public IQueryable<ArchivoItemDto> ConsultaDeArchivoBlog()
         {
@@ -192,19 +183,7 @@ namespace Blog.Servicios
 
 
 
-        public List<LineaArchivoDto> RecuperarTodasLineasArchivoBlog()
-        {
-            return Posts()
-                .Publicados()
-                .OrdenadosPorFecha()
-                .Select(g => new LineaArchivoDto
-                {
-                    FechaPost = g.FechaPost,
-                    Titulo = g.Titulo,
-                    UrlSlug = g.UrlSlug
-                })
-                .ToList();
-        }
+     
 
 
         public void Dispose()

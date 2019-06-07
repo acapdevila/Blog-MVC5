@@ -1,0 +1,65 @@
+﻿@model Ac.Web.ViewModels.Blog.DetallesPostBlogViewModel
+
+@{
+    ViewBag.Title = Model.Post.Titulo;
+    ViewBag.MetaDescripcion = Model.Post.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Post.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Post.UrlImagenPrincipal;
+}
+
+@if (Model.Post.EsMostrarDatosEstructurados)
+{
+@section head
+{
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "Article",
+    "headline": "@Model.Post.Titulo",
+    "image": ["@Model.Post.UrlImagenPrincipal"],
+    "datePublished": "@Model.Post.FechaPublicacion.ToString("yyyy-MM-ddTHH:mm:ss")+02:00",
+    "author": { "@@type": "Person", "name": "@(Model.Post.Autor ?? "Albert Capdevila")" },
+    "publisher": { "@@type": "Organization", "name": "albertcapdevila.net",
+    "logo": { "@@type": "ImageObject", "url": "https://albertcapdevila.net/content/imagenes/logo.png"}},
+    "description": "@Model.Post.Descripcion"
+    }
+</script>
+}
+}
+
+
+<br />
+<div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8">
+        <!-- Blog Post -->
+        @Html.DisplayFor(m => m.Post, "DisplayPost")
+        
+        
+        <div>
+            @foreach (var item in Model.PostsSugeridos)
+            {
+                @Html.Partial("_ItemLineaResumenPost", item)
+            }
+                    
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <br />
+
+        <!-- Blog Comments -->
+        <div class="well">
+            @Html.Partial("_Disqus", Model.Post)
+        </div>
+    </div>
+
+    @Html.Partial("_SidebarPrincipal")
+
+</div>
+<!-- /.row -->
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", "Posts", new {id = Model.Post.Id}, null)
+    </p>
+}

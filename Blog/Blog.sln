@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Smoothies", "Blog.Smoo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Común", "Común", "{23974DCE-C2BE-4A11-9065-B5C233633C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Web", "Blog.Web\Blog.Web.csproj", "{8683673E-7A9F-4260-A797-4DB1636C4A08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ac.Web", "Ac.Web\Ac.Web.csproj", "{8683673E-7A9F-4260-A797-4DB1636C4A08}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "albertcapdevila.net", "albertcapdevila.net", "{77767113-68D5-450B-B478-EFD8B52207C8}"
 EndProject

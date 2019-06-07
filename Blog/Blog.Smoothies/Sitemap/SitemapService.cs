@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
-using Blog.Servicios.Cache;
+using Infra.Cache;
 using Blog.Servicios.Rutas;
 
 namespace Blog.Smoothies.Sitemap

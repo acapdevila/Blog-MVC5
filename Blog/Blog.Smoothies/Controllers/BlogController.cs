@@ -28,7 +28,7 @@ namespace Blog.Smoothies.Controllers
         public BlogController()
         {
             var contexto = new ContextoBaseDatos();
-            _blogServicio = new BlogServicio(contexto, TituloBlog);
+            _blogServicio = new BlogServicio(contexto);
            
 
         }

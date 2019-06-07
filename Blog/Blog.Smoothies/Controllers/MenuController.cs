@@ -17,7 +17,7 @@ namespace Blog.Smoothies.Controllers
 
         }
 
-        public MenuController(ContextoBaseDatos db) : this (new CategoriasServicio(db, BlogController.TituloBlog))
+        public MenuController(ContextoBaseDatos db) : this (new CategoriasServicio(db))
         {
 
         }
@@ -37,7 +37,7 @@ namespace Blog.Smoothies.Controllers
             //    {
                     var categorias = _categoriasServicio
                         .Categorias()
-                        .ConPosts(BlogController.TituloBlog)
+                        .ConPosts()
                         .OrderBy(m=>m.Nombre).ToList();
 
                     var viewModel = new MenuCategoriasViewModel(categorias);

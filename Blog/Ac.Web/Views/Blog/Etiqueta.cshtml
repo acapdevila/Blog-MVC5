@@ -1,0 +1,105 @@
+﻿@using System.Web.Mvc.Html
+@using Ac.Web.Helpers
+@model Ac.Web.ViewModels.Etiqueta.EtiquetaViewModel
+
+@{
+    ViewData["Title"] = Model.Etiqueta.Nombre;
+    ViewBag.Title = Model.Etiqueta.Nombre;
+    ViewBag.MetaDescripcion = Model.Etiqueta.Descripcion;
+    ViewBag.MetaPalabrasClave = Model.Etiqueta.PalabrasClave;
+    ViewBag.ImagenPrincipal = Model.Etiqueta.UrlImagenPrincipal ?? "https://albertcapdevila.net/Content/imagenes/logo.png";
+}
+
+@if (Model.Etiqueta.EsMostrarDatosEstructurados)
+{
+    @section head
+{
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "Article",
+    "headline": "@Model.Etiqueta.Nombre",
+    "image": ["@Model.Etiqueta.UrlImagenPrincipal"],
+    "datePublished": "@(Model.Etiqueta.FechaPublicacion?.ToString("yyyy-MM-ddTHH:mm:ss"))+02:00",
+    "author": { "@@type": "Person", "name": "Laura García" },
+    "publisher": { "@@type": "Organization", "name": "albertcapdevila.net",
+    "logo": { "@@type": "ImageObject", "url": "https://albertcapdevila.net/content/imagenes/logo.png"}},
+    "description": "@Model.Etiqueta.Descripcion"
+    }
+</script>
+    }
+}
+
+
+
+
+@section linksnextprev {
+    @if (Model.ListaPosts.HasNextPage)
+    {
+        <link rel="next" href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber + 1)" />
+    }
+    @if (Model.ListaPosts.HasPreviousPage)
+    {
+        if (Model.ListaPosts.PageNumber == 2)
+        {
+            <link rel="prev" href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)" />
+        }
+        else
+        {
+            <link rel="prev" href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber - 1)" />
+        }
+
+    }
+}
+
+<br />
+<div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+        <h1 class="page-header">
+            @Model.Etiqueta.Nombre
+            @*<small>Secondary Text</small>*@
+        </h1>
+        
+        @if (!string.IsNullOrEmpty(Model.Etiqueta.Descripcion))
+        {
+            <div>
+                @Html.DisplayFor(m => m.Etiqueta, "DisplayEtiqueta")
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+        }
+
+        <!-- First Blog Post -->
+        @Html.Partial("_ListaLineasResumenPost", Model.ListaPosts.ToList())
+
+        <!-- Pager-->
+        <div class="clearfix"></div>
+        <ul class="pager">
+            @if (Model.ListaPosts.HasNextPage)
+            {
+                <li class="previous">
+                    <a href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber + 1)">&larr; Entradas más antiguas</a>
+                </li>
+            }
+            @if (Model.ListaPosts.HasPreviousPage)
+            {
+                <li class="next">
+                    @if (Model.ListaPosts.PageNumber == 2)
+                    {
+                        <a href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)">Entradas más recientes &rarr;</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.RutaEtiqueta(Model.Etiqueta.UrlSlug)?pagina=@(Model.ListaPosts.PageNumber - 1)">Entradas más recientes &rarr;</a>
+                    }
+
+                </li>
+            }
+        </ul>
+
+    </div>
+    @Html.Partial("_SidebarPrincipal")
+
+</div>

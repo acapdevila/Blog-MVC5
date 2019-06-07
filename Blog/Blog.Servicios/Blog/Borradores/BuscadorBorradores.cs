@@ -40,7 +40,7 @@ namespace Blog.Servicios.Blog.Borradores
                     })
                     .OrderByDescending(m => m.FechaPost)
                     .ToListAsync();
-            ;
+            
         }
     }
 }

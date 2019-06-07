@@ -1,0 +1,17 @@
+﻿@using Ac.Web.Helpers
+@model Ac.Modelo.Posts.LineaResumenPost
+
+<div class="postsmall col-md-4">
+    <h3 class="typo">
+        <a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">@Model.Titulo</a>
+    </h3>
+    @*<p class="lead">
+                                    by @Model.Autor
+                                </p>*@
+  
+    @*<a href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">
+        @Html.Raw(Model.Subtitulo)
+    </a>*@
+    <br />
+    <a class="leermas" href="@Url.RutaUrlBlogPost(Model.FechaPost, Model.UrlSlug)">Leer más</a>
+</div>

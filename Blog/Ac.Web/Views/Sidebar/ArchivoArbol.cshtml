@@ -1,0 +1,48 @@
+﻿@using Ac.Web.Helpers
+@model Ac.Web.ViewModels.Sidebar.ArchivoArbolViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="well">
+    <h4>Archivo</h4>
+    <div class="row">
+        <div class="col-lg-12">
+
+
+        @foreach (var año in Model.Años)
+        {
+
+                <div class="panel-group" id="accordion@(año.Año)" role="tablist" aria-multiselectable="true">
+                   
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-arbol" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse@(año.Año)" aria-expanded="true" aria-controls="collapse@(año.Año)">
+                                    @año.Año (@año.Items.Count)
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse@(año.Año)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <ul>
+                                    @foreach (var item in año.Items)
+                                    {
+                                        <li>
+                                            <a class="itemArchivoArbol" href="@Url.RutaUrlBlogPost(fechaPost: item.FechaPost, urlSlug: item.Url)">@item.Titulo </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                </div>
+        }
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
