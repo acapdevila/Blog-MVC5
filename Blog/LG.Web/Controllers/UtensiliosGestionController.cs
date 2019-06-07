@@ -7,12 +7,13 @@ using Blog.Modelo.Posts;
 using Blog.Servicios;
 using Blog.Servicios.Utensilios;
 using Blog.Servicios.Utensilios.Comandos;
-using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Shared.ViewModels;
 using Blog.Smoothies.Views.UtensiliosCategorias.ViewModels;
 using Blog.Smoothies.Views.UtensiliosGestion.ViewModels;
+using LG.Web.Helpers;
+using LG.Web.Servicios;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class UtensiliosGestionController : Controller

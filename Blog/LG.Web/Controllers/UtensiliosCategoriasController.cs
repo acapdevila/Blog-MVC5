@@ -7,7 +7,7 @@ using Blog.Servicios.Utensilios;
 using Blog.Servicios.Utensilios.Comandos;
 using Blog.Smoothies.Views.UtensiliosCategorias.ViewModels;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class UtensiliosCategoriasController : Controller

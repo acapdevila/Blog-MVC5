@@ -3,10 +3,10 @@ using System.Text;
 using System.Web.Mvc;
 using Blog.Datos;
 using Infra.Cache;
-using Blog.Servicios.Rutas;
-using Blog.Smoothies.Sitemap;
+using LG.Web.Rutas;
+using LG.Web.Sitemap;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class SitemapController : Controller
     {

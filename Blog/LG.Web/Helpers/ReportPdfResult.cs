@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Reporting.WebForms;
 
-namespace Blog.Smoothies.Helpers
+namespace LG.Web.Helpers
 {
 
     public class ReportPdfResult : FileResult

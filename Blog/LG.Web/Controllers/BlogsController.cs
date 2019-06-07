@@ -7,7 +7,7 @@ using Blog.Servicios;
 using Blog.ViewModels.Post;
 using Blog.ViewModels.Post.Conversores;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class BlogsController : Controller

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Web;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     /// <summary>
     /// The <see cref="T:System.IO.StringWriter" /> class always outputs UTF-16 encoded strings. To use a different encoding, we

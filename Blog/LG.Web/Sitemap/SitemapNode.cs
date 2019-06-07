@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     public sealed class SitemapNode
     {

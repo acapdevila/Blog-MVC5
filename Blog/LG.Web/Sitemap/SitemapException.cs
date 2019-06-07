@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     /// <summary>Represents errors that occur during sitemap creation.</summary>
     [Serializable]

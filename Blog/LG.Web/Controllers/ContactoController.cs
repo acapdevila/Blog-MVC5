@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Blog.Servicios;
-using Blog.ViewModels.Contacto;
+using LG.Web.Servicios.Contacto;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class ContactoController : Controller
     {

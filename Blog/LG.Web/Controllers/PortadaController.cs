@@ -7,7 +7,7 @@ using System.Web.UI;
 using Blog.Datos;
 using Blog.Modelo.Posts;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class PortadaController : Controller
     {

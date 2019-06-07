@@ -2,10 +2,10 @@
 using System.Web.Mvc;
 using System.Web.UI;
 using Blog.Datos;
-using Blog.Servicios.RssAtom;
-using Blog.Smoothies.RssAtom;
+using LG.Web.RssAtom;
+using LG.Web.Servicios.RssAtom;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class RssController : Controller
     {

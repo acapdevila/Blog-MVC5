@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Posts;
-using Blog.Servicios.Configuracion;
-using Blog.Servicios.RssAtom;
-using Blog.Smoothies.Controllers;
-using Blog.Smoothies.Helpers;
+using LG.Web.Controllers;
+using LG.Web.Helpers;
+using LG.Web.Servicios.Configuracion;
+using LG.Web.Servicios.RssAtom;
 
-namespace Blog.Smoothies.RssAtom
+namespace LG.Web.RssAtom
 {
     /// <summary>
         /// Builds <see cref="SyndicationFeed"/>'s containing meta data about the feed and the feed entries.

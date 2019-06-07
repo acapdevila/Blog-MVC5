@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Helpers;
+using LG.Web.Helpers;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace Blog.Servicios
+namespace LG.Web.Servicios
 {
     public class SubirArchivoImagenServicio
     {

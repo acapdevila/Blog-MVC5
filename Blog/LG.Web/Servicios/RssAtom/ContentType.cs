@@ -1,4 +1,4 @@
-﻿namespace Blog.Servicios.RssAtom
+﻿namespace LG.Web.Servicios.RssAtom
 {
     /// <summary>
     /// A list of internet media types, which are a standard identifier used on the Internet to indicate the type of 

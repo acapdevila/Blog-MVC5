@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +9,14 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
-using LG.Web.Content.informes.Datasets;
-using Blog.Smoothies.Helpers;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
+using LG.Web.Content.informes.Datasets;
+using LG.Web.Helpers;
+using LG.Web.Servicios;
 using Microsoft.Reporting.WebForms;
-using Infra.Comun;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class RecetasController : Controller

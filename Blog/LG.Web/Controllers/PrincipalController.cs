@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using Blog.Servicios.Configuracion;
 using Blog.ViewModels.Principal;
+using LG.Web.Servicios.Configuracion;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class PrincipalController : Controller
     {

@@ -1,8 +1,7 @@
 ﻿using System.Net.Mail;
-using Blog.Servicios.Configuracion;
-using Blog.ViewModels.Contacto;
+using LG.Web.Servicios.Configuracion;
 
-namespace Blog.Servicios
+namespace LG.Web.Servicios.Contacto
 {
     public interface IEmailServicio
     {

@@ -3,8 +3,10 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using Blog.Servicios;
+using LG.Web.Helpers;
+using LG.Web.Servicios;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
 
     [Authorize]

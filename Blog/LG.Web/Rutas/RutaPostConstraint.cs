@@ -7,7 +7,7 @@ using System.Web.Routing;
 using Blog.Datos;
 using Infra.Cache;
 
-namespace Blog.Servicios.Rutas
+namespace LG.Web.Rutas
 {
     public class RutaPostConstraint : IRouteConstraint
     {

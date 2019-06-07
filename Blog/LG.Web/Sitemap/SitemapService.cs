@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
 using Infra.Cache;
-using Blog.Servicios.Rutas;
-using LG.Web;
+using LG.Web.Rutas;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     /// <summary>
     /// Generates sitemap XML for the current site.

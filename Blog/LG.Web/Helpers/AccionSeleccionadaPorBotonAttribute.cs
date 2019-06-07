@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Web.Mvc;
 
-namespace Blog.Smoothies.Helpers
+namespace LG.Web.Helpers
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class AccionSeleccionadaPorBotonAttribute : ActionNameSelectorAttribute

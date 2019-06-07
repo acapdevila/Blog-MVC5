@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Xml.Linq;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     public abstract class SitemapGenerator
     {

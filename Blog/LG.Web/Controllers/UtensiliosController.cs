@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Smoothies.Views.Utensilios.ViewModels;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class UtensiliosController : Controller
     {

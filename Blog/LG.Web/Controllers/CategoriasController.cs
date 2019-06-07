@@ -7,7 +7,7 @@ using Blog.Modelo.Categorias;
 using Blog.Servicios;
 using Blog.ViewModels.Categoria;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class CategoriasController : Controller

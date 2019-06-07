@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Datos.Repositorios;
@@ -18,7 +18,7 @@ using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.ViewModels.Post;
 using EditorBorrador = Blog.ViewModels.Post.EditorBorrador;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller

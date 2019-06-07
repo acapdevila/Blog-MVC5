@@ -1,4 +1,4 @@
-﻿namespace Blog.Smoothies.Sitemap
+﻿namespace LG.Web.Sitemap
 {
     public enum SitemapFrequency
     {

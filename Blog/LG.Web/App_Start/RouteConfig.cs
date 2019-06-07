@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Blog.Servicios.Rutas;
-using Blog.Smoothies.Controllers;
 using Infra.Cache;
+using LG.Web.Controllers;
+using LG.Web.Rutas;
 
 namespace LG.Web
 {

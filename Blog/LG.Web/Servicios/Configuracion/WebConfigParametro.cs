@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Blog.Servicios.Configuracion
+namespace LG.Web.Servicios.Configuracion
 {
     public static class WebConfigParametro 
     {

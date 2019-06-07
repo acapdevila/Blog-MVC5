@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Web.Helpers;
-using Blog.Servicios.Configuracion;
+using LG.Web.Servicios.Configuracion;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace Blog.Servicios
+namespace LG.Web.Servicios
 {
     public static class AzureStorageService
     {

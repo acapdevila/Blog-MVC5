@@ -10,13 +10,12 @@ using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.Servicios.Blog;
-using Infra.Cache;
 using Blog.Servicios.Recetas;
 using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.ViewModels.Post;
-using LG.Web;
+using Infra.Cache;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class PostsController : Controller

@@ -1,7 +1,7 @@
 using System;
 using System.Web.Mvc;
 
-namespace Blog.Smoothies.Sitemap
+namespace LG.Web.Sitemap
 {
     /// <summary>
     /// Requires that a HTTP request does not contain a trailing slash. If it does, return a 404 Not Found. This is
@@ -17,7 +17,7 @@ namespace Blog.Smoothies.Sitemap
 
         /// <summary>
         /// Determines whether a request contains a trailing slash and if it does, calls the
-        /// <see cref="M:Blog.Smoothies.Sitemap.NoTrailingSlashAttribute.HandleTrailingSlashRequest(System.Web.Mvc.AuthorizationContext)" /> method.
+        /// <see cref="M:LG.Web.Sitemap.NoTrailingSlashAttribute.HandleTrailingSlashRequest(System.Web.Mvc.AuthorizationContext)" /> method.
         /// </summary>
         /// <param name="filterContext">An object that encapsulates information that is required in order to use the
         /// <see cref="T:System.Web.Mvc.RequireHttpsAttribute" /> attribute.</param>

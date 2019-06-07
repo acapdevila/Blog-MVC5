@@ -1,9 +1,9 @@
 using System;
 using System.Web;
 using System.Web.Helpers;
-using Blog.Servicios.Configuracion;
+using LG.Web.Servicios.Configuracion;
 
-namespace Blog.Servicios
+namespace LG.Web.Helpers
 {
     public static class ImagenHelper
     {

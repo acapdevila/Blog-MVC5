@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class HolaController : Controller
     {

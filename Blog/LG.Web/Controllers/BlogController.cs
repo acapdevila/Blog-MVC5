@@ -12,12 +12,12 @@ using Blog.Servicios;
 using Blog.Smoothies.Views.Blog.ViewModels;
 using Blog.Smoothies.Views.Recetas.ViewModels;
 using Blog.ViewModels.Blog;
+using Blog.ViewModels.Categoria;
 using Blog.ViewModels.Etiqueta;
 using Blog.ViewModels.Sidebar;
 using PagedList;
-using Blog.ViewModels.Categoria;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class BlogController : Controller
     {
@@ -89,7 +89,7 @@ namespace Blog.Smoothies.Controllers
             var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
 
 
-            var viewModel = new Views.Blog.ViewModels.DetallesPostBlogViewModel
+            var viewModel = new Blog.Smoothies.Views.Blog.ViewModels.DetallesPostBlogViewModel
             {
                 Post = new DisplayPostViewModel(post),
                 PostsSugeridos = postsSugeridos,

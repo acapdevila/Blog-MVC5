@@ -5,7 +5,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
-namespace Blog.Servicios.Rutas
+namespace LG.Web.Rutas
 {
     public  class BuscadorRutas
     {

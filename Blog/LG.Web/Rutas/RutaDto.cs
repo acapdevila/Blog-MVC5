@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Servicios.Rutas
+namespace LG.Web.Rutas
 {
     public class RutaDto
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using PagedList;
 
-namespace Blog.Smoothies.Helpers
+namespace LG.Web.Helpers
 {
     public static class TotalesListaHelper
     {

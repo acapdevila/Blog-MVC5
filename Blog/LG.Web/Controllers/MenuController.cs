@@ -5,7 +5,7 @@ using Blog.Modelo.Categorias;
 using Blog.Servicios;
 using Blog.ViewModels.Menu;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     public class MenuController : Controller
     {

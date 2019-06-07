@@ -7,7 +7,7 @@ using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.ViewModels.Etiqueta;
 
-namespace Blog.Smoothies.Controllers
+namespace LG.Web.Controllers
 {
     [Authorize]
     public class TagsController : Controller

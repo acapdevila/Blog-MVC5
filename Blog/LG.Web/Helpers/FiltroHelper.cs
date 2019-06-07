@@ -2,7 +2,7 @@
 using System.Linq;
 using Blog.Modelo.Posts;
 
-namespace Blog.Smoothies.Helpers
+namespace LG.Web.Helpers
 {
     public static class FiltroHelper
     {
