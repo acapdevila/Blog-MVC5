@@ -1,7 +1,7 @@
 ﻿using Blog.Modelo.Recetas;
-using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
+using LG.Web.Views.Recetas.ViewModels.Editores;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels
+namespace LG.Web.Views.Recetas.ViewModels
 {
     public  class EditarRecetaViewModel
     {

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Servicios;
-using Blog.ViewModels.Menu;
+using LG.Web.ViewModels.Menu;
 
 namespace LG.Web.Controllers
 {

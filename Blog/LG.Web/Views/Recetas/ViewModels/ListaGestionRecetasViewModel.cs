@@ -1,7 +1,7 @@
 ﻿using Blog.Servicios.Recetas.Dtos;
 using PagedList;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels
+namespace LG.Web.Views.Recetas.ViewModels
 {
     public class ListaGestionRecetasViewModel
     {

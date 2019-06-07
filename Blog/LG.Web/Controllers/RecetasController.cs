@@ -9,11 +9,11 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios;
 using Blog.Servicios.Recetas;
 using Blog.Servicios.Recetas.Comandos;
-using Blog.Smoothies.Views.Recetas.ViewModels;
-using Blog.Smoothies.Views.Recetas.ViewModels.Editores;
 using LG.Web.Content.informes.Datasets;
 using LG.Web.Helpers;
 using LG.Web.Servicios;
+using LG.Web.Views.Recetas.ViewModels;
+using LG.Web.Views.Recetas.ViewModels.Editores;
 using Microsoft.Reporting.WebForms;
 
 namespace LG.Web.Controllers

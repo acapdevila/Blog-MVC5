@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using Blog.Modelo.Usuarios;
 using Blog.Servicios;
-using Blog.ViewModels.Account;
+using LG.Web.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;

@@ -1,6 +1,6 @@
 ﻿using Blog.Modelo.Recetas;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
+namespace LG.Web.Views.Recetas.ViewModels.Editores
 {
     public class EditorIngredienteReceta
     {

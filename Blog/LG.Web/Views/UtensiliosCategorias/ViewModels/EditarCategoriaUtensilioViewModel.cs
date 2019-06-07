@@ -1,7 +1,7 @@
 ﻿using Blog.Modelo.Utensilios;
-using Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.Editores;
+using LG.Web.Views.UtensiliosCategorias.ViewModels.Editores;
 
-namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels
+namespace LG.Web.Views.UtensiliosCategorias.ViewModels
 {
     public  class EditarCategoriaUtensilioViewModel
     {

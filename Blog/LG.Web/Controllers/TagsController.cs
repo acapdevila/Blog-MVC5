@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Tags;
 using Blog.Servicios;
-using Blog.ViewModels.Etiqueta;
+using LG.Web.ViewModels.Etiqueta;
 
 namespace LG.Web.Controllers
 {

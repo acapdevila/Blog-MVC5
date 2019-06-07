@@ -1,6 +1,6 @@
 ﻿using Blog.Modelo.Utensilios;
 
-namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels
+namespace LG.Web.Views.UtensiliosCategorias.ViewModels
 {
     public  class EliminarCategoriaUtensilioViewModel
     {

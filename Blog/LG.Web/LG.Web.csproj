@@ -112,6 +112,9 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.3.0, Culture=neutral, PublicKeyToken=5692a4ecdffbe736, processorArchitecture=MSIL">
+      <HintPath>..\packages\ValueInjecter.3.1.3\lib\net45\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -201,7 +204,6 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\BorradoresController.cs" />
     <Compile Include="Controllers\PortadaController.cs" />
     <Compile Include="Controllers\UtensiliosCategoriasController.cs" />
@@ -240,9 +242,12 @@
     <Compile Include="Rutas\RutaEtiquetaConstraint.cs" />
     <Compile Include="Rutas\RutaPostConstraint.cs" />
     <Compile Include="Servicios\AzureStorageService.cs" />
+    <Compile Include="Servicios\BlogServicio.cs" />
+    <Compile Include="Servicios\Blog\Borradores\EditorBorradorPost.cs" />
     <Compile Include="Servicios\Configuracion\WebConfigParametro.cs" />
     <Compile Include="Servicios\Contacto\EmailServicio.cs" />
     <Compile Include="Servicios\Contacto\FormularioContactoViewModel.cs" />
+    <Compile Include="Servicios\PostsServicio.cs" />
     <Compile Include="Servicios\RssAtom\AtomActionResult.cs" />
     <Compile Include="Servicios\RssAtom\ContentType.cs" />
     <Compile Include="Servicios\RssAtom\IFeedService.cs" />
@@ -258,6 +263,36 @@
     <Compile Include="Sitemap\UrlHelperExtensions.cs" />
     <Compile Include="Sitemap\XDocumentExtensions.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Account\AccountViewModels.cs" />
+    <Compile Include="ViewModels\Account\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Blog\ArchivoViewModel.cs" />
+    <Compile Include="ViewModels\Blog\ListaPostsBlogCompletosViewModel.cs" />
+    <Compile Include="ViewModels\Blog\ListaPostsBlogResumidosViewModel.cs" />
+    <Compile Include="ViewModels\Blog\ResultadoBusquedaViewModel.cs" />
+    <Compile Include="ViewModels\Categoria\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\Categoria\EditarCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\Categoria\ListaGestionCategoriasViewModel.cs" />
+    <Compile Include="ViewModels\Etiqueta\EditarEtiquetaViewModel.cs" />
+    <Compile Include="ViewModels\Etiqueta\EtiquetaViewModel.cs" />
+    <Compile Include="ViewModels\Menu\MenuCategoriasViewModel.cs" />
+    <Compile Include="ViewModels\Post\Conversores\ConversorBlogs.cs" />
+    <Compile Include="ViewModels\Post\Conversores\ConversorPost.cs" />
+    <Compile Include="ViewModels\Post\EditBlogViewModel.cs" />
+    <Compile Include="ViewModels\Post\EditorBlog.cs" />
+    <Compile Include="ViewModels\Post\EditorBorrador.cs" />
+    <Compile Include="ViewModels\Post\EditorPost.cs" />
+    <Compile Include="ViewModels\Post\EditorPostRelacionado.cs" />
+    <Compile Include="ViewModels\Post\EditorPostUtensilio.cs" />
+    <Compile Include="ViewModels\Post\EditPostViewModel.cs" />
+    <Compile Include="ViewModels\Post\ListaBorradoresViewModel.cs" />
+    <Compile Include="ViewModels\Post\ListaGestionBlogsViewModel.cs" />
+    <Compile Include="ViewModels\Post\ListaGestionPostsViewModel.cs" />
+    <Compile Include="ViewModels\Post\PublicarPost.cs" />
+    <Compile Include="ViewModels\Principal\AvisoLegalViewmodel.cs" />
+    <Compile Include="ViewModels\Principal\PoliticaCookiesViewmodel.cs" />
+    <Compile Include="ViewModels\Sidebar\ArchivoArbolViewModel.cs" />
+    <Compile Include="ViewModels\Sidebar\ArchivoEtiquetasViewModel.cs" />
+    <Compile Include="ViewModels\Sidebar\NubeEtiquetasViewModel.cs" />
     <Compile Include="Views\Blog\ViewModels\BlogViewModel.cs" />
     <Compile Include="Views\Blog\ViewModels\DetallesPostBlogViewModel.cs" />
     <Compile Include="Views\Blog\ViewModels\DisplayPostViewModel.cs" />
@@ -1077,10 +1112,6 @@
     <ProjectReference Include="..\Blog.Servicios\Blog.Servicios.csproj">
       <Project>{0b1c8631-2159-43e5-893d-9297b9149300}</Project>
       <Name>Blog.Servicios</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Blog.ViewModels\Blog.ViewModels.csproj">
-      <Project>{1739ca45-9637-4b80-a054-c7a9b13c9657}</Project>
-      <Name>Blog.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infra\Infra.csproj">
       <Project>{2f0cc383-acb6-46d8-aae3-7bc1865d7219}</Project>

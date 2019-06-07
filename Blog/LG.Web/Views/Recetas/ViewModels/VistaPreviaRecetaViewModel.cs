@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Blog.Modelo.Recetas;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels
+namespace LG.Web.Views.Recetas.ViewModels
 {
     public  class VistaPreviaRecetaViewModel
     {

@@ -5,7 +5,7 @@ using Blog.Datos;
 using Blog.Modelo.Posts;
 using Blog.Servicios.Utensilios;
 using Blog.Servicios.Utensilios.Comandos;
-using Blog.Smoothies.Views.UtensiliosCategorias.ViewModels;
+using LG.Web.Views.UtensiliosCategorias.ViewModels;
 
 namespace LG.Web.Controllers
 {

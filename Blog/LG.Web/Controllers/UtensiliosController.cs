@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
-using Blog.Smoothies.Views.Utensilios.ViewModels;
+using LG.Web.Views.Utensilios.ViewModels;
 
 namespace LG.Web.Controllers
 {

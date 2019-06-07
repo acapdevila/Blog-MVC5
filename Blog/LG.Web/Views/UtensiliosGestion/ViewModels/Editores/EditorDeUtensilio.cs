@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Blog.Modelo.Utensilios;
 using Blog.Servicios.Utensilios.Comandos;
-using Blog.Smoothies.Views.Shared.ViewModels;
 using Infra;
+using LG.Web.Views.Shared.ViewModels;
 
-namespace Blog.Smoothies.Views.UtensiliosGestion.ViewModels.Editores
+namespace LG.Web.Views.UtensiliosGestion.ViewModels.Editores
 {
     public class EditorDeUtensilio
     {

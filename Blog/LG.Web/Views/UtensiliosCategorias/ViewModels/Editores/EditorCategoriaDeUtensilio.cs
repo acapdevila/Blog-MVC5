@@ -2,7 +2,7 @@
 using Blog.Modelo.Utensilios;
 using Blog.Servicios.Utensilios.Comandos;
 
-namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels.Editores
+namespace LG.Web.Views.UtensiliosCategorias.ViewModels.Editores
 {
     public class EditorCategoriaDeUtensilio 
     {

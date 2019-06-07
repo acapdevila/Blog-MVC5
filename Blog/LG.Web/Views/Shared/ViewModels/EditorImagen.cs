@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Infra;
 
-namespace Blog.Smoothies.Views.Shared.ViewModels
+namespace LG.Web.Views.Shared.ViewModels
 {
     public class EditorImagen
     {

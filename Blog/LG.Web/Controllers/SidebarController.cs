@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Servicios;
-using Blog.ViewModels.Sidebar;
+using LG.Web.ViewModels.Sidebar;
+using BlogServicio = LG.Web.Servicios.BlogServicio;
 
 namespace LG.Web.Controllers
 {

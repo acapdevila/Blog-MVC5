@@ -1,7 +1,7 @@
 ﻿using Blog.Modelo.Posts;
 using Infra;
 
-namespace Blog.Smoothies.Views.Blog.ViewModels
+namespace LG.Web.Views.Blog.ViewModels
 {
     public class PostUtensilioViewModel
     {

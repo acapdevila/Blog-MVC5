@@ -6,10 +6,10 @@ using Blog.Modelo.Recetas;
 using Blog.Servicios.Recetas.Comandos;
 using Blog.Servicios.Recetas.Comandos.ComandosIngredientes;
 using Blog.Servicios.Recetas.Comandos.ComandosInstrucciones;
+using Infra;
 using WebGrease.Css.Extensions;
-using  Infra;
 
-namespace Blog.Smoothies.Views.Recetas.ViewModels.Editores
+namespace LG.Web.Views.Recetas.ViewModels.Editores
 {
     public  class EditorReceta
     {

@@ -9,13 +9,14 @@ using Blog.Datos;
 using Blog.Modelo.Dtos;
 using Blog.Modelo.Posts;
 using Blog.Servicios;
-using Blog.Smoothies.Views.Blog.ViewModels;
-using Blog.Smoothies.Views.Recetas.ViewModels;
-using Blog.ViewModels.Blog;
-using Blog.ViewModels.Categoria;
-using Blog.ViewModels.Etiqueta;
-using Blog.ViewModels.Sidebar;
+using LG.Web.ViewModels.Blog;
+using LG.Web.ViewModels.Categoria;
+using LG.Web.ViewModels.Etiqueta;
+using LG.Web.ViewModels.Sidebar;
+using LG.Web.Views.Blog.ViewModels;
+using LG.Web.Views.Recetas.ViewModels;
 using PagedList;
+using BlogServicio = LG.Web.Servicios.BlogServicio;
 
 namespace LG.Web.Controllers
 {
@@ -89,7 +90,7 @@ namespace LG.Web.Controllers
             var postsSugeridos = await RecuperarPostsSugeridosViewmodel(post);
 
 
-            var viewModel = new Blog.Smoothies.Views.Blog.ViewModels.DetallesPostBlogViewModel
+            var viewModel = new DetallesPostBlogViewModel
             {
                 Post = new DisplayPostViewModel(post),
                 PostsSugeridos = postsSugeridos,

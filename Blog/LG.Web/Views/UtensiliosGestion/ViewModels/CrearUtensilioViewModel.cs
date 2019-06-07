@@ -1,6 +1,6 @@
-﻿using Blog.Smoothies.Views.UtensiliosGestion.ViewModels.Editores;
+﻿using LG.Web.Views.UtensiliosGestion.ViewModels.Editores;
 
-namespace Blog.Smoothies.Views.UtensiliosGestion.ViewModels
+namespace LG.Web.Views.UtensiliosGestion.ViewModels
 {
     public  class CrearUtensilioViewModel
     {

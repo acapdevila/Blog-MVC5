@@ -146,8 +146,6 @@
   <ItemGroup>
     <Compile Include="BlogServicio.cs" />
     <Compile Include="Blog\Borradores\BuscadorBorrador.cs" />
-    <Compile Include="Blog\Borradores\BuscadorBorradores.cs" />
-    <Compile Include="Blog\Borradores\EditorBorradorPost.cs" />
     <Compile Include="Blog\BuscadorBlog.cs" />
     <Compile Include="Blog\BuscadorPostsUtensilios.cs" />
     <Compile Include="Blog\BuscadorPostsRelacionados.cs" />
@@ -168,8 +166,6 @@
     <Compile Include="Recetas\Dtos\LineaGestionReceta.cs" />
     <Compile Include="Recetas\EditorDeRecetas.cs" />
     <Compile Include="TagsServicio.cs" />
-    <Compile Include="BlogsServicio.cs" />
-    <Compile Include="PostsServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utensilios\BuscadorDeUtensilio.cs" />
     <Compile Include="Utensilios\BuscadorDeUtensilios.cs" />
@@ -199,10 +195,6 @@
     <ProjectReference Include="..\Blog.Modelo\Blog.Modelo.csproj">
       <Project>{263af96b-9995-4111-b27e-fd6042e3cfe3}</Project>
       <Name>Blog.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Blog.ViewModels\Blog.ViewModels.csproj">
-      <Project>{1739ca45-9637-4b80-a054-c7a9b13c9657}</Project>
-      <Name>Blog.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infra\Infra.csproj">
       <Project>{2F0CC383-ACB6-46D8-AAE3-7BC1865D7219}</Project>

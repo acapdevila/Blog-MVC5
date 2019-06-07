@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Blog.Datos;
 using Blog.Modelo.Categorias;
 using Blog.Servicios;
-using Blog.ViewModels.Categoria;
+using LG.Web.ViewModels.Categoria;
 
 namespace LG.Web.Controllers
 {

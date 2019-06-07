@@ -5,7 +5,7 @@ using Blog.Modelo.Categorias;
 using Blog.Modelo.Posts;
 using Blog.Modelo.Tags;
 
-namespace Blog.Smoothies.Views.Blog.ViewModels
+namespace LG.Web.Views.Blog.ViewModels
 {
     public class DisplayPostViewModel
     {

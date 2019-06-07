@@ -657,7 +657,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReceta</rd:DataSetName>
-        <rd:SchemaPath>C:\Proyectos\Blog\Blog\Blog.Smoothies\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Proyectos\Blog\Blog\LG.Web\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
         <rd:TableName>DtInstruccion</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -681,7 +681,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReceta</rd:DataSetName>
-        <rd:SchemaPath>C:\Proyectos\Blog\Blog\Blog.Smoothies\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Proyectos\Blog\Blog\LG.Web\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
         <rd:TableName>DtIngrediente</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -749,7 +749,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetReceta</rd:DataSetName>
-        <rd:SchemaPath>C:\Proyectos\Blog\Blog\Blog.Smoothies\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Proyectos\Blog\Blog\LG.Web\Content\informes\Datasets\DataSetRecetas.xsd</rd:SchemaPath>
         <rd:TableName>DtReceta</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

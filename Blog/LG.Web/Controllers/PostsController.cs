@@ -11,9 +11,10 @@ using Blog.Modelo.Tags;
 using Blog.Servicios;
 using Blog.Servicios.Blog;
 using Blog.Servicios.Recetas;
-using Blog.Smoothies.Views.Blog.ViewModels;
-using Blog.ViewModels.Post;
 using Infra.Cache;
+using LG.Web.Servicios;
+using LG.Web.ViewModels.Post;
+using LG.Web.Views.Blog.ViewModels;
 
 namespace LG.Web.Controllers
 {

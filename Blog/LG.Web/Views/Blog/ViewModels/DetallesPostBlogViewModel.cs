@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Blog.Modelo.Posts;
-using Blog.Smoothies.Views.Recetas.ViewModels;
+using LG.Web.Views.Recetas.ViewModels;
 
-namespace Blog.Smoothies.Views.Blog.ViewModels
+namespace LG.Web.Views.Blog.ViewModels
 {
     public  class DetallesPostBlogViewModel
     {

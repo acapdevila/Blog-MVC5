@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Blog.ViewModels.Principal;
 using LG.Web.Servicios.Configuracion;
+using LG.Web.ViewModels.Principal;
 
 namespace LG.Web.Controllers
 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -14,17 +15,18 @@ using Blog.Modelo.Utensilios;
 using Blog.Servicios.Blog;
 using Blog.Servicios.Blog.Borradores;
 using Blog.Servicios.Recetas;
-using Blog.Smoothies.Views.Blog.ViewModels;
-using Blog.ViewModels.Post;
-using EditorBorrador = Blog.ViewModels.Post.EditorBorrador;
+using LG.Web.Servicios.Blog.Borradores;
+using LG.Web.ViewModels.Post;
+using LG.Web.Views.Blog.ViewModels;
+using EditorBorrador = LG.Web.ViewModels.Post.EditorBorrador;
 
 namespace LG.Web.Controllers
 {
     [Authorize]
     public class BorradoresController : Controller
     {
+        private readonly ContextoBaseDatos _db;
         private readonly BuscadorBorrador _buscadorBorrador;
-        private readonly BuscadorBorradores _buscadorBorradores;
         private readonly BuscadorDeReceta _buscadorDeReceta;
         private readonly BuscadorPostsRelacionados _buscadorPostsRelacionados;
         private readonly BuscadorPostsUtensilios _buscadorPostsUtensilios;
@@ -55,8 +57,7 @@ namespace LG.Web.Controllers
             AsignadorCategorias asignadorCategorias,
             BuscadorPostsRelacionados buscadorPostsRelacionados,
             BuscadorPostsUtensilios buscadorPostsUtensilios) :
-            this(buscadorBorrador,
-                new BuscadorBorradores(contexto, BlogController.TituloBlog), 
+            this(buscadorBorrador, 
                 new EditorBorradorPost(contexto, 
                                         new BuscadorBlog(contexto, BlogController.TituloBlog), 
                                         buscadorBorrador, 
@@ -66,13 +67,12 @@ namespace LG.Web.Controllers
                 buscadorPostsRelacionados, 
                 buscadorPostsUtensilios)
         {
-
+            _db = contexto;
         }
 
 
         public BorradoresController(
             BuscadorBorrador buscadorBorrador,
-            BuscadorBorradores buscadorBorradores,
             EditorBorradorPost creadorBorrador, 
             BuscadorDeReceta buscadorDeReceta, 
             BuscadorPostsRelacionados buscadorPostsRelacionados,
@@ -80,7 +80,6 @@ namespace LG.Web.Controllers
         {
             _buscadorDeReceta = buscadorDeReceta;
             _editorBorrador = creadorBorrador;
-            _buscadorBorradores = buscadorBorradores;
             _buscadorBorrador = buscadorBorrador;
             _buscadorPostsRelacionados = buscadorPostsRelacionados;
             _buscadorPostsUtensilios = buscadorPostsUtensilios;
@@ -92,7 +91,22 @@ namespace LG.Web.Controllers
             var viewModel = new ListaBorradoresViewModel
             {
                 BuscarPor = criteriosBusqueda,
-                ListaPosts = await _buscadorBorradores.ObtenerListaBorradoresAsync(criteriosBusqueda)
+                ListaPosts = await _db.Posts
+                    .Borradores()
+                    .BuscarPor(criteriosBusqueda)
+                    .Select(m => new LineaBorrador
+                    {
+                        Id = m.Id,
+                        UrlSlug = m.UrlSlug,
+                        Titulo = m.Titulo,
+                        FechaPost = m.FechaPost,
+                        FechaPublicacion = m.EsBorrador ? (DateTime?)null : m.FechaPublicacion,
+                        Autor = m.Autor,
+                        ListaTags = m.Tags,
+                        ListaCategorias = m.Categorias
+                    })
+                    .OrderByDescending(m => m.FechaPost)
+                    .ToListAsync()
             };
 
 

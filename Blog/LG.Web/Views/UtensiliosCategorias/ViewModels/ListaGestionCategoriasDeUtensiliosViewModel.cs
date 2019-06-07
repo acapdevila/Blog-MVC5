@@ -1,7 +1,7 @@
 ﻿using Blog.Servicios.Utensilios.Dtos;
 using PagedList;
 
-namespace Blog.Smoothies.Views.UtensiliosCategorias.ViewModels
+namespace LG.Web.Views.UtensiliosCategorias.ViewModels
 {
     public class ListaGestionCategoriasDeUtensiliosViewModel
     {

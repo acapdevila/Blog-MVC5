@@ -3,7 +3,7 @@ using System.Linq;
 using Blog.Modelo.Utensilios;
 using Infra;
 
-namespace Blog.Smoothies.Views.Utensilios.ViewModels
+namespace LG.Web.Views.Utensilios.ViewModels
 {
     public class UtensiliosViewModel
     {
