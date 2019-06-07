@@ -1,4 +1,4 @@
-﻿namespace Infra.Comun
+﻿namespace Blog.Servicios.Comun
 {
     public class ElementoValorDescripcion
     {

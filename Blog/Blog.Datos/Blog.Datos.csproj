@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201905141642378_RelacionarUtensiliosAPosts.Designer.cs">
       <DependentUpon>201905141642378_RelacionarUtensiliosAPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906071208203_EliminarTablaLineaPostCompletoes.cs" />
+    <Compile Include="Migrations\201906071208203_EliminarTablaLineaPostCompletoes.Designer.cs">
+      <DependentUpon>201906071208203_EliminarTablaLineaPostCompletoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CategoriaRepositorio.cs" />
     <Compile Include="Repositorios\TagRepositorio.cs" />
@@ -208,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905141642378_RelacionarUtensiliosAPosts.resx">
       <DependentUpon>201905141642378_RelacionarUtensiliosAPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906071208203_EliminarTablaLineaPostCompletoes.resx">
+      <DependentUpon>201906071208203_EliminarTablaLineaPostCompletoes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

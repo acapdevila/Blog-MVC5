@@ -48,7 +48,6 @@
     <Compile Include="Cache\CacheService.cs" />
     <Compile Include="Cache\CacheSetting.cs" />
     <Compile Include="Cache\ICacheService.cs" />
-    <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="ExtensionesString.cs" />
     <Compile Include="Imagen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,5 +55,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

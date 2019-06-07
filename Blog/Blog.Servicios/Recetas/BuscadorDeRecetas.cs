@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Datos;
-using Infra.Comun;
+using Blog.Servicios.Comun;
 using Blog.Servicios.Recetas.Dtos;
 using PagedList;
 using PagedList.EntityFramework;

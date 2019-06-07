@@ -149,6 +149,7 @@
     <Compile Include="Blog\BuscadorBlog.cs" />
     <Compile Include="Blog\BuscadorPostsUtensilios.cs" />
     <Compile Include="Blog\BuscadorPostsRelacionados.cs" />
+    <Compile Include="Comun\ElementoValorDescripcion.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="CategoriasServicio.cs" />
     <Compile Include="Recetas\BuscadorDeReceta.cs" />

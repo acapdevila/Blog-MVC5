@@ -17,7 +17,7 @@ namespace Ac.Web.Sitemap
 
         /// <summary>
         /// Determines whether a request contains a trailing slash and if it does, calls the
-        /// <see cref="M:Blog.Smoothies.Sitemap.NoTrailingSlashAttribute.HandleTrailingSlashRequest(System.Web.Mvc.AuthorizationContext)" /> method.
+        /// <see cref="M:Sitemap.NoTrailingSlashAttribute.HandleTrailingSlashRequest(System.Web.Mvc.AuthorizationContext)" /> method.
         /// </summary>
         /// <param name="filterContext">An object that encapsulates information that is required in order to use the
         /// <see cref="T:System.Web.Mvc.RequireHttpsAttribute" /> attribute.</param>
