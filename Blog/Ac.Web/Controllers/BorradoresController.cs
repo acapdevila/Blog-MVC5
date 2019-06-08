@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
 using Ac.Datos.Repositorios;
-using Ac.Modelo;
-using Ac.Modelo.Tags;
+using Ac.Dominio;
+using Ac.Dominio.Posts;
+using Ac.Dominio.Tags;
 using Ac.Web.ViewModels.Post;
 using Omu.ValueInjecter;
 

@@ -38,7 +38,7 @@ namespace Ac.Web.ViewModels.Sidebar
         {
             
         }
-        public ItemArchivoArbolViewModel(Modelo.Post post)
+        public ItemArchivoArbolViewModel(Dominio.Posts.Post post)
         {
             FechaPost = post.FechaPost;
             Titulo = post.Titulo;

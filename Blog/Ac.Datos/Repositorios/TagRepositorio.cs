@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using Ac.Modelo.Tags;
+using Ac.Dominio.Tags;
+
 namespace Ac.Datos.Repositorios
 {
     public class TagRepositorio : ITagRepositorio

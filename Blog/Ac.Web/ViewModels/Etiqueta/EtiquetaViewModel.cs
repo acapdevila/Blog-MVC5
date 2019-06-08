@@ -1,5 +1,5 @@
-﻿using Ac.Modelo.Posts;
-using Ac.Modelo.Tags;
+﻿using Ac.Dominio.Posts;
+using Ac.Dominio.Tags;
 using PagedList;
 
 namespace Ac.Web.ViewModels.Etiqueta

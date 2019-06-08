@@ -7,7 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
-using Ac.Modelo;
+using Ac.Dominio;
+using Ac.Dominio.Posts;
 using Ac.Web.Helpers;
 using Ac.Web.Servicios.RssAtom;
 

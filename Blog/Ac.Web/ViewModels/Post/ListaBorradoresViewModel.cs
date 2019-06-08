@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ac.Modelo.Tags;
+using Ac.Dominio.Tags;
 
 namespace Ac.Web.ViewModels.Post
 {

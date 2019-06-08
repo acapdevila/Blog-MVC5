@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using Ac.Modelo;
+using Ac.Dominio.Posts;
 
 namespace Ac.Datos.MapeosTablas
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Ac.Modelo.Dtos;
-using Ac.Modelo.Tags;
+using Ac.Dominio.Dtos;
+using Ac.Dominio.Tags;
 
 namespace Ac.Web.ViewModels.Etiqueta
 {

@@ -1,4 +1,4 @@
-﻿using Ac.Modelo.Posts;
+﻿using Ac.Dominio.Posts;
 using PagedList;
 
 namespace Ac.Web.ViewModels.Blog

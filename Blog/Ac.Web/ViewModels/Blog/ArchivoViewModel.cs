@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Ac.Modelo.Posts;
+using Ac.Dominio.Posts;
 using Ac.Web.ViewModels.Sidebar;
 
 namespace Ac.Web.ViewModels.Blog

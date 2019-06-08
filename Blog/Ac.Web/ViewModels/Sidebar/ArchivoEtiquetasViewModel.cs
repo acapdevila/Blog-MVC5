@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ac.Modelo.Dtos;
+using Ac.Dominio.Dtos;
 
 namespace Ac.Web.ViewModels.Sidebar
 {

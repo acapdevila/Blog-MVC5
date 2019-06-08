@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Ac.Modelo.Usuarios;
+using Ac.Dominio.Usuarios;
 using Ac.Servicios;
 using Ac.Web.ViewModels.Account;
 using Microsoft.AspNet.Identity;

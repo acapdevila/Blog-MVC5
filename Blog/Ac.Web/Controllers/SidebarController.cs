@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Web.Mvc;
 using Ac.Datos;
-using Ac.Modelo;
-using Ac.Modelo.Dtos;
-using Ac.Modelo.Tags;
+using Ac.Dominio;
+using Ac.Dominio.Dtos;
+using Ac.Dominio.Posts;
+using Ac.Dominio.Tags;
+using Ac.Infra.Cache;
 using Ac.Web.ViewModels.Sidebar;
-using Infra.Cache;
 
 namespace Ac.Web.Controllers
 {

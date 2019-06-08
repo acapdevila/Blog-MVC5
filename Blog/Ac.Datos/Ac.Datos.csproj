@@ -70,13 +70,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ac.Modelo\Ac.Modelo.csproj">
+    <ProjectReference Include="..\Ac.Dominio\Ac.Dominio.csproj">
       <Project>{c897ba21-c79d-4112-a7b8-4b1e8dfb02ba}</Project>
-      <Name>Ac.Modelo</Name>
+      <Name>Ac.Dominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infra\Infra.csproj">
+    <ProjectReference Include="..\Ac.Infra\Ac.Infra.csproj">
       <Project>{2F0CC383-ACB6-46D8-AAE3-7BC1865D7219}</Project>
-      <Name>Infra</Name>
+      <Name>Ac.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

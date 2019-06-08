@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: /Account/*
-Disallow: /Blogs/*
-Disallow: /Categorias/*
-Disallow: /Etiquetas/*
-Disallow: /Imagenes/*
-Disallow: /Manage/*
-Disallow: /Posts/*
-Disallow: /Tags/*

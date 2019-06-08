@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using Ac.Modelo.Tags;
+using Ac.Dominio.Tags;
 using Omu.ValueInjecter;
 
 namespace Ac.Web.ViewModels.Post
@@ -14,7 +14,7 @@ namespace Ac.Web.ViewModels.Post
         {
         }
 
-        public EditorPost(Modelo.Post post): this()
+        public EditorPost(Dominio.Posts.Post post): this()
         {
            this.InjectFrom(post);
            Tags = post.Tags.TagsSeparadosPorComma();

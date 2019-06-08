@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ac.Datos;
-using Ac.Modelo.Tags;
+using Ac.Dominio.Tags;
 using Ac.Web.ViewModels.Etiqueta;
 
 namespace Ac.Web.Controllers

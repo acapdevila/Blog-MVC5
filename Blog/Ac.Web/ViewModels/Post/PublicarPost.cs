@@ -11,7 +11,7 @@ namespace Ac.Web.ViewModels.Post
         {
             
         }
-        public PublicarPost(Modelo.Post post): this()
+        public PublicarPost(Dominio.Posts.Post post): this()
         {
             this.InjectFrom(post);
         }

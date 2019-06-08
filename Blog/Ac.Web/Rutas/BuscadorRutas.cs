@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Ac.Datos;
-using Ac.Modelo;
-using Ac.Modelo.Tags;
+using Ac.Dominio;
+using Ac.Dominio.Posts;
+using Ac.Dominio.Tags;
 
 namespace Ac.Web.Rutas
 {

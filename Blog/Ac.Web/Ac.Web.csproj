@@ -933,13 +933,13 @@
       <Project>{79a733c7-f8dc-4b12-8e12-a636e55b7981}</Project>
       <Name>Ac.Datos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ac.Modelo\Ac.Modelo.csproj">
+    <ProjectReference Include="..\Ac.Dominio\Ac.Dominio.csproj">
       <Project>{c897ba21-c79d-4112-a7b8-4b1e8dfb02ba}</Project>
-      <Name>Ac.Modelo</Name>
+      <Name>Ac.Dominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infra\Infra.csproj">
+    <ProjectReference Include="..\Ac.Infra\Ac.Infra.csproj">
       <Project>{2f0cc383-acb6-46d8-aae3-7bc1865d7219}</Project>
-      <Name>Infra</Name>
+      <Name>Ac.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

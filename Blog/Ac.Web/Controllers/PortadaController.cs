@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
 using Ac.Datos;
-using Ac.Modelo;
-using Ac.Modelo.Posts;
+using Ac.Dominio;
+using Ac.Dominio.Posts;
 
 namespace Ac.Web.Controllers
 {

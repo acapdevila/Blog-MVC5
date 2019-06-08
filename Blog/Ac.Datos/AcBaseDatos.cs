@@ -2,10 +2,10 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Ac.Datos.MapeosTablas;
-using Ac.Modelo;
-using Ac.Modelo.Tags;
-using Ac.Modelo.Usuarios;
-using Infra;
+using Ac.Dominio.Posts;
+using Ac.Dominio.Tags;
+using Ac.Dominio.Usuarios;
+using Ac.Infra;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Ac.Datos

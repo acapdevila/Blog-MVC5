@@ -1,6 +1,6 @@
 ﻿using System;
 using Ac.Datos;
-using Ac.Modelo.Usuarios;
+using Ac.Dominio.Usuarios;
 using Ac.Servicios;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
