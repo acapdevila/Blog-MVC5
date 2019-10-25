@@ -108,6 +108,17 @@ namespace Ac.Dominio.Posts
             return posts.Where(m => !m.EsBorrador && m.FechaPublicacion <= DateTime.Now);
         }
 
+        public static IQueryable<Post> DeLecturasRecomendadas(this IQueryable<Post> posts)
+        {
+            return posts.Where(m => m.Titulo.Contains("lecturas recomendadas"));
+        }
+
+        public static IQueryable<Post> QueNoSonLecturasRecomendadas(this IQueryable<Post> posts)
+        {
+            return posts.Where(m => !m.Titulo.Contains("lecturas recomendadas"));
+        }
+
+
         public static IQueryable<Post> OrdenadosPorFecha(this IQueryable<Post> posts)
         {
             return posts.OrderByDescending(m => m.FechaPost);
@@ -183,6 +194,8 @@ namespace Ac.Dominio.Posts
                 Autor = m.Autor
             });
         }
+
+     
 
         public static IQueryable<LineaPostCompleto> SeleccionaLineaPostCompleto(this IQueryable<Post> posts)
         {

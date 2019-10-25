@@ -7,6 +7,7 @@ using System.Web.UI;
 using Ac.Datos;
 using Ac.Dominio;
 using Ac.Dominio.Posts;
+using Ac.Web.ViewModels.Blog;
 
 namespace Ac.Web.Controllers
 {
@@ -14,7 +15,8 @@ namespace Ac.Web.Controllers
     {
         public class PortadaViewModel
         {
-            public List<LineaResumenPost> UltimosPosts { get; set; } 
+            public List<LineaResumenPost> UltimosPosts { get; set; }
+            public PostViewModel UltimoPostDeLecturasRecomendadas { get; set; }
         }
 
         private readonly ContextoBaseDatos _db;
@@ -28,16 +30,33 @@ namespace Ac.Web.Controllers
         {
             var viewModel = new PortadaViewModel
             {
-                UltimosPosts = await RecuperarPostPortada()
+                UltimosPosts = await RecuperarPostPortada(),
+                UltimoPostDeLecturasRecomendadas = await RecuperarUltimoPostDeLecturasRecomendadas()
             };
             return View(viewModel);
+        }
+
+        private async Task<PostViewModel> RecuperarUltimoPostDeLecturasRecomendadas()
+        {
+            return await Posts()
+                .Publicados()
+                .DeLecturasRecomendadas()
+                .OrderByDescending(m => m.FechaPost)
+                .Select(m=> new PostViewModel
+                {
+                    Titulo = m.Titulo,
+                    SubtituloHtml = m.Subtitulo,
+                    ContenidoHtml = m.ContenidoHtml
+                })
+                .FirstAsync();
+
         }
 
         private async Task<List<LineaResumenPost>> RecuperarPostPortada()
         {
             return await Posts()
                 .Publicados()
-                .Where(m => !m.Titulo.Contains("lecturas recomendadas"))
+                .QueNoSonLecturasRecomendadas()
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
                 .Take(3)

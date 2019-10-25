@@ -202,6 +202,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ViewModels\Blog\PostViewModel.cs" />
     <Compile Include="Helpers\ImagenHelper.cs" />
     <Compile Include="Servicios\AzureStorageService.cs" />
     <Compile Include="Helpers\WebConfigParametro.cs" />
