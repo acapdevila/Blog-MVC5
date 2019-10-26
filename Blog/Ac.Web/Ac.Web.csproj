@@ -919,6 +919,7 @@
     <Content Include="Views\Portada\_ListaLineasResumenPostPortada.cshtml" />
     <Content Include="Views\Shared\_StackTecnologico.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\Shared\_Certificaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

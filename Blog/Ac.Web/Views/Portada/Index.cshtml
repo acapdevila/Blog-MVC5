@@ -18,17 +18,16 @@
 </div>
 <div class="col-md-3">
     <img class="hidden-xs img-responsive" src="~/Content/imagenes/Portada/foto3.jpg" alt="Programador freelance Barcelona Microsoft" />
-    
-    
+
+
 
     <div class="fraseHome">
         <blockquote>"La simplicidad es pre-requisito para la fiabilidad"<p class="small"> Edsger W. Dijkstra  </p></blockquote>
     </div>
 
-    
-    
 
-    </div>
+
+</div>
 
 
     <div class="clearfix"></div>
@@ -112,6 +111,10 @@
 
         </div>
         <div class="col-md-12">
+            <h4>Certificaciones</h4>
+            @Html.Partial("_Certificaciones")
+        </div>
+        <div class="col-md-12">
 
 
             @Html.Partial("_StackTecnologico")
@@ -120,7 +123,7 @@
 
 
 
-  
+
 
 
     </div>
@@ -155,30 +158,40 @@
        
     }
 <div class="clearfix"></div>
-
 <hr>
-<article class="articulo">
-    <!-- Blog Post -->
-    <!-- Title -->
-    <h1>@Html.DisplayFor(model => model.UltimoPostDeLecturasRecomendadas.Titulo)</h1>
-    <!-- Author -->
-    @*<p class="lead">
-            by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
-        </p>*@
-    <hr>
+<div class="row">
+    <div class="col-lg-8">
+        <article class="articulo">
+            <!-- Blog Post -->
+            <!-- Title -->
+            <h1>@Html.DisplayFor(model => model.UltimoPostDeLecturasRecomendadas.Titulo)</h1>
+            <!-- Author -->
+            @*<p class="lead">
+                by <a href="#">@Html.DisplayFor(model => model.Autor)</a>
+            </p>*@
+            <hr>
 
-    @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.SubtituloHtml)
-    <!-- Preview Image
-    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-    <hr>-->
-    <!-- Post Content -->
-    @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.ContenidoHtml)
-
-
-    @Html.Partial("_SyntaxHightLighter")
-
-
-</article>
+            @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.SubtituloHtml)
+            <!-- Preview Image
+            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+            <hr>-->
+            <!-- Post Content -->
+            @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.ContenidoHtml)
 
 
-<div class="clearfix"></div>
+        </article>
+    </div>
+    @Html.Partial("_SidebarPrincipal")
+    
+    <div class="col-lg-12">
+
+       
+
+    </div>
+
+</div>
+ 
+  
+
+
+    <div class="clearfix"></div>

@@ -1,6 +1,8 @@
 ﻿@using System.ComponentModel
  <!-- Blog Sidebar Widgets Column -->
 <div class="col-md-4">
+
+    
     @* <!-- Blog Search Well-->
         <div class="well">
            <h4>Blog Search</h4>
@@ -14,23 +16,25 @@
              </div>
              <!-- /.input-group -->
          </div> *@
-    
-    
-        @Html.Partial("_SubscripcionMailChimp")
+
+
+    @Html.Partial("_SubscripcionMailChimp")
 
     <!-- Blog Categories Well -->
     @Html.Action("NubeEtiquetas", "Sidebar")
 
     <!-- Archivo blog  Well -->
-        @*@Html.Action("ArchivoEtiquetas", "Sidebar")*@
-    
-        <!-- Archivo blog  -->
+    @*@Html.Action("ArchivoEtiquetas", "Sidebar")*@
+
+    <!-- Archivo blog  -->
     @Html.Action("ArchivoArbol", "Sidebar")
 
     <!-- Side Widget Well -->
-        @*<div class="well">
+    @*<div class="well">
             <h4>Side Widget Well</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
         </div>*@
 
-    </div>
+
+
+</div>
