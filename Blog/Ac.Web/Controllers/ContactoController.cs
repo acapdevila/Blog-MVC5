@@ -1,22 +1,22 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using System.Web.UI;
-using Ac.Servicios;
+using Ac.Web.Helpers;
 using Ac.Web.Servicios.Contacto;
+using Amazon.Runtime;
 
 namespace Ac.Web.Controllers
 {
     public class ContactoController : Controller
     {
-        private readonly IEmailServicio _emailServicio;
+        private readonly AmazonSesEmailSender _emailServicio;
 
-        public ContactoController(): this(new EmailServicio())
+        public ContactoController()
         {
-            
-        }
-
-        public ContactoController(IEmailServicio emailServicio)
-        {
-            _emailServicio = emailServicio;
+            _emailServicio = new AmazonSesEmailSender(
+                new BasicAWSCredentials(
+                    WebConfigParametro.AwsAccessKey, 
+                    WebConfigParametro.AwsSecretKey));
         }
 
         [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "none", NoStore = true)]
@@ -26,19 +26,23 @@ namespace Ac.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormularioContactoViewModel viewmodel)
+        public async Task<ActionResult> Index(FormularioContactoViewModel viewmodel)
         {
-            if (ModelState.IsValid)
-            {
-               _emailServicio.EnviarFormularioContacto(viewmodel);
-                
-                if(viewmodel.EsCaptchaValido)
-                    return RedirectToAction("MensajeEnviado");
-               
-                return RedirectToAction("MensajeNoEnviado");
-            }
+            if (!ModelState.IsValid) return View(viewmodel);
 
-            return View(viewmodel);
+            if (!viewmodel.EsCaptchaValido)
+                return RedirectToAction("MensajeNoEnviado");
+
+            var body =
+                $"{viewmodel.Mensaje}\r\n\r\n\r\nNombre: {viewmodel.Nombre}\r\nE-mail: {viewmodel.Email}\r\nTeléfono:{viewmodel.Telefono}\r\n* Mensaje enviado desde el formulario de contacto del Blog";
+            
+            var respuesta = await _emailServicio.EnviarEmailDeContactoAsync(viewmodel.Nombre, viewmodel.Email, viewmodel.Asunto, body);
+          
+            //_emailServicio.EnviarFormularioContacto(viewmodel);
+                
+           
+               
+            return RedirectToAction("MensajeEnviado");
 
         }
 

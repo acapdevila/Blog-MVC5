@@ -238,3 +238,5 @@ Blog/Blog.Deploy/**
 Blog/Blog.Web/ImagenesAzure/**
 CopiaImagenes2018_08_14/**
 Blog/Blog.Smoothies/pinterest-*.html
+Blog/NDependOut/**
+**.ndproj

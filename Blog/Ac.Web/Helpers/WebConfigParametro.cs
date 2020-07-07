@@ -7,6 +7,11 @@ namespace Ac.Web.Helpers
         public static string EmailContactoBlog => ConfigurationManager.AppSettings["EmailContactoBlog"];
         public static string EmailBlog => ConfigurationManager.AppSettings["EmailEnvioCorreos"];
 
+
+        public static string AwsAccessKey => ConfigurationManager.AppSettings["AwsAccessKey"];
+        public static string AwsSecretKey => ConfigurationManager.AppSettings["AwsSecretKey"];
+        
+
         public static string StorageConnectionString => ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString;
         public static string NombreContenedorBlobAzure => ConfigurationManager.AppSettings["NombreContenedorBlobAzure"];
         public static string UrlRaizImagenes => ConfigurationManager.AppSettings["UrlRaizBlobAzure"];
