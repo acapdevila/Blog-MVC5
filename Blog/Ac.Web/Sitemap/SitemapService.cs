@@ -80,24 +80,20 @@ namespace Ac.Web.Sitemap
 
 
             // Portada
-            nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("", ""))
-                {
+            nodes.Add(new SitemapNode(this._urlHelper.AbsoluteAction("", "")){
                     Priority = 1
                 });
 
          
 
             // Blog
-            nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Blog"))
+            nodes.Add(new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Blog"))
                 {
                     Frequency = SitemapFrequency.Monthly,
                     Priority = 1
                 });
 
-            nodes.Add(
-                new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contratame"))
+            nodes.Add(new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contratame"))
                 {
                     Priority = 1
                 });
@@ -129,13 +125,10 @@ namespace Ac.Web.Sitemap
                    });
             }
             
-            nodes.Add(
-                    new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Libros"))
+            nodes.Add(new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Libros"))
                     {
                         Priority = 0.5
                     });
-            
-         
             
             nodes.Add(
                 new SitemapNode(this._urlHelper.AbsoluteAction("Index", "Contacto"))

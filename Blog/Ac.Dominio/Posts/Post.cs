@@ -54,18 +54,11 @@ namespace Ac.Dominio.Posts
     
         public string TituloSinAcentos { get; private set; }
 
-
-       
-
         public bool EsPublico => !EsBorrador && FechaPublicacion <= DateTime.Now;
 
+        public bool EsMostrarDatosEstructurados => 
+            !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion);
 
-        public bool EsMostrarDatosEstructurados
-        {
-            get { return !string.IsNullOrEmpty(UrlImagenPrincipal) && !string.IsNullOrEmpty(Descripcion); }
-        }
-
-        
         public void Publicar(DateTime fechaPost, string urlSlug, bool esRssAtom)
         {
             FechaPost = fechaPost;
@@ -91,8 +84,6 @@ namespace Ac.Dominio.Posts
             Titulo = titulo;
             TituloSinAcentos = titulo.RemoveDiacritics();
         }
-
-
     }
 
 

@@ -5,7 +5,7 @@ namespace Ac.Infra
 {
     public class Imagen : ValueObject
     {
-        public static Imagen Vacia = new Imagen(null, null); 
+       // public static readonly Imagen Vacia = new Imagen(null, null); 
 
         protected Imagen()
         {

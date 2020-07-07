@@ -73,8 +73,6 @@ namespace Ac.Dominio.Tags
             ContenidoHtml = etiquetaDto.ContenidoHtml;
             FechaPublicacion = etiquetaDto.FechaPublicacion;
             EsPublico = etiquetaDto.EsPublico;
-
-
         }
 
     }
