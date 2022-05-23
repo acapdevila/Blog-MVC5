@@ -16,7 +16,7 @@ namespace Ac.Web.Controllers
         public class PortadaViewModel
         {
             public List<LineaResumenPost> UltimosPosts { get; set; }
-            public PostViewModel UltimoPostDeLecturasRecomendadas { get; set; }
+         //   public PostViewModel UltimoPostDeLecturasRecomendadas { get; set; }
         }
 
         private readonly ContextoBaseDatos _db;
@@ -31,7 +31,7 @@ namespace Ac.Web.Controllers
             var viewModel = new PortadaViewModel
             {
                 UltimosPosts = await RecuperarPostPortada(),
-                UltimoPostDeLecturasRecomendadas = await RecuperarUltimoPostDeLecturasRecomendadas()
+                //UltimoPostDeLecturasRecomendadas = await RecuperarUltimoPostDeLecturasRecomendadas()
             };
             return View(viewModel);
         }
@@ -59,7 +59,7 @@ namespace Ac.Web.Controllers
                 .QueNoSonLecturasRecomendadas()
                 .SeleccionaLineaResumenPost()
                 .OrderByDescending(m => m.FechaPost)
-                .Take(3)
+                .Take(6)
                 .ToListAsync();
         }
 
