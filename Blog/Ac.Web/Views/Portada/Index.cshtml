@@ -132,50 +132,38 @@
 
 
     <div class="clearfix"></div>
-    <h2>Últimas entradas del <a class="color2" href="@Url.Action("Index", "Blog")">BLOG</a></h2>
+<h2>Últimas entradas del <a class="color2" 
+                            href="@Url.Action("Index", "Blog")">BLOG</a>
+    </h2>
     <hr />
-    <!-- Blog Entries Column -->
-    @foreach (var item in Model.UltimosPosts)
-    {
-        <div class="col-md-4">
-            <h4 class="typo">
-                <a href="@Url.RutaAmigable(item.UrlSlug)">@item.Titulo</a>
-            </h4>
-            
-            @Html.Raw(item.Subtitulo)
-            
-            <br />
-            <a class="leermas" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
-                leer más
-            </a>
-            <br/>
-            <br/>
-            @*<a href="@Url.RutaAmigable(item.UrlSlug)">
-                <img src="@item.UrlImagen" alt="@item.Titulo"/>
-            </a>*@
-        </div>
+<!-- Blog Entries Column -->
+    <div class="col-lg-8">
+            @for (int i = 0; i < Model.UltimosPosts.Count; i = i + 2)
+            {
+                var items = Model.UltimosPosts.Skip(i).Take(2);
+                <div class="row">
+                    @foreach (var item in items)
+                    {
+                        <div class="col-md-6">
+                            <h4 class="typo">
+                                <a href="@Url.RutaAmigable(item.UrlSlug)">@item.Titulo</a>
+                            </h4>
 
-       
-    }
-<div class="clearfix"></div>
-<hr>
-<div class="row">
-@* <div class="col-lg-8">
-        <article class="articulo">
-            <h1>@Html.DisplayFor(model => model.UltimoPostDeLecturasRecomendadas.Titulo)</h1>
-            <hr>
-            @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.SubtituloHtml)
-            @Html.Raw(Model.UltimoPostDeLecturasRecomendadas.ContenidoHtml)
+                            @Html.Raw(item.Subtitulo)
 
-        </article>
+                            <br/>
+                            <a class="leermas" href="@Url.RutaUrlBlogPost(item.FechaPost, item.UrlSlug)">
+                                leer más
+                            </a>
+                            <br/>
+                            <br/>
+
+                        </div>
+                    }
+                </div>
+            }
     </div>
-    *@
-    @Html.Partial("_SidebarPrincipal")
-    
+@Html.Partial("_SidebarPrincipal")
+      
 
-</div>
- 
-  
-
-
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
